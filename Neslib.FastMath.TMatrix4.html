@@ -1,0 +1,1213 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/1999/REC-html401-19991224/loose.dtd">
+<html>
+<head>
+<title>FastMath: Neslib.FastMath: record TMatrix4</title>
+<meta name="generator" content="PasDoc 0.14.0">
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<link rel="StyleSheet" type="text/css" href="pasdoc.css">
+</head>
+<body>
+<table class="container"><tr><td class="navigation">
+<h2>FastMath</h2><p><a href="introduction.html" class="navigation">About FastMath</a></p><p><a href="AllUnits.html" class="navigation">Units</a></p><p><a href="ClassHierarchy.html" class="navigation">Class Hierarchy</a></p><p><a href="AllClasses.html" class="navigation">Classes, Interfaces, Objects and Records</a></p><p><a href="AllTypes.html" class="navigation">Types</a></p><p><a href="AllVariables.html" class="navigation">Variables</a></p><p><a href="AllConstants.html" class="navigation">Constants</a></p><p><a href="AllFunctions.html" class="navigation">Functions and Procedures</a></p><p><a href="AllIdentifiers.html" class="navigation">Identifiers</a></p><p><a href="conclusion.html" class="navigation">License</a></p></td><td class="content">
+<a name="TMatrix4"></a><h1 class="cio">record TMatrix4</h1>
+<table class="sections wide_list">
+<tr>
+<td><a class="section" href="#PasDoc-Description">Description</a></td><td>Hierarchy</td><td><a class="section" href="#PasDoc-Fields">Fields</a></td><td><a class="section" href="#PasDoc-Methods">Methods</a></td><td><a class="section" href="#PasDoc-Properties">Properties</a></td></tr></table>
+<a name="PasDoc-Description"></a><h2 class="unit">Unit</h2>
+<p class="unitlink">
+<a  href="Neslib.FastMath.html">Neslib.FastMath</a></p>
+<h2 class="declaration">Declaration</h2>
+<p class="declaration">
+<code>type TMatrix4 = record</code></p>
+<h2 class="description">Description</h2>
+<p>
+A 4x4 matrix in row-major order (<a class="normal" href="Neslib.FastMath.TMatrix4.html#M">M</a>[Row, Column]). You can access the elements directly using <a class="normal" href="Neslib.FastMath.TMatrix4.html#M">M</a>[0,0]..M[3,3] or <a class="normal" href="Neslib.FastMath.TMatrix4.html#m11">m11</a>..m44. You can also access the matrix using its four <a class="normal" href="Neslib.FastMath.TMatrix4.html#Rows">rows</a> <a class="normal" href="Neslib.FastMath.TMatrix4.html#R">R</a>[0]..R[3] (which map directly to the elements <a class="normal" href="Neslib.FastMath.TMatrix4.html#M">M</a>[]).
+
+<p><code>TMatrix4</code> is compatible with TMatrix3D in the Delphi RTL. You can typecast between these two types or implicitly convert from one to the other through assignment (eg. MyMatrix4 := MyPoint3D).</p>
+<h2 class="overview">Overview</h2>
+<a name="PasDoc-Fields"></a><h3 class="summary">Fields</h3>
+<table class="summary wide_list">
+<tr class="list">
+<td class="itemcode"><code><b><a  href="Neslib.FastMath.TMatrix4.html#R">R</a></b>: array [0..3] of <a  href="Neslib.FastMath.TVector4.html">TVector4</a></code></td>
+</tr>
+<tr class="list2">
+<td class="itemcode"><code><b><a  href="Neslib.FastMath.TMatrix4.html#M">M</a></b>: array [0..3, 0..3] of Single</code></td>
+</tr>
+<tr class="list">
+<td class="itemcode"><code><b><a  href="Neslib.FastMath.TMatrix4.html#m11">m11</a></b>: Single;</code></td>
+</tr>
+<tr class="list2">
+<td class="itemcode"><code><b><a  href="Neslib.FastMath.TMatrix4.html#m12">m12</a></b>: Single;</code></td>
+</tr>
+<tr class="list">
+<td class="itemcode"><code><b><a  href="Neslib.FastMath.TMatrix4.html#m13">m13</a></b>: Single;</code></td>
+</tr>
+<tr class="list2">
+<td class="itemcode"><code><b><a  href="Neslib.FastMath.TMatrix4.html#m14">m14</a></b>: Single;</code></td>
+</tr>
+<tr class="list">
+<td class="itemcode"><code><b><a  href="Neslib.FastMath.TMatrix4.html#m21">m21</a></b>: Single;</code></td>
+</tr>
+<tr class="list2">
+<td class="itemcode"><code><b><a  href="Neslib.FastMath.TMatrix4.html#m22">m22</a></b>: Single;</code></td>
+</tr>
+<tr class="list">
+<td class="itemcode"><code><b><a  href="Neslib.FastMath.TMatrix4.html#m23">m23</a></b>: Single;</code></td>
+</tr>
+<tr class="list2">
+<td class="itemcode"><code><b><a  href="Neslib.FastMath.TMatrix4.html#m24">m24</a></b>: Single;</code></td>
+</tr>
+<tr class="list">
+<td class="itemcode"><code><b><a  href="Neslib.FastMath.TMatrix4.html#m31">m31</a></b>: Single;</code></td>
+</tr>
+<tr class="list2">
+<td class="itemcode"><code><b><a  href="Neslib.FastMath.TMatrix4.html#m32">m32</a></b>: Single;</code></td>
+</tr>
+<tr class="list">
+<td class="itemcode"><code><b><a  href="Neslib.FastMath.TMatrix4.html#m33">m33</a></b>: Single;</code></td>
+</tr>
+<tr class="list2">
+<td class="itemcode"><code><b><a  href="Neslib.FastMath.TMatrix4.html#m34">m34</a></b>: Single;</code></td>
+</tr>
+<tr class="list">
+<td class="itemcode"><code><b><a  href="Neslib.FastMath.TMatrix4.html#m41">m41</a></b>: Single</code></td>
+</tr>
+<tr class="list2">
+<td class="itemcode"><code><b><a  href="Neslib.FastMath.TMatrix4.html#m42">m42</a></b>: Single</code></td>
+</tr>
+<tr class="list">
+<td class="itemcode"><code><b><a  href="Neslib.FastMath.TMatrix4.html#m43">m43</a></b>: Single</code></td>
+</tr>
+<tr class="list2">
+<td class="itemcode"><code><b><a  href="Neslib.FastMath.TMatrix4.html#m44">m44</a></b>: Single</code></td>
+</tr>
+</table>
+<a name="PasDoc-Methods"></a><h3 class="summary">Methods</h3>
+<table class="summary wide_list">
+<tr class="list">
+<td class="itemcode"><code>procedure <b><a  href="Neslib.FastMath.TMatrix4.html#Init">Init</a></b>; overload; inline;</code></td>
+</tr>
+<tr class="list2">
+<td class="itemcode"><code>procedure <b><a  href="Neslib.FastMath.TMatrix4.html#Init">Init</a></b>(const ADiagonal: Single); overload; inline;</code></td>
+</tr>
+<tr class="list">
+<td class="itemcode"><code>procedure <b><a  href="Neslib.FastMath.TMatrix4.html#Init">Init</a></b>(const ARow0, ARow1, ARow2, ARow3: <a  href="Neslib.FastMath.TVector4.html">TVector4</a>); overload; inline;</code></td>
+</tr>
+<tr class="list2">
+<td class="itemcode"><code>procedure <b><a  href="Neslib.FastMath.TMatrix4.html#Init">Init</a></b>(const A11, A12, A13, A14, A21, A22, A23, A24, A31, A32, A33, A34, A41, A42, A43, A44: Single); overload; inline;</code></td>
+</tr>
+<tr class="list">
+<td class="itemcode"><code>procedure <b><a  href="Neslib.FastMath.TMatrix4.html#Init">Init</a></b>(const AMatrix: <a  href="Neslib.FastMath.TMatrix2.html">TMatrix2</a>); overload; inline;</code></td>
+</tr>
+<tr class="list2">
+<td class="itemcode"><code>procedure <b><a  href="Neslib.FastMath.TMatrix4.html#Init">Init</a></b>(const AMatrix: <a  href="Neslib.FastMath.TMatrix3.html">TMatrix3</a>); overload; inline;</code></td>
+</tr>
+<tr class="list">
+<td class="itemcode"><code>procedure <b><a  href="Neslib.FastMath.TMatrix4.html#InitScaling">InitScaling</a></b>(const AScale: Single); overload;</code></td>
+</tr>
+<tr class="list2">
+<td class="itemcode"><code>procedure <b><a  href="Neslib.FastMath.TMatrix4.html#InitScaling">InitScaling</a></b>(const AScaleX, AScaleY, AScaleZ: Single); overload; inline;</code></td>
+</tr>
+<tr class="list">
+<td class="itemcode"><code>procedure <b><a  href="Neslib.FastMath.TMatrix4.html#InitScaling">InitScaling</a></b>(const AScale: <a  href="Neslib.FastMath.TVector3.html">TVector3</a>); overload; inline;</code></td>
+</tr>
+<tr class="list2">
+<td class="itemcode"><code>procedure <b><a  href="Neslib.FastMath.TMatrix4.html#InitTranslation">InitTranslation</a></b>(const ADeltaX, ADeltaY, ADeltaZ: Single); overload; inline;</code></td>
+</tr>
+<tr class="list">
+<td class="itemcode"><code>procedure <b><a  href="Neslib.FastMath.TMatrix4.html#InitTranslation">InitTranslation</a></b>(const ADelta: <a  href="Neslib.FastMath.TVector3.html">TVector3</a>); overload; inline;</code></td>
+</tr>
+<tr class="list2">
+<td class="itemcode"><code>procedure <b><a  href="Neslib.FastMath.TMatrix4.html#InitRotationX">InitRotationX</a></b>(const AAngle: Single);</code></td>
+</tr>
+<tr class="list">
+<td class="itemcode"><code>procedure <b><a  href="Neslib.FastMath.TMatrix4.html#InitRotationY">InitRotationY</a></b>(const AAngle: Single);</code></td>
+</tr>
+<tr class="list2">
+<td class="itemcode"><code>procedure <b><a  href="Neslib.FastMath.TMatrix4.html#InitRotationZ">InitRotationZ</a></b>(const AAngle: Single);</code></td>
+</tr>
+<tr class="list">
+<td class="itemcode"><code>procedure <b><a  href="Neslib.FastMath.TMatrix4.html#InitRotation">InitRotation</a></b>(const AAxis: <a  href="Neslib.FastMath.TVector3.html">TVector3</a>; const AAngle: Single);</code></td>
+</tr>
+<tr class="list2">
+<td class="itemcode"><code>procedure <b><a  href="Neslib.FastMath.TMatrix4.html#InitRotationYawPitchRoll">InitRotationYawPitchRoll</a></b>(const AYaw, APitch, ARoll: Single);</code></td>
+</tr>
+<tr class="list">
+<td class="itemcode"><code>procedure <b><a  href="Neslib.FastMath.TMatrix4.html#InitRotationHeadingPitchBank">InitRotationHeadingPitchBank</a></b>(const AHeading, APitch, ABank: Single);</code></td>
+</tr>
+<tr class="list2">
+<td class="itemcode"><code>procedure <b><a  href="Neslib.FastMath.TMatrix4.html#InitLookAtLH">InitLookAtLH</a></b>(const ACameraPosition, ACameraTarget, ACameraUp: <a  href="Neslib.FastMath.TVector3.html">TVector3</a>);</code></td>
+</tr>
+<tr class="list">
+<td class="itemcode"><code>procedure <b><a  href="Neslib.FastMath.TMatrix4.html#InitLookAtRH">InitLookAtRH</a></b>(const ACameraPosition, ACameraTarget, ACameraUp: <a  href="Neslib.FastMath.TVector3.html">TVector3</a>);</code></td>
+</tr>
+<tr class="list2">
+<td class="itemcode"><code>procedure <b><a  href="Neslib.FastMath.TMatrix4.html#InitLookAtDirLH">InitLookAtDirLH</a></b>(const ACameraPosition, ACameraDirection, ACameraUp: <a  href="Neslib.FastMath.TVector3.html">TVector3</a>);</code></td>
+</tr>
+<tr class="list">
+<td class="itemcode"><code>procedure <b><a  href="Neslib.FastMath.TMatrix4.html#InitLookAtDirRH">InitLookAtDirRH</a></b>(const ACameraPosition, ACameraDirection, ACameraUp: <a  href="Neslib.FastMath.TVector3.html">TVector3</a>);</code></td>
+</tr>
+<tr class="list2">
+<td class="itemcode"><code>procedure <b><a  href="Neslib.FastMath.TMatrix4.html#InitOrthoLH">InitOrthoLH</a></b>(const AWidth, AHeight, AZNearPlane, AZFarPlane: Single);</code></td>
+</tr>
+<tr class="list">
+<td class="itemcode"><code>procedure <b><a  href="Neslib.FastMath.TMatrix4.html#InitOrthoRH">InitOrthoRH</a></b>(const AWidth, AHeight, AZNearPlane, AZFarPlane: Single);</code></td>
+</tr>
+<tr class="list2">
+<td class="itemcode"><code>procedure <b><a  href="Neslib.FastMath.TMatrix4.html#InitOrthoOffCenterLH">InitOrthoOffCenterLH</a></b>(const ALeft, ATop, ARight, ABottom, AZNearPlane, AZFarPlane: Single);</code></td>
+</tr>
+<tr class="list">
+<td class="itemcode"><code>procedure <b><a  href="Neslib.FastMath.TMatrix4.html#InitOrthoOffCenterRH">InitOrthoOffCenterRH</a></b>(const ALeft, ATop, ARight, ABottom, AZNearPlane, AZFarPlane: Single);</code></td>
+</tr>
+<tr class="list2">
+<td class="itemcode"><code>procedure <b><a  href="Neslib.FastMath.TMatrix4.html#InitPerspectiveFovLH">InitPerspectiveFovLH</a></b>(const AFieldOfView, AAspectRatio, ANearPlaneDistance, AFarPlaneDistance: Single; const AHorizontalFOV: Boolean = False);</code></td>
+</tr>
+<tr class="list">
+<td class="itemcode"><code>procedure <b><a  href="Neslib.FastMath.TMatrix4.html#InitPerspectiveFovRH">InitPerspectiveFovRH</a></b>(const AFieldOfView, AAspectRatio, ANearPlaneDistance, AFarPlaneDistance: Single; const AHorizontalFOV: Boolean = False);</code></td>
+</tr>
+<tr class="list2">
+<td class="itemcode"><code>class operator <b><a  href="Neslib.FastMath.TMatrix4.html#Implicit">Implicit</a></b>(const A: TMatrix3D): <a  href="Neslib.FastMath.TMatrix4.html">TMatrix4</a>; inline;</code></td>
+</tr>
+<tr class="list">
+<td class="itemcode"><code>class operator <b><a  href="Neslib.FastMath.TMatrix4.html#Implicit">Implicit</a></b>(const A: <a  href="Neslib.FastMath.TMatrix4.html">TMatrix4</a>): TMatrix3D; inline;</code></td>
+</tr>
+<tr class="list2">
+<td class="itemcode"><code>class operator <b><a  href="Neslib.FastMath.TMatrix4.html#Equal">Equal</a></b>(const A, B: <a  href="Neslib.FastMath.TMatrix4.html">TMatrix4</a>): Boolean; inline;</code></td>
+</tr>
+<tr class="list">
+<td class="itemcode"><code>class operator <b><a  href="Neslib.FastMath.TMatrix4.html#NotEqual">NotEqual</a></b>(const A, B: <a  href="Neslib.FastMath.TMatrix4.html">TMatrix4</a>): Boolean; inline;</code></td>
+</tr>
+<tr class="list2">
+<td class="itemcode"><code>class operator <b><a  href="Neslib.FastMath.TMatrix4.html#Negative">Negative</a></b>(const A: <a  href="Neslib.FastMath.TMatrix4.html">TMatrix4</a>): <a  href="Neslib.FastMath.TMatrix4.html">TMatrix4</a>;</code></td>
+</tr>
+<tr class="list">
+<td class="itemcode"><code>class operator <b><a  href="Neslib.FastMath.TMatrix4.html#Add">Add</a></b>(const A: <a  href="Neslib.FastMath.TMatrix4.html">TMatrix4</a>; const B: Single): <a  href="Neslib.FastMath.TMatrix4.html">TMatrix4</a>;</code></td>
+</tr>
+<tr class="list2">
+<td class="itemcode"><code>class operator <b><a  href="Neslib.FastMath.TMatrix4.html#Add">Add</a></b>(const A: Single; const B: <a  href="Neslib.FastMath.TMatrix4.html">TMatrix4</a>): <a  href="Neslib.FastMath.TMatrix4.html">TMatrix4</a>;</code></td>
+</tr>
+<tr class="list">
+<td class="itemcode"><code>class operator <b><a  href="Neslib.FastMath.TMatrix4.html#Add">Add</a></b>(const A, B: <a  href="Neslib.FastMath.TMatrix4.html">TMatrix4</a>): <a  href="Neslib.FastMath.TMatrix4.html">TMatrix4</a>;</code></td>
+</tr>
+<tr class="list2">
+<td class="itemcode"><code>class operator <b><a  href="Neslib.FastMath.TMatrix4.html#Subtract">Subtract</a></b>(const A: <a  href="Neslib.FastMath.TMatrix4.html">TMatrix4</a>; const B: Single): <a  href="Neslib.FastMath.TMatrix4.html">TMatrix4</a>;</code></td>
+</tr>
+<tr class="list">
+<td class="itemcode"><code>class operator <b><a  href="Neslib.FastMath.TMatrix4.html#Subtract">Subtract</a></b>(const A: Single; const B: <a  href="Neslib.FastMath.TMatrix4.html">TMatrix4</a>): <a  href="Neslib.FastMath.TMatrix4.html">TMatrix4</a>;</code></td>
+</tr>
+<tr class="list2">
+<td class="itemcode"><code>class operator <b><a  href="Neslib.FastMath.TMatrix4.html#Subtract">Subtract</a></b>(const A, B: <a  href="Neslib.FastMath.TMatrix4.html">TMatrix4</a>): <a  href="Neslib.FastMath.TMatrix4.html">TMatrix4</a>;</code></td>
+</tr>
+<tr class="list">
+<td class="itemcode"><code>class operator <b><a  href="Neslib.FastMath.TMatrix4.html#Multiply">Multiply</a></b>(const A: <a  href="Neslib.FastMath.TMatrix4.html">TMatrix4</a>; const B: Single): <a  href="Neslib.FastMath.TMatrix4.html">TMatrix4</a>;</code></td>
+</tr>
+<tr class="list2">
+<td class="itemcode"><code>class operator <b><a  href="Neslib.FastMath.TMatrix4.html#Multiply">Multiply</a></b>(const A: Single; const B: <a  href="Neslib.FastMath.TMatrix4.html">TMatrix4</a>): <a  href="Neslib.FastMath.TMatrix4.html">TMatrix4</a>;</code></td>
+</tr>
+<tr class="list">
+<td class="itemcode"><code>class operator <b><a  href="Neslib.FastMath.TMatrix4.html#Multiply">Multiply</a></b>(const A: <a  href="Neslib.FastMath.TMatrix4.html">TMatrix4</a>; const B: <a  href="Neslib.FastMath.TVector4.html">TVector4</a>): <a  href="Neslib.FastMath.TVector4.html">TVector4</a>;</code></td>
+</tr>
+<tr class="list2">
+<td class="itemcode"><code>class operator <b><a  href="Neslib.FastMath.TMatrix4.html#Multiply">Multiply</a></b>(const A: <a  href="Neslib.FastMath.TVector4.html">TVector4</a>; const B: <a  href="Neslib.FastMath.TMatrix4.html">TMatrix4</a>): <a  href="Neslib.FastMath.TVector4.html">TVector4</a>;</code></td>
+</tr>
+<tr class="list">
+<td class="itemcode"><code>class operator <b><a  href="Neslib.FastMath.TMatrix4.html#Multiply">Multiply</a></b>(const A, B: <a  href="Neslib.FastMath.TMatrix4.html">TMatrix4</a>): <a  href="Neslib.FastMath.TMatrix4.html">TMatrix4</a>;</code></td>
+</tr>
+<tr class="list2">
+<td class="itemcode"><code>class operator <b><a  href="Neslib.FastMath.TMatrix4.html#Divide">Divide</a></b>(const A: <a  href="Neslib.FastMath.TMatrix4.html">TMatrix4</a>; const B: Single): <a  href="Neslib.FastMath.TMatrix4.html">TMatrix4</a>;</code></td>
+</tr>
+<tr class="list">
+<td class="itemcode"><code>class operator <b><a  href="Neslib.FastMath.TMatrix4.html#Divide">Divide</a></b>(const A: Single; const B: <a  href="Neslib.FastMath.TMatrix4.html">TMatrix4</a>): <a  href="Neslib.FastMath.TMatrix4.html">TMatrix4</a>;</code></td>
+</tr>
+<tr class="list2">
+<td class="itemcode"><code>class operator <b><a  href="Neslib.FastMath.TMatrix4.html#Divide">Divide</a></b>(const A: <a  href="Neslib.FastMath.TMatrix4.html">TMatrix4</a>; const B: <a  href="Neslib.FastMath.TVector4.html">TVector4</a>): <a  href="Neslib.FastMath.TVector4.html">TVector4</a>;</code></td>
+</tr>
+<tr class="list">
+<td class="itemcode"><code>class operator <b><a  href="Neslib.FastMath.TMatrix4.html#Divide">Divide</a></b>(const A: <a  href="Neslib.FastMath.TVector4.html">TVector4</a>; const B: <a  href="Neslib.FastMath.TMatrix4.html">TMatrix4</a>): <a  href="Neslib.FastMath.TVector4.html">TVector4</a>;</code></td>
+</tr>
+<tr class="list2">
+<td class="itemcode"><code>class operator <b><a  href="Neslib.FastMath.TMatrix4.html#Divide">Divide</a></b>(const A, B: <a  href="Neslib.FastMath.TMatrix4.html">TMatrix4</a>): <a  href="Neslib.FastMath.TMatrix4.html">TMatrix4</a>; inline;</code></td>
+</tr>
+<tr class="list">
+<td class="itemcode"><code>function <b><a  href="Neslib.FastMath.TMatrix4.html#CompMult">CompMult</a></b>(const AOther: <a  href="Neslib.FastMath.TMatrix4.html">TMatrix4</a>): <a  href="Neslib.FastMath.TMatrix4.html">TMatrix4</a>;</code></td>
+</tr>
+<tr class="list2">
+<td class="itemcode"><code>function <b><a  href="Neslib.FastMath.TMatrix4.html#Transpose">Transpose</a></b>: <a  href="Neslib.FastMath.TMatrix4.html">TMatrix4</a>;</code></td>
+</tr>
+<tr class="list">
+<td class="itemcode"><code>procedure <b><a  href="Neslib.FastMath.TMatrix4.html#SetTransposed">SetTransposed</a></b>;</code></td>
+</tr>
+<tr class="list2">
+<td class="itemcode"><code>function <b><a  href="Neslib.FastMath.TMatrix4.html#Inverse">Inverse</a></b>: <a  href="Neslib.FastMath.TMatrix4.html">TMatrix4</a>;</code></td>
+</tr>
+<tr class="list">
+<td class="itemcode"><code>procedure <b><a  href="Neslib.FastMath.TMatrix4.html#SetInversed">SetInversed</a></b>;</code></td>
+</tr>
+</table>
+<a name="PasDoc-Properties"></a><h3 class="summary">Properties</h3>
+<table class="summary wide_list">
+<tr class="list">
+<td class="itemcode"><code>property <b><a  href="Neslib.FastMath.TMatrix4.html#Rows">Rows</a></b>[constAIndex:Integer]: <a  href="Neslib.FastMath.TVector4.html">TVector4</a> read GetRow write SetRow;</code></td>
+</tr>
+<tr class="list2">
+<td class="itemcode"><code>property <b><a  href="Neslib.FastMath.TMatrix4.html#Components">Components</a></b>[constARow,AColumn:Integer]: Single read GetComponent write SetComponent;</code></td>
+</tr>
+<tr class="list">
+<td class="itemcode"><code>property <b><a  href="Neslib.FastMath.TMatrix4.html#Determinant">Determinant</a></b>: Single read GetDeterminant;</code></td>
+</tr>
+</table>
+<h2 class="description">Description</h2>
+<h3 class="detail">Fields</h3>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><a name="R"></a><code><b>R</b>: array [0..3] of <a  href="Neslib.FastMath.TVector4.html">TVector4</a></code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+The four row vectors making up the matrix</p>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><a name="M"></a><code><b>M</b>: array [0..3, 0..3] of Single</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+The elements of the matrix in row-major order</p>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><a name="m11"></a><code><b>m11</b>: Single;</code></td>
+</tr>
+<tr><td colspan="1">
+&nbsp;</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><a name="m12"></a><code><b>m12</b>: Single;</code></td>
+</tr>
+<tr><td colspan="1">
+&nbsp;</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><a name="m13"></a><code><b>m13</b>: Single;</code></td>
+</tr>
+<tr><td colspan="1">
+&nbsp;</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><a name="m14"></a><code><b>m14</b>: Single;</code></td>
+</tr>
+<tr><td colspan="1">
+&nbsp;</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><a name="m21"></a><code><b>m21</b>: Single;</code></td>
+</tr>
+<tr><td colspan="1">
+&nbsp;</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><a name="m22"></a><code><b>m22</b>: Single;</code></td>
+</tr>
+<tr><td colspan="1">
+&nbsp;</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><a name="m23"></a><code><b>m23</b>: Single;</code></td>
+</tr>
+<tr><td colspan="1">
+&nbsp;</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><a name="m24"></a><code><b>m24</b>: Single;</code></td>
+</tr>
+<tr><td colspan="1">
+&nbsp;</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><a name="m31"></a><code><b>m31</b>: Single;</code></td>
+</tr>
+<tr><td colspan="1">
+&nbsp;</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><a name="m32"></a><code><b>m32</b>: Single;</code></td>
+</tr>
+<tr><td colspan="1">
+&nbsp;</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><a name="m33"></a><code><b>m33</b>: Single;</code></td>
+</tr>
+<tr><td colspan="1">
+&nbsp;</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><a name="m34"></a><code><b>m34</b>: Single;</code></td>
+</tr>
+<tr><td colspan="1">
+&nbsp;</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><a name="m41"></a><code><b>m41</b>: Single</code></td>
+</tr>
+<tr><td colspan="1">
+&nbsp;</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><a name="m42"></a><code><b>m42</b>: Single</code></td>
+</tr>
+<tr><td colspan="1">
+&nbsp;</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><a name="m43"></a><code><b>m43</b>: Single</code></td>
+</tr>
+<tr><td colspan="1">
+&nbsp;</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><a name="m44"></a><code><b>m44</b>: Single</code></td>
+</tr>
+<tr><td colspan="1">
+&nbsp;</td></tr>
+</table>
+<h3 class="detail">Methods</h3>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><a name="Init"></a><code>procedure <b>Init</b>; overload; inline;</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+Initializes the matrix to an identity matrix (filled with 0 and value 1 for the diagonal)</p>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><a name="Init"></a><code>procedure <b>Init</b>(const ADiagonal: Single); overload; inline;</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+Fills the matrix with zeros and sets the diagonal.
+
+<p></p>
+<h6 class="description_section">Parameters</h6>
+<dl class="parameters">
+<dt>ADiagonal</dt>
+<dd>the value to use for the diagonal. Use 1 to set the matrix to an identity matrix.</dd>
+</dl>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><a name="Init"></a><code>procedure <b>Init</b>(const ARow0, ARow1, ARow2, ARow3: <a  href="Neslib.FastMath.TVector4.html">TVector4</a>); overload; inline;</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+Initializes the matrix using four row vectors.
+
+<p>   </p>
+<h6 class="description_section">Parameters</h6>
+<dl class="parameters">
+<dt>ARow0</dt>
+<dd>the first row of the matrix.</dd>
+<dt>ARow1</dt>
+<dd>the second row of the matrix.</dd>
+<dt>ARow2</dt>
+<dd>the third row of the matrix.</dd>
+<dt>ARow3</dt>
+<dd>the fourth row of the matrix.</dd>
+</dl>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><a name="Init"></a><code>procedure <b>Init</b>(const A11, A12, A13, A14, A21, A22, A23, A24, A31, A32, A33, A34, A41, A42, A43, A44: Single); overload; inline;</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+Initializes the matrix with explicit values.
+
+<p>Parameters: A11-A44: the values of the matrix elements, in row-major order.</p>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><a name="Init"></a><code>procedure <b>Init</b>(const AMatrix: <a  href="Neslib.FastMath.TMatrix2.html">TMatrix2</a>); overload; inline;</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+Initializes the matrix with a 2x2 matrix. The 2x2 matrix is copied to the top-left corner of the 4x4 matrix, and the remaining elements are set according to an identity matrix.
+
+<p></p>
+<h6 class="description_section">Parameters</h6>
+<dl class="parameters">
+<dt>AMatrix</dt>
+<dd>the source 2x2 matrix.</dd>
+</dl>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><a name="Init"></a><code>procedure <b>Init</b>(const AMatrix: <a  href="Neslib.FastMath.TMatrix3.html">TMatrix3</a>); overload; inline;</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+Initializes the matrix with a 3x3 matrix. The 3x3 matrix is copied to the top-left corner of the 4x4 matrix, and the remaining elements are set according to an identity matrix.
+
+<p></p>
+<h6 class="description_section">Parameters</h6>
+<dl class="parameters">
+<dt>AMatrix</dt>
+<dd>the source 3x3 matrix.</dd>
+</dl>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><a name="InitScaling"></a><code>procedure <b>InitScaling</b>(const AScale: Single); overload;</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+Creates a scaling matrix that scales uniformly.
+
+<p></p>
+<h6 class="description_section">Parameters</h6>
+<dl class="parameters">
+<dt>AScale</dt>
+<dd>the uniform scale factor</dd>
+</dl>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><a name="InitScaling"></a><code>procedure <b>InitScaling</b>(const AScaleX, AScaleY, AScaleZ: Single); overload; inline;</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+Creates a scaling matrix.
+
+<p>  </p>
+<h6 class="description_section">Parameters</h6>
+<dl class="parameters">
+<dt>AScaleX</dt>
+<dd>the value to scale by on the X axis</dd>
+<dt>AScaleY</dt>
+<dd>the value to scale by on the Y axis</dd>
+<dt>AScaleZ</dt>
+<dd>the value to scale by on the Z axis</dd>
+</dl>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><a name="InitScaling"></a><code>procedure <b>InitScaling</b>(const AScale: <a  href="Neslib.FastMath.TVector3.html">TVector3</a>); overload; inline;</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+Creates a scaling matrix.
+
+<p></p>
+<h6 class="description_section">Parameters</h6>
+<dl class="parameters">
+<dt>AScale</dt>
+<dd>the scale factors</dd>
+</dl>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><a name="InitTranslation"></a><code>procedure <b>InitTranslation</b>(const ADeltaX, ADeltaY, ADeltaZ: Single); overload; inline;</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+Creates a translation matrix.
+
+<p>  </p>
+<h6 class="description_section">Parameters</h6>
+<dl class="parameters">
+<dt>ADeltaX</dt>
+<dd>translation in the X direction</dd>
+<dt>ADeltaY</dt>
+<dd>translation in the Y direction</dd>
+<dt>ADeltaZ</dt>
+<dd>translation in the Z direction</dd>
+</dl>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><a name="InitTranslation"></a><code>procedure <b>InitTranslation</b>(const ADelta: <a  href="Neslib.FastMath.TVector3.html">TVector3</a>); overload; inline;</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+Creates a translation matrix.
+
+<p></p>
+<h6 class="description_section">Parameters</h6>
+<dl class="parameters">
+<dt>ADelta</dt>
+<dd>translation vector</dd>
+</dl>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><a name="InitRotationX"></a><code>procedure <b>InitRotationX</b>(const AAngle: Single);</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+Creates a matrix for rotating points around the X axis.
+
+<p></p>
+<h6 class="description_section">Parameters</h6>
+<dl class="parameters">
+<dt>AAngle</dt>
+<dd>the rotation angle around the X axis, in <a class="normal" href="Neslib.FastMath.html#Radians">radians</a></dd>
+</dl>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><a name="InitRotationY"></a><code>procedure <b>InitRotationY</b>(const AAngle: Single);</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+Creates a matrix for rotating points around the Y axis.
+
+<p></p>
+<h6 class="description_section">Parameters</h6>
+<dl class="parameters">
+<dt>AAngle</dt>
+<dd>the rotation angle around the Y axis, in <a class="normal" href="Neslib.FastMath.html#Radians">radians</a></dd>
+</dl>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><a name="InitRotationZ"></a><code>procedure <b>InitRotationZ</b>(const AAngle: Single);</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+Creates a matrix for rotating points around the Z axis.
+
+<p></p>
+<h6 class="description_section">Parameters</h6>
+<dl class="parameters">
+<dt>AAngle</dt>
+<dd>the rotation angle around the Z axis, in <a class="normal" href="Neslib.FastMath.html#Radians">radians</a></dd>
+</dl>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><a name="InitRotation"></a><code>procedure <b>InitRotation</b>(const AAxis: <a  href="Neslib.FastMath.TVector3.html">TVector3</a>; const AAngle: Single);</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+Creates a matrix for rotating points around a certain axis.
+
+<p> </p>
+<h6 class="description_section">Parameters</h6>
+<dl class="parameters">
+<dt>AAxis</dt>
+<dd>the direction of the axis to rotate around.</dd>
+<dt>AAngle</dt>
+<dd>the rotation angle around AAxis, in <a class="normal" href="Neslib.FastMath.html#Radians">radians</a></dd>
+</dl>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><a name="InitRotationYawPitchRoll"></a><code>procedure <b>InitRotationYawPitchRoll</b>(const AYaw, APitch, ARoll: Single);</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+Creates a rotation matrix from a yaw, pitch and roll angle.
+
+<p>  </p>
+<h6 class="description_section">Parameters</h6>
+<dl class="parameters">
+<dt>AYaw</dt>
+<dd>the rotation angle around the Y axis, in <a class="normal" href="Neslib.FastMath.html#Radians">radians</a></dd>
+<dt>APitch</dt>
+<dd>the rotation angle around the X axis, in <a class="normal" href="Neslib.FastMath.html#Radians">radians</a></dd>
+<dt>ARoll</dt>
+<dd>the rotation angle around the Z axis, in <a class="normal" href="Neslib.FastMath.html#Radians">radians</a></dd>
+</dl>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><a name="InitRotationHeadingPitchBank"></a><code>procedure <b>InitRotationHeadingPitchBank</b>(const AHeading, APitch, ABank: Single);</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+Creates a rotation matrix from a heading, pitch and bank angle.
+
+<p>  </p>
+<h6 class="description_section">Parameters</h6>
+<dl class="parameters">
+<dt>AHeading</dt>
+<dd>the heading angle, in <a class="normal" href="Neslib.FastMath.html#Radians">radians</a></dd>
+<dt>APitch</dt>
+<dd>the pitch angle, in <a class="normal" href="Neslib.FastMath.html#Radians">radians</a></dd>
+<dt>ABank</dt>
+<dd>the bank angle, in <a class="normal" href="Neslib.FastMath.html#Radians">radians</a></dd>
+</dl>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><a name="InitLookAtLH"></a><code>procedure <b>InitLookAtLH</b>(const ACameraPosition, ACameraTarget, ACameraUp: <a  href="Neslib.FastMath.TVector3.html">TVector3</a>);</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+Creates a left-handed view matrix looking at a certain target.
+
+<p>  </p>
+<h6 class="description_section">Parameters</h6>
+<dl class="parameters">
+<dt>ACameraPosition</dt>
+<dd>position of the camera (or eye).</dd>
+<dt>ACameraTarget</dt>
+<dd>the target towards which the camera is pointing.</dd>
+<dt>ACameraUp</dt>
+<dd>the direction that is &quot;up&quot; from the camera's point of view</dd>
+</dl>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><a name="InitLookAtRH"></a><code>procedure <b>InitLookAtRH</b>(const ACameraPosition, ACameraTarget, ACameraUp: <a  href="Neslib.FastMath.TVector3.html">TVector3</a>);</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+Creates a right-handed view matrix looking at a certain target.
+
+<p>  </p>
+<h6 class="description_section">Parameters</h6>
+<dl class="parameters">
+<dt>ACameraPosition</dt>
+<dd>position of the camera (or eye).</dd>
+<dt>ACameraTarget</dt>
+<dd>the target towards which the camera is pointing.</dd>
+<dt>ACameraUp</dt>
+<dd>the direction that is &quot;up&quot; from the camera's point of view</dd>
+</dl>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><a name="InitLookAtDirLH"></a><code>procedure <b>InitLookAtDirLH</b>(const ACameraPosition, ACameraDirection, ACameraUp: <a  href="Neslib.FastMath.TVector3.html">TVector3</a>);</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+Creates a left-handed view matrix looking into a certain direction.
+
+<p>  </p>
+<h6 class="description_section">Parameters</h6>
+<dl class="parameters">
+<dt>ACameraPosition</dt>
+<dd>position of the camera (or eye).</dd>
+<dt>ACameraDirection</dt>
+<dd>the direction the camera is pointing in.</dd>
+<dt>ACameraUp</dt>
+<dd>the direction that is &quot;up&quot; from the camera's point of view</dd>
+</dl>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><a name="InitLookAtDirRH"></a><code>procedure <b>InitLookAtDirRH</b>(const ACameraPosition, ACameraDirection, ACameraUp: <a  href="Neslib.FastMath.TVector3.html">TVector3</a>);</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+Creates a right-handed view matrix looking into a certain direction.
+
+<p>  </p>
+<h6 class="description_section">Parameters</h6>
+<dl class="parameters">
+<dt>ACameraPosition</dt>
+<dd>position of the camera (or eye).</dd>
+<dt>ACameraDirection</dt>
+<dd>the direction the camera is pointing in.</dd>
+<dt>ACameraUp</dt>
+<dd>the direction that is &quot;up&quot; from the camera's point of view</dd>
+</dl>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><a name="InitOrthoLH"></a><code>procedure <b>InitOrthoLH</b>(const AWidth, AHeight, AZNearPlane, AZFarPlane: Single);</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+Creates a left-handed orthographic projection matrix from the given view volume dimensions.
+
+<p>   </p>
+<h6 class="description_section">Parameters</h6>
+<dl class="parameters">
+<dt>AWidth</dt>
+<dd>the width of the view volume.</dd>
+<dt>AHeight</dt>
+<dd>the height of the view volume.</dd>
+<dt>AZNearPlane</dt>
+<dd>the minimum Z-value of the view volume.</dd>
+<dt>AZFarPlane</dt>
+<dd>the maximum Z-value of the view volume.</dd>
+</dl>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><a name="InitOrthoRH"></a><code>procedure <b>InitOrthoRH</b>(const AWidth, AHeight, AZNearPlane, AZFarPlane: Single);</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+Creates a right-handed orthographic projection matrix from the given view volume dimensions.
+
+<p>   </p>
+<h6 class="description_section">Parameters</h6>
+<dl class="parameters">
+<dt>AWidth</dt>
+<dd>the width of the view volume.</dd>
+<dt>AHeight</dt>
+<dd>the height of the view volume.</dd>
+<dt>AZNearPlane</dt>
+<dd>the minimum Z-value of the view volume.</dd>
+<dt>AZFarPlane</dt>
+<dd>the maximum Z-value of the view volume.</dd>
+</dl>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><a name="InitOrthoOffCenterLH"></a><code>procedure <b>InitOrthoOffCenterLH</b>(const ALeft, ATop, ARight, ABottom, AZNearPlane, AZFarPlane: Single);</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+Creates a customized left-handed orthographic projection matrix.
+
+<p>     </p>
+<h6 class="description_section">Parameters</h6>
+<dl class="parameters">
+<dt>ALeft</dt>
+<dd>the minimum X-value of the view volume.</dd>
+<dt>ATop</dt>
+<dd>the maximum Y-value of the view volume.</dd>
+<dt>ARight</dt>
+<dd>the maximum X-value of the view volume.</dd>
+<dt>ABottom</dt>
+<dd>the minimum Y-value of the view volume.</dd>
+<dt>AZNearPlane</dt>
+<dd>the minimum Z-value of the view volume.</dd>
+<dt>AZFarPlane</dt>
+<dd>the maximum Z-value of the view volume.</dd>
+</dl>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><a name="InitOrthoOffCenterRH"></a><code>procedure <b>InitOrthoOffCenterRH</b>(const ALeft, ATop, ARight, ABottom, AZNearPlane, AZFarPlane: Single);</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+Creates a customized right-handed orthographic projection matrix.
+
+<p>     </p>
+<h6 class="description_section">Parameters</h6>
+<dl class="parameters">
+<dt>ALeft</dt>
+<dd>the minimum X-value of the view volume.</dd>
+<dt>ATop</dt>
+<dd>the maximum Y-value of the view volume.</dd>
+<dt>ARight</dt>
+<dd>the maximum X-value of the view volume.</dd>
+<dt>ABottom</dt>
+<dd>the minimum Y-value of the view volume.</dd>
+<dt>AZNearPlane</dt>
+<dd>the minimum Z-value of the view volume.</dd>
+<dt>AZFarPlane</dt>
+<dd>the maximum Z-value of the view volume.</dd>
+</dl>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><a name="InitPerspectiveFovLH"></a><code>procedure <b>InitPerspectiveFovLH</b>(const AFieldOfView, AAspectRatio, ANearPlaneDistance, AFarPlaneDistance: Single; const AHorizontalFOV: Boolean = False);</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+Creates a left-handed perspective projection matrix based on a field of view, aspect ratio, and near and far view plane distances.
+
+<p>    </p>
+<h6 class="description_section">Parameters</h6>
+<dl class="parameters">
+<dt>AFieldOfView</dt>
+<dd>the field of view in <a class="normal" href="Neslib.FastMath.html#Radians">radians</a>.</dd>
+<dt>AAspectRatio</dt>
+<dd>the aspect ratio, defined as view space width divided by height.</dd>
+<dt>ANearPlaneDistance</dt>
+<dd>the distance to the near view plane.</dd>
+<dt>AFarPlaneDistance</dt>
+<dd>the distance to the far view plane.</dd>
+<dt>AHorizontalFOV</dt>
+<dd>(optional) boolean indicating the direction of the field of view. If False (default), AFieldOfView is in the Y direction, otherwise in the X direction</dd>
+</dl>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><a name="InitPerspectiveFovRH"></a><code>procedure <b>InitPerspectiveFovRH</b>(const AFieldOfView, AAspectRatio, ANearPlaneDistance, AFarPlaneDistance: Single; const AHorizontalFOV: Boolean = False);</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+Creates a right-handed perspective projection matrix based on a field of view, aspect ratio, and near and far view plane distances.
+
+<p>    </p>
+<h6 class="description_section">Parameters</h6>
+<dl class="parameters">
+<dt>AFieldOfView</dt>
+<dd>the field of view in <a class="normal" href="Neslib.FastMath.html#Radians">radians</a>.</dd>
+<dt>AAspectRatio</dt>
+<dd>the aspect ratio, defined as view space width divided by height.</dd>
+<dt>ANearPlaneDistance</dt>
+<dd>the distance to the near view plane.</dd>
+<dt>AFarPlaneDistance</dt>
+<dd>the distance to the far view plane.</dd>
+<dt>AHorizontalFOV</dt>
+<dd>(optional) boolean indicating the direction of the field of view. If False (default), AFieldOfView is in the Y direction, otherwise in the X direction</dd>
+</dl>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><a name="Implicit"></a><code>class operator <b>Implicit</b>(const A: TMatrix3D): <a  href="Neslib.FastMath.TMatrix4.html">TMatrix4</a>; inline;</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+Implicitly converts a TMatrix3D to a <a class="normal" href="Neslib.FastMath.TMatrix4.html">TMatrix4</a>.</p>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><a name="Implicit"></a><code>class operator <b>Implicit</b>(const A: <a  href="Neslib.FastMath.TMatrix4.html">TMatrix4</a>): TMatrix3D; inline;</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+Implicitly converts a <a class="normal" href="Neslib.FastMath.TMatrix4.html">TMatrix4</a> to a TMatrix3D.</p>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><a name="Equal"></a><code>class operator <b>Equal</b>(const A, B: <a  href="Neslib.FastMath.TMatrix4.html">TMatrix4</a>): Boolean; inline;</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+Checks two matrices for equality.
+
+<p></p>
+<h6 class="description_section">Returns</h6>
+<p class="return">True if the two matrices match each other exactly.</p></td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><a name="NotEqual"></a><code>class operator <b>NotEqual</b>(const A, B: <a  href="Neslib.FastMath.TMatrix4.html">TMatrix4</a>): Boolean; inline;</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+Checks two matrices for inequality.
+
+<p></p>
+<h6 class="description_section">Returns</h6>
+<p class="return">True if the two matrices are not <a class="normal" href="Neslib.FastMath.TMatrix4.html#Equal">equal</a>.</p></td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><a name="Negative"></a><code>class operator <b>Negative</b>(const A: <a  href="Neslib.FastMath.TMatrix4.html">TMatrix4</a>): <a  href="Neslib.FastMath.TMatrix4.html">TMatrix4</a>;</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+Negates a matrix.
+
+<p></p>
+<h6 class="description_section">Returns</h6>
+<p class="return">The <code>negative</code> value of the matrix (with all elements negated).</p></td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><a name="Add"></a><code>class operator <b>Add</b>(const A: <a  href="Neslib.FastMath.TMatrix4.html">TMatrix4</a>; const B: Single): <a  href="Neslib.FastMath.TMatrix4.html">TMatrix4</a>;</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+Adds a scalar value to each element of a matrix.</p>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><a name="Add"></a><code>class operator <b>Add</b>(const A: Single; const B: <a  href="Neslib.FastMath.TMatrix4.html">TMatrix4</a>): <a  href="Neslib.FastMath.TMatrix4.html">TMatrix4</a>;</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+Adds a scalar value to each element of a matrix.</p>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><a name="Add"></a><code>class operator <b>Add</b>(const A, B: <a  href="Neslib.FastMath.TMatrix4.html">TMatrix4</a>): <a  href="Neslib.FastMath.TMatrix4.html">TMatrix4</a>;</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+Adds two matrices component-wise.</p>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><a name="Subtract"></a><code>class operator <b>Subtract</b>(const A: <a  href="Neslib.FastMath.TMatrix4.html">TMatrix4</a>; const B: Single): <a  href="Neslib.FastMath.TMatrix4.html">TMatrix4</a>;</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+Subtracts a scalar value from each element of a matrix.</p>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><a name="Subtract"></a><code>class operator <b>Subtract</b>(const A: Single; const B: <a  href="Neslib.FastMath.TMatrix4.html">TMatrix4</a>): <a  href="Neslib.FastMath.TMatrix4.html">TMatrix4</a>;</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+Subtracts a matrix from a scalar value.</p>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><a name="Subtract"></a><code>class operator <b>Subtract</b>(const A, B: <a  href="Neslib.FastMath.TMatrix4.html">TMatrix4</a>): <a  href="Neslib.FastMath.TMatrix4.html">TMatrix4</a>;</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+Subtracts two matrices component-wise.</p>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><a name="Multiply"></a><code>class operator <b>Multiply</b>(const A: <a  href="Neslib.FastMath.TMatrix4.html">TMatrix4</a>; const B: Single): <a  href="Neslib.FastMath.TMatrix4.html">TMatrix4</a>;</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+Multiplies a matrix with a scalar value.</p>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><a name="Multiply"></a><code>class operator <b>Multiply</b>(const A: Single; const B: <a  href="Neslib.FastMath.TMatrix4.html">TMatrix4</a>): <a  href="Neslib.FastMath.TMatrix4.html">TMatrix4</a>;</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+Multiplies a matrix with a scalar value.</p>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><a name="Multiply"></a><code>class operator <b>Multiply</b>(const A: <a  href="Neslib.FastMath.TMatrix4.html">TMatrix4</a>; const B: <a  href="Neslib.FastMath.TVector4.html">TVector4</a>): <a  href="Neslib.FastMath.TVector4.html">TVector4</a>;</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+Performs a matrix * row vector linear algebraic multiplication.</p>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><a name="Multiply"></a><code>class operator <b>Multiply</b>(const A: <a  href="Neslib.FastMath.TVector4.html">TVector4</a>; const B: <a  href="Neslib.FastMath.TMatrix4.html">TMatrix4</a>): <a  href="Neslib.FastMath.TVector4.html">TVector4</a>;</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+Performs a column vector * matrix linear algebraic multiplication.</p>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><a name="Multiply"></a><code>class operator <b>Multiply</b>(const A, B: <a  href="Neslib.FastMath.TMatrix4.html">TMatrix4</a>): <a  href="Neslib.FastMath.TMatrix4.html">TMatrix4</a>;</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+Multiplies two matrices using linear algebraic multiplication.</p>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><a name="Divide"></a><code>class operator <b>Divide</b>(const A: <a  href="Neslib.FastMath.TMatrix4.html">TMatrix4</a>; const B: Single): <a  href="Neslib.FastMath.TMatrix4.html">TMatrix4</a>;</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+Divides a matrix by a scalar value.</p>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><a name="Divide"></a><code>class operator <b>Divide</b>(const A: Single; const B: <a  href="Neslib.FastMath.TMatrix4.html">TMatrix4</a>): <a  href="Neslib.FastMath.TMatrix4.html">TMatrix4</a>;</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+Divides a scalar value by a matrix.</p>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><a name="Divide"></a><code>class operator <b>Divide</b>(const A: <a  href="Neslib.FastMath.TMatrix4.html">TMatrix4</a>; const B: <a  href="Neslib.FastMath.TVector4.html">TVector4</a>): <a  href="Neslib.FastMath.TVector4.html">TVector4</a>;</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+Divides a matrix by a vector. This is equivalent to multiplying the <a class="normal" href="Neslib.FastMath.TMatrix4.html#Inverse">inverse</a> of the matrix with a row vector using linear algebraic multiplication.</p>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><a name="Divide"></a><code>class operator <b>Divide</b>(const A: <a  href="Neslib.FastMath.TVector4.html">TVector4</a>; const B: <a  href="Neslib.FastMath.TMatrix4.html">TMatrix4</a>): <a  href="Neslib.FastMath.TVector4.html">TVector4</a>;</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+Divides a vector by a matrix. This is equivalent to multiplying a column vector with the <a class="normal" href="Neslib.FastMath.TMatrix4.html#Inverse">inverse</a> of the matrix using linear algebraic multiplication.</p>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><a name="Divide"></a><code>class operator <b>Divide</b>(const A, B: <a  href="Neslib.FastMath.TMatrix4.html">TMatrix4</a>): <a  href="Neslib.FastMath.TMatrix4.html">TMatrix4</a>; inline;</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+Divides two matrices. This is equivalent to multiplying the first matrix with the <a class="normal" href="Neslib.FastMath.TMatrix4.html#Inverse">inverse</a> of the second matrix using linear algebraic multiplication.</p>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><a name="CompMult"></a><code>function <b>CompMult</b>(const AOther: <a  href="Neslib.FastMath.TMatrix4.html">TMatrix4</a>): <a  href="Neslib.FastMath.TMatrix4.html">TMatrix4</a>;</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+Multiplies this matrix with another matrix component-wise.
+
+<p>
+
+<p> <b>Note</b>: For linear algebraic matrix multiplication, use the <a class="normal" href="Neslib.FastMath.TMatrix4.html#Multiply">multiply</a> (*) operator instead.</p>
+<h6 class="description_section">Parameters</h6>
+<dl class="parameters">
+<dt>AOther</dt>
+<dd>the other matrix.</dd>
+</dl>
+<h6 class="description_section">Returns</h6>
+<p class="return">This matrix multiplied by AOther component-wise. That is, Result.M[I,J] := <a class="normal" href="Neslib.FastMath.TMatrix4.html#M">M</a>[I,J] * AOther.M[I,J].</p></td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><a name="Transpose"></a><code>function <b>Transpose</b>: <a  href="Neslib.FastMath.TMatrix4.html">TMatrix4</a>;</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+Creates a transposed version of this matrix.
+
+<p> <b>Note</b>: Does not change this matrix. To update this itself, use <a class="normal" href="Neslib.FastMath.TMatrix4.html#SetTransposed">SetTransposed</a>.</p>
+<h6 class="description_section">Returns</h6>
+<p class="return">The transposed version of this matrix.</p></td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><a name="SetTransposed"></a><code>procedure <b>SetTransposed</b>;</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+Transposes this matrix.
+
+<p><b>Note</b>: If you do not want to change this matrix, but get a transposed version instead, then use <a class="normal" href="Neslib.FastMath.TMatrix4.html#Transpose">Transpose</a>.</p>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><a name="Inverse"></a><code>function <b>Inverse</b>: <a  href="Neslib.FastMath.TMatrix4.html">TMatrix4</a>;</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+Calculates the <code>inverse</code> of this matrix.
+
+<p> <b>Note</b>: Does not change this matrix. To update this itself, use <a class="normal" href="Neslib.FastMath.TMatrix4.html#SetInversed">SetInversed</a>.
+
+<p><b>Note</b>: The values in the returned matrix are undefined if this matrix is singular or poorly conditioned (nearly singular).</p>
+<h6 class="description_section">Returns</h6>
+<p class="return">The <code>inverse</code> of this matrix.</p></td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><a name="SetInversed"></a><code>procedure <b>SetInversed</b>;</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+Inverts this matrix.
+
+<p><b>Note</b>: If you do not want to change this matrix, but get an inversed version instead, then use <a class="normal" href="Neslib.FastMath.TMatrix4.html#Inverse">Inverse</a>.
+
+<p><b>Note</b>: The values in the inversed matrix are undefined if this matrix is singular or poorly conditioned (nearly singular).</p>
+</td></tr>
+</table>
+<h3 class="detail">Properties</h3>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><a name="Rows"></a><code>property <b>Rows</b>[constAIndex:Integer]: <a  href="Neslib.FastMath.TVector4.html">TVector4</a> read GetRow write SetRow;</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+Returns the <code>rows</code> of the matrix. This is identical to accessing the <a class="normal" href="Neslib.FastMath.TMatrix4.html#R">R</a>-field.
+
+<p></p>
+<h6 class="description_section">Parameters</h6>
+<dl class="parameters">
+<dt>AIndex</dt>
+<dd>index of the row to return (0-3). Range is checked with an assertion.</dd>
+</dl>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><a name="Components"></a><code>property <b>Components</b>[constARow,AColumn:Integer]: Single read GetComponent write SetComponent;</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+Returns the elements of the matrix (in row-major order). This is identical to accessing the <a class="normal" href="Neslib.FastMath.TMatrix4.html#M">M</a>-field, but this property can be used as a default array property.
+
+<p> </p>
+<h6 class="description_section">Parameters</h6>
+<dl class="parameters">
+<dt>ARow</dt>
+<dd>the row index (0-3). Range is checked with an assertion.</dd>
+<dt>AColumn</dt>
+<dd>the column index (0-3). Range is checked with an assertion.</dd>
+</dl>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><a name="Determinant"></a><code>property <b>Determinant</b>: Single read GetDeterminant;</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+The <code>determinant</code> of this matrix.</p>
+</td></tr>
+</table>
+<div style="height:1000px"></div><hr noshade size="1"><span class="appinfo"><em>Generated by <a  href="http://pasdoc.sourceforge.net/">PasDoc 0.14.0</a>. </em>
+</span>
+</td></tr></table></body></html>

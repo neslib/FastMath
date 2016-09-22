@@ -1,0 +1,474 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/1999/REC-html401-19991224/loose.dtd">
+<html>
+<head>
+<title>FastMath: Neslib.FastMath: record TIVector3</title>
+<meta name="generator" content="PasDoc 0.14.0">
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<link rel="StyleSheet" type="text/css" href="pasdoc.css">
+</head>
+<body>
+<table class="container"><tr><td class="navigation">
+<h2>FastMath</h2><p><a href="introduction.html" class="navigation">About FastMath</a></p><p><a href="AllUnits.html" class="navigation">Units</a></p><p><a href="ClassHierarchy.html" class="navigation">Class Hierarchy</a></p><p><a href="AllClasses.html" class="navigation">Classes, Interfaces, Objects and Records</a></p><p><a href="AllTypes.html" class="navigation">Types</a></p><p><a href="AllVariables.html" class="navigation">Variables</a></p><p><a href="AllConstants.html" class="navigation">Constants</a></p><p><a href="AllFunctions.html" class="navigation">Functions and Procedures</a></p><p><a href="AllIdentifiers.html" class="navigation">Identifiers</a></p><p><a href="conclusion.html" class="navigation">License</a></p></td><td class="content">
+<a name="TIVector3"></a><h1 class="cio">record TIVector3</h1>
+<table class="sections wide_list">
+<tr>
+<td><a class="section" href="#PasDoc-Description">Description</a></td><td>Hierarchy</td><td><a class="section" href="#PasDoc-Fields">Fields</a></td><td><a class="section" href="#PasDoc-Methods">Methods</a></td><td><a class="section" href="#PasDoc-Properties">Properties</a></td></tr></table>
+<a name="PasDoc-Description"></a><h2 class="unit">Unit</h2>
+<p class="unitlink">
+<a  href="Neslib.FastMath.html">Neslib.FastMath</a></p>
+<h2 class="declaration">Declaration</h2>
+<p class="declaration">
+<code>type TIVector3 = record</code></p>
+<h2 class="description">Description</h2>
+<p>
+A 3-dimensional vector that uses integer <a class="normal" href="Neslib.FastMath.TIVector3.html#Components">components</a> instead of floating-point <a class="normal" href="Neslib.FastMath.TIVector3.html#Components">components</a>.</p>
+<h2 class="overview">Overview</h2>
+<a name="PasDoc-Fields"></a><h3 class="summary">Fields</h3>
+<table class="summary wide_list">
+<tr class="list">
+<td class="itemcode"><code><b><a  href="Neslib.FastMath.TIVector3.html#X">X</a></b>: Integer</code></td>
+</tr>
+<tr class="list2">
+<td class="itemcode"><code><b><a  href="Neslib.FastMath.TIVector3.html#Y">Y</a></b>: Integer</code></td>
+</tr>
+<tr class="list">
+<td class="itemcode"><code><b><a  href="Neslib.FastMath.TIVector3.html#Z">Z</a></b>: Integer</code></td>
+</tr>
+<tr class="list2">
+<td class="itemcode"><code><b><a  href="Neslib.FastMath.TIVector3.html#R">R</a></b>: Integer</code></td>
+</tr>
+<tr class="list">
+<td class="itemcode"><code><b><a  href="Neslib.FastMath.TIVector3.html#G">G</a></b>: Integer</code></td>
+</tr>
+<tr class="list2">
+<td class="itemcode"><code><b><a  href="Neslib.FastMath.TIVector3.html#B">B</a></b>: Integer</code></td>
+</tr>
+<tr class="list">
+<td class="itemcode"><code><b><a  href="Neslib.FastMath.TIVector3.html#S">S</a></b>: Integer</code></td>
+</tr>
+<tr class="list2">
+<td class="itemcode"><code><b><a  href="Neslib.FastMath.TIVector3.html#T">T</a></b>: Integer</code></td>
+</tr>
+<tr class="list">
+<td class="itemcode"><code><b><a  href="Neslib.FastMath.TIVector3.html#P">P</a></b>: Integer</code></td>
+</tr>
+<tr class="list2">
+<td class="itemcode"><code><b><a  href="Neslib.FastMath.TIVector3.html#C">C</a></b>: array [0..2] of Integer</code></td>
+</tr>
+</table>
+<a name="PasDoc-Methods"></a><h3 class="summary">Methods</h3>
+<table class="summary wide_list">
+<tr class="list">
+<td class="itemcode"><code>procedure <b><a  href="Neslib.FastMath.TIVector3.html#Init">Init</a></b>; overload; inline;</code></td>
+</tr>
+<tr class="list2">
+<td class="itemcode"><code>procedure <b><a  href="Neslib.FastMath.TIVector3.html#Init">Init</a></b>(const A: Integer); overload; inline;</code></td>
+</tr>
+<tr class="list">
+<td class="itemcode"><code>procedure <b><a  href="Neslib.FastMath.TIVector3.html#Init">Init</a></b>(const A1, A2, A3: Integer); overload; inline;</code></td>
+</tr>
+<tr class="list2">
+<td class="itemcode"><code>class operator <b><a  href="Neslib.FastMath.TIVector3.html#Equal">Equal</a></b>(const A, B: <a  href="Neslib.FastMath.TIVector3.html">TIVector3</a>): Boolean; inline;</code></td>
+</tr>
+<tr class="list">
+<td class="itemcode"><code>class operator <b><a  href="Neslib.FastMath.TIVector3.html#NotEqual">NotEqual</a></b>(const A, B: <a  href="Neslib.FastMath.TIVector3.html">TIVector3</a>): Boolean; inline;</code></td>
+</tr>
+<tr class="list2">
+<td class="itemcode"><code>class operator <b><a  href="Neslib.FastMath.TIVector3.html#Negative">Negative</a></b>(const A: <a  href="Neslib.FastMath.TIVector3.html">TIVector3</a>): <a  href="Neslib.FastMath.TIVector3.html">TIVector3</a>;</code></td>
+</tr>
+<tr class="list">
+<td class="itemcode"><code>class operator <b><a  href="Neslib.FastMath.TIVector3.html#Add">Add</a></b>(const A: <a  href="Neslib.FastMath.TIVector3.html">TIVector3</a>; const B: Integer): <a  href="Neslib.FastMath.TIVector3.html">TIVector3</a>;</code></td>
+</tr>
+<tr class="list2">
+<td class="itemcode"><code>class operator <b><a  href="Neslib.FastMath.TIVector3.html#Add">Add</a></b>(const A: Integer; const B: <a  href="Neslib.FastMath.TIVector3.html">TIVector3</a>): <a  href="Neslib.FastMath.TIVector3.html">TIVector3</a>;</code></td>
+</tr>
+<tr class="list">
+<td class="itemcode"><code>class operator <b><a  href="Neslib.FastMath.TIVector3.html#Add">Add</a></b>(const A, B: <a  href="Neslib.FastMath.TIVector3.html">TIVector3</a>): <a  href="Neslib.FastMath.TIVector3.html">TIVector3</a>;</code></td>
+</tr>
+<tr class="list2">
+<td class="itemcode"><code>class operator <b><a  href="Neslib.FastMath.TIVector3.html#Subtract">Subtract</a></b>(const A: <a  href="Neslib.FastMath.TIVector3.html">TIVector3</a>; const B: Integer): <a  href="Neslib.FastMath.TIVector3.html">TIVector3</a>;</code></td>
+</tr>
+<tr class="list">
+<td class="itemcode"><code>class operator <b><a  href="Neslib.FastMath.TIVector3.html#Subtract">Subtract</a></b>(const A: Integer; const B: <a  href="Neslib.FastMath.TIVector3.html">TIVector3</a>): <a  href="Neslib.FastMath.TIVector3.html">TIVector3</a>;</code></td>
+</tr>
+<tr class="list2">
+<td class="itemcode"><code>class operator <b><a  href="Neslib.FastMath.TIVector3.html#Subtract">Subtract</a></b>(const A, B: <a  href="Neslib.FastMath.TIVector3.html">TIVector3</a>): <a  href="Neslib.FastMath.TIVector3.html">TIVector3</a>;</code></td>
+</tr>
+<tr class="list">
+<td class="itemcode"><code>class operator <b><a  href="Neslib.FastMath.TIVector3.html#Multiply">Multiply</a></b>(const A: <a  href="Neslib.FastMath.TIVector3.html">TIVector3</a>; const B: Integer): <a  href="Neslib.FastMath.TIVector3.html">TIVector3</a>;</code></td>
+</tr>
+<tr class="list2">
+<td class="itemcode"><code>class operator <b><a  href="Neslib.FastMath.TIVector3.html#Multiply">Multiply</a></b>(const A: Integer; const B: <a  href="Neslib.FastMath.TIVector3.html">TIVector3</a>): <a  href="Neslib.FastMath.TIVector3.html">TIVector3</a>;</code></td>
+</tr>
+<tr class="list">
+<td class="itemcode"><code>class operator <b><a  href="Neslib.FastMath.TIVector3.html#Multiply">Multiply</a></b>(const A, B: <a  href="Neslib.FastMath.TIVector3.html">TIVector3</a>): <a  href="Neslib.FastMath.TIVector3.html">TIVector3</a>;</code></td>
+</tr>
+<tr class="list2">
+<td class="itemcode"><code>class operator <b><a  href="Neslib.FastMath.TIVector3.html#IntDivide">IntDivide</a></b>(const A: <a  href="Neslib.FastMath.TIVector3.html">TIVector3</a>; const B: Integer): <a  href="Neslib.FastMath.TIVector3.html">TIVector3</a>;</code></td>
+</tr>
+<tr class="list">
+<td class="itemcode"><code>class operator <b><a  href="Neslib.FastMath.TIVector3.html#IntDivide">IntDivide</a></b>(const A: Integer; const B: <a  href="Neslib.FastMath.TIVector3.html">TIVector3</a>): <a  href="Neslib.FastMath.TIVector3.html">TIVector3</a>;</code></td>
+</tr>
+<tr class="list2">
+<td class="itemcode"><code>class operator <b><a  href="Neslib.FastMath.TIVector3.html#IntDivide">IntDivide</a></b>(const A, B: <a  href="Neslib.FastMath.TIVector3.html">TIVector3</a>): <a  href="Neslib.FastMath.TIVector3.html">TIVector3</a>;</code></td>
+</tr>
+<tr class="list">
+<td class="itemcode"><code>function <b><a  href="Neslib.FastMath.TIVector3.html#IsZero">IsZero</a></b>: Boolean; inline;</code></td>
+</tr>
+</table>
+<a name="PasDoc-Properties"></a><h3 class="summary">Properties</h3>
+<table class="summary wide_list">
+<tr class="list">
+<td class="itemcode"><code>property <b><a  href="Neslib.FastMath.TIVector3.html#Components">Components</a></b>[constAIndex:Integer]: Integer read GetComponent write SetComponent;</code></td>
+</tr>
+</table>
+<h2 class="description">Description</h2>
+<h3 class="detail">Fields</h3>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><a name="X"></a><code><b>X</b>: Integer</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+<code>X</code>, <a class="normal" href="Neslib.FastMath.TIVector3.html#Y">Y</a> and <a class="normal" href="Neslib.FastMath.TIVector3.html#Z">Z</a> <a class="normal" href="Neslib.FastMath.TIVector3.html#Components">components</a> of the vector. Aliases for <a class="normal" href="Neslib.FastMath.TIVector3.html#C">C</a>[0], <a class="normal" href="Neslib.FastMath.TIVector3.html#C">C</a>[1] and <a class="normal" href="Neslib.FastMath.TIVector3.html#C">C</a>[2].</p>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><a name="Y"></a><code><b>Y</b>: Integer</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+<a class="normal" href="Neslib.FastMath.TIVector3.html#X">X</a>, <code>Y</code> and <a class="normal" href="Neslib.FastMath.TIVector3.html#Z">Z</a> <a class="normal" href="Neslib.FastMath.TIVector3.html#Components">components</a> of the vector. Aliases for <a class="normal" href="Neslib.FastMath.TIVector3.html#C">C</a>[0], <a class="normal" href="Neslib.FastMath.TIVector3.html#C">C</a>[1] and <a class="normal" href="Neslib.FastMath.TIVector3.html#C">C</a>[2].</p>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><a name="Z"></a><code><b>Z</b>: Integer</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+<a class="normal" href="Neslib.FastMath.TIVector3.html#X">X</a>, <a class="normal" href="Neslib.FastMath.TIVector3.html#Y">Y</a> and <code>Z</code> <a class="normal" href="Neslib.FastMath.TIVector3.html#Components">components</a> of the vector. Aliases for <a class="normal" href="Neslib.FastMath.TIVector3.html#C">C</a>[0], <a class="normal" href="Neslib.FastMath.TIVector3.html#C">C</a>[1] and <a class="normal" href="Neslib.FastMath.TIVector3.html#C">C</a>[2].</p>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><a name="R"></a><code><b>R</b>: Integer</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+Red, Green and Blue <a class="normal" href="Neslib.FastMath.TIVector3.html#Components">components</a> of the vector. Aliases for <a class="normal" href="Neslib.FastMath.TIVector3.html#C">C</a>[0], <a class="normal" href="Neslib.FastMath.TIVector3.html#C">C</a>[1] and <a class="normal" href="Neslib.FastMath.TIVector3.html#C">C</a>[2].</p>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><a name="G"></a><code><b>G</b>: Integer</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+Red, Green and Blue <a class="normal" href="Neslib.FastMath.TIVector3.html#Components">components</a> of the vector. Aliases for <a class="normal" href="Neslib.FastMath.TIVector3.html#C">C</a>[0], <a class="normal" href="Neslib.FastMath.TIVector3.html#C">C</a>[1] and <a class="normal" href="Neslib.FastMath.TIVector3.html#C">C</a>[2].</p>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><a name="B"></a><code><b>B</b>: Integer</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+Red, Green and Blue <a class="normal" href="Neslib.FastMath.TIVector3.html#Components">components</a> of the vector. Aliases for <a class="normal" href="Neslib.FastMath.TIVector3.html#C">C</a>[0], <a class="normal" href="Neslib.FastMath.TIVector3.html#C">C</a>[1] and <a class="normal" href="Neslib.FastMath.TIVector3.html#C">C</a>[2].</p>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><a name="S"></a><code><b>S</b>: Integer</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+<code>S</code>, <a class="normal" href="Neslib.FastMath.TIVector3.html#T">T</a> and <a class="normal" href="Neslib.FastMath.TIVector3.html#P">P</a> <a class="normal" href="Neslib.FastMath.TIVector3.html#Components">components</a> of the vector. Aliases for <a class="normal" href="Neslib.FastMath.TIVector3.html#C">C</a>[0], <a class="normal" href="Neslib.FastMath.TIVector3.html#C">C</a>[1] and <a class="normal" href="Neslib.FastMath.TIVector3.html#C">C</a>[2].</p>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><a name="T"></a><code><b>T</b>: Integer</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+<a class="normal" href="Neslib.FastMath.TIVector3.html#S">S</a>, <code>T</code> and <a class="normal" href="Neslib.FastMath.TIVector3.html#P">P</a> <a class="normal" href="Neslib.FastMath.TIVector3.html#Components">components</a> of the vector. Aliases for <a class="normal" href="Neslib.FastMath.TIVector3.html#C">C</a>[0], <a class="normal" href="Neslib.FastMath.TIVector3.html#C">C</a>[1] and <a class="normal" href="Neslib.FastMath.TIVector3.html#C">C</a>[2].</p>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><a name="P"></a><code><b>P</b>: Integer</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+<a class="normal" href="Neslib.FastMath.TIVector3.html#S">S</a>, <a class="normal" href="Neslib.FastMath.TIVector3.html#T">T</a> and <code>P</code> <a class="normal" href="Neslib.FastMath.TIVector3.html#Components">components</a> of the vector. Aliases for <a class="normal" href="Neslib.FastMath.TIVector3.html#C">C</a>[0], <a class="normal" href="Neslib.FastMath.TIVector3.html#C">C</a>[1] and <a class="normal" href="Neslib.FastMath.TIVector3.html#C">C</a>[2].</p>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><a name="C"></a><code><b>C</b>: array [0..2] of Integer</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+The three <a class="normal" href="Neslib.FastMath.TIVector3.html#Components">components</a> of the vector.</p>
+</td></tr>
+</table>
+<h3 class="detail">Methods</h3>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><a name="Init"></a><code>procedure <b>Init</b>; overload; inline;</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+Sets the three elements (<a class="normal" href="Neslib.FastMath.TIVector3.html#X">X</a>, <a class="normal" href="Neslib.FastMath.TIVector3.html#Y">Y</a> and <a class="normal" href="Neslib.FastMath.TIVector3.html#Z">Z</a>) to 0.</p>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><a name="Init"></a><code>procedure <b>Init</b>(const A: Integer); overload; inline;</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+Sets the three elements (<a class="normal" href="Neslib.FastMath.TIVector3.html#X">X</a>, <a class="normal" href="Neslib.FastMath.TIVector3.html#Y">Y</a> and <a class="normal" href="Neslib.FastMath.TIVector3.html#Z">Z</a>) to A.
+
+<p></p>
+<h6 class="description_section">Parameters</h6>
+<dl class="parameters">
+<dt>A</dt>
+<dd>the value to set the three elements to.</dd>
+</dl>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><a name="Init"></a><code>procedure <b>Init</b>(const A1, A2, A3: Integer); overload; inline;</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+Sets the three elements (<a class="normal" href="Neslib.FastMath.TIVector3.html#X">X</a>, <a class="normal" href="Neslib.FastMath.TIVector3.html#Y">Y</a> and <a class="normal" href="Neslib.FastMath.TIVector3.html#Z">Z</a>) to A1, A2 and A3 respectively.
+
+<p>  </p>
+<h6 class="description_section">Parameters</h6>
+<dl class="parameters">
+<dt>A1</dt>
+<dd>the value to set the first element to.</dd>
+<dt>A2</dt>
+<dd>the value to set the second element to.</dd>
+<dt>A3</dt>
+<dd>the value to set the third element to.</dd>
+</dl>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><a name="Equal"></a><code>class operator <b>Equal</b>(const A, B: <a  href="Neslib.FastMath.TIVector3.html">TIVector3</a>): Boolean; inline;</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+Checks two vectors for equality.
+
+<p></p>
+<h6 class="description_section">Returns</h6>
+<p class="return">True if the two vectors match each other exactly.</p></td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><a name="NotEqual"></a><code>class operator <b>NotEqual</b>(const A, B: <a  href="Neslib.FastMath.TIVector3.html">TIVector3</a>): Boolean; inline;</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+Checks two vectors for inequality.
+
+<p></p>
+<h6 class="description_section">Returns</h6>
+<p class="return">True if the two vectors are not <a class="normal" href="Neslib.FastMath.TIVector3.html#Equal">equal</a>.</p></td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><a name="Negative"></a><code>class operator <b>Negative</b>(const A: <a  href="Neslib.FastMath.TIVector3.html">TIVector3</a>): <a  href="Neslib.FastMath.TIVector3.html">TIVector3</a>;</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+Negates a vector.
+
+<p></p>
+<h6 class="description_section">Returns</h6>
+<p class="return">The <code>negative</code> value of a vector (eg. (-A.X, -A.Y, -A.Z))</p></td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><a name="Add"></a><code>class operator <b>Add</b>(const A: <a  href="Neslib.FastMath.TIVector3.html">TIVector3</a>; const B: Integer): <a  href="Neslib.FastMath.TIVector3.html">TIVector3</a>;</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+Adds a scalar value to a vector.
+
+<p></p>
+<h6 class="description_section">Returns</h6>
+<p class="return">(A.X + <a class="normal" href="Neslib.FastMath.TIVector3.html#B">B</a>, A.Y + <a class="normal" href="Neslib.FastMath.TIVector3.html#B">B</a>, A.Z + <a class="normal" href="Neslib.FastMath.TIVector3.html#B">B</a>)</p></td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><a name="Add"></a><code>class operator <b>Add</b>(const A: Integer; const B: <a  href="Neslib.FastMath.TIVector3.html">TIVector3</a>): <a  href="Neslib.FastMath.TIVector3.html">TIVector3</a>;</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+Adds a vector to a scalar value.
+
+<p></p>
+<h6 class="description_section">Returns</h6>
+<p class="return">(A + B.X, A + B.Y, A + B.Z)</p></td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><a name="Add"></a><code>class operator <b>Add</b>(const A, B: <a  href="Neslib.FastMath.TIVector3.html">TIVector3</a>): <a  href="Neslib.FastMath.TIVector3.html">TIVector3</a>;</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+Adds two vectors.
+
+<p></p>
+<h6 class="description_section">Returns</h6>
+<p class="return">(A.X + B.X, A.Y + B.Y, A.Z + B.Z)</p></td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><a name="Subtract"></a><code>class operator <b>Subtract</b>(const A: <a  href="Neslib.FastMath.TIVector3.html">TIVector3</a>; const B: Integer): <a  href="Neslib.FastMath.TIVector3.html">TIVector3</a>;</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+Subtracts a scalar value from a vector.
+
+<p></p>
+<h6 class="description_section">Returns</h6>
+<p class="return">(A.X - <a class="normal" href="Neslib.FastMath.TIVector3.html#B">B</a>, A.Y - <a class="normal" href="Neslib.FastMath.TIVector3.html#B">B</a>, A.Z - <a class="normal" href="Neslib.FastMath.TIVector3.html#B">B</a>)</p></td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><a name="Subtract"></a><code>class operator <b>Subtract</b>(const A: Integer; const B: <a  href="Neslib.FastMath.TIVector3.html">TIVector3</a>): <a  href="Neslib.FastMath.TIVector3.html">TIVector3</a>;</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+Subtracts a vector from a scalar value.
+
+<p></p>
+<h6 class="description_section">Returns</h6>
+<p class="return">(A - B.X, A - B.Y, A - B.Z)</p></td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><a name="Subtract"></a><code>class operator <b>Subtract</b>(const A, B: <a  href="Neslib.FastMath.TIVector3.html">TIVector3</a>): <a  href="Neslib.FastMath.TIVector3.html">TIVector3</a>;</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+Subtracts two vectors.
+
+<p></p>
+<h6 class="description_section">Returns</h6>
+<p class="return">(A.X - B.X, A.Y - B.Y, A.Z - B.Z)</p></td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><a name="Multiply"></a><code>class operator <b>Multiply</b>(const A: <a  href="Neslib.FastMath.TIVector3.html">TIVector3</a>; const B: Integer): <a  href="Neslib.FastMath.TIVector3.html">TIVector3</a>;</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+Multiplies a vector with a scalar value.
+
+<p></p>
+<h6 class="description_section">Returns</h6>
+<p class="return">(A.X * <a class="normal" href="Neslib.FastMath.TIVector3.html#B">B</a>, A.Y * <a class="normal" href="Neslib.FastMath.TIVector3.html#B">B</a>, A.Z * <a class="normal" href="Neslib.FastMath.TIVector3.html#B">B</a>)</p></td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><a name="Multiply"></a><code>class operator <b>Multiply</b>(const A: Integer; const B: <a  href="Neslib.FastMath.TIVector3.html">TIVector3</a>): <a  href="Neslib.FastMath.TIVector3.html">TIVector3</a>;</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+Multiplies a scalar value with a vector.
+
+<p></p>
+<h6 class="description_section">Returns</h6>
+<p class="return">(A * B.X, A * B.Y, A * B.Z)</p></td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><a name="Multiply"></a><code>class operator <b>Multiply</b>(const A, B: <a  href="Neslib.FastMath.TIVector3.html">TIVector3</a>): <a  href="Neslib.FastMath.TIVector3.html">TIVector3</a>;</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+Multiplies two vectors component-wise.
+
+<p></p>
+<h6 class="description_section">Returns</h6>
+<p class="return">(A.X * B.X, A.Y * B.Y, A.Z * B.Z)</p></td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><a name="IntDivide"></a><code>class operator <b>IntDivide</b>(const A: <a  href="Neslib.FastMath.TIVector3.html">TIVector3</a>; const B: Integer): <a  href="Neslib.FastMath.TIVector3.html">TIVector3</a>;</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+Divides a vector by a scalar value.
+
+<p></p>
+<h6 class="description_section">Returns</h6>
+<p class="return">(A.X div <a class="normal" href="Neslib.FastMath.TIVector3.html#B">B</a>, A.Y div <a class="normal" href="Neslib.FastMath.TIVector3.html#B">B</a>, A.Z div <a class="normal" href="Neslib.FastMath.TIVector3.html#B">B</a>)</p></td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><a name="IntDivide"></a><code>class operator <b>IntDivide</b>(const A: Integer; const B: <a  href="Neslib.FastMath.TIVector3.html">TIVector3</a>): <a  href="Neslib.FastMath.TIVector3.html">TIVector3</a>;</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+Divides a scalar value by a vector.
+
+<p></p>
+<h6 class="description_section">Returns</h6>
+<p class="return">(A div B.X, A div B.Y, A div B.Z)</p></td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><a name="IntDivide"></a><code>class operator <b>IntDivide</b>(const A, B: <a  href="Neslib.FastMath.TIVector3.html">TIVector3</a>): <a  href="Neslib.FastMath.TIVector3.html">TIVector3</a>;</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+Divides two vectors component-wise.
+
+<p></p>
+<h6 class="description_section">Returns</h6>
+<p class="return">(A.X div B.X, A.Y div B.Y, A.Z div B.Z)</p></td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><a name="IsZero"></a><code>function <b>IsZero</b>: Boolean; inline;</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+Whether this is a zero vector.
+
+<p></p>
+<h6 class="description_section">Returns</h6>
+<p class="return">True if <a class="normal" href="Neslib.FastMath.TIVector3.html#X">X</a>, <a class="normal" href="Neslib.FastMath.TIVector3.html#Y">Y</a> and <a class="normal" href="Neslib.FastMath.TIVector3.html#Z">Z</a> are 0</p></td></tr>
+</table>
+<h3 class="detail">Properties</h3>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><a name="Components"></a><code>property <b>Components</b>[constAIndex:Integer]: Integer read GetComponent write SetComponent;</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+Returns the <code>components</code> of the vector. This is identical to accessing the <a class="normal" href="Neslib.FastMath.TIVector3.html#C">C</a>-field, but this property can be used as a default array property.
+
+<p></p>
+<h6 class="description_section">Parameters</h6>
+<dl class="parameters">
+<dt>AIndex</dt>
+<dd>index of the component to return (0-2). Range is checked with an assertion.</dd>
+</dl>
+</td></tr>
+</table>
+<div style="height:1000px"></div><hr noshade size="1"><span class="appinfo"><em>Generated by <a  href="http://pasdoc.sourceforge.net/">PasDoc 0.14.0</a>. </em>
+</span>
+</td></tr></table></body></html>

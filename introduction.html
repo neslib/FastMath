@@ -1,0 +1,217 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/1999/REC-html401-19991224/loose.dtd">
+<html>
+<head>
+<title>FastMath: About FastMath</title>
+<meta name="generator" content="PasDoc 0.14.0">
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<link rel="StyleSheet" type="text/css" href="pasdoc.css">
+</head>
+<body>
+<table class="container"><tr><td class="navigation">
+<h2>FastMath</h2><p><a href="introduction.html" class="navigation">About FastMath</a></p><p><a href="AllUnits.html" class="navigation">Units</a></p><p><a href="ClassHierarchy.html" class="navigation">Class Hierarchy</a></p><p><a href="AllClasses.html" class="navigation">Classes, Interfaces, Objects and Records</a></p><p><a href="AllTypes.html" class="navigation">Types</a></p><p><a href="AllVariables.html" class="navigation">Variables</a></p><p><a href="AllConstants.html" class="navigation">Constants</a></p><p><a href="AllFunctions.html" class="navigation">Functions and Procedures</a></p><p><a href="AllIdentifiers.html" class="navigation">Identifiers</a></p><p><a href="conclusion.html" class="navigation">License</a></p></td><td class="content">
+<h1 class="externalitem">FastMath - Fast Math Library for Delphi</h1>
+ 
+
+<p>FastMath is a Delphi math library that is optimized for fast performance (sometimes at the cost of not performing error checking or losing a little accuracy). It uses hand-optimized assembly code to achieve much better performance then the equivalent functions provided by the Delphi RTL.
+
+<p>This makes FastMath ideal for high-performance math-intensive applications such as multi-media applications and games. For even better performance, the library provides a variety of &quot;approximate&quot; functions (which all start with a <code>Fast</code>-prefix). These can be very fast, but you will lose some (sometimes surprisingly little) accuracy. For gaming and animation, this loss in accuracy is usually perfectly acceptable and outweighed by the increase in speed. Don't use them for scientific calculations though...
+
+<p>You may want to call <code><a class="normal" href="Neslib.FastMath.html#DisableFloatingPointExceptions">DisableFloatingPointExceptions</a></code> at application startup to suppress any floating-point exceptions. Instead, it will return extreme values (like Nan or Infinity) when an operation cannot be performed. If you use FastMath in multiple threads, you should call <code><a class="normal" href="Neslib.FastMath.html#DisableFloatingPointExceptions">DisableFloatingPointExceptions</a></code> in the <code>Execute</code> block of those threads.
+
+<p><h2 class=""><a name="_Performance"></a>Superior Performance</h2>
+ Most operations can be performed on both singular values (scalars) as well as vectors (consisting of 2, 3 or 4 values). SIMD optimized assembly code is used to calculate multiple outputs at the same time. For example, adding two 4-value vectors together is almost as fast as adding two single values together, resulting in a 4-fold speed increase. Many functions are written in such a way that the performance is even better. You will find a lot of functions that are 10 or more times faster then their Delphi counterparts.
+
+<p>On 32-bit and 64-bit desktop platforms (Windows and OS X), this performance is achieved by using the SSE2 instruction set. This means that the computer must support SSE2. However, since SSE2 was introduced back in 2001, the vast majority of computers in use today will support it. All 64-bit desktop computers have SSE2 support by default. However, you can always compile this library with the <code>FM_NOSIMD</code> define to disable SIMD optimization and use plain Pascal versions. This can also be useful to compare the speed of the Pascal versions with the SIMD optimized versions.
+
+<p>On 32-bit mobile platforms (iOS and Android), the NEON instruction set is used for SIMD optimization. This means that your device needs to support NEON. But since Delphi already requires this, this poses no further restrictions.
+
+<p>On 64-bit mobile platforms (iOS), the Arm64/AArch64 SIMD instruction set is used.
+
+<p><h2 class=""><a name="_Architecture"></a>Architecture and Design Decisions</h2>
+ FastMath operations on single-precision floating-point values only. Double-precision floating-point arithmetic is (currently) unsupported.
+
+<p>Most functions operate on single values (of type <code>Single</code>) and 2-, 3- and 4-dimensional vectors (of types <code><a class="normal" href="Neslib.FastMath.TVector2.html">TVector2</a></code>, <code><a class="normal" href="Neslib.FastMath.TVector3.html">TVector3</a></code> and <code><a class="normal" href="Neslib.FastMath.TVector4.html">TVector4</a></code> respectively). Vectors are not only used to represent points or directions in space, but can also be regarded as arrays of 2, 3 or 4 values that can be used to perform calculations in parallel. In addition to floating-point vectors, there are also vectors that operator on integer values (<code><a class="normal" href="Neslib.FastMath.TIVector2.html">TIVector2</a></code>, <code><a class="normal" href="Neslib.FastMath.TIVector3.html">TIVector3</a></code> and <code><a class="normal" href="Neslib.FastMath.TIVector4.html">TIVector4</a></code>).
+
+<p>There is also support for 2x2, 3x3 and 4x4 matrices (called <code><a class="normal" href="Neslib.FastMath.TMatrix2.html">TMatrix2</a></code>, <code><a class="normal" href="Neslib.FastMath.TMatrix3.html">TMatrix3</a></code> and <code><a class="normal" href="Neslib.FastMath.TMatrix4.html">TMatrix4</a></code>). Matrices are stored in row-major order, like those in the RTL's <code>System.Math.Vectors</code> unit.
+
+<p>For representing rotations in 3D space, there is also a <code><a class="normal" href="Neslib.FastMath.TQuaternion.html">TQuaternion</a></code>, which is similar to the RTL's <code>TQuaternion3D</code> type.
+
+<p>The operation of the library is somewhat inspired by shader languages (such as GLSL and HLSL). In those languages you can also treat single values and vectors similarly. For example, you can use the <code><a class="normal" href="Neslib.FastMath.html#Sin">Sin</a></code> function to calculate a single sine value, but you can also use it with a <code><a class="normal" href="Neslib.FastMath.TVector4.html">TVector4</a></code> type to calculate 4 sine values in one call. When combined with the &quot;approximate&quot; <code>Fast</code>* functions, this can result in an enormous performance boost. For example, using <code><a class="normal" href="Neslib.FastMath.html#FastSin">FastSin</a>(<a class="normal" href="Neslib.FastMath.TVector4.html">TVector4</a>)</code> to calculate 4 sine values in parallel is up to 40 times faster than 4 separate calls to <code><a class="normal" href="Neslib.FastMath.html#Sin">Sin</a>(Single)</code>. On the extreme end, calling <code><a class="normal" href="Neslib.FastMath.html#FastExp2">FastExp2</a>(<a class="normal" href="Neslib.FastMath.TVector4.html">TVector4</a>)</code> is up to 300 times faster than 4 separate <code><a class="normal" href="Neslib.FastMath.html#Exp2">Exp2</a>(Single)</code> calls.
+
+<p><h2 class=""><a name="_Operators"></a>Overloaded Operators</h2>
+ All vector and matrix types support overloaded operators which allow you to negate, add, subtract, multiply and divide scalars, vectors and matrices. There are also overloaded operators that compare vectors and matrices for equality. These operators check for &quot;exact&quot; matches (like Delphi's &quot;=&quot; operator). They <b>don't</b> allow for very small variations (like Delphi's <code>SameValue</code> functions).
+
+<p>The arithmetic operators &quot;+&quot;, &quot;-&quot;, &quot;*&quot; and &quot;/&quot; usually work component-wise when applied to vectors. For example if <code>A</code> and <code>B</code> are of type <code><a class="normal" href="Neslib.FastMath.TVector4.html">TVector4</a></code>, then <code>C := A * B</code> will set <code>C</code> to <code>(A.X * B.X, A.Y * B.Y, A.Z * B.Z, A.W * B.W)</code>. It will <b>not</b> perform a dot or cross product (you can use the <code>Dot</code> and <code>Cross</code> functions to compute those).
+
+<p>For matrices, the &quot;+&quot; and &quot;-&quot; operators also operate component-wise. However, when multiplying (or dividing) matrices with vectors or other matrices, then the usual linear algebraic multiplication (or division) is used. For example:
+
+<p></p>
+
+<ul class="compact_spacing">
+  <li><p><code>M := M1 * M2</code> performs a linear algebraic matrix multiplication</p></li>
+  <li><p><code>V := M1 * V1</code> performs a matrix * row vector linear algebraic multiplication</p></li>
+  <li><p><code>V := V1 * M1</code> performs a column vector * matrix linear algebraic multiplication</p></li>
+</ul>
+
+<p> To multiply matrices component-wise, you can use the <code>CompMult</code> method.
+
+<p><h2 class=""><a name="_Interop"></a>Interoperability with the Delphi RTL</h2>
+ FastMath provides its own vector and matrix types for superior performance. Most of them are equivalent in functionality and data storage to the Delphi RTL types. You can typecast between them or implicitly convert from the FastMath type to the RTL type or vice versa (eg. <code>MyVector2 := MyPointF</code>). The following table shows the mapping:
+
+<p></p>
+
+<table class="table_tag">
+  <tr class="head">
+    <th><p>Purpose</p></th>
+    <th><p>FastMath</p></th>
+    <th><p>Delphi RTL</p></th>
+  </tr>
+  <tr class="odd">
+    <td><p>2D point/vector</p></td>
+    <td><p><a class="normal" href="Neslib.FastMath.TVector2.html">TVector2</a></p></td>
+    <td><p>TPointF</p></td>
+  </tr>
+  <tr class="even">
+    <td><p>3D point/vector</p></td>
+    <td><p><a class="normal" href="Neslib.FastMath.TVector3.html">TVector3</a></p></td>
+    <td><p>TPoint3D</p></td>
+  </tr>
+  <tr class="odd">
+    <td><p>4D point/vector</p></td>
+    <td><p><a class="normal" href="Neslib.FastMath.TVector4.html">TVector4</a></p></td>
+    <td><p>TVector3D</p></td>
+  </tr>
+  <tr class="even">
+    <td><p>2x2 matrix</p></td>
+    <td><p><a class="normal" href="Neslib.FastMath.TMatrix2.html">TMatrix2</a></p></td>
+    <td><p>N/A</p></td>
+  </tr>
+  <tr class="odd">
+    <td><p>3x3 matrix</p></td>
+    <td><p><a class="normal" href="Neslib.FastMath.TMatrix3.html">TMatrix3</a></p></td>
+    <td><p>TMatrix</p></td>
+  </tr>
+  <tr class="even">
+    <td><p>4x4 matrix</p></td>
+    <td><p><a class="normal" href="Neslib.FastMath.TMatrix4.html">TMatrix4</a></p></td>
+    <td><p>TMatrix3D</p></td>
+  </tr>
+  <tr class="odd">
+    <td><p><a class="normal" href="Neslib.FastMath.html#Quaternion">quaternion</a></p></td>
+    <td><p><a class="normal" href="Neslib.FastMath.TQuaternion.html">TQuaternion</a></p></td>
+    <td><p>TQuaternion3D</p></td>
+  </tr>
+</table>
+
+<p>
+
+<p><h2 class=""><a name="_Functions"></a>Functions</h2>
+ Below you will find a categorized list of the global functions supported by FastMath:
+
+<p><h3 class=""><a name="_Helpers"></a>Helper functions for creating vectors and matrices</h3>
+ </p>
+
+<ul class="compact_spacing">
+  <li><p><a class="normal" href="Neslib.FastMath.html#Vector2">Vector2</a>: creates a 2D vector</p></li>
+  <li><p><a class="normal" href="Neslib.FastMath.html#Vector3">Vector3</a>: creates a 3D vector</p></li>
+  <li><p><a class="normal" href="Neslib.FastMath.html#Vector4">Vector4</a>: creates a 4D vector</p></li>
+  <li><p><a class="normal" href="Neslib.FastMath.html#Matrix2">Matrix2</a>: creates a 2x2 matrix</p></li>
+  <li><p><a class="normal" href="Neslib.FastMath.html#Matrix3">Matrix3</a>: creates a 3x3 matrix</p></li>
+  <li><p><a class="normal" href="Neslib.FastMath.html#Matrix4">Matrix4</a>: creates a 4x4 matrix</p></li>
+  <li><p><a class="normal" href="Neslib.FastMath.html#Quaternion">Quaternion</a>: creates a <a class="normal" href="Neslib.FastMath.html#Quaternion">quaternion</a></p></li>
+  <li><p><a class="normal" href="Neslib.FastMath.html#IVector2">IVector2</a>: creates a 2D integer vector</p></li>
+  <li><p><a class="normal" href="Neslib.FastMath.html#IVector3">IVector3</a>: creates a 3D integer vector</p></li>
+  <li><p><a class="normal" href="Neslib.FastMath.html#IVector4">IVector4</a>: creates a 4D integer vector</p></li>
+</ul>
+
+<p> <h3 class=""><a name="_Trig"></a>Angle and Trigonometry Functions</h3>
+ </p>
+
+<ul class="compact_spacing">
+  <li><p><a class="normal" href="Neslib.FastMath.html#Radians">Radians</a>: converts <a class="normal" href="Neslib.FastMath.html#Degrees">degrees</a> to <a class="normal" href="Neslib.FastMath.html#Radians">radians</a></p></li>
+  <li><p><a class="normal" href="Neslib.FastMath.html#Degrees">Degrees</a>: converts <a class="normal" href="Neslib.FastMath.html#Radians">radians</a> to <a class="normal" href="Neslib.FastMath.html#Degrees">degrees</a></p></li>
+  <li><p><a class="normal" href="Neslib.FastMath.html#Sin">Sin</a>: calculates a sine of an angle</p></li>
+  <li><p><a class="normal" href="Neslib.FastMath.html#Cos">Cos</a>: calculates a cosine of an angle</p></li>
+  <li><p><a class="normal" href="Neslib.FastMath.html#SinCos">SinCos</a>: calculates a sine/cosine pair</p></li>
+  <li><p><a class="normal" href="Neslib.FastMath.html#Tan">Tan</a>: calculates the tangent of an angle</p></li>
+  <li><p><a class="normal" href="Neslib.FastMath.html#ArcSin">ArcSin</a>: calculates an arc sine</p></li>
+  <li><p><a class="normal" href="Neslib.FastMath.html#ArcCos">ArcCos</a>: calculates an arc cosine</p></li>
+  <li><p><a class="normal" href="Neslib.FastMath.html#ArcTan">ArcTan</a>: calculates an arc tangent</p></li>
+  <li><p><a class="normal" href="Neslib.FastMath.html#ArcTan2">ArcTan2</a>: calculates an arctangent angle and quadrant</p></li>
+  <li><p><a class="normal" href="Neslib.FastMath.html#Sinh">Sinh</a>: calculates a hyperbolic sine</p></li>
+  <li><p><a class="normal" href="Neslib.FastMath.html#Cosh">Cosh</a>: calculates a hyperbolic cosine</p></li>
+  <li><p><a class="normal" href="Neslib.FastMath.html#Tanh">Tanh</a>: calculates a hyperbolic tangent</p></li>
+  <li><p><a class="normal" href="Neslib.FastMath.html#ArcSinh">ArcSinh</a>: calculates an inverse hyperbolic sine</p></li>
+  <li><p><a class="normal" href="Neslib.FastMath.html#ArcCosh">ArcCosh</a>: calculates an inverse hyperbolic cosine</p></li>
+  <li><p><a class="normal" href="Neslib.FastMath.html#ArcTanh">ArcTanh</a>: calculates an inverse hyperbolic tangent</p></li>
+</ul>
+
+<p> <h3 class=""><a name="_Exponential"></a>Exponential Functions</h3>
+ </p>
+
+<ul class="compact_spacing">
+  <li><p><a class="normal" href="Neslib.FastMath.html#Power">Power</a>: raises a base to a <a class="normal" href="Neslib.FastMath.html#Power">power</a></p></li>
+  <li><p><a class="normal" href="Neslib.FastMath.html#Exp">Exp</a>: calculates a natural exponentiation (that is, e raised to a given <a class="normal" href="Neslib.FastMath.html#Power">power</a>)</p></li>
+  <li><p><a class="normal" href="Neslib.FastMath.html#Ln">Ln</a>: calculates a natural logarithm</p></li>
+  <li><p><a class="normal" href="Neslib.FastMath.html#Exp2">Exp2</a>: calculates 2 raised to a <a class="normal" href="Neslib.FastMath.html#Power">power</a></p></li>
+  <li><p><a class="normal" href="Neslib.FastMath.html#Log2">Log2</a>: calculates a base 2 logarithm</p></li>
+  <li><p><a class="normal" href="Neslib.FastMath.html#Sqrt">Sqrt</a>: calculates a square root</p></li>
+  <li><p><a class="normal" href="Neslib.FastMath.html#InverseSqrt">InverseSqrt</a>: calculates an inverse square root</p></li>
+</ul>
+
+<p> <h3 class=""><a name="_Approx"></a>Fast Approximate Functions</h3>
+ </p>
+
+<ul class="compact_spacing">
+  <li><p><a class="normal" href="Neslib.FastMath.html#FastSin">FastSin</a>: fast sine function</p></li>
+  <li><p><a class="normal" href="Neslib.FastMath.html#FastCos">FastCos</a>: fast cosine function</p></li>
+  <li><p><a class="normal" href="Neslib.FastMath.html#FastSinCos">FastSinCos</a>: fast sine/cosine function</p></li>
+  <li><p><a class="normal" href="Neslib.FastMath.html#FastTan">FastTan</a>: fast tangent function</p></li>
+  <li><p><a class="normal" href="Neslib.FastMath.html#FastArcTan2">FastArcTan2</a>: fast arctangent angle and quadrant</p></li>
+  <li><p><a class="normal" href="Neslib.FastMath.html#FastPower">FastPower</a>: fast <a class="normal" href="Neslib.FastMath.html#Power">power</a> function</p></li>
+  <li><p><a class="normal" href="Neslib.FastMath.html#FastExp">FastExp</a>: fast natural exponentiation function</p></li>
+  <li><p><a class="normal" href="Neslib.FastMath.html#FastLn">FastLn</a>: fast natural logarithm function</p></li>
+  <li><p><a class="normal" href="Neslib.FastMath.html#FastLog2">FastLog2</a>: fast base 2 logarithm function</p></li>
+  <li><p><a class="normal" href="Neslib.FastMath.html#FastExp2">FastExp2</a>: fast <a class="normal" href="Neslib.FastMath.html#Exp2">Exp2</a> function</p></li>
+</ul>
+
+<p> <h3 class=""><a name="_Common"></a>Common Functions</h3>
+ </p>
+
+<ul class="compact_spacing">
+  <li><p><a class="normal" href="Neslib.FastMath.html#Abs">Abs</a>: calculates an absolute value</p></li>
+  <li><p><a class="normal" href="Neslib.FastMath.html#Sign">Sign</a>: calculates the <a class="normal" href="Neslib.FastMath.html#Sign">sign</a> of a value</p></li>
+  <li><p><a class="normal" href="Neslib.FastMath.html#Floor">Floor</a>: rounds a value towards negative infinity</p></li>
+  <li><p><a class="normal" href="Neslib.FastMath.html#Trunc">Trunc</a>: rounds a value towards 0</p></li>
+  <li><p><a class="normal" href="Neslib.FastMath.html#Round">Round</a>: rounds a value towards its nearest integer</p></li>
+  <li><p><a class="normal" href="Neslib.FastMath.html#Ceil">Ceil</a>: rounds a value towards positive infinity</p></li>
+  <li><p><a class="normal" href="Neslib.FastMath.html#Frac">Frac</a>: returns the fractional part of a number</p></li>
+  <li><p><a class="normal" href="Neslib.FastMath.html#FMod">FMod</a>: calculates the remainder of a floating-point division</p></li>
+  <li><p><a class="normal" href="Neslib.FastMath.html#ModF">ModF</a>: splits a floating-point value into its integer and fractional parts</p></li>
+  <li><p><a class="normal" href="Neslib.FastMath.html#Min">Min</a>: calculates the minimum of two values</p></li>
+  <li><p><a class="normal" href="Neslib.FastMath.html#Max">Max</a>: calculates the maximum of two values</p></li>
+  <li><p><a class="normal" href="Neslib.FastMath.html#EnsureRange">EnsureRange</a>: clamps a given value into a range</p></li>
+  <li><p><a class="normal" href="Neslib.FastMath.html#Mix">Mix</a>: calculates a linear blend between two values, using on a progress value</p></li>
+  <li><p><a class="normal" href="Neslib.FastMath.html#Step">Step</a>: <a class="normal" href="Neslib.FastMath.html#Step">step</a> function</p></li>
+  <li><p><a class="normal" href="Neslib.FastMath.html#SmoothStep">SmoothStep</a>: performs smooth Hermite interpolation between 0 and 1</p></li>
+  <li><p><a class="normal" href="Neslib.FastMath.html#FMA">FMA</a>: Fused Multiply and Add</p></li>
+</ul>
+
+<p> <h3 class=""><a name="_Matrix"></a>Matrix Functions</h3>
+ </p>
+
+<ul class="compact_spacing">
+  <li><p><a class="normal" href="Neslib.FastMath.html#OuterProduct">OuterProduct</a>: multiplies a column vector with a row vector</p></li>
+</ul>
+
+<p> <h3 class=""><a name="_Config"></a>Configuration Functions</h3>
+ </p>
+
+<ul class="compact_spacing">
+  <li><p><a class="normal" href="Neslib.FastMath.html#DisableFloatingPointExceptions">DisableFloatingPointExceptions</a>: disables floating-point exceptions</p></li>
+  <li><p><a class="normal" href="Neslib.FastMath.html#RestoreFloatingPointExceptions">RestoreFloatingPointExceptions</a>: restore the floating-point exception flags</p></li>
+</ul>
+
+<p><div style="height:1000px"></div><hr noshade size="1"><span class="appinfo"><em>Generated by <a  href="http://pasdoc.sourceforge.net/">PasDoc 0.14.0</a>. </em>
+</span>
+</td></tr></table></body></html>

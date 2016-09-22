@@ -1,0 +1,1309 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/1999/REC-html401-19991224/loose.dtd">
+<html>
+<head>
+<title>FastMath: Neslib.FastMath: record TVector2</title>
+<meta name="generator" content="PasDoc 0.14.0">
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<link rel="StyleSheet" type="text/css" href="pasdoc.css">
+</head>
+<body>
+<table class="container"><tr><td class="navigation">
+<h2>FastMath</h2><p><a href="introduction.html" class="navigation">About FastMath</a></p><p><a href="AllUnits.html" class="navigation">Units</a></p><p><a href="ClassHierarchy.html" class="navigation">Class Hierarchy</a></p><p><a href="AllClasses.html" class="navigation">Classes, Interfaces, Objects and Records</a></p><p><a href="AllTypes.html" class="navigation">Types</a></p><p><a href="AllVariables.html" class="navigation">Variables</a></p><p><a href="AllConstants.html" class="navigation">Constants</a></p><p><a href="AllFunctions.html" class="navigation">Functions and Procedures</a></p><p><a href="AllIdentifiers.html" class="navigation">Identifiers</a></p><p><a href="conclusion.html" class="navigation">License</a></p></td><td class="content">
+<a name="TVector2"></a><h1 class="cio">record TVector2</h1>
+<table class="sections wide_list">
+<tr>
+<td><a class="section" href="#PasDoc-Description">Description</a></td><td>Hierarchy</td><td><a class="section" href="#PasDoc-Fields">Fields</a></td><td><a class="section" href="#PasDoc-Methods">Methods</a></td><td><a class="section" href="#PasDoc-Properties">Properties</a></td></tr></table>
+<a name="PasDoc-Description"></a><h2 class="unit">Unit</h2>
+<p class="unitlink">
+<a  href="Neslib.FastMath.html">Neslib.FastMath</a></p>
+<h2 class="declaration">Declaration</h2>
+<p class="declaration">
+<code>type TVector2 = record</code></p>
+<h2 class="description">Description</h2>
+<p>
+A 2-dimensional vector. Can be used to represent points or vectors in 2D space, using the <a class="normal" href="Neslib.FastMath.TVector2.html#X">X</a> and <a class="normal" href="Neslib.FastMath.TVector2.html#Y">Y</a> fields. You can also use it to represent texture coordinates, by using <a class="normal" href="Neslib.FastMath.TVector2.html#S">S</a> and <a class="normal" href="Neslib.FastMath.TVector2.html#T">T</a> (these are just aliases for <a class="normal" href="Neslib.FastMath.TVector2.html#X">X</a> and <a class="normal" href="Neslib.FastMath.TVector2.html#Y">Y</a>). It can also be used to group 2 arbitrary values together in an array (using <a class="normal" href="Neslib.FastMath.TVector2.html#C">C</a>[0] and <a class="normal" href="Neslib.FastMath.TVector2.html#C">C</a>[1], which are also just aliases for <a class="normal" href="Neslib.FastMath.TVector2.html#X">X</a> and <a class="normal" href="Neslib.FastMath.TVector2.html#Y">Y</a>).
+
+<p><code>TVector2</code> is compatible with TPointF in the Delphi RTL. You can typecast between these two types or implicitly convert from one to the other through assignment (eg. MyVector2 := MyPointF).</p>
+<h2 class="overview">Overview</h2>
+<a name="PasDoc-Fields"></a><h3 class="summary">Fields</h3>
+<table class="summary wide_list">
+<tr class="list">
+<td class="itemcode"><code><b><a  href="Neslib.FastMath.TVector2.html#X">X</a></b>: Single</code></td>
+</tr>
+<tr class="list2">
+<td class="itemcode"><code><b><a  href="Neslib.FastMath.TVector2.html#Y">Y</a></b>: Single</code></td>
+</tr>
+<tr class="list">
+<td class="itemcode"><code><b><a  href="Neslib.FastMath.TVector2.html#R">R</a></b>: Single</code></td>
+</tr>
+<tr class="list2">
+<td class="itemcode"><code><b><a  href="Neslib.FastMath.TVector2.html#G">G</a></b>: Single</code></td>
+</tr>
+<tr class="list">
+<td class="itemcode"><code><b><a  href="Neslib.FastMath.TVector2.html#S">S</a></b>: Single</code></td>
+</tr>
+<tr class="list2">
+<td class="itemcode"><code><b><a  href="Neslib.FastMath.TVector2.html#T">T</a></b>: Single</code></td>
+</tr>
+<tr class="list">
+<td class="itemcode"><code><b><a  href="Neslib.FastMath.TVector2.html#C">C</a></b>: array [0..1] of Single</code></td>
+</tr>
+</table>
+<a name="PasDoc-Methods"></a><h3 class="summary">Methods</h3>
+<table class="summary wide_list">
+<tr class="list">
+<td class="itemcode"><code>procedure <b><a  href="Neslib.FastMath.TVector2.html#Init">Init</a></b>; overload; inline;</code></td>
+</tr>
+<tr class="list2">
+<td class="itemcode"><code>procedure <b><a  href="Neslib.FastMath.TVector2.html#Init">Init</a></b>(const A: Single); overload; inline;</code></td>
+</tr>
+<tr class="list">
+<td class="itemcode"><code>procedure <b><a  href="Neslib.FastMath.TVector2.html#Init">Init</a></b>(const A1, A2: Single); overload; inline;</code></td>
+</tr>
+<tr class="list2">
+<td class="itemcode"><code>procedure <b><a  href="Neslib.FastMath.TVector2.html#Init">Init</a></b>(const APoint: TPoint); overload; inline;</code></td>
+</tr>
+<tr class="list">
+<td class="itemcode"><code>class operator <b><a  href="Neslib.FastMath.TVector2.html#Implicit">Implicit</a></b>(const A: TPointF): <a  href="Neslib.FastMath.TVector2.html">TVector2</a>; inline;</code></td>
+</tr>
+<tr class="list2">
+<td class="itemcode"><code>class operator <b><a  href="Neslib.FastMath.TVector2.html#Implicit">Implicit</a></b>(const A: <a  href="Neslib.FastMath.TVector2.html">TVector2</a>): TPointF; inline;</code></td>
+</tr>
+<tr class="list">
+<td class="itemcode"><code>class operator <b><a  href="Neslib.FastMath.TVector2.html#Equal">Equal</a></b>(const A, B: <a  href="Neslib.FastMath.TVector2.html">TVector2</a>): Boolean; inline;</code></td>
+</tr>
+<tr class="list2">
+<td class="itemcode"><code>class operator <b><a  href="Neslib.FastMath.TVector2.html#NotEqual">NotEqual</a></b>(const A, B: <a  href="Neslib.FastMath.TVector2.html">TVector2</a>): Boolean; inline;</code></td>
+</tr>
+<tr class="list">
+<td class="itemcode"><code>class operator <b><a  href="Neslib.FastMath.TVector2.html#Negative">Negative</a></b>(const A: <a  href="Neslib.FastMath.TVector2.html">TVector2</a>): <a  href="Neslib.FastMath.TVector2.html">TVector2</a>; inline;</code></td>
+</tr>
+<tr class="list2">
+<td class="itemcode"><code>class operator <b><a  href="Neslib.FastMath.TVector2.html#Add">Add</a></b>(const A: <a  href="Neslib.FastMath.TVector2.html">TVector2</a>; const B: Single): <a  href="Neslib.FastMath.TVector2.html">TVector2</a>; inline;</code></td>
+</tr>
+<tr class="list">
+<td class="itemcode"><code>class operator <b><a  href="Neslib.FastMath.TVector2.html#Add">Add</a></b>(const A: Single; const B: <a  href="Neslib.FastMath.TVector2.html">TVector2</a>): <a  href="Neslib.FastMath.TVector2.html">TVector2</a>; inline;</code></td>
+</tr>
+<tr class="list2">
+<td class="itemcode"><code>class operator <b><a  href="Neslib.FastMath.TVector2.html#Add">Add</a></b>(const A, B: <a  href="Neslib.FastMath.TVector2.html">TVector2</a>): <a  href="Neslib.FastMath.TVector2.html">TVector2</a>; inline;</code></td>
+</tr>
+<tr class="list">
+<td class="itemcode"><code>class operator <b><a  href="Neslib.FastMath.TVector2.html#Subtract">Subtract</a></b>(const A: <a  href="Neslib.FastMath.TVector2.html">TVector2</a>; const B: Single): <a  href="Neslib.FastMath.TVector2.html">TVector2</a>; inline;</code></td>
+</tr>
+<tr class="list2">
+<td class="itemcode"><code>class operator <b><a  href="Neslib.FastMath.TVector2.html#Subtract">Subtract</a></b>(const A: Single; const B: <a  href="Neslib.FastMath.TVector2.html">TVector2</a>): <a  href="Neslib.FastMath.TVector2.html">TVector2</a>; inline;</code></td>
+</tr>
+<tr class="list">
+<td class="itemcode"><code>class operator <b><a  href="Neslib.FastMath.TVector2.html#Subtract">Subtract</a></b>(const A, B: <a  href="Neslib.FastMath.TVector2.html">TVector2</a>): <a  href="Neslib.FastMath.TVector2.html">TVector2</a>; inline;</code></td>
+</tr>
+<tr class="list2">
+<td class="itemcode"><code>class operator <b><a  href="Neslib.FastMath.TVector2.html#Multiply">Multiply</a></b>(const A: <a  href="Neslib.FastMath.TVector2.html">TVector2</a>; const B: Single): <a  href="Neslib.FastMath.TVector2.html">TVector2</a>; inline;</code></td>
+</tr>
+<tr class="list">
+<td class="itemcode"><code>class operator <b><a  href="Neslib.FastMath.TVector2.html#Multiply">Multiply</a></b>(const A: Single; const B: <a  href="Neslib.FastMath.TVector2.html">TVector2</a>): <a  href="Neslib.FastMath.TVector2.html">TVector2</a>; inline;</code></td>
+</tr>
+<tr class="list2">
+<td class="itemcode"><code>class operator <b><a  href="Neslib.FastMath.TVector2.html#Multiply">Multiply</a></b>(const A, B: <a  href="Neslib.FastMath.TVector2.html">TVector2</a>): <a  href="Neslib.FastMath.TVector2.html">TVector2</a>; inline;</code></td>
+</tr>
+<tr class="list">
+<td class="itemcode"><code>class operator <b><a  href="Neslib.FastMath.TVector2.html#Divide">Divide</a></b>(const A: <a  href="Neslib.FastMath.TVector2.html">TVector2</a>; const B: Single): <a  href="Neslib.FastMath.TVector2.html">TVector2</a>; inline;</code></td>
+</tr>
+<tr class="list2">
+<td class="itemcode"><code>class operator <b><a  href="Neslib.FastMath.TVector2.html#Divide">Divide</a></b>(const A: Single; const B: <a  href="Neslib.FastMath.TVector2.html">TVector2</a>): <a  href="Neslib.FastMath.TVector2.html">TVector2</a>;</code></td>
+</tr>
+<tr class="list">
+<td class="itemcode"><code>class operator <b><a  href="Neslib.FastMath.TVector2.html#Divide">Divide</a></b>(const A, B: <a  href="Neslib.FastMath.TVector2.html">TVector2</a>): <a  href="Neslib.FastMath.TVector2.html">TVector2</a>;</code></td>
+</tr>
+<tr class="list2">
+<td class="itemcode"><code>function <b><a  href="Neslib.FastMath.TVector2.html#Equals">Equals</a></b>(const AOther: <a  href="Neslib.FastMath.TVector2.html">TVector2</a>; const ATolerance: Single = <a  href="Neslib.FastMath.html#SINGLE_TOLERANCE">SINGLE_TOLERANCE</a>): Boolean; inline;</code></td>
+</tr>
+<tr class="list">
+<td class="itemcode"><code>function <b><a  href="Neslib.FastMath.TVector2.html#Distance">Distance</a></b>(const AOther: <a  href="Neslib.FastMath.TVector2.html">TVector2</a>): Single; inline;</code></td>
+</tr>
+<tr class="list2">
+<td class="itemcode"><code>function <b><a  href="Neslib.FastMath.TVector2.html#DistanceSquared">DistanceSquared</a></b>(const AOther: <a  href="Neslib.FastMath.TVector2.html">TVector2</a>): Single; inline;</code></td>
+</tr>
+<tr class="list">
+<td class="itemcode"><code>function <b><a  href="Neslib.FastMath.TVector2.html#Dot">Dot</a></b>(const AOther: <a  href="Neslib.FastMath.TVector2.html">TVector2</a>): Single;</code></td>
+</tr>
+<tr class="list2">
+<td class="itemcode"><code>function <b><a  href="Neslib.FastMath.TVector2.html#Cross">Cross</a></b>(const AOther: <a  href="Neslib.FastMath.TVector2.html">TVector2</a>): Single;</code></td>
+</tr>
+<tr class="list">
+<td class="itemcode"><code>procedure <b><a  href="Neslib.FastMath.TVector2.html#Offset">Offset</a></b>(const ADeltaX, ADeltaY: Single); overload; inline;</code></td>
+</tr>
+<tr class="list2">
+<td class="itemcode"><code>procedure <b><a  href="Neslib.FastMath.TVector2.html#Offset">Offset</a></b>(const ADelta: <a  href="Neslib.FastMath.TVector2.html">TVector2</a>); overload; inline;</code></td>
+</tr>
+<tr class="list">
+<td class="itemcode"><code>function <b><a  href="Neslib.FastMath.TVector2.html#Normalize">Normalize</a></b>: <a  href="Neslib.FastMath.TVector2.html">TVector2</a>; inline;</code></td>
+</tr>
+<tr class="list2">
+<td class="itemcode"><code>procedure <b><a  href="Neslib.FastMath.TVector2.html#SetNormalized">SetNormalized</a></b>; inline;</code></td>
+</tr>
+<tr class="list">
+<td class="itemcode"><code>function <b><a  href="Neslib.FastMath.TVector2.html#NormalizeFast">NormalizeFast</a></b>: <a  href="Neslib.FastMath.TVector2.html">TVector2</a>;</code></td>
+</tr>
+<tr class="list2">
+<td class="itemcode"><code>procedure <b><a  href="Neslib.FastMath.TVector2.html#SetNormalizedFast">SetNormalizedFast</a></b>;</code></td>
+</tr>
+<tr class="list">
+<td class="itemcode"><code>function <b><a  href="Neslib.FastMath.TVector2.html#FaceForward">FaceForward</a></b>(const I, NRef: <a  href="Neslib.FastMath.TVector2.html">TVector2</a>): <a  href="Neslib.FastMath.TVector2.html">TVector2</a>; inline;</code></td>
+</tr>
+<tr class="list2">
+<td class="itemcode"><code>function <b><a  href="Neslib.FastMath.TVector2.html#Reflect">Reflect</a></b>(const N: <a  href="Neslib.FastMath.TVector2.html">TVector2</a>): <a  href="Neslib.FastMath.TVector2.html">TVector2</a>; inline;</code></td>
+</tr>
+<tr class="list">
+<td class="itemcode"><code>function <b><a  href="Neslib.FastMath.TVector2.html#Refract">Refract</a></b>(const N: <a  href="Neslib.FastMath.TVector2.html">TVector2</a>; const Eta: Single): <a  href="Neslib.FastMath.TVector2.html">TVector2</a>; inline;</code></td>
+</tr>
+<tr class="list2">
+<td class="itemcode"><code>function <b><a  href="Neslib.FastMath.TVector2.html#Limit">Limit</a></b>(const AMaxLength: Single): <a  href="Neslib.FastMath.TVector2.html">TVector2</a>; inline;</code></td>
+</tr>
+<tr class="list">
+<td class="itemcode"><code>procedure <b><a  href="Neslib.FastMath.TVector2.html#SetLimit">SetLimit</a></b>(const AMaxLength: Single); inline;</code></td>
+</tr>
+<tr class="list2">
+<td class="itemcode"><code>function <b><a  href="Neslib.FastMath.TVector2.html#LimitSquared">LimitSquared</a></b>(const AMaxLengthSquared: Single): <a  href="Neslib.FastMath.TVector2.html">TVector2</a>;</code></td>
+</tr>
+<tr class="list">
+<td class="itemcode"><code>procedure <b><a  href="Neslib.FastMath.TVector2.html#SetLimitSquared">SetLimitSquared</a></b>(const AMaxLengthSquared: Single); inline;</code></td>
+</tr>
+<tr class="list2">
+<td class="itemcode"><code>function <b><a  href="Neslib.FastMath.TVector2.html#Clamp">Clamp</a></b>(const AMinLength, AMaxLength: Single): <a  href="Neslib.FastMath.TVector2.html">TVector2</a>;</code></td>
+</tr>
+<tr class="list">
+<td class="itemcode"><code>procedure <b><a  href="Neslib.FastMath.TVector2.html#SetClamped">SetClamped</a></b>(const AMinLength, AMaxLength: Single); inline;</code></td>
+</tr>
+<tr class="list2">
+<td class="itemcode"><code>function <b><a  href="Neslib.FastMath.TVector2.html#Rotate">Rotate</a></b>(const ARadians: Single): <a  href="Neslib.FastMath.TVector2.html">TVector2</a>;</code></td>
+</tr>
+<tr class="list">
+<td class="itemcode"><code>procedure <b><a  href="Neslib.FastMath.TVector2.html#SetRotated">SetRotated</a></b>(const ARadians: Single); inline;</code></td>
+</tr>
+<tr class="list2">
+<td class="itemcode"><code>function <b><a  href="Neslib.FastMath.TVector2.html#Rotate90CCW">Rotate90CCW</a></b>: <a  href="Neslib.FastMath.TVector2.html">TVector2</a>;</code></td>
+</tr>
+<tr class="list">
+<td class="itemcode"><code>procedure <b><a  href="Neslib.FastMath.TVector2.html#SetRotated90CCW">SetRotated90CCW</a></b>; inline;</code></td>
+</tr>
+<tr class="list2">
+<td class="itemcode"><code>function <b><a  href="Neslib.FastMath.TVector2.html#Rotate90CW">Rotate90CW</a></b>: <a  href="Neslib.FastMath.TVector2.html">TVector2</a>;</code></td>
+</tr>
+<tr class="list">
+<td class="itemcode"><code>procedure <b><a  href="Neslib.FastMath.TVector2.html#SetRotated90CW">SetRotated90CW</a></b>; inline;</code></td>
+</tr>
+<tr class="list2">
+<td class="itemcode"><code>function <b><a  href="Neslib.FastMath.TVector2.html#AngleTo">AngleTo</a></b>(const ATarget: <a  href="Neslib.FastMath.TVector2.html">TVector2</a>): Single;</code></td>
+</tr>
+<tr class="list">
+<td class="itemcode"><code>function <b><a  href="Neslib.FastMath.TVector2.html#Lerp">Lerp</a></b>(const ATarget: <a  href="Neslib.FastMath.TVector2.html">TVector2</a>; const AAlpha: Single): <a  href="Neslib.FastMath.TVector2.html">TVector2</a>; inline;</code></td>
+</tr>
+<tr class="list2">
+<td class="itemcode"><code>procedure <b><a  href="Neslib.FastMath.TVector2.html#SetLerp">SetLerp</a></b>(const ATarget: <a  href="Neslib.FastMath.TVector2.html">TVector2</a>; const AAlpha: Single); inline;</code></td>
+</tr>
+<tr class="list">
+<td class="itemcode"><code>function <b><a  href="Neslib.FastMath.TVector2.html#IsNormalized">IsNormalized</a></b>: Boolean; overload; inline;</code></td>
+</tr>
+<tr class="list2">
+<td class="itemcode"><code>function <b><a  href="Neslib.FastMath.TVector2.html#IsNormalized">IsNormalized</a></b>(const AErrorMargin: Single): Boolean; overload;</code></td>
+</tr>
+<tr class="list">
+<td class="itemcode"><code>function <b><a  href="Neslib.FastMath.TVector2.html#IsZero">IsZero</a></b>: Boolean; overload; inline;</code></td>
+</tr>
+<tr class="list2">
+<td class="itemcode"><code>function <b><a  href="Neslib.FastMath.TVector2.html#IsZero">IsZero</a></b>(const AErrorMargin: Single): Boolean; overload;</code></td>
+</tr>
+<tr class="list">
+<td class="itemcode"><code>function <b><a  href="Neslib.FastMath.TVector2.html#HasSameDirection">HasSameDirection</a></b>(const AOther: <a  href="Neslib.FastMath.TVector2.html">TVector2</a>): Boolean; inline;</code></td>
+</tr>
+<tr class="list2">
+<td class="itemcode"><code>function <b><a  href="Neslib.FastMath.TVector2.html#HasOppositeDirection">HasOppositeDirection</a></b>(const AOther: <a  href="Neslib.FastMath.TVector2.html">TVector2</a>): Boolean; inline;</code></td>
+</tr>
+<tr class="list">
+<td class="itemcode"><code>function <b><a  href="Neslib.FastMath.TVector2.html#IsParallel">IsParallel</a></b>(const AOther: <a  href="Neslib.FastMath.TVector2.html">TVector2</a>; const ATolerance: Single = <a  href="Neslib.FastMath.html#SINGLE_TOLERANCE">SINGLE_TOLERANCE</a>): Boolean;</code></td>
+</tr>
+<tr class="list2">
+<td class="itemcode"><code>function <b><a  href="Neslib.FastMath.TVector2.html#IsCollinear">IsCollinear</a></b>(const AOther: <a  href="Neslib.FastMath.TVector2.html">TVector2</a>; const ATolerance: Single = <a  href="Neslib.FastMath.html#SINGLE_TOLERANCE">SINGLE_TOLERANCE</a>): Boolean;</code></td>
+</tr>
+<tr class="list">
+<td class="itemcode"><code>function <b><a  href="Neslib.FastMath.TVector2.html#IsCollinearOpposite">IsCollinearOpposite</a></b>(const AOther: <a  href="Neslib.FastMath.TVector2.html">TVector2</a>; const ATolerance: Single = <a  href="Neslib.FastMath.html#SINGLE_TOLERANCE">SINGLE_TOLERANCE</a>): Boolean;</code></td>
+</tr>
+<tr class="list2">
+<td class="itemcode"><code>function <b><a  href="Neslib.FastMath.TVector2.html#IsPerpendicular">IsPerpendicular</a></b>(const AOther: <a  href="Neslib.FastMath.TVector2.html">TVector2</a>; const ATolerance: Single = <a  href="Neslib.FastMath.html#SINGLE_TOLERANCE">SINGLE_TOLERANCE</a>): Boolean;</code></td>
+</tr>
+</table>
+<a name="PasDoc-Properties"></a><h3 class="summary">Properties</h3>
+<table class="summary wide_list">
+<tr class="list">
+<td class="itemcode"><code>property <b><a  href="Neslib.FastMath.TVector2.html#Components">Components</a></b>[constAIndex:Integer]: Single read GetComponent write SetComponent;</code></td>
+</tr>
+<tr class="list2">
+<td class="itemcode"><code>property <b><a  href="Neslib.FastMath.TVector2.html#Length">Length</a></b>: Single read GetLength write SetLength;</code></td>
+</tr>
+<tr class="list">
+<td class="itemcode"><code>property <b><a  href="Neslib.FastMath.TVector2.html#LengthSquared">LengthSquared</a></b>: Single read GetLengthSquared write SetLengthSquared;</code></td>
+</tr>
+<tr class="list2">
+<td class="itemcode"><code>property <b><a  href="Neslib.FastMath.TVector2.html#Angle">Angle</a></b>: Single read GetAngle write SetAngle;</code></td>
+</tr>
+</table>
+<h2 class="description">Description</h2>
+<h3 class="detail">Fields</h3>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><a name="X"></a><code><b>X</b>: Single</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+<code>X</code> and <a class="normal" href="Neslib.FastMath.TVector2.html#Y">Y</a> <a class="normal" href="Neslib.FastMath.TVector2.html#Components">components</a> of the vector. Aliases for <a class="normal" href="Neslib.FastMath.TVector2.html#C">C</a>[0] and <a class="normal" href="Neslib.FastMath.TVector2.html#C">C</a>[1].</p>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><a name="Y"></a><code><b>Y</b>: Single</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+<a class="normal" href="Neslib.FastMath.TVector2.html#X">X</a> and <code>Y</code> <a class="normal" href="Neslib.FastMath.TVector2.html#Components">components</a> of the vector. Aliases for <a class="normal" href="Neslib.FastMath.TVector2.html#C">C</a>[0] and <a class="normal" href="Neslib.FastMath.TVector2.html#C">C</a>[1].</p>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><a name="R"></a><code><b>R</b>: Single</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+Red and Green <a class="normal" href="Neslib.FastMath.TVector2.html#Components">components</a> of the vector. Aliases for <a class="normal" href="Neslib.FastMath.TVector2.html#C">C</a>[0] and <a class="normal" href="Neslib.FastMath.TVector2.html#C">C</a>[1].</p>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><a name="G"></a><code><b>G</b>: Single</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+Red and Green <a class="normal" href="Neslib.FastMath.TVector2.html#Components">components</a> of the vector. Aliases for <a class="normal" href="Neslib.FastMath.TVector2.html#C">C</a>[0] and <a class="normal" href="Neslib.FastMath.TVector2.html#C">C</a>[1].</p>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><a name="S"></a><code><b>S</b>: Single</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+<code>S</code> and <a class="normal" href="Neslib.FastMath.TVector2.html#T">T</a> <a class="normal" href="Neslib.FastMath.TVector2.html#Components">components</a> of the vector. Aliases for <a class="normal" href="Neslib.FastMath.TVector2.html#C">C</a>[0] and <a class="normal" href="Neslib.FastMath.TVector2.html#C">C</a>[1].</p>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><a name="T"></a><code><b>T</b>: Single</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+<a class="normal" href="Neslib.FastMath.TVector2.html#S">S</a> and <code>T</code> <a class="normal" href="Neslib.FastMath.TVector2.html#Components">components</a> of the vector. Aliases for <a class="normal" href="Neslib.FastMath.TVector2.html#C">C</a>[0] and <a class="normal" href="Neslib.FastMath.TVector2.html#C">C</a>[1].</p>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><a name="C"></a><code><b>C</b>: array [0..1] of Single</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+The two <a class="normal" href="Neslib.FastMath.TVector2.html#Components">components</a> of the vector.</p>
+</td></tr>
+</table>
+<h3 class="detail">Methods</h3>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><a name="Init"></a><code>procedure <b>Init</b>; overload; inline;</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+Sets the two elements (<a class="normal" href="Neslib.FastMath.TVector2.html#X">X</a> and <a class="normal" href="Neslib.FastMath.TVector2.html#Y">Y</a>) to 0.</p>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><a name="Init"></a><code>procedure <b>Init</b>(const A: Single); overload; inline;</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+Sets the two elements (<a class="normal" href="Neslib.FastMath.TVector2.html#X">X</a> and <a class="normal" href="Neslib.FastMath.TVector2.html#Y">Y</a>) to A.
+
+<p></p>
+<h6 class="description_section">Parameters</h6>
+<dl class="parameters">
+<dt>A</dt>
+<dd>the value to set the two elements to.</dd>
+</dl>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><a name="Init"></a><code>procedure <b>Init</b>(const A1, A2: Single); overload; inline;</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+Sets the two elements (<a class="normal" href="Neslib.FastMath.TVector2.html#X">X</a> and <a class="normal" href="Neslib.FastMath.TVector2.html#Y">Y</a>) to A1 and A2 respectively.
+
+<p> </p>
+<h6 class="description_section">Parameters</h6>
+<dl class="parameters">
+<dt>A1</dt>
+<dd>the value to set the first element to.</dd>
+<dt>A2</dt>
+<dd>the value to set the second element to.</dd>
+</dl>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><a name="Init"></a><code>procedure <b>Init</b>(const APoint: TPoint); overload; inline;</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+Converts a TPoint to a <a class="normal" href="Neslib.FastMath.TVector2.html">TVector2</a>.
+
+<p></p>
+<h6 class="description_section">Parameters</h6>
+<dl class="parameters">
+<dt>APoint</dt>
+<dd>the TPoint to convert.</dd>
+</dl>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><a name="Implicit"></a><code>class operator <b>Implicit</b>(const A: TPointF): <a  href="Neslib.FastMath.TVector2.html">TVector2</a>; inline;</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+Implicitly converts a TPointF to a <a class="normal" href="Neslib.FastMath.TVector2.html">TVector2</a>.</p>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><a name="Implicit"></a><code>class operator <b>Implicit</b>(const A: <a  href="Neslib.FastMath.TVector2.html">TVector2</a>): TPointF; inline;</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+Implicitly converts a <a class="normal" href="Neslib.FastMath.TVector2.html">TVector2</a> to a TPointF.</p>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><a name="Equal"></a><code>class operator <b>Equal</b>(const A, B: <a  href="Neslib.FastMath.TVector2.html">TVector2</a>): Boolean; inline;</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+Checks two vectors for equality.
+
+<p></p>
+<h6 class="description_section">Returns</h6>
+<p class="return">True if the two vectors match each other exactly.</p></td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><a name="NotEqual"></a><code>class operator <b>NotEqual</b>(const A, B: <a  href="Neslib.FastMath.TVector2.html">TVector2</a>): Boolean; inline;</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+Checks two vectors for inequality.
+
+<p></p>
+<h6 class="description_section">Returns</h6>
+<p class="return">True if the two vectors are not <a class="normal" href="Neslib.FastMath.TVector2.html#Equal">equal</a>.</p></td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><a name="Negative"></a><code>class operator <b>Negative</b>(const A: <a  href="Neslib.FastMath.TVector2.html">TVector2</a>): <a  href="Neslib.FastMath.TVector2.html">TVector2</a>; inline;</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+Negates a vector.
+
+<p></p>
+<h6 class="description_section">Returns</h6>
+<p class="return">The <code>negative</code> value of a vector (eg. (-A.X, -A.Y))</p></td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><a name="Add"></a><code>class operator <b>Add</b>(const A: <a  href="Neslib.FastMath.TVector2.html">TVector2</a>; const B: Single): <a  href="Neslib.FastMath.TVector2.html">TVector2</a>; inline;</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+Adds a scalar value to a vector.
+
+<p></p>
+<h6 class="description_section">Returns</h6>
+<p class="return">(A.X + B, A.Y + B)</p></td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><a name="Add"></a><code>class operator <b>Add</b>(const A: Single; const B: <a  href="Neslib.FastMath.TVector2.html">TVector2</a>): <a  href="Neslib.FastMath.TVector2.html">TVector2</a>; inline;</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+Adds a vector to a scalar value.
+
+<p></p>
+<h6 class="description_section">Returns</h6>
+<p class="return">(A + B.X, A + B.Y)</p></td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><a name="Add"></a><code>class operator <b>Add</b>(const A, B: <a  href="Neslib.FastMath.TVector2.html">TVector2</a>): <a  href="Neslib.FastMath.TVector2.html">TVector2</a>; inline;</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+Adds two vectors.
+
+<p></p>
+<h6 class="description_section">Returns</h6>
+<p class="return">(A.X + B.X, A.Y + B.Y)</p></td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><a name="Subtract"></a><code>class operator <b>Subtract</b>(const A: <a  href="Neslib.FastMath.TVector2.html">TVector2</a>; const B: Single): <a  href="Neslib.FastMath.TVector2.html">TVector2</a>; inline;</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+Subtracts a scalar value from a vector.
+
+<p></p>
+<h6 class="description_section">Returns</h6>
+<p class="return">(A.X - B, A.Y - B)</p></td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><a name="Subtract"></a><code>class operator <b>Subtract</b>(const A: Single; const B: <a  href="Neslib.FastMath.TVector2.html">TVector2</a>): <a  href="Neslib.FastMath.TVector2.html">TVector2</a>; inline;</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+Subtracts a vector from a scalar value.
+
+<p></p>
+<h6 class="description_section">Returns</h6>
+<p class="return">(A - B.X, A - B.Y)</p></td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><a name="Subtract"></a><code>class operator <b>Subtract</b>(const A, B: <a  href="Neslib.FastMath.TVector2.html">TVector2</a>): <a  href="Neslib.FastMath.TVector2.html">TVector2</a>; inline;</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+Subtracts two vectors.
+
+<p></p>
+<h6 class="description_section">Returns</h6>
+<p class="return">(A.X - B.X, A.Y - B.Y)</p></td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><a name="Multiply"></a><code>class operator <b>Multiply</b>(const A: <a  href="Neslib.FastMath.TVector2.html">TVector2</a>; const B: Single): <a  href="Neslib.FastMath.TVector2.html">TVector2</a>; inline;</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+Multiplies a vector with a scalar value.
+
+<p></p>
+<h6 class="description_section">Returns</h6>
+<p class="return">(A.X * B, A.Y * B)</p></td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><a name="Multiply"></a><code>class operator <b>Multiply</b>(const A: Single; const B: <a  href="Neslib.FastMath.TVector2.html">TVector2</a>): <a  href="Neslib.FastMath.TVector2.html">TVector2</a>; inline;</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+Multiplies a scalar value with a vector.
+
+<p></p>
+<h6 class="description_section">Returns</h6>
+<p class="return">(A * B.X, A * B.Y)</p></td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><a name="Multiply"></a><code>class operator <b>Multiply</b>(const A, B: <a  href="Neslib.FastMath.TVector2.html">TVector2</a>): <a  href="Neslib.FastMath.TVector2.html">TVector2</a>; inline;</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+Multiplies two vectors component-wise. To calculate a <a class="normal" href="Neslib.FastMath.TVector2.html#Dot">dot</a> or <a class="normal" href="Neslib.FastMath.TVector2.html#Cross">cross</a> product instead, use the <a class="normal" href="Neslib.FastMath.TVector2.html#Dot">Dot</a> or <a class="normal" href="Neslib.FastMath.TVector2.html#Cross">Cross</a> function.
+
+<p></p>
+<h6 class="description_section">Returns</h6>
+<p class="return">(A.X * B.X, A.Y * B.Y)</p></td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><a name="Divide"></a><code>class operator <b>Divide</b>(const A: <a  href="Neslib.FastMath.TVector2.html">TVector2</a>; const B: Single): <a  href="Neslib.FastMath.TVector2.html">TVector2</a>; inline;</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+Divides a vector by a scalar value.
+
+<p></p>
+<h6 class="description_section">Returns</h6>
+<p class="return">(A.X / B, A.Y / B)</p></td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><a name="Divide"></a><code>class operator <b>Divide</b>(const A: Single; const B: <a  href="Neslib.FastMath.TVector2.html">TVector2</a>): <a  href="Neslib.FastMath.TVector2.html">TVector2</a>;</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+Divides a scalar value by a vector.
+
+<p></p>
+<h6 class="description_section">Returns</h6>
+<p class="return">(A / B.X, A / B.Y)</p></td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><a name="Divide"></a><code>class operator <b>Divide</b>(const A, B: <a  href="Neslib.FastMath.TVector2.html">TVector2</a>): <a  href="Neslib.FastMath.TVector2.html">TVector2</a>;</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+Divides two vectors component-wise.
+
+<p></p>
+<h6 class="description_section">Returns</h6>
+<p class="return">(A.X / B.X, A.Y / B.Y)</p></td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><a name="Equals"></a><code>function <b>Equals</b>(const AOther: <a  href="Neslib.FastMath.TVector2.html">TVector2</a>; const ATolerance: Single = <a  href="Neslib.FastMath.html#SINGLE_TOLERANCE">SINGLE_TOLERANCE</a>): Boolean; inline;</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+Whether this vector <code>equals</code> another vector, within a certain tolerance.
+
+<p> 
+
+<p></p>
+<h6 class="description_section">Parameters</h6>
+<dl class="parameters">
+<dt>AOther</dt>
+<dd>the other vector.</dd>
+<dt>ATolerance</dt>
+<dd>(optional) tolerance. If not specified, a small tolerance is used.</dd>
+</dl>
+<h6 class="description_section">Returns</h6>
+<p class="return">True if both vectors are <a class="normal" href="Neslib.FastMath.TVector2.html#Equal">equal</a> (within the given tolerance).</p></td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><a name="Distance"></a><code>function <b>Distance</b>(const AOther: <a  href="Neslib.FastMath.TVector2.html">TVector2</a>): Single; inline;</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+Calculates the <code>distance</code> between this vector and another vector.
+
+<p>
+
+<p> <b>Note</b>: If you only want to compare distances, you should use <a class="normal" href="Neslib.FastMath.TVector2.html#DistanceSquared">DistanceSquared</a> instead, which is faster.</p>
+<h6 class="description_section">Parameters</h6>
+<dl class="parameters">
+<dt>AOther</dt>
+<dd>the other vector.</dd>
+</dl>
+<h6 class="description_section">Returns</h6>
+<p class="return">The <code>distance</code> between this vector and AOther.</p></td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><a name="DistanceSquared"></a><code>function <b>DistanceSquared</b>(const AOther: <a  href="Neslib.FastMath.TVector2.html">TVector2</a>): Single; inline;</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+Calculates the squared <a class="normal" href="Neslib.FastMath.TVector2.html#Distance">distance</a> between this vector and another vector.
+
+<p>
+
+<p></p>
+<h6 class="description_section">Parameters</h6>
+<dl class="parameters">
+<dt>AOther</dt>
+<dd>the other vector.</dd>
+</dl>
+<h6 class="description_section">Returns</h6>
+<p class="return">The squared <a class="normal" href="Neslib.FastMath.TVector2.html#Distance">distance</a> between this vector and AOther.</p></td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><a name="Dot"></a><code>function <b>Dot</b>(const AOther: <a  href="Neslib.FastMath.TVector2.html">TVector2</a>): Single;</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+Calculates the <code>dot</code> product between this vector and another vector.
+
+<p>
+
+<p></p>
+<h6 class="description_section">Parameters</h6>
+<dl class="parameters">
+<dt>AOther</dt>
+<dd>the other vector.</dd>
+</dl>
+<h6 class="description_section">Returns</h6>
+<p class="return">The <code>dot</code> product between this vector and AOther.</p></td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><a name="Cross"></a><code>function <b>Cross</b>(const AOther: <a  href="Neslib.FastMath.TVector2.html">TVector2</a>): Single;</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+Calculates the <code>cross</code> product between this vector and another vector.
+
+<p>
+
+<p></p>
+<h6 class="description_section">Parameters</h6>
+<dl class="parameters">
+<dt>AOther</dt>
+<dd>the other vector.</dd>
+</dl>
+<h6 class="description_section">Returns</h6>
+<p class="return">The <code>cross</code> product between this vector and AOther.</p></td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><a name="Offset"></a><code>procedure <b>Offset</b>(const ADeltaX, ADeltaY: Single); overload; inline;</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+Offsets this vector in a certain direction.
+
+<p> </p>
+<h6 class="description_section">Parameters</h6>
+<dl class="parameters">
+<dt>ADeltaX</dt>
+<dd>the delta <a class="normal" href="Neslib.FastMath.TVector2.html#X">X</a> direction.</dd>
+<dt>ADeltaY</dt>
+<dd>the delta <a class="normal" href="Neslib.FastMath.TVector2.html#Y">Y</a> direction.</dd>
+</dl>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><a name="Offset"></a><code>procedure <b>Offset</b>(const ADelta: <a  href="Neslib.FastMath.TVector2.html">TVector2</a>); overload; inline;</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+Offsets this vector in a certain direction.
+
+<p>
+
+<p><b>Note</b>: this is equivalent to adding two vectors together.</p>
+<h6 class="description_section">Parameters</h6>
+<dl class="parameters">
+<dt>ADelta</dt>
+<dd>the delta.</dd>
+</dl>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><a name="Normalize"></a><code>function <b>Normalize</b>: <a  href="Neslib.FastMath.TVector2.html">TVector2</a>; inline;</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+Calculates a normalized version of this vector.
+
+<p> <b>Note</b>: for a faster, less accurate version, use <a class="normal" href="Neslib.FastMath.TVector2.html#NormalizeFast">NormalizeFast</a>.
+
+<p><b>Note</b>: Does not change this vector. To update this vector itself, use <a class="normal" href="Neslib.FastMath.TVector2.html#SetNormalized">SetNormalized</a>.</p>
+<h6 class="description_section">Returns</h6>
+<p class="return">The normalized version of of this vector. That is, a vector in the same direction as A, but with a <a class="normal" href="Neslib.FastMath.TVector2.html#Length">length</a> of 1.</p></td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><a name="SetNormalized"></a><code>procedure <b>SetNormalized</b>; inline;</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+Normalizes this vector. This is, keep the current direction, but set the <a class="normal" href="Neslib.FastMath.TVector2.html#Length">length</a> to 1.
+
+<p><b>Note</b>: The SIMD optimized versions of this method use an approximation, resulting in a very small error.
+
+<p><b>Note</b>: If you do not want to change this vector, but get a normalized version instead, then use <a class="normal" href="Neslib.FastMath.TVector2.html#Normalize">Normalize</a>.</p>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><a name="NormalizeFast"></a><code>function <b>NormalizeFast</b>: <a  href="Neslib.FastMath.TVector2.html">TVector2</a>;</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+Calculates a normalized version of this vector.
+
+<p> <b>Note</b>: this is an SIMD optimized version that uses an approximation, resulting in a small error. For an accurate version, use <a class="normal" href="Neslib.FastMath.TVector2.html#Normalize">Normalize</a>.
+
+<p><b>Note</b>: Does not change this vector. To update this vector itself, use <a class="normal" href="Neslib.FastMath.TVector2.html#SetNormalizedFast">SetNormalizedFast</a>.</p>
+<h6 class="description_section">Returns</h6>
+<p class="return">The normalized version of of this vector. That is, a vector in the same direction as A, but with a <a class="normal" href="Neslib.FastMath.TVector2.html#Length">length</a> of 1.</p></td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><a name="SetNormalizedFast"></a><code>procedure <b>SetNormalizedFast</b>;</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+Normalizes this vector. This is, keep the current direction, but set the <a class="normal" href="Neslib.FastMath.TVector2.html#Length">length</a> to 1.
+
+<p><b>Note</b>: this is an SIMD optimized version that uses an approximation, resulting in a small error. For an accurate version, use <a class="normal" href="Neslib.FastMath.TVector2.html#SetNormalized">SetNormalized</a>.
+
+<p><b>Note</b>: If you do not want to change this vector, but get a normalized version instead, then use <a class="normal" href="Neslib.FastMath.TVector2.html#NormalizeFast">NormalizeFast</a>.</p>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><a name="FaceForward"></a><code>function <b>FaceForward</b>(const I, NRef: <a  href="Neslib.FastMath.TVector2.html">TVector2</a>): <a  href="Neslib.FastMath.TVector2.html">TVector2</a>; inline;</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+Calculates a vector pointing in the same direction as this vector.
+
+<p> 
+
+<p></p>
+<h6 class="description_section">Parameters</h6>
+<dl class="parameters">
+<dt>I</dt>
+<dd>the incident vector.</dd>
+<dt>NRef</dt>
+<dd>the reference vector.</dd>
+</dl>
+<h6 class="description_section">Returns</h6>
+<p class="return">A vector that points away from the surface as defined by its normal. If NRef.Dot(I) &lt; 0 then it returns this vector, otherwise it returns the <a class="normal" href="Neslib.FastMath.TVector2.html#Negative">negative</a> of this vector.</p></td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><a name="Reflect"></a><code>function <b>Reflect</b>(const N: <a  href="Neslib.FastMath.TVector2.html">TVector2</a>): <a  href="Neslib.FastMath.TVector2.html">TVector2</a>; inline;</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+Calculates the reflection direction for this (incident) vector.
+
+<p>
+
+<p></p>
+<h6 class="description_section">Parameters</h6>
+<dl class="parameters">
+<dt>N</dt>
+<dd>the normal vector. Should be normalized in order to achieve the desired result.</dd>
+</dl>
+<h6 class="description_section">Returns</h6>
+<p class="return">The reflection direction calculated as Self - 2 * N.Dot(Self) * N.</p></td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><a name="Refract"></a><code>function <b>Refract</b>(const N: <a  href="Neslib.FastMath.TVector2.html">TVector2</a>; const Eta: Single): <a  href="Neslib.FastMath.TVector2.html">TVector2</a>; inline;</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+Calculates the refraction direction for this (incident) vector.
+
+<p> 
+
+<p> <b>Note</b>: This vector should be normalized in order to achieve the desired result.</p>
+<h6 class="description_section">Parameters</h6>
+<dl class="parameters">
+<dt>N</dt>
+<dd>the normal vector. Should be normalized in order to achieve the desired result.</dd>
+<dt>Eta</dt>
+<dd>the ratio of indices of refraction.</dd>
+</dl>
+<h6 class="description_section">Returns</h6>
+<p class="return">The refraction vector.</p></td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><a name="Limit"></a><code>function <b>Limit</b>(const AMaxLength: Single): <a  href="Neslib.FastMath.TVector2.html">TVector2</a>; inline;</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+Creates a vector with the same direction as this vector, but with the <a class="normal" href="Neslib.FastMath.TVector2.html#Length">length</a> limited, based on the desired maximum <a class="normal" href="Neslib.FastMath.TVector2.html#Length">length</a>.
+
+<p>
+
+<p> <b>Note</b>: Does not change this vector. To update this vector itself, use <a class="normal" href="Neslib.FastMath.TVector2.html#SetLimit">SetLimit</a>.</p>
+<h6 class="description_section">Parameters</h6>
+<dl class="parameters">
+<dt>AMaxLength</dt>
+<dd>The desired maximum <a class="normal" href="Neslib.FastMath.TVector2.html#Length">length</a> of the vector.</dd>
+</dl>
+<h6 class="description_section">Returns</h6>
+<p class="return">A <a class="normal" href="Neslib.FastMath.TVector2.html#Length">length</a>-limited version of this vector.</p></td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><a name="SetLimit"></a><code>procedure <b>SetLimit</b>(const AMaxLength: Single); inline;</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+Limits the <a class="normal" href="Neslib.FastMath.TVector2.html#Length">length</a> of this vector, based on the desired maximum <a class="normal" href="Neslib.FastMath.TVector2.html#Length">length</a>.
+
+<p>
+
+<p><b>Note</b>: If you do not want to change this vector, but get a <a class="normal" href="Neslib.FastMath.TVector2.html#Length">length</a>-limited version instead, then use <a class="normal" href="Neslib.FastMath.TVector2.html#Limit">Limit</a>.</p>
+<h6 class="description_section">Parameters</h6>
+<dl class="parameters">
+<dt>AMaxLength</dt>
+<dd>The desired maximum <a class="normal" href="Neslib.FastMath.TVector2.html#Length">length</a> of this vector.</dd>
+</dl>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><a name="LimitSquared"></a><code>function <b>LimitSquared</b>(const AMaxLengthSquared: Single): <a  href="Neslib.FastMath.TVector2.html">TVector2</a>;</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+Creates a vector with the same direction as this vector, but with the <a class="normal" href="Neslib.FastMath.TVector2.html#Length">length</a> limited, based on the desired squared maximum <a class="normal" href="Neslib.FastMath.TVector2.html#Length">length</a>.
+
+<p>
+
+<p> <b>Note</b>: Does not change this vector. To update this vector itself, use <a class="normal" href="Neslib.FastMath.TVector2.html#SetLimitSquared">SetLimitSquared</a>.</p>
+<h6 class="description_section">Parameters</h6>
+<dl class="parameters">
+<dt>AMaxLengthSquared</dt>
+<dd>The desired squared maximum <a class="normal" href="Neslib.FastMath.TVector2.html#Length">length</a> of the vector.</dd>
+</dl>
+<h6 class="description_section">Returns</h6>
+<p class="return">A <a class="normal" href="Neslib.FastMath.TVector2.html#Length">length</a>-limited version of this vector.</p></td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><a name="SetLimitSquared"></a><code>procedure <b>SetLimitSquared</b>(const AMaxLengthSquared: Single); inline;</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+Limits the <a class="normal" href="Neslib.FastMath.TVector2.html#Length">length</a> of this vector, based on the desired squared maximum <a class="normal" href="Neslib.FastMath.TVector2.html#Length">length</a>.
+
+<p>
+
+<p><b>Note</b>: If you do not want to change this vector, but get a <a class="normal" href="Neslib.FastMath.TVector2.html#Length">length</a>-limited version instead, then use <a class="normal" href="Neslib.FastMath.TVector2.html#LimitSquared">LimitSquared</a>.</p>
+<h6 class="description_section">Parameters</h6>
+<dl class="parameters">
+<dt>AMaxLengthSquared</dt>
+<dd>The desired squared maximum <a class="normal" href="Neslib.FastMath.TVector2.html#Length">length</a> of this vector.</dd>
+</dl>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><a name="Clamp"></a><code>function <b>Clamp</b>(const AMinLength, AMaxLength: Single): <a  href="Neslib.FastMath.TVector2.html">TVector2</a>;</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+Creates a vector with the same direction as this vector, but with the <a class="normal" href="Neslib.FastMath.TVector2.html#Length">length</a> clamped between a minimim and maximum <a class="normal" href="Neslib.FastMath.TVector2.html#Length">length</a>.
+
+<p> 
+
+<p> <b>Note</b>: Does not change this vector. To update this vector itself, use <a class="normal" href="Neslib.FastMath.TVector2.html#SetClamped">SetClamped</a>.</p>
+<h6 class="description_section">Parameters</h6>
+<dl class="parameters">
+<dt>AMinLength</dt>
+<dd>The minimum <a class="normal" href="Neslib.FastMath.TVector2.html#Length">length</a> of the vector.</dd>
+<dt>AMaxLength</dt>
+<dd>The maximum <a class="normal" href="Neslib.FastMath.TVector2.html#Length">length</a> of the vector.</dd>
+</dl>
+<h6 class="description_section">Returns</h6>
+<p class="return">A <a class="normal" href="Neslib.FastMath.TVector2.html#Length">length</a>-clamped version of this vector.</p></td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><a name="SetClamped"></a><code>procedure <b>SetClamped</b>(const AMinLength, AMaxLength: Single); inline;</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+Clamps the <a class="normal" href="Neslib.FastMath.TVector2.html#Length">length</a> of this vector between a minimim and maximum <a class="normal" href="Neslib.FastMath.TVector2.html#Length">length</a>.
+
+<p> 
+
+<p><b>Note</b>: If you do not want to change this vector, but get a <a class="normal" href="Neslib.FastMath.TVector2.html#Length">length</a>-clamped version instead, then use <a class="normal" href="Neslib.FastMath.TVector2.html#Clamp">Clamp</a>.</p>
+<h6 class="description_section">Parameters</h6>
+<dl class="parameters">
+<dt>AMinLength</dt>
+<dd>The minimum <a class="normal" href="Neslib.FastMath.TVector2.html#Length">length</a> of this vector.</dd>
+<dt>AMaxLength</dt>
+<dd>The maximum <a class="normal" href="Neslib.FastMath.TVector2.html#Length">length</a> of this vector.</dd>
+</dl>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><a name="Rotate"></a><code>function <b>Rotate</b>(const ARadians: Single): <a  href="Neslib.FastMath.TVector2.html">TVector2</a>;</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+Creates a vector by rotating this vector counter-clockwise.
+
+<p>AParameters: ARadians: the rotation <a class="normal" href="Neslib.FastMath.TVector2.html#Angle">angle</a> in <a class="normal" href="Neslib.FastMath.html#Radians">radians</a>, counter-clockwise assuming the <a class="normal" href="Neslib.FastMath.TVector2.html#Y">Y</a>-axis points up.
+
+<p> <b>Note</b>: Does not change this vector. To update this vector itself, use <a class="normal" href="Neslib.FastMath.TVector2.html#SetRotated">SetRotated</a>.</p>
+<h6 class="description_section">Returns</h6>
+<p class="return">A rotated version version of this vector.</p></td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><a name="SetRotated"></a><code>procedure <b>SetRotated</b>(const ARadians: Single); inline;</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+Rotates this vector counter-clockwise.
+
+<p>AParameters: ARadians: the rotation <a class="normal" href="Neslib.FastMath.TVector2.html#Angle">angle</a> in <a class="normal" href="Neslib.FastMath.html#Radians">radians</a>, counter-clockwise assuming the <a class="normal" href="Neslib.FastMath.TVector2.html#Y">Y</a>-axis points up.
+
+<p><b>Note</b>: If you do not want to change this vector, but get a rotated version instead, then use <a class="normal" href="Neslib.FastMath.TVector2.html#Rotate">Rotate</a>.</p>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><a name="Rotate90CCW"></a><code>function <b>Rotate90CCW</b>: <a  href="Neslib.FastMath.TVector2.html">TVector2</a>;</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+Creates a vector by rotating this vector 90 <a class="normal" href="Neslib.FastMath.html#Degrees">degrees</a> counter-clockwise.
+
+<p> <b>Note</b>: Does not change this vector. To update this vector itself, use <a class="normal" href="Neslib.FastMath.TVector2.html#SetRotated90CCW">SetRotated90CCW</a>.</p>
+<h6 class="description_section">Returns</h6>
+<p class="return">A rotated version version of this vector.</p></td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><a name="SetRotated90CCW"></a><code>procedure <b>SetRotated90CCW</b>; inline;</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+Rotates this vector 90 <a class="normal" href="Neslib.FastMath.html#Degrees">degrees</a> counter-clockwise.
+
+<p><b>Note</b>: If you do not want to change this vector, but get a rotated version instead, then use <a class="normal" href="Neslib.FastMath.TVector2.html#Rotate90CCW">Rotate90CCW</a>.</p>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><a name="Rotate90CW"></a><code>function <b>Rotate90CW</b>: <a  href="Neslib.FastMath.TVector2.html">TVector2</a>;</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+Creates a vector by rotating this vector 90 <a class="normal" href="Neslib.FastMath.html#Degrees">degrees</a> clockwise.
+
+<p> <b>Note</b>: Does not change this vector. To update this vector itself, use <a class="normal" href="Neslib.FastMath.TVector2.html#SetRotated90CW">SetRotated90CW</a>.</p>
+<h6 class="description_section">Returns</h6>
+<p class="return">A rotated version version of this vector.</p></td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><a name="SetRotated90CW"></a><code>procedure <b>SetRotated90CW</b>; inline;</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+Rotates this vector 90 <a class="normal" href="Neslib.FastMath.html#Degrees">degrees</a> clockwise.
+
+<p><b>Note</b>: If you do not want to change this vector, but get a rotated version instead, then use <a class="normal" href="Neslib.FastMath.TVector2.html#Rotate90CW">Rotate90CW</a>.</p>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><a name="AngleTo"></a><code>function <b>AngleTo</b>(const ATarget: <a  href="Neslib.FastMath.TVector2.html">TVector2</a>): Single;</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+Calculates the <a class="normal" href="Neslib.FastMath.TVector2.html#Angle">angle</a> in <a class="normal" href="Neslib.FastMath.html#Radians">radians</a> to <a class="normal" href="Neslib.FastMath.TVector2.html#Rotate">rotate</a> this vector/point to a target vector. Angles are towards the positive <a class="normal" href="Neslib.FastMath.TVector2.html#Y">Y</a>-axis (counter-clockwise).
+
+<p>
+
+<p></p>
+<h6 class="description_section">Parameters</h6>
+<dl class="parameters">
+<dt>ATarget</dt>
+<dd>the target vector.</dd>
+</dl>
+<h6 class="description_section">Returns</h6>
+<p class="return">The <a class="normal" href="Neslib.FastMath.TVector2.html#Angle">angle</a> in <a class="normal" href="Neslib.FastMath.html#Radians">radians</a> to the target vector, in the range -Pi to Pi.</p></td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><a name="Lerp"></a><code>function <b>Lerp</b>(const ATarget: <a  href="Neslib.FastMath.TVector2.html">TVector2</a>; const AAlpha: Single): <a  href="Neslib.FastMath.TVector2.html">TVector2</a>; inline;</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+Linearly interpolates between this vector and a target vector.
+
+<p> 
+
+<p> <b>Note</b>: Does not change this vector. To update this vector itself, use <a class="normal" href="Neslib.FastMath.TVector2.html#SetLerp">SetLerp</a>.</p>
+<h6 class="description_section">Parameters</h6>
+<dl class="parameters">
+<dt>ATarget</dt>
+<dd>the target vector.</dd>
+<dt>AAlpha</dt>
+<dd>the interpolation coefficient (between 0.0 and 1.0).</dd>
+</dl>
+<h6 class="description_section">Returns</h6>
+<p class="return">The interpolation result vector.</p></td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><a name="SetLerp"></a><code>procedure <b>SetLerp</b>(const ATarget: <a  href="Neslib.FastMath.TVector2.html">TVector2</a>; const AAlpha: Single); inline;</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+Linearly interpolates between this vector and a target vector and stores the result in this vector.
+
+<p> 
+
+<p><b>Note</b>: If you do not want to change this vector, but get an interpolated version instead, then use <a class="normal" href="Neslib.FastMath.TVector2.html#Lerp">Lerp</a>.</p>
+<h6 class="description_section">Parameters</h6>
+<dl class="parameters">
+<dt>ATarget</dt>
+<dd>the target vector.</dd>
+<dt>AAlpha</dt>
+<dd>the interpolation coefficient (between 0.0 and 1.0).</dd>
+</dl>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><a name="IsNormalized"></a><code>function <b>IsNormalized</b>: Boolean; overload; inline;</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+Whether the vector is normalized (within a small margin of error).
+
+<p></p>
+<h6 class="description_section">Returns</h6>
+<p class="return">True if the <a class="normal" href="Neslib.FastMath.TVector2.html#Length">length</a> of the vector is (very close to) 1.0</p></td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><a name="IsNormalized"></a><code>function <b>IsNormalized</b>(const AErrorMargin: Single): Boolean; overload;</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+Whether the vector is normalized within a given margin of error.
+
+<p>
+
+<p></p>
+<h6 class="description_section">Parameters</h6>
+<dl class="parameters">
+<dt>AErrorMargin</dt>
+<dd>the allowed margin of error.</dd>
+</dl>
+<h6 class="description_section">Returns</h6>
+<p class="return">True if the squared <a class="normal" href="Neslib.FastMath.TVector2.html#Length">length</a> of the vector is 1.0 within the margin of error.</p></td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><a name="IsZero"></a><code>function <b>IsZero</b>: Boolean; overload; inline;</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+Whether this is a zero vector.
+
+<p></p>
+<h6 class="description_section">Returns</h6>
+<p class="return">True if <a class="normal" href="Neslib.FastMath.TVector2.html#X">X</a> and <a class="normal" href="Neslib.FastMath.TVector2.html#Y">Y</a> are exactly 0.0</p></td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><a name="IsZero"></a><code>function <b>IsZero</b>(const AErrorMargin: Single): Boolean; overload;</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+Whether this is a zero vector within a given margin of error.
+
+<p>
+
+<p></p>
+<h6 class="description_section">Parameters</h6>
+<dl class="parameters">
+<dt>AErrorMargin</dt>
+<dd>the allowed margin of error.</dd>
+</dl>
+<h6 class="description_section">Returns</h6>
+<p class="return">True if the squared <a class="normal" href="Neslib.FastMath.TVector2.html#Length">length</a> is smaller then the margin of error.</p></td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><a name="HasSameDirection"></a><code>function <b>HasSameDirection</b>(const AOther: <a  href="Neslib.FastMath.TVector2.html">TVector2</a>): Boolean; inline;</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+Whether this vector has a similar direction compared to another vector.
+
+<p>
+
+<p></p>
+<h6 class="description_section">Parameters</h6>
+<dl class="parameters">
+<dt>AOther</dt>
+<dd>the other vector.</dd>
+</dl>
+<h6 class="description_section">Returns</h6>
+<p class="return">True if the normalized <a class="normal" href="Neslib.FastMath.TVector2.html#Dot">dot</a> product is greater than 0.</p></td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><a name="HasOppositeDirection"></a><code>function <b>HasOppositeDirection</b>(const AOther: <a  href="Neslib.FastMath.TVector2.html">TVector2</a>): Boolean; inline;</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+Whether this vector has an opposite direction compared to another vector.
+
+<p>
+
+<p></p>
+<h6 class="description_section">Parameters</h6>
+<dl class="parameters">
+<dt>AOther</dt>
+<dd>the other vector.</dd>
+</dl>
+<h6 class="description_section">Returns</h6>
+<p class="return">True if the normalized <a class="normal" href="Neslib.FastMath.TVector2.html#Dot">dot</a> product is less than 0.</p></td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><a name="IsParallel"></a><code>function <b>IsParallel</b>(const AOther: <a  href="Neslib.FastMath.TVector2.html">TVector2</a>; const ATolerance: Single = <a  href="Neslib.FastMath.html#SINGLE_TOLERANCE">SINGLE_TOLERANCE</a>): Boolean;</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+Whether this vector runs parallel to another vector (either in the same or the opposite direction).
+
+<p> 
+
+<p> <b>Note</b>: every vector is considered to run parallel to a zero vector.</p>
+<h6 class="description_section">Parameters</h6>
+<dl class="parameters">
+<dt>AOther</dt>
+<dd>the other vector.</dd>
+<dt>ATolerance</dt>
+<dd>(optional) tolerance. If not specified, a small tolerance is used.</dd>
+</dl>
+<h6 class="description_section">Returns</h6>
+<p class="return">True if this vector runs parallel to AOther (within the given tolerance)</p></td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><a name="IsCollinear"></a><code>function <b>IsCollinear</b>(const AOther: <a  href="Neslib.FastMath.TVector2.html">TVector2</a>; const ATolerance: Single = <a  href="Neslib.FastMath.html#SINGLE_TOLERANCE">SINGLE_TOLERANCE</a>): Boolean;</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+Whether this vector is collinear with another vector. Two vectors are collinear if they run parallel to each other and point in the same direction.
+
+<p> 
+
+<p></p>
+<h6 class="description_section">Parameters</h6>
+<dl class="parameters">
+<dt>AOther</dt>
+<dd>the other vector.</dd>
+<dt>ATolerance</dt>
+<dd>(optional) tolerance. If not specified, a small tolerance is used.</dd>
+</dl>
+<h6 class="description_section">Returns</h6>
+<p class="return">True if this vector is collinear to AOther (within the given tolerance)</p></td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><a name="IsCollinearOpposite"></a><code>function <b>IsCollinearOpposite</b>(const AOther: <a  href="Neslib.FastMath.TVector2.html">TVector2</a>; const ATolerance: Single = <a  href="Neslib.FastMath.html#SINGLE_TOLERANCE">SINGLE_TOLERANCE</a>): Boolean;</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+Whether this vector is opposite collinear with another vector. Two vectors are opposite collinear if they run parallel to each other and point in opposite directions.
+
+<p> 
+
+<p></p>
+<h6 class="description_section">Parameters</h6>
+<dl class="parameters">
+<dt>AOther</dt>
+<dd>the other vector.</dd>
+<dt>ATolerance</dt>
+<dd>(optional) tolerance. If not specified, a small tolerance is used.</dd>
+</dl>
+<h6 class="description_section">Returns</h6>
+<p class="return">True if this vector is opposite collinear to AOther (within the given tolerance)</p></td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><a name="IsPerpendicular"></a><code>function <b>IsPerpendicular</b>(const AOther: <a  href="Neslib.FastMath.TVector2.html">TVector2</a>; const ATolerance: Single = <a  href="Neslib.FastMath.html#SINGLE_TOLERANCE">SINGLE_TOLERANCE</a>): Boolean;</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+Whether this vector is perpendicular to another vector.
+
+<p> 
+
+<p></p>
+<h6 class="description_section">Parameters</h6>
+<dl class="parameters">
+<dt>AOther</dt>
+<dd>the other vector.</dd>
+<dt>ATolerance</dt>
+<dd>(optional) tolerance. If not specified, a small tolerance is used.</dd>
+</dl>
+<h6 class="description_section">Returns</h6>
+<p class="return">True if this vector is perpendicular to AOther. That is, if the <a class="normal" href="Neslib.FastMath.TVector2.html#Dot">dot</a> product is 0 (within the given tolerance)</p></td></tr>
+</table>
+<h3 class="detail">Properties</h3>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><a name="Components"></a><code>property <b>Components</b>[constAIndex:Integer]: Single read GetComponent write SetComponent;</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+Returns the <code>components</code> of the vector. This is identical to accessing the <a class="normal" href="Neslib.FastMath.TVector2.html#C">C</a>-field, but this property can be used as a default array property.
+
+<p></p>
+<h6 class="description_section">Parameters</h6>
+<dl class="parameters">
+<dt>AIndex</dt>
+<dd>index of the component to return (0 or 1). Range is checked with an assertion.</dd>
+</dl>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><a name="Length"></a><code>property <b>Length</b>: Single read GetLength write SetLength;</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+The euclidean <code>length</code> of this vector.
+
+<p><b>Note</b>: If you only want to compare lengths of vectors, you should use <a class="normal" href="Neslib.FastMath.TVector2.html#LengthSquared">LengthSquared</a> instead, which is faster.
+
+<p><b>Note</b>: You can also set the <code>length</code> of the vector. In that case, it will keep the current direction.</p>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><a name="LengthSquared"></a><code>property <b>LengthSquared</b>: Single read GetLengthSquared write SetLengthSquared;</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+The squared <a class="normal" href="Neslib.FastMath.TVector2.html#Length">length</a> of the vector.
+
+<p><b>Note</b>: This property is faster than <a class="normal" href="Neslib.FastMath.TVector2.html#Length">Length</a> because it avoids calculating a square root. It is useful for comparing lengths instead of calculating actual lengths.
+
+<p><b>Note</b>: You can also set the squared <a class="normal" href="Neslib.FastMath.TVector2.html#Length">length</a> of the vector. In that case, it will keep the current direction.</p>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><a name="Angle"></a><code>property <b>Angle</b>: Single read GetAngle write SetAngle;</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+The <code>angle</code> in <a class="normal" href="Neslib.FastMath.html#Radians">radians</a> of this vector/point relative to the <a class="normal" href="Neslib.FastMath.TVector2.html#X">X</a>-axis. Angles are towards the positive <a class="normal" href="Neslib.FastMath.TVector2.html#Y">Y</a>-axis (counter-clockwise).
+
+<p>When getting the <code>angle</code>, the result will be between -Pi and Pi.</p>
+</td></tr>
+</table>
+<div style="height:1000px"></div><hr noshade size="1"><span class="appinfo"><em>Generated by <a  href="http://pasdoc.sourceforge.net/">PasDoc 0.14.0</a>. </em>
+</span>
+</td></tr></table></body></html>

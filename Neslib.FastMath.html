@@ -1,0 +1,3454 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/1999/REC-html401-19991224/loose.dtd">
+<html>
+<head>
+<title>FastMath: Neslib.FastMath</title>
+<meta name="generator" content="PasDoc 0.14.0">
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<link rel="StyleSheet" type="text/css" href="pasdoc.css">
+</head>
+<body>
+<table class="container"><tr><td class="navigation">
+<h2>FastMath</h2><p><a href="introduction.html" class="navigation">About FastMath</a></p><p><a href="AllUnits.html" class="navigation">Units</a></p><p><a href="ClassHierarchy.html" class="navigation">Class Hierarchy</a></p><p><a href="AllClasses.html" class="navigation">Classes, Interfaces, Objects and Records</a></p><p><a href="AllTypes.html" class="navigation">Types</a></p><p><a href="AllVariables.html" class="navigation">Variables</a></p><p><a href="AllConstants.html" class="navigation">Constants</a></p><p><a href="AllFunctions.html" class="navigation">Functions and Procedures</a></p><p><a href="AllIdentifiers.html" class="navigation">Identifiers</a></p><p><a href="conclusion.html" class="navigation">License</a></p></td><td class="content">
+<h1 class="unit">Unit Neslib.FastMath</h1>
+<table class="sections wide_list">
+<tr>
+<td><a class="section" href="#PasDoc-Description">Description</a></td><td>Uses</td><td><a class="section" href="#PasDoc-Classes">Classes, Interfaces, Objects and Records</a></td><td><a class="section" href="#PasDoc-FuncsProcs">Functions and Procedures</a></td><td><a class="section" href="#PasDoc-Types">Types</a></td><td><a class="section" href="#PasDoc-Constants">Constants</a></td><td>Variables</td></tr></table>
+<a name="PasDoc-Description"></a><h2 class="description">Description</h2>
+<p>
+Fast Math Library for Delphi</p>
+<a name="PasDoc-Uses"></a><h2 class="overview">Overview</h2>
+<a name="PasDoc-Classes"></a><h3 class="cio">Classes, Interfaces, Objects and Records</h3>
+<table class="classestable wide_list">
+<tr class="listheader">
+<th class="itemname">Name</th>
+<th class="itemdesc">Description</th>
+</tr>
+<tr class="list">
+<td class="itemname">record&nbsp;<a class="bold" href="Neslib.FastMath.TVector2.html"><code>TVector2</code></a></td>
+<td class="itemdesc">A 2-dimensional vector.</td>
+</tr>
+<tr class="list2">
+<td class="itemname">record&nbsp;<a class="bold" href="Neslib.FastMath.TVector3.html"><code>TVector3</code></a></td>
+<td class="itemdesc">A 3-dimensional vector.</td>
+</tr>
+<tr class="list">
+<td class="itemname">record&nbsp;<a class="bold" href="Neslib.FastMath.TVector4.html"><code>TVector4</code></a></td>
+<td class="itemdesc"><a class="normal" href="Neslib.FastMath.TVector4.html#A">A</a> 4-dimensional vector.</td>
+</tr>
+<tr class="list2">
+<td class="itemname">record&nbsp;<a class="bold" href="Neslib.FastMath.TMatrix2.html"><code>TMatrix2</code></a></td>
+<td class="itemdesc">A 2x2 matrix in row-major order (<a class="normal" href="Neslib.FastMath.TMatrix2.html#M">M</a>[Row, Column]).</td>
+</tr>
+<tr class="list">
+<td class="itemname">record&nbsp;<a class="bold" href="Neslib.FastMath._TMatrix2Helper.html"><code>_TMatrix2Helper</code></a></td>
+<td class="itemdesc">Adds common constants of type <a class="normal" href="Neslib.FastMath.TMatrix2.html">TMatrix2</a></td>
+</tr>
+<tr class="list2">
+<td class="itemname">record&nbsp;<a class="bold" href="Neslib.FastMath.TMatrix3.html"><code>TMatrix3</code></a></td>
+<td class="itemdesc">A 3x3 matrix in row-major order (<a class="normal" href="Neslib.FastMath.TMatrix3.html#M">M</a>[Row, Column]).</td>
+</tr>
+<tr class="list">
+<td class="itemname">record&nbsp;<a class="bold" href="Neslib.FastMath._TMatrix3Helper.html"><code>_TMatrix3Helper</code></a></td>
+<td class="itemdesc">Adds common constants of type <a class="normal" href="Neslib.FastMath.TMatrix3.html">TMatrix3</a></td>
+</tr>
+<tr class="list2">
+<td class="itemname">record&nbsp;<a class="bold" href="Neslib.FastMath.TMatrix4.html"><code>TMatrix4</code></a></td>
+<td class="itemdesc">A 4x4 matrix in row-major order (<a class="normal" href="Neslib.FastMath.TMatrix4.html#M">M</a>[Row, Column]).</td>
+</tr>
+<tr class="list">
+<td class="itemname">record&nbsp;<a class="bold" href="Neslib.FastMath._TMatrix4Helper.html"><code>_TMatrix4Helper</code></a></td>
+<td class="itemdesc">Adds common constants of type <a class="normal" href="Neslib.FastMath.TMatrix4.html">TMatrix4</a></td>
+</tr>
+<tr class="list2">
+<td class="itemname">record&nbsp;<a class="bold" href="Neslib.FastMath.TQuaternion.html"><code>TQuaternion</code></a></td>
+<td class="itemdesc">A <a class="normal" href="Neslib.FastMath.html#Quaternion">quaternion</a>.</td>
+</tr>
+<tr class="list">
+<td class="itemname">record&nbsp;<a class="bold" href="Neslib.FastMath._TQuaternionHelper.html"><code>_TQuaternionHelper</code></a></td>
+<td class="itemdesc">Adds common constants and functionality to <a class="normal" href="Neslib.FastMath.TQuaternion.html">TQuaternion</a></td>
+</tr>
+<tr class="list2">
+<td class="itemname">record&nbsp;<a class="bold" href="Neslib.FastMath.TIVector2.html"><code>TIVector2</code></a></td>
+<td class="itemdesc">A 2-dimensional vector that uses integer <a class="normal" href="Neslib.FastMath.TIVector2.html#Components">components</a> instead of floating-point <a class="normal" href="Neslib.FastMath.TIVector2.html#Components">components</a>.</td>
+</tr>
+<tr class="list">
+<td class="itemname">record&nbsp;<a class="bold" href="Neslib.FastMath._TVector2Helper.html"><code>_TVector2Helper</code></a></td>
+<td class="itemdesc">Adds common constants of type <a class="normal" href="Neslib.FastMath.TVector2.html">TVector2</a></td>
+</tr>
+<tr class="list2">
+<td class="itemname">record&nbsp;<a class="bold" href="Neslib.FastMath.TIVector3.html"><code>TIVector3</code></a></td>
+<td class="itemdesc">A 3-dimensional vector that uses integer <a class="normal" href="Neslib.FastMath.TIVector3.html#Components">components</a> instead of floating-point <a class="normal" href="Neslib.FastMath.TIVector3.html#Components">components</a>.</td>
+</tr>
+<tr class="list">
+<td class="itemname">record&nbsp;<a class="bold" href="Neslib.FastMath._TVector3Helper.html"><code>_TVector3Helper</code></a></td>
+<td class="itemdesc">Adds common constants of type <a class="normal" href="Neslib.FastMath.TVector3.html">TVector3</a></td>
+</tr>
+<tr class="list2">
+<td class="itemname">record&nbsp;<a class="bold" href="Neslib.FastMath.TIVector4.html"><code>TIVector4</code></a></td>
+<td class="itemdesc"><a class="normal" href="Neslib.FastMath.TIVector4.html#A">A</a> 4-dimensional vector that uses integer <a class="normal" href="Neslib.FastMath.TIVector4.html#Components">components</a> instead of floating-point <a class="normal" href="Neslib.FastMath.TIVector4.html#Components">components</a>.</td>
+</tr>
+<tr class="list">
+<td class="itemname">record&nbsp;<a class="bold" href="Neslib.FastMath._TVector4Helper.html"><code>_TVector4Helper</code></a></td>
+<td class="itemdesc">Adds common constants of type <a class="normal" href="Neslib.FastMath.TVector4.html">TVector4</a></td>
+</tr>
+</table>
+<a name="PasDoc-FuncsProcs"></a><h3 class="summary">Functions and Procedures</h3>
+<table class="summary wide_list">
+<tr class="list">
+<td class="itemcode"><code>function <b><a  href="Neslib.FastMath.html#Vector2">Vector2</a></b>: <a  href="Neslib.FastMath.TVector2.html">TVector2</a>; overload; inline;</code></td>
+</tr>
+<tr class="list2">
+<td class="itemcode"><code>function <b><a  href="Neslib.FastMath.html#Vector2">Vector2</a></b>(const A: Single): <a  href="Neslib.FastMath.TVector2.html">TVector2</a>; overload; inline;</code></td>
+</tr>
+<tr class="list">
+<td class="itemcode"><code>function <b><a  href="Neslib.FastMath.html#Vector2">Vector2</a></b>(const A1, A2: Single): <a  href="Neslib.FastMath.TVector2.html">TVector2</a>; overload; inline;</code></td>
+</tr>
+<tr class="list2">
+<td class="itemcode"><code>function <b><a  href="Neslib.FastMath.html#Vector2">Vector2</a></b>(const AVector: <a  href="Neslib.FastMath.TVector3.html">TVector3</a>): <a  href="Neslib.FastMath.TVector2.html">TVector2</a>; overload; inline;</code></td>
+</tr>
+<tr class="list">
+<td class="itemcode"><code>function <b><a  href="Neslib.FastMath.html#Vector2">Vector2</a></b>(const AVector: <a  href="Neslib.FastMath.TVector4.html">TVector4</a>): <a  href="Neslib.FastMath.TVector2.html">TVector2</a>; overload; inline;</code></td>
+</tr>
+<tr class="list2">
+<td class="itemcode"><code>function <b><a  href="Neslib.FastMath.html#Vector3">Vector3</a></b>: <a  href="Neslib.FastMath.TVector3.html">TVector3</a>; overload;</code></td>
+</tr>
+<tr class="list">
+<td class="itemcode"><code>function <b><a  href="Neslib.FastMath.html#Vector3">Vector3</a></b>(const A: Single): <a  href="Neslib.FastMath.TVector3.html">TVector3</a>; overload;</code></td>
+</tr>
+<tr class="list2">
+<td class="itemcode"><code>function <b><a  href="Neslib.FastMath.html#Vector3">Vector3</a></b>(const A1, A2, A3: Single): <a  href="Neslib.FastMath.TVector3.html">TVector3</a>; overload;</code></td>
+</tr>
+<tr class="list">
+<td class="itemcode"><code>function <b><a  href="Neslib.FastMath.html#Vector3">Vector3</a></b>(const A1: <a  href="Neslib.FastMath.TVector2.html">TVector2</a>; const A2: Single): <a  href="Neslib.FastMath.TVector3.html">TVector3</a>; overload;</code></td>
+</tr>
+<tr class="list2">
+<td class="itemcode"><code>function <b><a  href="Neslib.FastMath.html#Vector3">Vector3</a></b>(const A1: Single; const A2: <a  href="Neslib.FastMath.TVector2.html">TVector2</a>): <a  href="Neslib.FastMath.TVector3.html">TVector3</a>; overload;</code></td>
+</tr>
+<tr class="list">
+<td class="itemcode"><code>function <b><a  href="Neslib.FastMath.html#Vector3">Vector3</a></b>(const AVector: <a  href="Neslib.FastMath.TVector4.html">TVector4</a>): <a  href="Neslib.FastMath.TVector3.html">TVector3</a>; overload;</code></td>
+</tr>
+<tr class="list2">
+<td class="itemcode"><code>function <b><a  href="Neslib.FastMath.html#Vector4">Vector4</a></b>: <a  href="Neslib.FastMath.TVector4.html">TVector4</a>; overload;</code></td>
+</tr>
+<tr class="list">
+<td class="itemcode"><code>function <b><a  href="Neslib.FastMath.html#Vector4">Vector4</a></b>(const A: Single): <a  href="Neslib.FastMath.TVector4.html">TVector4</a>; overload;</code></td>
+</tr>
+<tr class="list2">
+<td class="itemcode"><code>function <b><a  href="Neslib.FastMath.html#Vector4">Vector4</a></b>(const A1, A2, A3, A4: Single): <a  href="Neslib.FastMath.TVector4.html">TVector4</a>; overload;</code></td>
+</tr>
+<tr class="list">
+<td class="itemcode"><code>function <b><a  href="Neslib.FastMath.html#Vector4">Vector4</a></b>(const A1: <a  href="Neslib.FastMath.TVector2.html">TVector2</a>; const A2, A3: Single): <a  href="Neslib.FastMath.TVector4.html">TVector4</a>; overload;</code></td>
+</tr>
+<tr class="list2">
+<td class="itemcode"><code>function <b><a  href="Neslib.FastMath.html#Vector4">Vector4</a></b>(const A1: Single; const A2: <a  href="Neslib.FastMath.TVector2.html">TVector2</a>; const A3: Single): <a  href="Neslib.FastMath.TVector4.html">TVector4</a>; overload;</code></td>
+</tr>
+<tr class="list">
+<td class="itemcode"><code>function <b><a  href="Neslib.FastMath.html#Vector4">Vector4</a></b>(const A1, A2: Single; const A3: <a  href="Neslib.FastMath.TVector2.html">TVector2</a>): <a  href="Neslib.FastMath.TVector4.html">TVector4</a>; overload;</code></td>
+</tr>
+<tr class="list2">
+<td class="itemcode"><code>function <b><a  href="Neslib.FastMath.html#Vector4">Vector4</a></b>(const A1, A2: <a  href="Neslib.FastMath.TVector2.html">TVector2</a>): <a  href="Neslib.FastMath.TVector4.html">TVector4</a>; overload;</code></td>
+</tr>
+<tr class="list">
+<td class="itemcode"><code>function <b><a  href="Neslib.FastMath.html#Vector4">Vector4</a></b>(const A1: <a  href="Neslib.FastMath.TVector3.html">TVector3</a>; const A2: Single): <a  href="Neslib.FastMath.TVector4.html">TVector4</a>; overload;</code></td>
+</tr>
+<tr class="list2">
+<td class="itemcode"><code>function <b><a  href="Neslib.FastMath.html#Vector4">Vector4</a></b>(const A1: Single; const A2: <a  href="Neslib.FastMath.TVector3.html">TVector3</a>): <a  href="Neslib.FastMath.TVector4.html">TVector4</a>; overload;</code></td>
+</tr>
+<tr class="list">
+<td class="itemcode"><code>function <b><a  href="Neslib.FastMath.html#Quaternion">Quaternion</a></b>: <a  href="Neslib.FastMath.TQuaternion.html">TQuaternion</a>; overload;</code></td>
+</tr>
+<tr class="list2">
+<td class="itemcode"><code>function <b><a  href="Neslib.FastMath.html#Quaternion">Quaternion</a></b>(const AX, AY, AZ, AW: Single): <a  href="Neslib.FastMath.TQuaternion.html">TQuaternion</a>; overload;</code></td>
+</tr>
+<tr class="list">
+<td class="itemcode"><code>function <b><a  href="Neslib.FastMath.html#Quaternion">Quaternion</a></b>(const AAxis: <a  href="Neslib.FastMath.TVector3.html">TVector3</a>; const AAngleRadians: Single): <a  href="Neslib.FastMath.TQuaternion.html">TQuaternion</a>; overload;</code></td>
+</tr>
+<tr class="list2">
+<td class="itemcode"><code>function <b><a  href="Neslib.FastMath.html#Matrix2">Matrix2</a></b>: <a  href="Neslib.FastMath.TMatrix2.html">TMatrix2</a>; overload;</code></td>
+</tr>
+<tr class="list">
+<td class="itemcode"><code>function <b><a  href="Neslib.FastMath.html#Matrix2">Matrix2</a></b>(const ADiagonal: Single): <a  href="Neslib.FastMath.TMatrix2.html">TMatrix2</a>; overload;</code></td>
+</tr>
+<tr class="list2">
+<td class="itemcode"><code>function <b><a  href="Neslib.FastMath.html#Matrix2">Matrix2</a></b>(const ARow0, ARow1: <a  href="Neslib.FastMath.TVector2.html">TVector2</a>): <a  href="Neslib.FastMath.TMatrix2.html">TMatrix2</a>; overload;</code></td>
+</tr>
+<tr class="list">
+<td class="itemcode"><code>function <b><a  href="Neslib.FastMath.html#Matrix2">Matrix2</a></b>(const A11, A12, A21, A22: Single): <a  href="Neslib.FastMath.TMatrix2.html">TMatrix2</a>; overload;</code></td>
+</tr>
+<tr class="list2">
+<td class="itemcode"><code>function <b><a  href="Neslib.FastMath.html#Matrix2">Matrix2</a></b>(const AMatrix: <a  href="Neslib.FastMath.TMatrix3.html">TMatrix3</a>): <a  href="Neslib.FastMath.TMatrix2.html">TMatrix2</a>; overload;</code></td>
+</tr>
+<tr class="list">
+<td class="itemcode"><code>function <b><a  href="Neslib.FastMath.html#Matrix2">Matrix2</a></b>(const AMatrix: <a  href="Neslib.FastMath.TMatrix4.html">TMatrix4</a>): <a  href="Neslib.FastMath.TMatrix2.html">TMatrix2</a>; overload;</code></td>
+</tr>
+<tr class="list2">
+<td class="itemcode"><code>function <b><a  href="Neslib.FastMath.html#Matrix3">Matrix3</a></b>: <a  href="Neslib.FastMath.TMatrix3.html">TMatrix3</a>; overload;</code></td>
+</tr>
+<tr class="list">
+<td class="itemcode"><code>function <b><a  href="Neslib.FastMath.html#Matrix3">Matrix3</a></b>(const ADiagonal: Single): <a  href="Neslib.FastMath.TMatrix3.html">TMatrix3</a>; overload;</code></td>
+</tr>
+<tr class="list2">
+<td class="itemcode"><code>function <b><a  href="Neslib.FastMath.html#Matrix3">Matrix3</a></b>(const ARow0, ARow1, ARow2: <a  href="Neslib.FastMath.TVector3.html">TVector3</a>): <a  href="Neslib.FastMath.TMatrix3.html">TMatrix3</a>; overload;</code></td>
+</tr>
+<tr class="list">
+<td class="itemcode"><code>function <b><a  href="Neslib.FastMath.html#Matrix3">Matrix3</a></b>(const A11, A12, A13, A21, A22, A23, A31, A32, A33: Single): <a  href="Neslib.FastMath.TMatrix3.html">TMatrix3</a>; overload;</code></td>
+</tr>
+<tr class="list2">
+<td class="itemcode"><code>function <b><a  href="Neslib.FastMath.html#Matrix3">Matrix3</a></b>(const AMatrix: <a  href="Neslib.FastMath.TMatrix2.html">TMatrix2</a>): <a  href="Neslib.FastMath.TMatrix3.html">TMatrix3</a>; overload;</code></td>
+</tr>
+<tr class="list">
+<td class="itemcode"><code>function <b><a  href="Neslib.FastMath.html#Matrix3">Matrix3</a></b>(const AMatrix: <a  href="Neslib.FastMath.TMatrix4.html">TMatrix4</a>): <a  href="Neslib.FastMath.TMatrix3.html">TMatrix3</a>; overload;</code></td>
+</tr>
+<tr class="list2">
+<td class="itemcode"><code>function <b><a  href="Neslib.FastMath.html#Matrix4">Matrix4</a></b>: <a  href="Neslib.FastMath.TMatrix4.html">TMatrix4</a>; overload;</code></td>
+</tr>
+<tr class="list">
+<td class="itemcode"><code>function <b><a  href="Neslib.FastMath.html#Matrix4">Matrix4</a></b>(const ADiagonal: Single): <a  href="Neslib.FastMath.TMatrix4.html">TMatrix4</a>; overload;</code></td>
+</tr>
+<tr class="list2">
+<td class="itemcode"><code>function <b><a  href="Neslib.FastMath.html#Matrix4">Matrix4</a></b>(const ARow0, ARow1, ARow2, ARow3: <a  href="Neslib.FastMath.TVector4.html">TVector4</a>): <a  href="Neslib.FastMath.TMatrix4.html">TMatrix4</a>; overload;</code></td>
+</tr>
+<tr class="list">
+<td class="itemcode"><code>function <b><a  href="Neslib.FastMath.html#Matrix4">Matrix4</a></b>(const A11, A12, A13, A14, A21, A22, A23, A24, A31, A32, A33, A34, A41, A42, A43, A44: Single): <a  href="Neslib.FastMath.TMatrix4.html">TMatrix4</a>; overload;</code></td>
+</tr>
+<tr class="list2">
+<td class="itemcode"><code>function <b><a  href="Neslib.FastMath.html#Matrix4">Matrix4</a></b>(const AMatrix: <a  href="Neslib.FastMath.TMatrix2.html">TMatrix2</a>): <a  href="Neslib.FastMath.TMatrix4.html">TMatrix4</a>; overload;</code></td>
+</tr>
+<tr class="list">
+<td class="itemcode"><code>function <b><a  href="Neslib.FastMath.html#Matrix4">Matrix4</a></b>(const AMatrix: <a  href="Neslib.FastMath.TMatrix3.html">TMatrix3</a>): <a  href="Neslib.FastMath.TMatrix4.html">TMatrix4</a>; overload;</code></td>
+</tr>
+<tr class="list2">
+<td class="itemcode"><code>function <b><a  href="Neslib.FastMath.html#IVector2">IVector2</a></b>: <a  href="Neslib.FastMath.TIVector2.html">TIVector2</a>; overload; inline;</code></td>
+</tr>
+<tr class="list">
+<td class="itemcode"><code>function <b><a  href="Neslib.FastMath.html#IVector2">IVector2</a></b>(const A: Integer): <a  href="Neslib.FastMath.TIVector2.html">TIVector2</a>; overload; inline;</code></td>
+</tr>
+<tr class="list2">
+<td class="itemcode"><code>function <b><a  href="Neslib.FastMath.html#IVector2">IVector2</a></b>(const A1, A2: Integer): <a  href="Neslib.FastMath.TIVector2.html">TIVector2</a>; overload; inline;</code></td>
+</tr>
+<tr class="list">
+<td class="itemcode"><code>function <b><a  href="Neslib.FastMath.html#IVector3">IVector3</a></b>: <a  href="Neslib.FastMath.TIVector3.html">TIVector3</a>; overload;</code></td>
+</tr>
+<tr class="list2">
+<td class="itemcode"><code>function <b><a  href="Neslib.FastMath.html#IVector3">IVector3</a></b>(const A: Integer): <a  href="Neslib.FastMath.TIVector3.html">TIVector3</a>; overload;</code></td>
+</tr>
+<tr class="list">
+<td class="itemcode"><code>function <b><a  href="Neslib.FastMath.html#IVector3">IVector3</a></b>(const A1, A2, A3: Integer): <a  href="Neslib.FastMath.TIVector3.html">TIVector3</a>; overload;</code></td>
+</tr>
+<tr class="list2">
+<td class="itemcode"><code>function <b><a  href="Neslib.FastMath.html#IVector4">IVector4</a></b>: <a  href="Neslib.FastMath.TIVector4.html">TIVector4</a>; overload;</code></td>
+</tr>
+<tr class="list">
+<td class="itemcode"><code>function <b><a  href="Neslib.FastMath.html#IVector4">IVector4</a></b>(const A: Integer): <a  href="Neslib.FastMath.TIVector4.html">TIVector4</a>; overload;</code></td>
+</tr>
+<tr class="list2">
+<td class="itemcode"><code>function <b><a  href="Neslib.FastMath.html#IVector4">IVector4</a></b>(const A1, A2, A3, A4: Integer): <a  href="Neslib.FastMath.TIVector4.html">TIVector4</a>; overload;</code></td>
+</tr>
+<tr class="list">
+<td class="itemcode"><code>function <b><a  href="Neslib.FastMath.html#Radians">Radians</a></b>(const ADegrees: Single): Single; overload; inline;</code></td>
+</tr>
+<tr class="list2">
+<td class="itemcode"><code>function <b><a  href="Neslib.FastMath.html#Radians">Radians</a></b>(const ADegrees: <a  href="Neslib.FastMath.TVector2.html">TVector2</a>): <a  href="Neslib.FastMath.TVector2.html">TVector2</a>; overload;</code></td>
+</tr>
+<tr class="list">
+<td class="itemcode"><code>function <b><a  href="Neslib.FastMath.html#Radians">Radians</a></b>(const ADegrees: <a  href="Neslib.FastMath.TVector3.html">TVector3</a>): <a  href="Neslib.FastMath.TVector3.html">TVector3</a>; overload;</code></td>
+</tr>
+<tr class="list2">
+<td class="itemcode"><code>function <b><a  href="Neslib.FastMath.html#Radians">Radians</a></b>(const ADegrees: <a  href="Neslib.FastMath.TVector4.html">TVector4</a>): <a  href="Neslib.FastMath.TVector4.html">TVector4</a>; overload;</code></td>
+</tr>
+<tr class="list">
+<td class="itemcode"><code>function <b><a  href="Neslib.FastMath.html#Degrees">Degrees</a></b>(const ARadians: Single): Single; overload; inline;</code></td>
+</tr>
+<tr class="list2">
+<td class="itemcode"><code>function <b><a  href="Neslib.FastMath.html#Degrees">Degrees</a></b>(const ARadians: <a  href="Neslib.FastMath.TVector2.html">TVector2</a>): <a  href="Neslib.FastMath.TVector2.html">TVector2</a>; overload;</code></td>
+</tr>
+<tr class="list">
+<td class="itemcode"><code>function <b><a  href="Neslib.FastMath.html#Degrees">Degrees</a></b>(const ARadians: <a  href="Neslib.FastMath.TVector3.html">TVector3</a>): <a  href="Neslib.FastMath.TVector3.html">TVector3</a>; overload;</code></td>
+</tr>
+<tr class="list2">
+<td class="itemcode"><code>function <b><a  href="Neslib.FastMath.html#Degrees">Degrees</a></b>(const ARadians: <a  href="Neslib.FastMath.TVector4.html">TVector4</a>): <a  href="Neslib.FastMath.TVector4.html">TVector4</a>; overload;</code></td>
+</tr>
+<tr class="list">
+<td class="itemcode"><code>function <b><a  href="Neslib.FastMath.html#Sin">Sin</a></b>(const ARadians: Single): Single; overload; inline;</code></td>
+</tr>
+<tr class="list2">
+<td class="itemcode"><code>function <b><a  href="Neslib.FastMath.html#Sin">Sin</a></b>(const ARadians: <a  href="Neslib.FastMath.TVector2.html">TVector2</a>): <a  href="Neslib.FastMath.TVector2.html">TVector2</a>; overload; inline;</code></td>
+</tr>
+<tr class="list">
+<td class="itemcode"><code>function <b><a  href="Neslib.FastMath.html#Sin">Sin</a></b>(const ARadians: <a  href="Neslib.FastMath.TVector3.html">TVector3</a>): <a  href="Neslib.FastMath.TVector3.html">TVector3</a>; overload; inline;</code></td>
+</tr>
+<tr class="list2">
+<td class="itemcode"><code>function <b><a  href="Neslib.FastMath.html#Sin">Sin</a></b>(const ARadians: <a  href="Neslib.FastMath.TVector4.html">TVector4</a>): <a  href="Neslib.FastMath.TVector4.html">TVector4</a>; overload; inline;</code></td>
+</tr>
+<tr class="list">
+<td class="itemcode"><code>function <b><a  href="Neslib.FastMath.html#Cos">Cos</a></b>(const ARadians: Single): Single; overload; inline;</code></td>
+</tr>
+<tr class="list2">
+<td class="itemcode"><code>function <b><a  href="Neslib.FastMath.html#Cos">Cos</a></b>(const ARadians: <a  href="Neslib.FastMath.TVector2.html">TVector2</a>): <a  href="Neslib.FastMath.TVector2.html">TVector2</a>; overload; inline;</code></td>
+</tr>
+<tr class="list">
+<td class="itemcode"><code>function <b><a  href="Neslib.FastMath.html#Cos">Cos</a></b>(const ARadians: <a  href="Neslib.FastMath.TVector3.html">TVector3</a>): <a  href="Neslib.FastMath.TVector3.html">TVector3</a>; overload; inline;</code></td>
+</tr>
+<tr class="list2">
+<td class="itemcode"><code>function <b><a  href="Neslib.FastMath.html#Cos">Cos</a></b>(const ARadians: <a  href="Neslib.FastMath.TVector4.html">TVector4</a>): <a  href="Neslib.FastMath.TVector4.html">TVector4</a>; overload; inline;</code></td>
+</tr>
+<tr class="list">
+<td class="itemcode"><code>procedure <b><a  href="Neslib.FastMath.html#SinCos">SinCos</a></b>(const ARadians: Single; out ASin, ACos: Single); overload;</code></td>
+</tr>
+<tr class="list2">
+<td class="itemcode"><code>procedure <b><a  href="Neslib.FastMath.html#SinCos">SinCos</a></b>(const ARadians: <a  href="Neslib.FastMath.TVector2.html">TVector2</a>; out ASin, ACos: <a  href="Neslib.FastMath.TVector2.html">TVector2</a>); overload;</code></td>
+</tr>
+<tr class="list">
+<td class="itemcode"><code>procedure <b><a  href="Neslib.FastMath.html#SinCos">SinCos</a></b>(const ARadians: <a  href="Neslib.FastMath.TVector3.html">TVector3</a>; out ASin, ACos: <a  href="Neslib.FastMath.TVector3.html">TVector3</a>); overload;</code></td>
+</tr>
+<tr class="list2">
+<td class="itemcode"><code>procedure <b><a  href="Neslib.FastMath.html#SinCos">SinCos</a></b>(const ARadians: <a  href="Neslib.FastMath.TVector4.html">TVector4</a>; out ASin, ACos: <a  href="Neslib.FastMath.TVector4.html">TVector4</a>); overload;</code></td>
+</tr>
+<tr class="list">
+<td class="itemcode"><code>function <b><a  href="Neslib.FastMath.html#Tan">Tan</a></b>(const ARadians: Single): Single; overload; inline;</code></td>
+</tr>
+<tr class="list2">
+<td class="itemcode"><code>function <b><a  href="Neslib.FastMath.html#Tan">Tan</a></b>(const ARadians: <a  href="Neslib.FastMath.TVector2.html">TVector2</a>): <a  href="Neslib.FastMath.TVector2.html">TVector2</a>; overload; inline;</code></td>
+</tr>
+<tr class="list">
+<td class="itemcode"><code>function <b><a  href="Neslib.FastMath.html#Tan">Tan</a></b>(const ARadians: <a  href="Neslib.FastMath.TVector3.html">TVector3</a>): <a  href="Neslib.FastMath.TVector3.html">TVector3</a>; overload; inline;</code></td>
+</tr>
+<tr class="list2">
+<td class="itemcode"><code>function <b><a  href="Neslib.FastMath.html#Tan">Tan</a></b>(const ARadians: <a  href="Neslib.FastMath.TVector4.html">TVector4</a>): <a  href="Neslib.FastMath.TVector4.html">TVector4</a>; overload; inline;</code></td>
+</tr>
+<tr class="list">
+<td class="itemcode"><code>function <b><a  href="Neslib.FastMath.html#ArcSin">ArcSin</a></b>(const A: Single): Single; overload; inline;</code></td>
+</tr>
+<tr class="list2">
+<td class="itemcode"><code>function <b><a  href="Neslib.FastMath.html#ArcSin">ArcSin</a></b>(const A: <a  href="Neslib.FastMath.TVector2.html">TVector2</a>): <a  href="Neslib.FastMath.TVector2.html">TVector2</a>; overload; inline;</code></td>
+</tr>
+<tr class="list">
+<td class="itemcode"><code>function <b><a  href="Neslib.FastMath.html#ArcSin">ArcSin</a></b>(const A: <a  href="Neslib.FastMath.TVector3.html">TVector3</a>): <a  href="Neslib.FastMath.TVector3.html">TVector3</a>; overload; inline;</code></td>
+</tr>
+<tr class="list2">
+<td class="itemcode"><code>function <b><a  href="Neslib.FastMath.html#ArcSin">ArcSin</a></b>(const A: <a  href="Neslib.FastMath.TVector4.html">TVector4</a>): <a  href="Neslib.FastMath.TVector4.html">TVector4</a>; overload; inline;</code></td>
+</tr>
+<tr class="list">
+<td class="itemcode"><code>function <b><a  href="Neslib.FastMath.html#ArcCos">ArcCos</a></b>(const A: Single): Single; overload; inline;</code></td>
+</tr>
+<tr class="list2">
+<td class="itemcode"><code>function <b><a  href="Neslib.FastMath.html#ArcCos">ArcCos</a></b>(const A: <a  href="Neslib.FastMath.TVector2.html">TVector2</a>): <a  href="Neslib.FastMath.TVector2.html">TVector2</a>; overload; inline;</code></td>
+</tr>
+<tr class="list">
+<td class="itemcode"><code>function <b><a  href="Neslib.FastMath.html#ArcCos">ArcCos</a></b>(const A: <a  href="Neslib.FastMath.TVector3.html">TVector3</a>): <a  href="Neslib.FastMath.TVector3.html">TVector3</a>; overload; inline;</code></td>
+</tr>
+<tr class="list2">
+<td class="itemcode"><code>function <b><a  href="Neslib.FastMath.html#ArcCos">ArcCos</a></b>(const A: <a  href="Neslib.FastMath.TVector4.html">TVector4</a>): <a  href="Neslib.FastMath.TVector4.html">TVector4</a>; overload; inline;</code></td>
+</tr>
+<tr class="list">
+<td class="itemcode"><code>function <b><a  href="Neslib.FastMath.html#ArcTan">ArcTan</a></b>(const A: Single): Single; overload; inline;</code></td>
+</tr>
+<tr class="list2">
+<td class="itemcode"><code>function <b><a  href="Neslib.FastMath.html#ArcTan">ArcTan</a></b>(const A: <a  href="Neslib.FastMath.TVector2.html">TVector2</a>): <a  href="Neslib.FastMath.TVector2.html">TVector2</a>; overload; inline;</code></td>
+</tr>
+<tr class="list">
+<td class="itemcode"><code>function <b><a  href="Neslib.FastMath.html#ArcTan">ArcTan</a></b>(const A: <a  href="Neslib.FastMath.TVector3.html">TVector3</a>): <a  href="Neslib.FastMath.TVector3.html">TVector3</a>; overload; inline;</code></td>
+</tr>
+<tr class="list2">
+<td class="itemcode"><code>function <b><a  href="Neslib.FastMath.html#ArcTan">ArcTan</a></b>(const A: <a  href="Neslib.FastMath.TVector4.html">TVector4</a>): <a  href="Neslib.FastMath.TVector4.html">TVector4</a>; overload; inline;</code></td>
+</tr>
+<tr class="list">
+<td class="itemcode"><code>function <b><a  href="Neslib.FastMath.html#ArcTan2">ArcTan2</a></b>(const Y, X: Single): Single; overload; inline;</code></td>
+</tr>
+<tr class="list2">
+<td class="itemcode"><code>function <b><a  href="Neslib.FastMath.html#ArcTan2">ArcTan2</a></b>(const Y, X: <a  href="Neslib.FastMath.TVector2.html">TVector2</a>): <a  href="Neslib.FastMath.TVector2.html">TVector2</a>; overload; inline;</code></td>
+</tr>
+<tr class="list">
+<td class="itemcode"><code>function <b><a  href="Neslib.FastMath.html#ArcTan2">ArcTan2</a></b>(const Y, X: <a  href="Neslib.FastMath.TVector3.html">TVector3</a>): <a  href="Neslib.FastMath.TVector3.html">TVector3</a>; overload; inline;</code></td>
+</tr>
+<tr class="list2">
+<td class="itemcode"><code>function <b><a  href="Neslib.FastMath.html#ArcTan2">ArcTan2</a></b>(const Y, X: <a  href="Neslib.FastMath.TVector4.html">TVector4</a>): <a  href="Neslib.FastMath.TVector4.html">TVector4</a>; overload; inline;</code></td>
+</tr>
+<tr class="list">
+<td class="itemcode"><code>function <b><a  href="Neslib.FastMath.html#Sinh">Sinh</a></b>(const A: Single): Single; overload; inline;</code></td>
+</tr>
+<tr class="list2">
+<td class="itemcode"><code>function <b><a  href="Neslib.FastMath.html#Sinh">Sinh</a></b>(const A: <a  href="Neslib.FastMath.TVector2.html">TVector2</a>): <a  href="Neslib.FastMath.TVector2.html">TVector2</a>; overload; inline;</code></td>
+</tr>
+<tr class="list">
+<td class="itemcode"><code>function <b><a  href="Neslib.FastMath.html#Sinh">Sinh</a></b>(const A: <a  href="Neslib.FastMath.TVector3.html">TVector3</a>): <a  href="Neslib.FastMath.TVector3.html">TVector3</a>; overload; inline;</code></td>
+</tr>
+<tr class="list2">
+<td class="itemcode"><code>function <b><a  href="Neslib.FastMath.html#Sinh">Sinh</a></b>(const A: <a  href="Neslib.FastMath.TVector4.html">TVector4</a>): <a  href="Neslib.FastMath.TVector4.html">TVector4</a>; overload; inline;</code></td>
+</tr>
+<tr class="list">
+<td class="itemcode"><code>function <b><a  href="Neslib.FastMath.html#Cosh">Cosh</a></b>(const A: Single): Single; overload; inline;</code></td>
+</tr>
+<tr class="list2">
+<td class="itemcode"><code>function <b><a  href="Neslib.FastMath.html#Cosh">Cosh</a></b>(const A: <a  href="Neslib.FastMath.TVector2.html">TVector2</a>): <a  href="Neslib.FastMath.TVector2.html">TVector2</a>; overload; inline;</code></td>
+</tr>
+<tr class="list">
+<td class="itemcode"><code>function <b><a  href="Neslib.FastMath.html#Cosh">Cosh</a></b>(const A: <a  href="Neslib.FastMath.TVector3.html">TVector3</a>): <a  href="Neslib.FastMath.TVector3.html">TVector3</a>; overload; inline;</code></td>
+</tr>
+<tr class="list2">
+<td class="itemcode"><code>function <b><a  href="Neslib.FastMath.html#Cosh">Cosh</a></b>(const A: <a  href="Neslib.FastMath.TVector4.html">TVector4</a>): <a  href="Neslib.FastMath.TVector4.html">TVector4</a>; overload; inline;</code></td>
+</tr>
+<tr class="list">
+<td class="itemcode"><code>function <b><a  href="Neslib.FastMath.html#Tanh">Tanh</a></b>(const A: Single): Single; overload; inline;</code></td>
+</tr>
+<tr class="list2">
+<td class="itemcode"><code>function <b><a  href="Neslib.FastMath.html#Tanh">Tanh</a></b>(const A: <a  href="Neslib.FastMath.TVector2.html">TVector2</a>): <a  href="Neslib.FastMath.TVector2.html">TVector2</a>; overload; inline;</code></td>
+</tr>
+<tr class="list">
+<td class="itemcode"><code>function <b><a  href="Neslib.FastMath.html#Tanh">Tanh</a></b>(const A: <a  href="Neslib.FastMath.TVector3.html">TVector3</a>): <a  href="Neslib.FastMath.TVector3.html">TVector3</a>; overload; inline;</code></td>
+</tr>
+<tr class="list2">
+<td class="itemcode"><code>function <b><a  href="Neslib.FastMath.html#Tanh">Tanh</a></b>(const A: <a  href="Neslib.FastMath.TVector4.html">TVector4</a>): <a  href="Neslib.FastMath.TVector4.html">TVector4</a>; overload; inline;</code></td>
+</tr>
+<tr class="list">
+<td class="itemcode"><code>function <b><a  href="Neslib.FastMath.html#ArcSinh">ArcSinh</a></b>(const A: Single): Single; overload; inline;</code></td>
+</tr>
+<tr class="list2">
+<td class="itemcode"><code>function <b><a  href="Neslib.FastMath.html#ArcSinh">ArcSinh</a></b>(const A: <a  href="Neslib.FastMath.TVector2.html">TVector2</a>): <a  href="Neslib.FastMath.TVector2.html">TVector2</a>; overload; inline;</code></td>
+</tr>
+<tr class="list">
+<td class="itemcode"><code>function <b><a  href="Neslib.FastMath.html#ArcSinh">ArcSinh</a></b>(const A: <a  href="Neslib.FastMath.TVector3.html">TVector3</a>): <a  href="Neslib.FastMath.TVector3.html">TVector3</a>; overload; inline;</code></td>
+</tr>
+<tr class="list2">
+<td class="itemcode"><code>function <b><a  href="Neslib.FastMath.html#ArcSinh">ArcSinh</a></b>(const A: <a  href="Neslib.FastMath.TVector4.html">TVector4</a>): <a  href="Neslib.FastMath.TVector4.html">TVector4</a>; overload; inline;</code></td>
+</tr>
+<tr class="list">
+<td class="itemcode"><code>function <b><a  href="Neslib.FastMath.html#ArcCosh">ArcCosh</a></b>(const A: Single): Single; overload; inline;</code></td>
+</tr>
+<tr class="list2">
+<td class="itemcode"><code>function <b><a  href="Neslib.FastMath.html#ArcCosh">ArcCosh</a></b>(const A: <a  href="Neslib.FastMath.TVector2.html">TVector2</a>): <a  href="Neslib.FastMath.TVector2.html">TVector2</a>; overload; inline;</code></td>
+</tr>
+<tr class="list">
+<td class="itemcode"><code>function <b><a  href="Neslib.FastMath.html#ArcCosh">ArcCosh</a></b>(const A: <a  href="Neslib.FastMath.TVector3.html">TVector3</a>): <a  href="Neslib.FastMath.TVector3.html">TVector3</a>; overload; inline;</code></td>
+</tr>
+<tr class="list2">
+<td class="itemcode"><code>function <b><a  href="Neslib.FastMath.html#ArcCosh">ArcCosh</a></b>(const A: <a  href="Neslib.FastMath.TVector4.html">TVector4</a>): <a  href="Neslib.FastMath.TVector4.html">TVector4</a>; overload; inline;</code></td>
+</tr>
+<tr class="list">
+<td class="itemcode"><code>function <b><a  href="Neslib.FastMath.html#ArcTanh">ArcTanh</a></b>(const A: Single): Single; overload; inline;</code></td>
+</tr>
+<tr class="list2">
+<td class="itemcode"><code>function <b><a  href="Neslib.FastMath.html#ArcTanh">ArcTanh</a></b>(const A: <a  href="Neslib.FastMath.TVector2.html">TVector2</a>): <a  href="Neslib.FastMath.TVector2.html">TVector2</a>; overload; inline;</code></td>
+</tr>
+<tr class="list">
+<td class="itemcode"><code>function <b><a  href="Neslib.FastMath.html#ArcTanh">ArcTanh</a></b>(const A: <a  href="Neslib.FastMath.TVector3.html">TVector3</a>): <a  href="Neslib.FastMath.TVector3.html">TVector3</a>; overload; inline;</code></td>
+</tr>
+<tr class="list2">
+<td class="itemcode"><code>function <b><a  href="Neslib.FastMath.html#ArcTanh">ArcTanh</a></b>(const A: <a  href="Neslib.FastMath.TVector4.html">TVector4</a>): <a  href="Neslib.FastMath.TVector4.html">TVector4</a>; overload; inline;</code></td>
+</tr>
+<tr class="list">
+<td class="itemcode"><code>function <b><a  href="Neslib.FastMath.html#Power">Power</a></b>(const ABase, AExponent: Single): Single; overload; inline;</code></td>
+</tr>
+<tr class="list2">
+<td class="itemcode"><code>function <b><a  href="Neslib.FastMath.html#Power">Power</a></b>(const ABase, AExponent: <a  href="Neslib.FastMath.TVector2.html">TVector2</a>): <a  href="Neslib.FastMath.TVector2.html">TVector2</a>; overload; inline;</code></td>
+</tr>
+<tr class="list">
+<td class="itemcode"><code>function <b><a  href="Neslib.FastMath.html#Power">Power</a></b>(const ABase, AExponent: <a  href="Neslib.FastMath.TVector3.html">TVector3</a>): <a  href="Neslib.FastMath.TVector3.html">TVector3</a>; overload;</code></td>
+</tr>
+<tr class="list2">
+<td class="itemcode"><code>function <b><a  href="Neslib.FastMath.html#Power">Power</a></b>(const ABase, AExponent: <a  href="Neslib.FastMath.TVector4.html">TVector4</a>): <a  href="Neslib.FastMath.TVector4.html">TVector4</a>; overload;</code></td>
+</tr>
+<tr class="list">
+<td class="itemcode"><code>function <b><a  href="Neslib.FastMath.html#Exp">Exp</a></b>(const A: Single): Single; overload; inline;</code></td>
+</tr>
+<tr class="list2">
+<td class="itemcode"><code>function <b><a  href="Neslib.FastMath.html#Exp">Exp</a></b>(const A: <a  href="Neslib.FastMath.TVector2.html">TVector2</a>): <a  href="Neslib.FastMath.TVector2.html">TVector2</a>; overload; inline;</code></td>
+</tr>
+<tr class="list">
+<td class="itemcode"><code>function <b><a  href="Neslib.FastMath.html#Exp">Exp</a></b>(const A: <a  href="Neslib.FastMath.TVector3.html">TVector3</a>): <a  href="Neslib.FastMath.TVector3.html">TVector3</a>; overload;</code></td>
+</tr>
+<tr class="list2">
+<td class="itemcode"><code>function <b><a  href="Neslib.FastMath.html#Exp">Exp</a></b>(const A: <a  href="Neslib.FastMath.TVector4.html">TVector4</a>): <a  href="Neslib.FastMath.TVector4.html">TVector4</a>; overload;</code></td>
+</tr>
+<tr class="list">
+<td class="itemcode"><code>function <b><a  href="Neslib.FastMath.html#Ln">Ln</a></b>(const A: Single): Single; overload; inline;</code></td>
+</tr>
+<tr class="list2">
+<td class="itemcode"><code>function <b><a  href="Neslib.FastMath.html#Ln">Ln</a></b>(const A: <a  href="Neslib.FastMath.TVector2.html">TVector2</a>): <a  href="Neslib.FastMath.TVector2.html">TVector2</a>; overload; inline;</code></td>
+</tr>
+<tr class="list">
+<td class="itemcode"><code>function <b><a  href="Neslib.FastMath.html#Ln">Ln</a></b>(const A: <a  href="Neslib.FastMath.TVector3.html">TVector3</a>): <a  href="Neslib.FastMath.TVector3.html">TVector3</a>; overload;</code></td>
+</tr>
+<tr class="list2">
+<td class="itemcode"><code>function <b><a  href="Neslib.FastMath.html#Ln">Ln</a></b>(const A: <a  href="Neslib.FastMath.TVector4.html">TVector4</a>): <a  href="Neslib.FastMath.TVector4.html">TVector4</a>; overload;</code></td>
+</tr>
+<tr class="list">
+<td class="itemcode"><code>function <b><a  href="Neslib.FastMath.html#Exp2">Exp2</a></b>(const A: Single): Single; overload; inline;</code></td>
+</tr>
+<tr class="list2">
+<td class="itemcode"><code>function <b><a  href="Neslib.FastMath.html#Exp2">Exp2</a></b>(const A: <a  href="Neslib.FastMath.TVector2.html">TVector2</a>): <a  href="Neslib.FastMath.TVector2.html">TVector2</a>; overload; inline;</code></td>
+</tr>
+<tr class="list">
+<td class="itemcode"><code>function <b><a  href="Neslib.FastMath.html#Exp2">Exp2</a></b>(const A: <a  href="Neslib.FastMath.TVector3.html">TVector3</a>): <a  href="Neslib.FastMath.TVector3.html">TVector3</a>; overload;</code></td>
+</tr>
+<tr class="list2">
+<td class="itemcode"><code>function <b><a  href="Neslib.FastMath.html#Exp2">Exp2</a></b>(const A: <a  href="Neslib.FastMath.TVector4.html">TVector4</a>): <a  href="Neslib.FastMath.TVector4.html">TVector4</a>; overload;</code></td>
+</tr>
+<tr class="list">
+<td class="itemcode"><code>function <b><a  href="Neslib.FastMath.html#Log2">Log2</a></b>(const A: Single): Single; overload; inline;</code></td>
+</tr>
+<tr class="list2">
+<td class="itemcode"><code>function <b><a  href="Neslib.FastMath.html#Log2">Log2</a></b>(const A: <a  href="Neslib.FastMath.TVector2.html">TVector2</a>): <a  href="Neslib.FastMath.TVector2.html">TVector2</a>; overload; inline;</code></td>
+</tr>
+<tr class="list">
+<td class="itemcode"><code>function <b><a  href="Neslib.FastMath.html#Log2">Log2</a></b>(const A: <a  href="Neslib.FastMath.TVector3.html">TVector3</a>): <a  href="Neslib.FastMath.TVector3.html">TVector3</a>; overload;</code></td>
+</tr>
+<tr class="list2">
+<td class="itemcode"><code>function <b><a  href="Neslib.FastMath.html#Log2">Log2</a></b>(const A: <a  href="Neslib.FastMath.TVector4.html">TVector4</a>): <a  href="Neslib.FastMath.TVector4.html">TVector4</a>; overload;</code></td>
+</tr>
+<tr class="list">
+<td class="itemcode"><code>function <b><a  href="Neslib.FastMath.html#Sqrt">Sqrt</a></b>(const A: Single): Single; overload;</code></td>
+</tr>
+<tr class="list2">
+<td class="itemcode"><code>function <b><a  href="Neslib.FastMath.html#Sqrt">Sqrt</a></b>(const A: <a  href="Neslib.FastMath.TVector2.html">TVector2</a>): <a  href="Neslib.FastMath.TVector2.html">TVector2</a>; overload;</code></td>
+</tr>
+<tr class="list">
+<td class="itemcode"><code>function <b><a  href="Neslib.FastMath.html#Sqrt">Sqrt</a></b>(const A: <a  href="Neslib.FastMath.TVector3.html">TVector3</a>): <a  href="Neslib.FastMath.TVector3.html">TVector3</a>; overload;</code></td>
+</tr>
+<tr class="list2">
+<td class="itemcode"><code>function <b><a  href="Neslib.FastMath.html#Sqrt">Sqrt</a></b>(const A: <a  href="Neslib.FastMath.TVector4.html">TVector4</a>): <a  href="Neslib.FastMath.TVector4.html">TVector4</a>; overload;</code></td>
+</tr>
+<tr class="list">
+<td class="itemcode"><code>function <b><a  href="Neslib.FastMath.html#InverseSqrt">InverseSqrt</a></b>(const A: Single): Single; overload;</code></td>
+</tr>
+<tr class="list2">
+<td class="itemcode"><code>function <b><a  href="Neslib.FastMath.html#InverseSqrt">InverseSqrt</a></b>(const A: <a  href="Neslib.FastMath.TVector2.html">TVector2</a>): <a  href="Neslib.FastMath.TVector2.html">TVector2</a>; overload;</code></td>
+</tr>
+<tr class="list">
+<td class="itemcode"><code>function <b><a  href="Neslib.FastMath.html#InverseSqrt">InverseSqrt</a></b>(const A: <a  href="Neslib.FastMath.TVector3.html">TVector3</a>): <a  href="Neslib.FastMath.TVector3.html">TVector3</a>; overload;</code></td>
+</tr>
+<tr class="list2">
+<td class="itemcode"><code>function <b><a  href="Neslib.FastMath.html#InverseSqrt">InverseSqrt</a></b>(const A: <a  href="Neslib.FastMath.TVector4.html">TVector4</a>): <a  href="Neslib.FastMath.TVector4.html">TVector4</a>; overload;</code></td>
+</tr>
+<tr class="list">
+<td class="itemcode"><code>function <b><a  href="Neslib.FastMath.html#FastSin">FastSin</a></b>(const ARadians: Single): Single; overload;</code></td>
+</tr>
+<tr class="list2">
+<td class="itemcode"><code>function <b><a  href="Neslib.FastMath.html#FastSin">FastSin</a></b>(const ARadians: <a  href="Neslib.FastMath.TVector2.html">TVector2</a>): <a  href="Neslib.FastMath.TVector2.html">TVector2</a>; overload;</code></td>
+</tr>
+<tr class="list">
+<td class="itemcode"><code>function <b><a  href="Neslib.FastMath.html#FastSin">FastSin</a></b>(const ARadians: <a  href="Neslib.FastMath.TVector3.html">TVector3</a>): <a  href="Neslib.FastMath.TVector3.html">TVector3</a>; overload;</code></td>
+</tr>
+<tr class="list2">
+<td class="itemcode"><code>function <b><a  href="Neslib.FastMath.html#FastSin">FastSin</a></b>(const ARadians: <a  href="Neslib.FastMath.TVector4.html">TVector4</a>): <a  href="Neslib.FastMath.TVector4.html">TVector4</a>; overload;</code></td>
+</tr>
+<tr class="list">
+<td class="itemcode"><code>function <b><a  href="Neslib.FastMath.html#FastCos">FastCos</a></b>(const ARadians: Single): Single; overload;</code></td>
+</tr>
+<tr class="list2">
+<td class="itemcode"><code>function <b><a  href="Neslib.FastMath.html#FastCos">FastCos</a></b>(const ARadians: <a  href="Neslib.FastMath.TVector2.html">TVector2</a>): <a  href="Neslib.FastMath.TVector2.html">TVector2</a>; overload;</code></td>
+</tr>
+<tr class="list">
+<td class="itemcode"><code>function <b><a  href="Neslib.FastMath.html#FastCos">FastCos</a></b>(const ARadians: <a  href="Neslib.FastMath.TVector3.html">TVector3</a>): <a  href="Neslib.FastMath.TVector3.html">TVector3</a>; overload;</code></td>
+</tr>
+<tr class="list2">
+<td class="itemcode"><code>function <b><a  href="Neslib.FastMath.html#FastCos">FastCos</a></b>(const ARadians: <a  href="Neslib.FastMath.TVector4.html">TVector4</a>): <a  href="Neslib.FastMath.TVector4.html">TVector4</a>; overload;</code></td>
+</tr>
+<tr class="list">
+<td class="itemcode"><code>procedure <b><a  href="Neslib.FastMath.html#FastSinCos">FastSinCos</a></b>(const ARadians: Single; out ASin, ACos: Single); overload;</code></td>
+</tr>
+<tr class="list2">
+<td class="itemcode"><code>procedure <b><a  href="Neslib.FastMath.html#FastSinCos">FastSinCos</a></b>(const ARadians: <a  href="Neslib.FastMath.TVector2.html">TVector2</a>; out ASin, ACos: <a  href="Neslib.FastMath.TVector2.html">TVector2</a>); overload;</code></td>
+</tr>
+<tr class="list">
+<td class="itemcode"><code>procedure <b><a  href="Neslib.FastMath.html#FastSinCos">FastSinCos</a></b>(const ARadians: <a  href="Neslib.FastMath.TVector3.html">TVector3</a>; out ASin, ACos: <a  href="Neslib.FastMath.TVector3.html">TVector3</a>); overload;</code></td>
+</tr>
+<tr class="list2">
+<td class="itemcode"><code>procedure <b><a  href="Neslib.FastMath.html#FastSinCos">FastSinCos</a></b>(const ARadians: <a  href="Neslib.FastMath.TVector4.html">TVector4</a>; out ASin, ACos: <a  href="Neslib.FastMath.TVector4.html">TVector4</a>); overload;</code></td>
+</tr>
+<tr class="list">
+<td class="itemcode"><code>function <b><a  href="Neslib.FastMath.html#FastTan">FastTan</a></b>(const ARadians: Single): Single; overload;</code></td>
+</tr>
+<tr class="list2">
+<td class="itemcode"><code>function <b><a  href="Neslib.FastMath.html#FastTan">FastTan</a></b>(const ARadians: <a  href="Neslib.FastMath.TVector2.html">TVector2</a>): <a  href="Neslib.FastMath.TVector2.html">TVector2</a>; overload;</code></td>
+</tr>
+<tr class="list">
+<td class="itemcode"><code>function <b><a  href="Neslib.FastMath.html#FastTan">FastTan</a></b>(const ARadians: <a  href="Neslib.FastMath.TVector3.html">TVector3</a>): <a  href="Neslib.FastMath.TVector3.html">TVector3</a>; overload;</code></td>
+</tr>
+<tr class="list2">
+<td class="itemcode"><code>function <b><a  href="Neslib.FastMath.html#FastTan">FastTan</a></b>(const ARadians: <a  href="Neslib.FastMath.TVector4.html">TVector4</a>): <a  href="Neslib.FastMath.TVector4.html">TVector4</a>; overload;</code></td>
+</tr>
+<tr class="list">
+<td class="itemcode"><code>function <b><a  href="Neslib.FastMath.html#FastArcTan2">FastArcTan2</a></b>(const Y, X: Single): Single; overload;</code></td>
+</tr>
+<tr class="list2">
+<td class="itemcode"><code>function <b><a  href="Neslib.FastMath.html#FastArcTan2">FastArcTan2</a></b>(const Y, X: <a  href="Neslib.FastMath.TVector2.html">TVector2</a>): <a  href="Neslib.FastMath.TVector2.html">TVector2</a>; overload;</code></td>
+</tr>
+<tr class="list">
+<td class="itemcode"><code>function <b><a  href="Neslib.FastMath.html#FastArcTan2">FastArcTan2</a></b>(const Y, X: <a  href="Neslib.FastMath.TVector3.html">TVector3</a>): <a  href="Neslib.FastMath.TVector3.html">TVector3</a>; overload;</code></td>
+</tr>
+<tr class="list2">
+<td class="itemcode"><code>function <b><a  href="Neslib.FastMath.html#FastArcTan2">FastArcTan2</a></b>(const Y, X: <a  href="Neslib.FastMath.TVector4.html">TVector4</a>): <a  href="Neslib.FastMath.TVector4.html">TVector4</a>; overload;</code></td>
+</tr>
+<tr class="list">
+<td class="itemcode"><code>function <b><a  href="Neslib.FastMath.html#FastPower">FastPower</a></b>(const ABase, AExponent: Single): Single; overload; inline;</code></td>
+</tr>
+<tr class="list2">
+<td class="itemcode"><code>function <b><a  href="Neslib.FastMath.html#FastPower">FastPower</a></b>(const ABase, AExponent: <a  href="Neslib.FastMath.TVector2.html">TVector2</a>): <a  href="Neslib.FastMath.TVector2.html">TVector2</a>; overload; inline;</code></td>
+</tr>
+<tr class="list">
+<td class="itemcode"><code>function <b><a  href="Neslib.FastMath.html#FastPower">FastPower</a></b>(const ABase, AExponent: <a  href="Neslib.FastMath.TVector3.html">TVector3</a>): <a  href="Neslib.FastMath.TVector3.html">TVector3</a>; overload;</code></td>
+</tr>
+<tr class="list2">
+<td class="itemcode"><code>function <b><a  href="Neslib.FastMath.html#FastPower">FastPower</a></b>(const ABase, AExponent: <a  href="Neslib.FastMath.TVector4.html">TVector4</a>): <a  href="Neslib.FastMath.TVector4.html">TVector4</a>; overload;</code></td>
+</tr>
+<tr class="list">
+<td class="itemcode"><code>function <b><a  href="Neslib.FastMath.html#FastExp">FastExp</a></b>(const A: Single): Single; overload;</code></td>
+</tr>
+<tr class="list2">
+<td class="itemcode"><code>function <b><a  href="Neslib.FastMath.html#FastExp">FastExp</a></b>(const A: <a  href="Neslib.FastMath.TVector2.html">TVector2</a>): <a  href="Neslib.FastMath.TVector2.html">TVector2</a>; overload;</code></td>
+</tr>
+<tr class="list">
+<td class="itemcode"><code>function <b><a  href="Neslib.FastMath.html#FastExp">FastExp</a></b>(const A: <a  href="Neslib.FastMath.TVector3.html">TVector3</a>): <a  href="Neslib.FastMath.TVector3.html">TVector3</a>; overload;</code></td>
+</tr>
+<tr class="list2">
+<td class="itemcode"><code>function <b><a  href="Neslib.FastMath.html#FastExp">FastExp</a></b>(const A: <a  href="Neslib.FastMath.TVector4.html">TVector4</a>): <a  href="Neslib.FastMath.TVector4.html">TVector4</a>; overload;</code></td>
+</tr>
+<tr class="list">
+<td class="itemcode"><code>function <b><a  href="Neslib.FastMath.html#FastLn">FastLn</a></b>(const A: Single): Single; overload;</code></td>
+</tr>
+<tr class="list2">
+<td class="itemcode"><code>function <b><a  href="Neslib.FastMath.html#FastLn">FastLn</a></b>(const A: <a  href="Neslib.FastMath.TVector2.html">TVector2</a>): <a  href="Neslib.FastMath.TVector2.html">TVector2</a>; overload;</code></td>
+</tr>
+<tr class="list">
+<td class="itemcode"><code>function <b><a  href="Neslib.FastMath.html#FastLn">FastLn</a></b>(const A: <a  href="Neslib.FastMath.TVector3.html">TVector3</a>): <a  href="Neslib.FastMath.TVector3.html">TVector3</a>; overload;</code></td>
+</tr>
+<tr class="list2">
+<td class="itemcode"><code>function <b><a  href="Neslib.FastMath.html#FastLn">FastLn</a></b>(const A: <a  href="Neslib.FastMath.TVector4.html">TVector4</a>): <a  href="Neslib.FastMath.TVector4.html">TVector4</a>; overload;</code></td>
+</tr>
+<tr class="list">
+<td class="itemcode"><code>function <b><a  href="Neslib.FastMath.html#FastLog2">FastLog2</a></b>(const A: Single): Single; overload;</code></td>
+</tr>
+<tr class="list2">
+<td class="itemcode"><code>function <b><a  href="Neslib.FastMath.html#FastLog2">FastLog2</a></b>(const A: <a  href="Neslib.FastMath.TVector2.html">TVector2</a>): <a  href="Neslib.FastMath.TVector2.html">TVector2</a>; overload;</code></td>
+</tr>
+<tr class="list">
+<td class="itemcode"><code>function <b><a  href="Neslib.FastMath.html#FastLog2">FastLog2</a></b>(const A: <a  href="Neslib.FastMath.TVector3.html">TVector3</a>): <a  href="Neslib.FastMath.TVector3.html">TVector3</a>; overload;</code></td>
+</tr>
+<tr class="list2">
+<td class="itemcode"><code>function <b><a  href="Neslib.FastMath.html#FastLog2">FastLog2</a></b>(const A: <a  href="Neslib.FastMath.TVector4.html">TVector4</a>): <a  href="Neslib.FastMath.TVector4.html">TVector4</a>; overload;</code></td>
+</tr>
+<tr class="list">
+<td class="itemcode"><code>function <b><a  href="Neslib.FastMath.html#FastExp2">FastExp2</a></b>(const A: Single): Single; overload;</code></td>
+</tr>
+<tr class="list2">
+<td class="itemcode"><code>function <b><a  href="Neslib.FastMath.html#FastExp2">FastExp2</a></b>(const A: <a  href="Neslib.FastMath.TVector2.html">TVector2</a>): <a  href="Neslib.FastMath.TVector2.html">TVector2</a>; overload;</code></td>
+</tr>
+<tr class="list">
+<td class="itemcode"><code>function <b><a  href="Neslib.FastMath.html#FastExp2">FastExp2</a></b>(const A: <a  href="Neslib.FastMath.TVector3.html">TVector3</a>): <a  href="Neslib.FastMath.TVector3.html">TVector3</a>; overload;</code></td>
+</tr>
+<tr class="list2">
+<td class="itemcode"><code>function <b><a  href="Neslib.FastMath.html#FastExp2">FastExp2</a></b>(const A: <a  href="Neslib.FastMath.TVector4.html">TVector4</a>): <a  href="Neslib.FastMath.TVector4.html">TVector4</a>; overload;</code></td>
+</tr>
+<tr class="list">
+<td class="itemcode"><code>function <b><a  href="Neslib.FastMath.html#Abs">Abs</a></b>(const A: Single): Single; overload; inline;</code></td>
+</tr>
+<tr class="list2">
+<td class="itemcode"><code>function <b><a  href="Neslib.FastMath.html#Abs">Abs</a></b>(const A: <a  href="Neslib.FastMath.TVector2.html">TVector2</a>): <a  href="Neslib.FastMath.TVector2.html">TVector2</a>; overload; inline;</code></td>
+</tr>
+<tr class="list">
+<td class="itemcode"><code>function <b><a  href="Neslib.FastMath.html#Abs">Abs</a></b>(const A: <a  href="Neslib.FastMath.TVector3.html">TVector3</a>): <a  href="Neslib.FastMath.TVector3.html">TVector3</a>; overload;</code></td>
+</tr>
+<tr class="list2">
+<td class="itemcode"><code>function <b><a  href="Neslib.FastMath.html#Abs">Abs</a></b>(const A: <a  href="Neslib.FastMath.TVector4.html">TVector4</a>): <a  href="Neslib.FastMath.TVector4.html">TVector4</a>; overload;</code></td>
+</tr>
+<tr class="list">
+<td class="itemcode"><code>function <b><a  href="Neslib.FastMath.html#Sign">Sign</a></b>(const A: Single): Single; overload;</code></td>
+</tr>
+<tr class="list2">
+<td class="itemcode"><code>function <b><a  href="Neslib.FastMath.html#Sign">Sign</a></b>(const A: <a  href="Neslib.FastMath.TVector2.html">TVector2</a>): <a  href="Neslib.FastMath.TVector2.html">TVector2</a>; overload;</code></td>
+</tr>
+<tr class="list">
+<td class="itemcode"><code>function <b><a  href="Neslib.FastMath.html#Sign">Sign</a></b>(const A: <a  href="Neslib.FastMath.TVector3.html">TVector3</a>): <a  href="Neslib.FastMath.TVector3.html">TVector3</a>; overload;</code></td>
+</tr>
+<tr class="list2">
+<td class="itemcode"><code>function <b><a  href="Neslib.FastMath.html#Sign">Sign</a></b>(const A: <a  href="Neslib.FastMath.TVector4.html">TVector4</a>): <a  href="Neslib.FastMath.TVector4.html">TVector4</a>; overload;</code></td>
+</tr>
+<tr class="list">
+<td class="itemcode"><code>function <b><a  href="Neslib.FastMath.html#Floor">Floor</a></b>(const A: Single): Integer; overload; inline;</code></td>
+</tr>
+<tr class="list2">
+<td class="itemcode"><code>function <b><a  href="Neslib.FastMath.html#Floor">Floor</a></b>(const A: <a  href="Neslib.FastMath.TVector2.html">TVector2</a>): <a  href="Neslib.FastMath.TIVector2.html">TIVector2</a>; overload;</code></td>
+</tr>
+<tr class="list">
+<td class="itemcode"><code>function <b><a  href="Neslib.FastMath.html#Floor">Floor</a></b>(const A: <a  href="Neslib.FastMath.TVector3.html">TVector3</a>): <a  href="Neslib.FastMath.TIVector3.html">TIVector3</a>; overload;</code></td>
+</tr>
+<tr class="list2">
+<td class="itemcode"><code>function <b><a  href="Neslib.FastMath.html#Floor">Floor</a></b>(const A: <a  href="Neslib.FastMath.TVector4.html">TVector4</a>): <a  href="Neslib.FastMath.TIVector4.html">TIVector4</a>; overload;</code></td>
+</tr>
+<tr class="list">
+<td class="itemcode"><code>function <b><a  href="Neslib.FastMath.html#Trunc">Trunc</a></b>(const A: Single): Integer; overload; inline;</code></td>
+</tr>
+<tr class="list2">
+<td class="itemcode"><code>function <b><a  href="Neslib.FastMath.html#Trunc">Trunc</a></b>(const A: <a  href="Neslib.FastMath.TVector2.html">TVector2</a>): <a  href="Neslib.FastMath.TIVector2.html">TIVector2</a>; overload;</code></td>
+</tr>
+<tr class="list">
+<td class="itemcode"><code>function <b><a  href="Neslib.FastMath.html#Trunc">Trunc</a></b>(const A: <a  href="Neslib.FastMath.TVector3.html">TVector3</a>): <a  href="Neslib.FastMath.TIVector3.html">TIVector3</a>; overload;</code></td>
+</tr>
+<tr class="list2">
+<td class="itemcode"><code>function <b><a  href="Neslib.FastMath.html#Trunc">Trunc</a></b>(const A: <a  href="Neslib.FastMath.TVector4.html">TVector4</a>): <a  href="Neslib.FastMath.TIVector4.html">TIVector4</a>; overload;</code></td>
+</tr>
+<tr class="list">
+<td class="itemcode"><code>function <b><a  href="Neslib.FastMath.html#Round">Round</a></b>(const A: Single): Integer; overload; inline;</code></td>
+</tr>
+<tr class="list2">
+<td class="itemcode"><code>function <b><a  href="Neslib.FastMath.html#Round">Round</a></b>(const A: <a  href="Neslib.FastMath.TVector2.html">TVector2</a>): <a  href="Neslib.FastMath.TIVector2.html">TIVector2</a>; overload;</code></td>
+</tr>
+<tr class="list">
+<td class="itemcode"><code>function <b><a  href="Neslib.FastMath.html#Round">Round</a></b>(const A: <a  href="Neslib.FastMath.TVector3.html">TVector3</a>): <a  href="Neslib.FastMath.TIVector3.html">TIVector3</a>; overload;</code></td>
+</tr>
+<tr class="list2">
+<td class="itemcode"><code>function <b><a  href="Neslib.FastMath.html#Round">Round</a></b>(const A: <a  href="Neslib.FastMath.TVector4.html">TVector4</a>): <a  href="Neslib.FastMath.TIVector4.html">TIVector4</a>; overload;</code></td>
+</tr>
+<tr class="list">
+<td class="itemcode"><code>function <b><a  href="Neslib.FastMath.html#Ceil">Ceil</a></b>(const A: Single): Integer; overload; inline;</code></td>
+</tr>
+<tr class="list2">
+<td class="itemcode"><code>function <b><a  href="Neslib.FastMath.html#Ceil">Ceil</a></b>(const A: <a  href="Neslib.FastMath.TVector2.html">TVector2</a>): <a  href="Neslib.FastMath.TIVector2.html">TIVector2</a>; overload;</code></td>
+</tr>
+<tr class="list">
+<td class="itemcode"><code>function <b><a  href="Neslib.FastMath.html#Ceil">Ceil</a></b>(const A: <a  href="Neslib.FastMath.TVector3.html">TVector3</a>): <a  href="Neslib.FastMath.TIVector3.html">TIVector3</a>; overload;</code></td>
+</tr>
+<tr class="list2">
+<td class="itemcode"><code>function <b><a  href="Neslib.FastMath.html#Ceil">Ceil</a></b>(const A: <a  href="Neslib.FastMath.TVector4.html">TVector4</a>): <a  href="Neslib.FastMath.TIVector4.html">TIVector4</a>; overload;</code></td>
+</tr>
+<tr class="list">
+<td class="itemcode"><code>function <b><a  href="Neslib.FastMath.html#Frac">Frac</a></b>(const A: Single): Single; overload; inline;</code></td>
+</tr>
+<tr class="list2">
+<td class="itemcode"><code>function <b><a  href="Neslib.FastMath.html#Frac">Frac</a></b>(const A: <a  href="Neslib.FastMath.TVector2.html">TVector2</a>): <a  href="Neslib.FastMath.TVector2.html">TVector2</a>; overload;</code></td>
+</tr>
+<tr class="list">
+<td class="itemcode"><code>function <b><a  href="Neslib.FastMath.html#Frac">Frac</a></b>(const A: <a  href="Neslib.FastMath.TVector3.html">TVector3</a>): <a  href="Neslib.FastMath.TVector3.html">TVector3</a>; overload;</code></td>
+</tr>
+<tr class="list2">
+<td class="itemcode"><code>function <b><a  href="Neslib.FastMath.html#Frac">Frac</a></b>(const A: <a  href="Neslib.FastMath.TVector4.html">TVector4</a>): <a  href="Neslib.FastMath.TVector4.html">TVector4</a>; overload;</code></td>
+</tr>
+<tr class="list">
+<td class="itemcode"><code>function <b><a  href="Neslib.FastMath.html#FMod">FMod</a></b>(const A, B: Single): Single; overload; inline;</code></td>
+</tr>
+<tr class="list2">
+<td class="itemcode"><code>function <b><a  href="Neslib.FastMath.html#FMod">FMod</a></b>(const A: <a  href="Neslib.FastMath.TVector2.html">TVector2</a>; const B: Single): <a  href="Neslib.FastMath.TVector2.html">TVector2</a>; overload;</code></td>
+</tr>
+<tr class="list">
+<td class="itemcode"><code>function <b><a  href="Neslib.FastMath.html#FMod">FMod</a></b>(const A, B: <a  href="Neslib.FastMath.TVector2.html">TVector2</a>): <a  href="Neslib.FastMath.TVector2.html">TVector2</a>; overload;</code></td>
+</tr>
+<tr class="list2">
+<td class="itemcode"><code>function <b><a  href="Neslib.FastMath.html#FMod">FMod</a></b>(const A: <a  href="Neslib.FastMath.TVector3.html">TVector3</a>; const B: Single): <a  href="Neslib.FastMath.TVector3.html">TVector3</a>; overload;</code></td>
+</tr>
+<tr class="list">
+<td class="itemcode"><code>function <b><a  href="Neslib.FastMath.html#FMod">FMod</a></b>(const A, B: <a  href="Neslib.FastMath.TVector3.html">TVector3</a>): <a  href="Neslib.FastMath.TVector3.html">TVector3</a>; overload; inline;</code></td>
+</tr>
+<tr class="list2">
+<td class="itemcode"><code>function <b><a  href="Neslib.FastMath.html#FMod">FMod</a></b>(const A: <a  href="Neslib.FastMath.TVector4.html">TVector4</a>; const B: Single): <a  href="Neslib.FastMath.TVector4.html">TVector4</a>; overload;</code></td>
+</tr>
+<tr class="list">
+<td class="itemcode"><code>function <b><a  href="Neslib.FastMath.html#FMod">FMod</a></b>(const A, B: <a  href="Neslib.FastMath.TVector4.html">TVector4</a>): <a  href="Neslib.FastMath.TVector4.html">TVector4</a>; overload;</code></td>
+</tr>
+<tr class="list2">
+<td class="itemcode"><code>function <b><a  href="Neslib.FastMath.html#ModF">ModF</a></b>(const A: Single; out B: Integer): Single; overload; inline;</code></td>
+</tr>
+<tr class="list">
+<td class="itemcode"><code>function <b><a  href="Neslib.FastMath.html#ModF">ModF</a></b>(const A: <a  href="Neslib.FastMath.TVector2.html">TVector2</a>; out B: <a  href="Neslib.FastMath.TIVector2.html">TIVector2</a>): <a  href="Neslib.FastMath.TVector2.html">TVector2</a>; overload;</code></td>
+</tr>
+<tr class="list2">
+<td class="itemcode"><code>function <b><a  href="Neslib.FastMath.html#ModF">ModF</a></b>(const A: <a  href="Neslib.FastMath.TVector3.html">TVector3</a>; out B: <a  href="Neslib.FastMath.TIVector3.html">TIVector3</a>): <a  href="Neslib.FastMath.TVector3.html">TVector3</a>; overload;</code></td>
+</tr>
+<tr class="list">
+<td class="itemcode"><code>function <b><a  href="Neslib.FastMath.html#ModF">ModF</a></b>(const A: <a  href="Neslib.FastMath.TVector4.html">TVector4</a>; out B: <a  href="Neslib.FastMath.TIVector4.html">TIVector4</a>): <a  href="Neslib.FastMath.TVector4.html">TVector4</a>; overload;</code></td>
+</tr>
+<tr class="list2">
+<td class="itemcode"><code>function <b><a  href="Neslib.FastMath.html#Min">Min</a></b>(const A, B: Single): Single; overload; inline;</code></td>
+</tr>
+<tr class="list">
+<td class="itemcode"><code>function <b><a  href="Neslib.FastMath.html#Min">Min</a></b>(const A: <a  href="Neslib.FastMath.TVector2.html">TVector2</a>; const B: Single): <a  href="Neslib.FastMath.TVector2.html">TVector2</a>; overload;</code></td>
+</tr>
+<tr class="list2">
+<td class="itemcode"><code>function <b><a  href="Neslib.FastMath.html#Min">Min</a></b>(const A, B: <a  href="Neslib.FastMath.TVector2.html">TVector2</a>): <a  href="Neslib.FastMath.TVector2.html">TVector2</a>; overload;</code></td>
+</tr>
+<tr class="list">
+<td class="itemcode"><code>function <b><a  href="Neslib.FastMath.html#Min">Min</a></b>(const A: <a  href="Neslib.FastMath.TVector3.html">TVector3</a>; const B: Single): <a  href="Neslib.FastMath.TVector3.html">TVector3</a>; overload;</code></td>
+</tr>
+<tr class="list2">
+<td class="itemcode"><code>function <b><a  href="Neslib.FastMath.html#Min">Min</a></b>(const A, B: <a  href="Neslib.FastMath.TVector3.html">TVector3</a>): <a  href="Neslib.FastMath.TVector3.html">TVector3</a>; overload;</code></td>
+</tr>
+<tr class="list">
+<td class="itemcode"><code>function <b><a  href="Neslib.FastMath.html#Min">Min</a></b>(const A: <a  href="Neslib.FastMath.TVector4.html">TVector4</a>; const B: Single): <a  href="Neslib.FastMath.TVector4.html">TVector4</a>; overload;</code></td>
+</tr>
+<tr class="list2">
+<td class="itemcode"><code>function <b><a  href="Neslib.FastMath.html#Min">Min</a></b>(const A, B: <a  href="Neslib.FastMath.TVector4.html">TVector4</a>): <a  href="Neslib.FastMath.TVector4.html">TVector4</a>; overload;</code></td>
+</tr>
+<tr class="list">
+<td class="itemcode"><code>function <b><a  href="Neslib.FastMath.html#Max">Max</a></b>(const A, B: Single): Single; overload; inline;</code></td>
+</tr>
+<tr class="list2">
+<td class="itemcode"><code>function <b><a  href="Neslib.FastMath.html#Max">Max</a></b>(const A: <a  href="Neslib.FastMath.TVector2.html">TVector2</a>; const B: Single): <a  href="Neslib.FastMath.TVector2.html">TVector2</a>; overload;</code></td>
+</tr>
+<tr class="list">
+<td class="itemcode"><code>function <b><a  href="Neslib.FastMath.html#Max">Max</a></b>(const A, B: <a  href="Neslib.FastMath.TVector2.html">TVector2</a>): <a  href="Neslib.FastMath.TVector2.html">TVector2</a>; overload;</code></td>
+</tr>
+<tr class="list2">
+<td class="itemcode"><code>function <b><a  href="Neslib.FastMath.html#Max">Max</a></b>(const A: <a  href="Neslib.FastMath.TVector3.html">TVector3</a>; const B: Single): <a  href="Neslib.FastMath.TVector3.html">TVector3</a>; overload;</code></td>
+</tr>
+<tr class="list">
+<td class="itemcode"><code>function <b><a  href="Neslib.FastMath.html#Max">Max</a></b>(const A, B: <a  href="Neslib.FastMath.TVector3.html">TVector3</a>): <a  href="Neslib.FastMath.TVector3.html">TVector3</a>; overload;</code></td>
+</tr>
+<tr class="list2">
+<td class="itemcode"><code>function <b><a  href="Neslib.FastMath.html#Max">Max</a></b>(const A: <a  href="Neslib.FastMath.TVector4.html">TVector4</a>; const B: Single): <a  href="Neslib.FastMath.TVector4.html">TVector4</a>; overload;</code></td>
+</tr>
+<tr class="list">
+<td class="itemcode"><code>function <b><a  href="Neslib.FastMath.html#Max">Max</a></b>(const A, B: <a  href="Neslib.FastMath.TVector4.html">TVector4</a>): <a  href="Neslib.FastMath.TVector4.html">TVector4</a>; overload;</code></td>
+</tr>
+<tr class="list2">
+<td class="itemcode"><code>function <b><a  href="Neslib.FastMath.html#EnsureRange">EnsureRange</a></b>(const A, AMin, AMax: Single): Single; overload;</code></td>
+</tr>
+<tr class="list">
+<td class="itemcode"><code>function <b><a  href="Neslib.FastMath.html#EnsureRange">EnsureRange</a></b>(const A: <a  href="Neslib.FastMath.TVector2.html">TVector2</a>; const AMin, AMax: Single): <a  href="Neslib.FastMath.TVector2.html">TVector2</a>; overload;</code></td>
+</tr>
+<tr class="list2">
+<td class="itemcode"><code>function <b><a  href="Neslib.FastMath.html#EnsureRange">EnsureRange</a></b>(const A, AMin, AMax: <a  href="Neslib.FastMath.TVector2.html">TVector2</a>): <a  href="Neslib.FastMath.TVector2.html">TVector2</a>; overload;</code></td>
+</tr>
+<tr class="list">
+<td class="itemcode"><code>function <b><a  href="Neslib.FastMath.html#EnsureRange">EnsureRange</a></b>(const A: <a  href="Neslib.FastMath.TVector3.html">TVector3</a>; const AMin, AMax: Single): <a  href="Neslib.FastMath.TVector3.html">TVector3</a>; overload;</code></td>
+</tr>
+<tr class="list2">
+<td class="itemcode"><code>function <b><a  href="Neslib.FastMath.html#EnsureRange">EnsureRange</a></b>(const A, AMin, AMax: <a  href="Neslib.FastMath.TVector3.html">TVector3</a>): <a  href="Neslib.FastMath.TVector3.html">TVector3</a>; overload;</code></td>
+</tr>
+<tr class="list">
+<td class="itemcode"><code>function <b><a  href="Neslib.FastMath.html#EnsureRange">EnsureRange</a></b>(const A: <a  href="Neslib.FastMath.TVector4.html">TVector4</a>; const AMin, AMax: Single): <a  href="Neslib.FastMath.TVector4.html">TVector4</a>; overload;</code></td>
+</tr>
+<tr class="list2">
+<td class="itemcode"><code>function <b><a  href="Neslib.FastMath.html#EnsureRange">EnsureRange</a></b>(const A, AMin, AMax: <a  href="Neslib.FastMath.TVector4.html">TVector4</a>): <a  href="Neslib.FastMath.TVector4.html">TVector4</a>; overload;</code></td>
+</tr>
+<tr class="list">
+<td class="itemcode"><code>function <b><a  href="Neslib.FastMath.html#Mix">Mix</a></b>(const A, B, T: Single): Single; overload; inline;</code></td>
+</tr>
+<tr class="list2">
+<td class="itemcode"><code>function <b><a  href="Neslib.FastMath.html#Mix">Mix</a></b>(const A, B: <a  href="Neslib.FastMath.TVector2.html">TVector2</a>; const T: Single): <a  href="Neslib.FastMath.TVector2.html">TVector2</a>; overload; inline;</code></td>
+</tr>
+<tr class="list">
+<td class="itemcode"><code>function <b><a  href="Neslib.FastMath.html#Mix">Mix</a></b>(const A, B, T: <a  href="Neslib.FastMath.TVector2.html">TVector2</a>): <a  href="Neslib.FastMath.TVector2.html">TVector2</a>; overload; inline;</code></td>
+</tr>
+<tr class="list2">
+<td class="itemcode"><code>function <b><a  href="Neslib.FastMath.html#Mix">Mix</a></b>(const A, B: <a  href="Neslib.FastMath.TVector3.html">TVector3</a>; const T: Single): <a  href="Neslib.FastMath.TVector3.html">TVector3</a>; overload;</code></td>
+</tr>
+<tr class="list">
+<td class="itemcode"><code>function <b><a  href="Neslib.FastMath.html#Mix">Mix</a></b>(const A, B, T: <a  href="Neslib.FastMath.TVector3.html">TVector3</a>): <a  href="Neslib.FastMath.TVector3.html">TVector3</a>; overload;</code></td>
+</tr>
+<tr class="list2">
+<td class="itemcode"><code>function <b><a  href="Neslib.FastMath.html#Mix">Mix</a></b>(const A, B: <a  href="Neslib.FastMath.TVector4.html">TVector4</a>; const T: Single): <a  href="Neslib.FastMath.TVector4.html">TVector4</a>; overload;</code></td>
+</tr>
+<tr class="list">
+<td class="itemcode"><code>function <b><a  href="Neslib.FastMath.html#Mix">Mix</a></b>(const A, B, T: <a  href="Neslib.FastMath.TVector4.html">TVector4</a>): <a  href="Neslib.FastMath.TVector4.html">TVector4</a>; overload;</code></td>
+</tr>
+<tr class="list2">
+<td class="itemcode"><code>function <b><a  href="Neslib.FastMath.html#Step">Step</a></b>(const AEdge, A: Single): Single; overload; inline;</code></td>
+</tr>
+<tr class="list">
+<td class="itemcode"><code>function <b><a  href="Neslib.FastMath.html#Step">Step</a></b>(const AEdge: Single; const A: <a  href="Neslib.FastMath.TVector2.html">TVector2</a>): <a  href="Neslib.FastMath.TVector2.html">TVector2</a>; overload;</code></td>
+</tr>
+<tr class="list2">
+<td class="itemcode"><code>function <b><a  href="Neslib.FastMath.html#Step">Step</a></b>(const AEdge, A: <a  href="Neslib.FastMath.TVector2.html">TVector2</a>): <a  href="Neslib.FastMath.TVector2.html">TVector2</a>; overload;</code></td>
+</tr>
+<tr class="list">
+<td class="itemcode"><code>function <b><a  href="Neslib.FastMath.html#Step">Step</a></b>(const AEdge: Single; const A: <a  href="Neslib.FastMath.TVector3.html">TVector3</a>): <a  href="Neslib.FastMath.TVector3.html">TVector3</a>; overload;</code></td>
+</tr>
+<tr class="list2">
+<td class="itemcode"><code>function <b><a  href="Neslib.FastMath.html#Step">Step</a></b>(const AEdge, A: <a  href="Neslib.FastMath.TVector3.html">TVector3</a>): <a  href="Neslib.FastMath.TVector3.html">TVector3</a>; overload;</code></td>
+</tr>
+<tr class="list">
+<td class="itemcode"><code>function <b><a  href="Neslib.FastMath.html#Step">Step</a></b>(const AEdge: Single; const A: <a  href="Neslib.FastMath.TVector4.html">TVector4</a>): <a  href="Neslib.FastMath.TVector4.html">TVector4</a>; overload;</code></td>
+</tr>
+<tr class="list2">
+<td class="itemcode"><code>function <b><a  href="Neslib.FastMath.html#Step">Step</a></b>(const AEdge, A: <a  href="Neslib.FastMath.TVector4.html">TVector4</a>): <a  href="Neslib.FastMath.TVector4.html">TVector4</a>; overload;</code></td>
+</tr>
+<tr class="list">
+<td class="itemcode"><code>function <b><a  href="Neslib.FastMath.html#SmoothStep">SmoothStep</a></b>(const AEdge0, AEdge1, A: Single): Single; overload; inline;</code></td>
+</tr>
+<tr class="list2">
+<td class="itemcode"><code>function <b><a  href="Neslib.FastMath.html#SmoothStep">SmoothStep</a></b>(const AEdge0, AEdge1: Single; const A: <a  href="Neslib.FastMath.TVector2.html">TVector2</a>): <a  href="Neslib.FastMath.TVector2.html">TVector2</a>; overload; inline;</code></td>
+</tr>
+<tr class="list">
+<td class="itemcode"><code>function <b><a  href="Neslib.FastMath.html#SmoothStep">SmoothStep</a></b>(const AEdge0, AEdge1, A: <a  href="Neslib.FastMath.TVector2.html">TVector2</a>): <a  href="Neslib.FastMath.TVector2.html">TVector2</a>; overload; inline;</code></td>
+</tr>
+<tr class="list2">
+<td class="itemcode"><code>function <b><a  href="Neslib.FastMath.html#SmoothStep">SmoothStep</a></b>(const AEdge0, AEdge1: Single; const A: <a  href="Neslib.FastMath.TVector3.html">TVector3</a>): <a  href="Neslib.FastMath.TVector3.html">TVector3</a>; overload; inline;</code></td>
+</tr>
+<tr class="list">
+<td class="itemcode"><code>function <b><a  href="Neslib.FastMath.html#SmoothStep">SmoothStep</a></b>(const AEdge0, AEdge1, A: <a  href="Neslib.FastMath.TVector3.html">TVector3</a>): <a  href="Neslib.FastMath.TVector3.html">TVector3</a>; overload;</code></td>
+</tr>
+<tr class="list2">
+<td class="itemcode"><code>function <b><a  href="Neslib.FastMath.html#SmoothStep">SmoothStep</a></b>(const AEdge0, AEdge1: Single; const A: <a  href="Neslib.FastMath.TVector4.html">TVector4</a>): <a  href="Neslib.FastMath.TVector4.html">TVector4</a>; overload;</code></td>
+</tr>
+<tr class="list">
+<td class="itemcode"><code>function <b><a  href="Neslib.FastMath.html#SmoothStep">SmoothStep</a></b>(const AEdge0, AEdge1, A: <a  href="Neslib.FastMath.TVector4.html">TVector4</a>): <a  href="Neslib.FastMath.TVector4.html">TVector4</a>; overload;</code></td>
+</tr>
+<tr class="list2">
+<td class="itemcode"><code>function <b><a  href="Neslib.FastMath.html#FMA">FMA</a></b>(const A, B, C: Single): Single; overload; inline;</code></td>
+</tr>
+<tr class="list">
+<td class="itemcode"><code>function <b><a  href="Neslib.FastMath.html#FMA">FMA</a></b>(const A, B, C: <a  href="Neslib.FastMath.TVector2.html">TVector2</a>): <a  href="Neslib.FastMath.TVector2.html">TVector2</a>; overload;</code></td>
+</tr>
+<tr class="list2">
+<td class="itemcode"><code>function <b><a  href="Neslib.FastMath.html#FMA">FMA</a></b>(const A, B, C: <a  href="Neslib.FastMath.TVector3.html">TVector3</a>): <a  href="Neslib.FastMath.TVector3.html">TVector3</a>; overload;</code></td>
+</tr>
+<tr class="list">
+<td class="itemcode"><code>function <b><a  href="Neslib.FastMath.html#FMA">FMA</a></b>(const A, B, C: <a  href="Neslib.FastMath.TVector4.html">TVector4</a>): <a  href="Neslib.FastMath.TVector4.html">TVector4</a>; overload;</code></td>
+</tr>
+<tr class="list2">
+<td class="itemcode"><code>function <b><a  href="Neslib.FastMath.html#OuterProduct">OuterProduct</a></b>(const C, R: <a  href="Neslib.FastMath.TVector2.html">TVector2</a>): <a  href="Neslib.FastMath.TMatrix2.html">TMatrix2</a>; overload;</code></td>
+</tr>
+<tr class="list">
+<td class="itemcode"><code>function <b><a  href="Neslib.FastMath.html#OuterProduct">OuterProduct</a></b>(const C, R: <a  href="Neslib.FastMath.TVector3.html">TVector3</a>): <a  href="Neslib.FastMath.TMatrix3.html">TMatrix3</a>; overload;</code></td>
+</tr>
+<tr class="list2">
+<td class="itemcode"><code>function <b><a  href="Neslib.FastMath.html#OuterProduct">OuterProduct</a></b>(const C, R: <a  href="Neslib.FastMath.TVector4.html">TVector4</a>): <a  href="Neslib.FastMath.TMatrix4.html">TMatrix4</a>; overload;</code></td>
+</tr>
+<tr class="list">
+<td class="itemcode"><code>procedure <b><a  href="Neslib.FastMath.html#DisableFloatingPointExceptions">DisableFloatingPointExceptions</a></b>;</code></td>
+</tr>
+<tr class="list2">
+<td class="itemcode"><code>procedure <b><a  href="Neslib.FastMath.html#RestoreFloatingPointExceptions">RestoreFloatingPointExceptions</a></b>;</code></td>
+</tr>
+</table>
+<a name="PasDoc-Types"></a><h3 class="summary">Types</h3>
+<table class="summary wide_list">
+<tr class="list">
+<td class="itemcode"><code><b><a  href="Neslib.FastMath.html#PVector2">PVector2</a></b> = &circ;<a  href="Neslib.FastMath.TVector2.html">TVector2</a>;</code></td>
+</tr>
+<tr class="list2">
+<td class="itemcode"><code><b><a  href="Neslib.FastMath.html#PVector3">PVector3</a></b> = &circ;<a  href="Neslib.FastMath.TVector3.html">TVector3</a>;</code></td>
+</tr>
+<tr class="list">
+<td class="itemcode"><code><b><a  href="Neslib.FastMath.html#PVector4">PVector4</a></b> = &circ;<a  href="Neslib.FastMath.TVector4.html">TVector4</a>;</code></td>
+</tr>
+<tr class="list2">
+<td class="itemcode"><code><b><a  href="Neslib.FastMath.html#PMatrix2">PMatrix2</a></b> = &circ;<a  href="Neslib.FastMath.TMatrix2.html">TMatrix2</a>;</code></td>
+</tr>
+<tr class="list">
+<td class="itemcode"><code><b><a  href="Neslib.FastMath.html#PMatrix3">PMatrix3</a></b> = &circ;<a  href="Neslib.FastMath.TMatrix3.html">TMatrix3</a>;</code></td>
+</tr>
+<tr class="list2">
+<td class="itemcode"><code><b><a  href="Neslib.FastMath.html#PMatrix4">PMatrix4</a></b> = &circ;<a  href="Neslib.FastMath.TMatrix4.html">TMatrix4</a>;</code></td>
+</tr>
+<tr class="list">
+<td class="itemcode"><code><b><a  href="Neslib.FastMath.html#PIVector2">PIVector2</a></b> = &circ;<a  href="Neslib.FastMath.TIVector2.html">TIVector2</a>;</code></td>
+</tr>
+<tr class="list2">
+<td class="itemcode"><code><b><a  href="Neslib.FastMath.html#PIVector3">PIVector3</a></b> = &circ;<a  href="Neslib.FastMath.TIVector3.html">TIVector3</a>;</code></td>
+</tr>
+<tr class="list">
+<td class="itemcode"><code><b><a  href="Neslib.FastMath.html#PIVector4">PIVector4</a></b> = &circ;<a  href="Neslib.FastMath.TIVector4.html">TIVector4</a>;</code></td>
+</tr>
+</table>
+<a name="PasDoc-Constants"></a><h3 class="summary">Constants</h3>
+<table class="summary wide_list">
+<tr class="list">
+<td class="itemcode"><code><b><a  href="Neslib.FastMath.html#SINGLE_TOLERANCE">SINGLE_TOLERANCE</a></b> = 0.000001;</code></td>
+</tr>
+</table>
+<h2 class="description">Description</h2>
+<h3 class="detail">Functions and Procedures</h3>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><a name="Vector2"></a><code>function <b>Vector2</b>: <a  href="Neslib.FastMath.TVector2.html">TVector2</a>; overload; inline;</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+Creates a 2D zero-vector.
+
+<p><b>Note</b>: it is more efficient to use <a class="normal" href="Neslib.FastMath.TVector2.html#Init">TVector2.Init</a> instead.</p>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><a name="Vector2"></a><code>function <b>Vector2</b>(const A: Single): <a  href="Neslib.FastMath.TVector2.html">TVector2</a>; overload; inline;</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+Creates a 2D vector with the two elements (X and Y) set to A.
+
+<p>
+
+<p><b>Note</b>: it is more efficient to use <a class="normal" href="Neslib.FastMath.TVector2.html#Init">TVector2.Init</a> instead.</p>
+<h6 class="description_section">Parameters</h6>
+<dl class="parameters">
+<dt>A</dt>
+<dd>the value to set the two elements to.</dd>
+</dl>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><a name="Vector2"></a><code>function <b>Vector2</b>(const A1, A2: Single): <a  href="Neslib.FastMath.TVector2.html">TVector2</a>; overload; inline;</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+Creates a 2D vector with the two elements (X and Y) set to A1 and A2 respectively.
+
+<p> 
+
+<p><b>Note</b>: it is more efficient to use <a class="normal" href="Neslib.FastMath.TVector2.html#Init">TVector2.Init</a> instead.</p>
+<h6 class="description_section">Parameters</h6>
+<dl class="parameters">
+<dt>A1</dt>
+<dd>the value to set the first element to.</dd>
+<dt>A2</dt>
+<dd>the value to set the second element to.</dd>
+</dl>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><a name="Vector2"></a><code>function <b>Vector2</b>(const AVector: <a  href="Neslib.FastMath.TVector3.html">TVector3</a>): <a  href="Neslib.FastMath.TVector2.html">TVector2</a>; overload; inline;</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+Creates a 2D vector using the first to elements (X and Y) of a 3D vector.
+
+<p>
+
+<p><b>Note</b>: it is more efficient to use <a class="normal" href="Neslib.FastMath.TVector2.html#Init">TVector2.Init</a> instead.</p>
+<h6 class="description_section">Parameters</h6>
+<dl class="parameters">
+<dt>AVector</dt>
+<dd>the source vector</dd>
+</dl>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><a name="Vector2"></a><code>function <b>Vector2</b>(const AVector: <a  href="Neslib.FastMath.TVector4.html">TVector4</a>): <a  href="Neslib.FastMath.TVector2.html">TVector2</a>; overload; inline;</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+Creates a 2D vector using the first two elements (X and Y) of a 4D vector.
+
+<p>
+
+<p><b>Note</b>: it is more efficient to use <a class="normal" href="Neslib.FastMath.TVector2.html#Init">TVector2.Init</a> instead.</p>
+<h6 class="description_section">Parameters</h6>
+<dl class="parameters">
+<dt>AVector</dt>
+<dd>the source vector</dd>
+</dl>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><a name="Vector3"></a><code>function <b>Vector3</b>: <a  href="Neslib.FastMath.TVector3.html">TVector3</a>; overload;</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+Creates a 3D zero-vector.
+
+<p><b>Note</b>: it is more efficient to use <a class="normal" href="Neslib.FastMath.TVector3.html#Init">TVector3.Init</a> instead.</p>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><a name="Vector3"></a><code>function <b>Vector3</b>(const A: Single): <a  href="Neslib.FastMath.TVector3.html">TVector3</a>; overload;</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+Creates a 3D vector with the three elements (X, Y and Z) set to A.
+
+<p>
+
+<p><b>Note</b>: it is more efficient to use <a class="normal" href="Neslib.FastMath.TVector3.html#Init">TVector3.Init</a> instead.</p>
+<h6 class="description_section">Parameters</h6>
+<dl class="parameters">
+<dt>A</dt>
+<dd>the value to set the three elements to.</dd>
+</dl>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><a name="Vector3"></a><code>function <b>Vector3</b>(const A1, A2, A3: Single): <a  href="Neslib.FastMath.TVector3.html">TVector3</a>; overload;</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+Creates a 3D vector with the three elements (X, Y and Z) set to A1, A2 and A3 respectively.
+
+<p>  
+
+<p><b>Note</b>: it is more efficient to use <a class="normal" href="Neslib.FastMath.TVector3.html#Init">TVector3.Init</a> instead.</p>
+<h6 class="description_section">Parameters</h6>
+<dl class="parameters">
+<dt>A1</dt>
+<dd>the value to set the first element to.</dd>
+<dt>A2</dt>
+<dd>the value to set the second element to.</dd>
+<dt>A3</dt>
+<dd>the value to set the third element to.</dd>
+</dl>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><a name="Vector3"></a><code>function <b>Vector3</b>(const A1: <a  href="Neslib.FastMath.TVector2.html">TVector2</a>; const A2: Single): <a  href="Neslib.FastMath.TVector3.html">TVector3</a>; overload;</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+Creates a 3D vector with the first two elements from a 2D vector, and the third element from a scalar.
+
+<p> 
+
+<p><b>Note</b>: it is more efficient to use <a class="normal" href="Neslib.FastMath.TVector3.html#Init">TVector3.Init</a> instead.</p>
+<h6 class="description_section">Parameters</h6>
+<dl class="parameters">
+<dt>A1</dt>
+<dd>the vector to use for the first two elements.</dd>
+<dt>A2</dt>
+<dd>the value to set the third element to.</dd>
+</dl>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><a name="Vector3"></a><code>function <b>Vector3</b>(const A1: Single; const A2: <a  href="Neslib.FastMath.TVector2.html">TVector2</a>): <a  href="Neslib.FastMath.TVector3.html">TVector3</a>; overload;</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+Creates a 3D vector with the first element from a scaler, and the last two elements from a 2D vector.
+
+<p> 
+
+<p><b>Note</b>: it is more efficient to use <a class="normal" href="Neslib.FastMath.TVector3.html#Init">TVector3.Init</a> instead.</p>
+<h6 class="description_section">Parameters</h6>
+<dl class="parameters">
+<dt>A1</dt>
+<dd>the value to set the first element to.</dd>
+<dt>A2</dt>
+<dd>the vector to use for the last two elements.</dd>
+</dl>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><a name="Vector3"></a><code>function <b>Vector3</b>(const AVector: <a  href="Neslib.FastMath.TVector4.html">TVector4</a>): <a  href="Neslib.FastMath.TVector3.html">TVector3</a>; overload;</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+Creates a 3D vector using the first three elements (X, Y and Z) of a 4D vector.
+
+<p>
+
+<p><b>Note</b>: it is more efficient to use <a class="normal" href="Neslib.FastMath.TVector3.html#Init">TVector3.Init</a> instead.</p>
+<h6 class="description_section">Parameters</h6>
+<dl class="parameters">
+<dt>AVector</dt>
+<dd>the source vector</dd>
+</dl>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><a name="Vector4"></a><code>function <b>Vector4</b>: <a  href="Neslib.FastMath.TVector4.html">TVector4</a>; overload;</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+Creates a 4D zero-vector.
+
+<p><b>Note</b>: it is more efficient to use <a class="normal" href="Neslib.FastMath.TVector4.html#Init">TVector4.Init</a> instead.</p>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><a name="Vector4"></a><code>function <b>Vector4</b>(const A: Single): <a  href="Neslib.FastMath.TVector4.html">TVector4</a>; overload;</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+Creates a 4D vector with the four elements (X, Y, Z and W) set to A.
+
+<p>
+
+<p><b>Note</b>: it is more efficient to use <a class="normal" href="Neslib.FastMath.TVector4.html#Init">TVector4.Init</a> instead.</p>
+<h6 class="description_section">Parameters</h6>
+<dl class="parameters">
+<dt>A</dt>
+<dd>the value to set the four elements to.</dd>
+</dl>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><a name="Vector4"></a><code>function <b>Vector4</b>(const A1, A2, A3, A4: Single): <a  href="Neslib.FastMath.TVector4.html">TVector4</a>; overload;</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+Creates a 4D vector with the four elements (X, Y, Z and W) set to A1, A2, A3 and A4 respectively.
+
+<p>   
+
+<p><b>Note</b>: it is more efficient to use <a class="normal" href="Neslib.FastMath.TVector4.html#Init">TVector4.Init</a> instead.</p>
+<h6 class="description_section">Parameters</h6>
+<dl class="parameters">
+<dt>A1</dt>
+<dd>the value to set the first element to.</dd>
+<dt>A2</dt>
+<dd>the value to set the second element to.</dd>
+<dt>A3</dt>
+<dd>the value to set the third element to.</dd>
+<dt>A4</dt>
+<dd>the value to set the fourth element to.</dd>
+</dl>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><a name="Vector4"></a><code>function <b>Vector4</b>(const A1: <a  href="Neslib.FastMath.TVector2.html">TVector2</a>; const A2, A3: Single): <a  href="Neslib.FastMath.TVector4.html">TVector4</a>; overload;</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+Creates a 4D vector with the first two elements from a 2D vector, and the last two elements from two scalars.
+
+<p>  
+
+<p><b>Note</b>: it is more efficient to use <a class="normal" href="Neslib.FastMath.TVector4.html#Init">TVector4.Init</a> instead.</p>
+<h6 class="description_section">Parameters</h6>
+<dl class="parameters">
+<dt>A1</dt>
+<dd>the vector to use for the first two elements.</dd>
+<dt>A2</dt>
+<dd>the value to set the third element to.</dd>
+<dt>A3</dt>
+<dd>the value to set the fourth element to.</dd>
+</dl>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><a name="Vector4"></a><code>function <b>Vector4</b>(const A1: Single; const A2: <a  href="Neslib.FastMath.TVector2.html">TVector2</a>; const A3: Single): <a  href="Neslib.FastMath.TVector4.html">TVector4</a>; overload;</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+Creates a 4D vector with the first and last elements from two scalars, and the middle two elements from a 2D vector.
+
+<p>  
+
+<p><b>Note</b>: it is more efficient to use <a class="normal" href="Neslib.FastMath.TVector4.html#Init">TVector4.Init</a> instead.</p>
+<h6 class="description_section">Parameters</h6>
+<dl class="parameters">
+<dt>A1</dt>
+<dd>the value to set the first element to.</dd>
+<dt>A2</dt>
+<dd>the vector to use for the second and third elements.</dd>
+<dt>A3</dt>
+<dd>the value to set the fourth element to.</dd>
+</dl>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><a name="Vector4"></a><code>function <b>Vector4</b>(const A1, A2: Single; const A3: <a  href="Neslib.FastMath.TVector2.html">TVector2</a>): <a  href="Neslib.FastMath.TVector4.html">TVector4</a>; overload;</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+Creates a 4D vector with the first two elements from two scalars and the last two elements from a 2D vector.
+
+<p>  
+
+<p><b>Note</b>: it is more efficient to use <a class="normal" href="Neslib.FastMath.TVector4.html#Init">TVector4.Init</a> instead.</p>
+<h6 class="description_section">Parameters</h6>
+<dl class="parameters">
+<dt>A1</dt>
+<dd>the value to set the first element to.</dd>
+<dt>A2</dt>
+<dd>the value to set the second element to.</dd>
+<dt>A3</dt>
+<dd>the vector to use for the last two elements.</dd>
+</dl>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><a name="Vector4"></a><code>function <b>Vector4</b>(const A1, A2: <a  href="Neslib.FastMath.TVector2.html">TVector2</a>): <a  href="Neslib.FastMath.TVector4.html">TVector4</a>; overload;</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+Creates a 4D vector with the first two elements and last two elements from two 2D vectors.
+
+<p> 
+
+<p><b>Note</b>: it is more efficient to use <a class="normal" href="Neslib.FastMath.TVector4.html#Init">TVector4.Init</a> instead.</p>
+<h6 class="description_section">Parameters</h6>
+<dl class="parameters">
+<dt>A1</dt>
+<dd>the vector to use for the first two elements.</dd>
+<dt>A2</dt>
+<dd>the vector to use for the last two elements.</dd>
+</dl>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><a name="Vector4"></a><code>function <b>Vector4</b>(const A1: <a  href="Neslib.FastMath.TVector3.html">TVector3</a>; const A2: Single): <a  href="Neslib.FastMath.TVector4.html">TVector4</a>; overload;</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+Creates a 4D vector with the first three elements from a 3D vector, and the fourth element from a scalar.
+
+<p> 
+
+<p><b>Note</b>: it is more efficient to use <a class="normal" href="Neslib.FastMath.TVector4.html#Init">TVector4.Init</a> instead.</p>
+<h6 class="description_section">Parameters</h6>
+<dl class="parameters">
+<dt>A1</dt>
+<dd>the vector to use for the first three elements.</dd>
+<dt>A2</dt>
+<dd>the value to set the fourth element to.</dd>
+</dl>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><a name="Vector4"></a><code>function <b>Vector4</b>(const A1: Single; const A2: <a  href="Neslib.FastMath.TVector3.html">TVector3</a>): <a  href="Neslib.FastMath.TVector4.html">TVector4</a>; overload;</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+Creates a 4D vector with the first element from a scaler, and the last three elements from a 3D vector.
+
+<p> 
+
+<p><b>Note</b>: it is more efficient to use <a class="normal" href="Neslib.FastMath.TVector4.html#Init">TVector4.Init</a> instead.</p>
+<h6 class="description_section">Parameters</h6>
+<dl class="parameters">
+<dt>A1</dt>
+<dd>the value to set the first element to.</dd>
+<dt>A2</dt>
+<dd>the vector to use for the last three elements.</dd>
+</dl>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><a name="Quaternion"></a><code>function <b>Quaternion</b>: <a  href="Neslib.FastMath.TQuaternion.html">TQuaternion</a>; overload;</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+Creates an identity <a class="normal" href="Neslib.FastMath.html#Quaternion">quaternion</a> (with X, Y and Z set to 0 and W set to 1).
+
+<p><b>Note</b>: it is more efficient to use <a class="normal" href="Neslib.FastMath.TQuaternion.html#Init">TQuaternion.Init</a> instead.</p>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><a name="Quaternion"></a><code>function <b>Quaternion</b>(const AX, AY, AZ, AW: Single): <a  href="Neslib.FastMath.TQuaternion.html">TQuaternion</a>; overload;</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+Creates a <a class="normal" href="Neslib.FastMath.html#Quaternion">quaternion</a> with the given components.
+
+<p>   
+
+<p><b>Note</b>: it is more efficient to use <a class="normal" href="Neslib.FastMath.TQuaternion.html#Init">TQuaternion.Init</a> instead.</p>
+<h6 class="description_section">Parameters</h6>
+<dl class="parameters">
+<dt>AX</dt>
+<dd>the X-component.</dd>
+<dt>AY</dt>
+<dd>the Y-component.</dd>
+<dt>AZ</dt>
+<dd>the Z-component.</dd>
+<dt>AW</dt>
+<dd>the W-component.</dd>
+</dl>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><a name="Quaternion"></a><code>function <b>Quaternion</b>(const AAxis: <a  href="Neslib.FastMath.TVector3.html">TVector3</a>; const AAngleRadians: Single): <a  href="Neslib.FastMath.TQuaternion.html">TQuaternion</a>; overload;</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+Creates a <code>quaternion</code> from the given axis vector and the angle around that axis in <a class="normal" href="Neslib.FastMath.html#Radians">radians</a>.
+
+<p> 
+
+<p><b>Note</b>: it is more efficient to use <a class="normal" href="Neslib.FastMath.TQuaternion.html#Init">TQuaternion.Init</a> instead.</p>
+<h6 class="description_section">Parameters</h6>
+<dl class="parameters">
+<dt>AAxis</dt>
+<dd>The axis.</dd>
+<dt>AAngleRadians</dt>
+<dd>The angle in <a class="normal" href="Neslib.FastMath.html#Radians">radians</a>.</dd>
+</dl>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><a name="Matrix2"></a><code>function <b>Matrix2</b>: <a  href="Neslib.FastMath.TMatrix2.html">TMatrix2</a>; overload;</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+Creates a 2x2 identity matrix
+
+<p><b>Note</b>: it is more efficient to use <a class="normal" href="Neslib.FastMath.TMatrix2.html#Init">TMatrix2.Init</a> instead.</p>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><a name="Matrix2"></a><code>function <b>Matrix2</b>(const ADiagonal: Single): <a  href="Neslib.FastMath.TMatrix2.html">TMatrix2</a>; overload;</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+Creates a 2x2 matrix fill with zeros and sets the diagonal.
+
+<p>
+
+<p><b>Note</b>: it is more efficient to use <a class="normal" href="Neslib.FastMath.TMatrix2.html#Init">TMatrix2.Init</a> instead.</p>
+<h6 class="description_section">Parameters</h6>
+<dl class="parameters">
+<dt>ADiagonal</dt>
+<dd>the value to use for the diagonal. Use 1 for an identity matrix.</dd>
+</dl>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><a name="Matrix2"></a><code>function <b>Matrix2</b>(const ARow0, ARow1: <a  href="Neslib.FastMath.TVector2.html">TVector2</a>): <a  href="Neslib.FastMath.TMatrix2.html">TMatrix2</a>; overload;</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+Creates a 2x2 matrix using two row vectors.
+
+<p> 
+
+<p><b>Note</b>: it is more efficient to use <a class="normal" href="Neslib.FastMath.TMatrix2.html#Init">TMatrix2.Init</a> instead.</p>
+<h6 class="description_section">Parameters</h6>
+<dl class="parameters">
+<dt>ARow0</dt>
+<dd>the first row of the matrix.</dd>
+<dt>ARow1</dt>
+<dd>the second row of the matrix.</dd>
+</dl>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><a name="Matrix2"></a><code>function <b>Matrix2</b>(const A11, A12, A21, A22: Single): <a  href="Neslib.FastMath.TMatrix2.html">TMatrix2</a>; overload;</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+Creates a 2x2 matrix with explicit values.
+
+<p>Parameters: A11-A12: the values of the matrix elements, in row-major order.
+
+<p><b>Note</b>: it is more efficient to use <a class="normal" href="Neslib.FastMath.TMatrix2.html#Init">TMatrix2.Init</a> instead.</p>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><a name="Matrix2"></a><code>function <b>Matrix2</b>(const AMatrix: <a  href="Neslib.FastMath.TMatrix3.html">TMatrix3</a>): <a  href="Neslib.FastMath.TMatrix2.html">TMatrix2</a>; overload;</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+Creates a 2x2 using the top-left corner of a 3x3 matrix. The remaining values of the source matrix are not used.
+
+<p>
+
+<p><b>Note</b>: it is more efficient to use <a class="normal" href="Neslib.FastMath.TMatrix2.html#Init">TMatrix2.Init</a> instead.</p>
+<h6 class="description_section">Parameters</h6>
+<dl class="parameters">
+<dt>AMatrix</dt>
+<dd>the source 3x3 matrix.</dd>
+</dl>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><a name="Matrix2"></a><code>function <b>Matrix2</b>(const AMatrix: <a  href="Neslib.FastMath.TMatrix4.html">TMatrix4</a>): <a  href="Neslib.FastMath.TMatrix2.html">TMatrix2</a>; overload;</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+Creates a 2x2 using the top-left corner of a 4x4 matrix. The remaining values of the source matrix are not used.
+
+<p>
+
+<p><b>Note</b>: it is more efficient to use <a class="normal" href="Neslib.FastMath.TMatrix2.html#Init">TMatrix2.Init</a> instead.</p>
+<h6 class="description_section">Parameters</h6>
+<dl class="parameters">
+<dt>AMatrix</dt>
+<dd>the source 4x4 matrix.</dd>
+</dl>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><a name="Matrix3"></a><code>function <b>Matrix3</b>: <a  href="Neslib.FastMath.TMatrix3.html">TMatrix3</a>; overload;</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+Creates a 3x3 identity matrix
+
+<p><b>Note</b>: it is more efficient to use <a class="normal" href="Neslib.FastMath.TMatrix3.html#Init">TMatrix3.Init</a> instead.</p>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><a name="Matrix3"></a><code>function <b>Matrix3</b>(const ADiagonal: Single): <a  href="Neslib.FastMath.TMatrix3.html">TMatrix3</a>; overload;</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+Creates a 3x3 matrix fill with zeros and sets the diagonal.
+
+<p>
+
+<p><b>Note</b>: it is more efficient to use <a class="normal" href="Neslib.FastMath.TMatrix3.html#Init">TMatrix3.Init</a> instead.</p>
+<h6 class="description_section">Parameters</h6>
+<dl class="parameters">
+<dt>ADiagonal</dt>
+<dd>the value to use for the diagonal. Use 1 for an identity matrix.</dd>
+</dl>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><a name="Matrix3"></a><code>function <b>Matrix3</b>(const ARow0, ARow1, ARow2: <a  href="Neslib.FastMath.TVector3.html">TVector3</a>): <a  href="Neslib.FastMath.TMatrix3.html">TMatrix3</a>; overload;</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+Creates a 3x3 matrix using three row vectors.
+
+<p>  
+
+<p><b>Note</b>: it is more efficient to use <a class="normal" href="Neslib.FastMath.TMatrix3.html#Init">TMatrix3.Init</a> instead.</p>
+<h6 class="description_section">Parameters</h6>
+<dl class="parameters">
+<dt>ARow0</dt>
+<dd>the first row of the matrix.</dd>
+<dt>ARow1</dt>
+<dd>the second row of the matrix.</dd>
+<dt>ARow2</dt>
+<dd>the third row of the matrix.</dd>
+</dl>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><a name="Matrix3"></a><code>function <b>Matrix3</b>(const A11, A12, A13, A21, A22, A23, A31, A32, A33: Single): <a  href="Neslib.FastMath.TMatrix3.html">TMatrix3</a>; overload;</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+Creates a 3x3 matrix with explicit values.
+
+<p>Parameters: A11-A33: the values of the matrix elements, in row-major order.
+
+<p><b>Note</b>: it is more efficient to use <a class="normal" href="Neslib.FastMath.TMatrix3.html#Init">TMatrix3.Init</a> instead.</p>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><a name="Matrix3"></a><code>function <b>Matrix3</b>(const AMatrix: <a  href="Neslib.FastMath.TMatrix2.html">TMatrix2</a>): <a  href="Neslib.FastMath.TMatrix3.html">TMatrix3</a>; overload;</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+Creates a 3x3 matrix by copying a 2x2 matrix to the top-left corner of the 3x3 matrix, and setting the remaining elements according to an identity matrix.
+
+<p>
+
+<p><b>Note</b>: it is more efficient to use <a class="normal" href="Neslib.FastMath.TMatrix3.html#Init">TMatrix3.Init</a> instead.</p>
+<h6 class="description_section">Parameters</h6>
+<dl class="parameters">
+<dt>AMatrix</dt>
+<dd>the source 2x2 matrix.</dd>
+</dl>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><a name="Matrix3"></a><code>function <b>Matrix3</b>(const AMatrix: <a  href="Neslib.FastMath.TMatrix4.html">TMatrix4</a>): <a  href="Neslib.FastMath.TMatrix3.html">TMatrix3</a>; overload;</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+Creates a 3x3 using the top-left corner of a 4x4 matrix. The remaining values of the source matrix are not used.
+
+<p>
+
+<p><b>Note</b>: it is more efficient to use <a class="normal" href="Neslib.FastMath.TMatrix3.html#Init">TMatrix3.Init</a> instead.</p>
+<h6 class="description_section">Parameters</h6>
+<dl class="parameters">
+<dt>AMatrix</dt>
+<dd>the 4x4 source matrix.</dd>
+</dl>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><a name="Matrix4"></a><code>function <b>Matrix4</b>: <a  href="Neslib.FastMath.TMatrix4.html">TMatrix4</a>; overload;</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+Creates a 4x4 identity matrix
+
+<p><b>Note</b>: it is more efficient to use <a class="normal" href="Neslib.FastMath.TMatrix4.html#Init">TMatrix4.Init</a> instead.</p>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><a name="Matrix4"></a><code>function <b>Matrix4</b>(const ADiagonal: Single): <a  href="Neslib.FastMath.TMatrix4.html">TMatrix4</a>; overload;</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+Creates a 4x4 matrix fill with zeros and sets the diagonal.
+
+<p>
+
+<p><b>Note</b>: it is more efficient to use <a class="normal" href="Neslib.FastMath.TMatrix4.html#Init">TMatrix4.Init</a> instead.</p>
+<h6 class="description_section">Parameters</h6>
+<dl class="parameters">
+<dt>ADiagonal</dt>
+<dd>the value to use for the diagonal. Use 1 for an identity matrix.</dd>
+</dl>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><a name="Matrix4"></a><code>function <b>Matrix4</b>(const ARow0, ARow1, ARow2, ARow3: <a  href="Neslib.FastMath.TVector4.html">TVector4</a>): <a  href="Neslib.FastMath.TMatrix4.html">TMatrix4</a>; overload;</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+Creates a 4x4 matrix using four row vectors.
+
+<p>   
+
+<p><b>Note</b>: it is more efficient to use <a class="normal" href="Neslib.FastMath.TMatrix4.html#Init">TMatrix4.Init</a> instead.</p>
+<h6 class="description_section">Parameters</h6>
+<dl class="parameters">
+<dt>ARow0</dt>
+<dd>the first row of the matrix.</dd>
+<dt>ARow1</dt>
+<dd>the second row of the matrix.</dd>
+<dt>ARow2</dt>
+<dd>the third row of the matrix.</dd>
+<dt>ARow3</dt>
+<dd>the fourth row of the matrix.</dd>
+</dl>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><a name="Matrix4"></a><code>function <b>Matrix4</b>(const A11, A12, A13, A14, A21, A22, A23, A24, A31, A32, A33, A34, A41, A42, A43, A44: Single): <a  href="Neslib.FastMath.TMatrix4.html">TMatrix4</a>; overload;</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+Creates a 4x4 matrix with explicit values.
+
+<p>Parameters: A11-A44: the values of the matrix elements, in row-major order.
+
+<p><b>Note</b>: it is more efficient to use <a class="normal" href="Neslib.FastMath.TMatrix4.html#Init">TMatrix4.Init</a> instead.</p>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><a name="Matrix4"></a><code>function <b>Matrix4</b>(const AMatrix: <a  href="Neslib.FastMath.TMatrix2.html">TMatrix2</a>): <a  href="Neslib.FastMath.TMatrix4.html">TMatrix4</a>; overload;</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+Creates a 4x4 matrix by copying a 2x2 matrix to the top-left corner of the 4x4 matrix, and setting the remaining elements according to an identity matrix.
+
+<p>
+
+<p><b>Note</b>: it is more efficient to use <a class="normal" href="Neslib.FastMath.TMatrix4.html#Init">TMatrix4.Init</a> instead.</p>
+<h6 class="description_section">Parameters</h6>
+<dl class="parameters">
+<dt>AMatrix</dt>
+<dd>the source 2x2 matrix.</dd>
+</dl>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><a name="Matrix4"></a><code>function <b>Matrix4</b>(const AMatrix: <a  href="Neslib.FastMath.TMatrix3.html">TMatrix3</a>): <a  href="Neslib.FastMath.TMatrix4.html">TMatrix4</a>; overload;</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+Creates a 4x4 matrix by copying a 3x3 matrix to the top-left corner of the 4x4 matrix, and setting the remaining elements according to an identity matrix.
+
+<p>
+
+<p><b>Note</b>: it is more efficient to use <a class="normal" href="Neslib.FastMath.TMatrix4.html#Init">TMatrix4.Init</a> instead.</p>
+<h6 class="description_section">Parameters</h6>
+<dl class="parameters">
+<dt>AMatrix</dt>
+<dd>the source 3x3 matrix.</dd>
+</dl>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><a name="IVector2"></a><code>function <b>IVector2</b>: <a  href="Neslib.FastMath.TIVector2.html">TIVector2</a>; overload; inline;</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+Creates a 2D zero-vector.
+
+<p><b>Note</b>: it is more efficient to use <a class="normal" href="Neslib.FastMath.TIVector2.html#Init">TIVector2.Init</a> instead.</p>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><a name="IVector2"></a><code>function <b>IVector2</b>(const A: Integer): <a  href="Neslib.FastMath.TIVector2.html">TIVector2</a>; overload; inline;</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+Creates a 2D vector with the two elements (X and Y) set to A.
+
+<p>
+
+<p><b>Note</b>: it is more efficient to use <a class="normal" href="Neslib.FastMath.TIVector2.html#Init">TIVector2.Init</a> instead.</p>
+<h6 class="description_section">Parameters</h6>
+<dl class="parameters">
+<dt>A</dt>
+<dd>the value to set the two elements to.</dd>
+</dl>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><a name="IVector2"></a><code>function <b>IVector2</b>(const A1, A2: Integer): <a  href="Neslib.FastMath.TIVector2.html">TIVector2</a>; overload; inline;</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+Creates a 2D vector with the two elements (X and Y) set to A1 and A2 respectively.
+
+<p> 
+
+<p><b>Note</b>: it is more efficient to use <a class="normal" href="Neslib.FastMath.TIVector2.html#Init">TIVector2.Init</a> instead.</p>
+<h6 class="description_section">Parameters</h6>
+<dl class="parameters">
+<dt>A1</dt>
+<dd>the value to set the first element to.</dd>
+<dt>A2</dt>
+<dd>the value to set the second element to.</dd>
+</dl>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><a name="IVector3"></a><code>function <b>IVector3</b>: <a  href="Neslib.FastMath.TIVector3.html">TIVector3</a>; overload;</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+Creates a 3D zero-vector.
+
+<p><b>Note</b>: it is more efficient to use <a class="normal" href="Neslib.FastMath.TIVector3.html#Init">TIVector3.Init</a> instead.</p>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><a name="IVector3"></a><code>function <b>IVector3</b>(const A: Integer): <a  href="Neslib.FastMath.TIVector3.html">TIVector3</a>; overload;</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+Creates a 3D vector with the three elements (X, Y and Z) set to A.
+
+<p>
+
+<p><b>Note</b>: it is more efficient to use <a class="normal" href="Neslib.FastMath.TIVector3.html#Init">TIVector3.Init</a> instead.</p>
+<h6 class="description_section">Parameters</h6>
+<dl class="parameters">
+<dt>A</dt>
+<dd>the value to set the three elements to.</dd>
+</dl>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><a name="IVector3"></a><code>function <b>IVector3</b>(const A1, A2, A3: Integer): <a  href="Neslib.FastMath.TIVector3.html">TIVector3</a>; overload;</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+Creates a 3D vector with the three elements (X, Y and Z) set to A1, A2 and A3 respectively.
+
+<p>  
+
+<p><b>Note</b>: it is more efficient to use <a class="normal" href="Neslib.FastMath.TIVector3.html#Init">TIVector3.Init</a> instead.</p>
+<h6 class="description_section">Parameters</h6>
+<dl class="parameters">
+<dt>A1</dt>
+<dd>the value to set the first element to.</dd>
+<dt>A2</dt>
+<dd>the value to set the second element to.</dd>
+<dt>A3</dt>
+<dd>the value to set the third element to.</dd>
+</dl>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><a name="IVector4"></a><code>function <b>IVector4</b>: <a  href="Neslib.FastMath.TIVector4.html">TIVector4</a>; overload;</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+Creates a 4D zero-vector.
+
+<p><b>Note</b>: it is more efficient to use <a class="normal" href="Neslib.FastMath.TIVector4.html#Init">TIVector4.Init</a> instead.</p>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><a name="IVector4"></a><code>function <b>IVector4</b>(const A: Integer): <a  href="Neslib.FastMath.TIVector4.html">TIVector4</a>; overload;</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+Creates a 4D vector with the four elements (X, Y, Z and W) set to A.
+
+<p>
+
+<p><b>Note</b>: it is more efficient to use <a class="normal" href="Neslib.FastMath.TIVector4.html#Init">TIVector4.Init</a> instead.</p>
+<h6 class="description_section">Parameters</h6>
+<dl class="parameters">
+<dt>A</dt>
+<dd>the value to set the four elements to.</dd>
+</dl>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><a name="IVector4"></a><code>function <b>IVector4</b>(const A1, A2, A3, A4: Integer): <a  href="Neslib.FastMath.TIVector4.html">TIVector4</a>; overload;</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+Creates a 4D vector with the four elements (X, Y, Z and W) set to A1, A2, A3 and A4 respectively.
+
+<p>   
+
+<p><b>Note</b>: it is more efficient to use <a class="normal" href="Neslib.FastMath.TIVector4.html#Init">TIVector4.Init</a> instead.</p>
+<h6 class="description_section">Parameters</h6>
+<dl class="parameters">
+<dt>A1</dt>
+<dd>the value to set the first element to.</dd>
+<dt>A2</dt>
+<dd>the value to set the second element to.</dd>
+<dt>A3</dt>
+<dd>the value to set the third element to.</dd>
+<dt>A4</dt>
+<dd>the value to set the fourth element to.</dd>
+</dl>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><a name="Radians"></a><code>function <b>Radians</b>(const ADegrees: Single): Single; overload; inline;</code></td>
+</tr>
+<tr class="list2">
+<td class="itemcode"><a name="Radians"></a><code>function <b>Radians</b>(const ADegrees: <a  href="Neslib.FastMath.TVector2.html">TVector2</a>): <a  href="Neslib.FastMath.TVector2.html">TVector2</a>; overload;</code></td>
+</tr>
+<tr class="list">
+<td class="itemcode"><a name="Radians"></a><code>function <b>Radians</b>(const ADegrees: <a  href="Neslib.FastMath.TVector3.html">TVector3</a>): <a  href="Neslib.FastMath.TVector3.html">TVector3</a>; overload;</code></td>
+</tr>
+<tr class="list2">
+<td class="itemcode"><a name="Radians"></a><code>function <b>Radians</b>(const ADegrees: <a  href="Neslib.FastMath.TVector4.html">TVector4</a>): <a  href="Neslib.FastMath.TVector4.html">TVector4</a>; overload;</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+Converts <a class="normal" href="Neslib.FastMath.html#Degrees">degrees</a> to <a class="normal" href="Neslib.FastMath.html#Radians">radians</a>.
+
+<p>
+
+<p></p>
+<h6 class="description_section">Parameters</h6>
+<dl class="parameters">
+<dt>ADegrees</dt>
+<dd>number of <a class="normal" href="Neslib.FastMath.html#Degrees">degrees</a>.</dd>
+</dl>
+<h6 class="description_section">Returns</h6>
+<p class="return">ADegrees converted to <a class="normal" href="Neslib.FastMath.html#Radians">radians</a>.</p></td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><a name="Degrees"></a><code>function <b>Degrees</b>(const ARadians: Single): Single; overload; inline;</code></td>
+</tr>
+<tr class="list2">
+<td class="itemcode"><a name="Degrees"></a><code>function <b>Degrees</b>(const ARadians: <a  href="Neslib.FastMath.TVector2.html">TVector2</a>): <a  href="Neslib.FastMath.TVector2.html">TVector2</a>; overload;</code></td>
+</tr>
+<tr class="list">
+<td class="itemcode"><a name="Degrees"></a><code>function <b>Degrees</b>(const ARadians: <a  href="Neslib.FastMath.TVector3.html">TVector3</a>): <a  href="Neslib.FastMath.TVector3.html">TVector3</a>; overload;</code></td>
+</tr>
+<tr class="list2">
+<td class="itemcode"><a name="Degrees"></a><code>function <b>Degrees</b>(const ARadians: <a  href="Neslib.FastMath.TVector4.html">TVector4</a>): <a  href="Neslib.FastMath.TVector4.html">TVector4</a>; overload;</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+Converts <a class="normal" href="Neslib.FastMath.html#Radians">radians</a> to <a class="normal" href="Neslib.FastMath.html#Degrees">degrees</a>.
+
+<p>
+
+<p></p>
+<h6 class="description_section">Parameters</h6>
+<dl class="parameters">
+<dt>ARadians</dt>
+<dd>number of <a class="normal" href="Neslib.FastMath.html#Radians">radians</a>.</dd>
+</dl>
+<h6 class="description_section">Returns</h6>
+<p class="return">ARadians converted to <a class="normal" href="Neslib.FastMath.html#Degrees">degrees</a>.</p></td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><a name="Sin"></a><code>function <b>Sin</b>(const ARadians: Single): Single; overload; inline;</code></td>
+</tr>
+<tr class="list2">
+<td class="itemcode"><a name="Sin"></a><code>function <b>Sin</b>(const ARadians: <a  href="Neslib.FastMath.TVector2.html">TVector2</a>): <a  href="Neslib.FastMath.TVector2.html">TVector2</a>; overload; inline;</code></td>
+</tr>
+<tr class="list">
+<td class="itemcode"><a name="Sin"></a><code>function <b>Sin</b>(const ARadians: <a  href="Neslib.FastMath.TVector3.html">TVector3</a>): <a  href="Neslib.FastMath.TVector3.html">TVector3</a>; overload; inline;</code></td>
+</tr>
+<tr class="list2">
+<td class="itemcode"><a name="Sin"></a><code>function <b>Sin</b>(const ARadians: <a  href="Neslib.FastMath.TVector4.html">TVector4</a>): <a  href="Neslib.FastMath.TVector4.html">TVector4</a>; overload; inline;</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+Calculates the sine of an angle.
+
+<p>
+
+<p> <b>Note</b>: You probably want to use <a class="normal" href="Neslib.FastMath.html#FastSin">FastSin</a> instead, which is much faster but still very accurate to about +/-4000 <a class="normal" href="Neslib.FastMath.html#Radians">radians</a> (or +/-230,000 <a class="normal" href="Neslib.FastMath.html#Degrees">degrees</a>).</p>
+<h6 class="description_section">Parameters</h6>
+<dl class="parameters">
+<dt>ARadians</dt>
+<dd>the angle in <a class="normal" href="Neslib.FastMath.html#Radians">radians</a>.</dd>
+</dl>
+<h6 class="description_section">Returns</h6>
+<p class="return">The sine of the given angle.</p></td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><a name="Cos"></a><code>function <b>Cos</b>(const ARadians: Single): Single; overload; inline;</code></td>
+</tr>
+<tr class="list2">
+<td class="itemcode"><a name="Cos"></a><code>function <b>Cos</b>(const ARadians: <a  href="Neslib.FastMath.TVector2.html">TVector2</a>): <a  href="Neslib.FastMath.TVector2.html">TVector2</a>; overload; inline;</code></td>
+</tr>
+<tr class="list">
+<td class="itemcode"><a name="Cos"></a><code>function <b>Cos</b>(const ARadians: <a  href="Neslib.FastMath.TVector3.html">TVector3</a>): <a  href="Neslib.FastMath.TVector3.html">TVector3</a>; overload; inline;</code></td>
+</tr>
+<tr class="list2">
+<td class="itemcode"><a name="Cos"></a><code>function <b>Cos</b>(const ARadians: <a  href="Neslib.FastMath.TVector4.html">TVector4</a>): <a  href="Neslib.FastMath.TVector4.html">TVector4</a>; overload; inline;</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+Calculates the cosine of an angle.
+
+<p>
+
+<p> <b>Note</b>: You probably want to use <a class="normal" href="Neslib.FastMath.html#FastCos">FastCos</a> instead, which is much faster but still very accurate to about +/-4000 <a class="normal" href="Neslib.FastMath.html#Radians">radians</a> (or +/-230,000 <a class="normal" href="Neslib.FastMath.html#Degrees">degrees</a>).</p>
+<h6 class="description_section">Parameters</h6>
+<dl class="parameters">
+<dt>ARadians</dt>
+<dd>the angle in <a class="normal" href="Neslib.FastMath.html#Radians">radians</a>.</dd>
+</dl>
+<h6 class="description_section">Returns</h6>
+<p class="return">The cosine of the given angle.</p></td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><a name="SinCos"></a><code>procedure <b>SinCos</b>(const ARadians: Single; out ASin, ACos: Single); overload;</code></td>
+</tr>
+<tr class="list2">
+<td class="itemcode"><a name="SinCos"></a><code>procedure <b>SinCos</b>(const ARadians: <a  href="Neslib.FastMath.TVector2.html">TVector2</a>; out ASin, ACos: <a  href="Neslib.FastMath.TVector2.html">TVector2</a>); overload;</code></td>
+</tr>
+<tr class="list">
+<td class="itemcode"><a name="SinCos"></a><code>procedure <b>SinCos</b>(const ARadians: <a  href="Neslib.FastMath.TVector3.html">TVector3</a>; out ASin, ACos: <a  href="Neslib.FastMath.TVector3.html">TVector3</a>); overload;</code></td>
+</tr>
+<tr class="list2">
+<td class="itemcode"><a name="SinCos"></a><code>procedure <b>SinCos</b>(const ARadians: <a  href="Neslib.FastMath.TVector4.html">TVector4</a>; out ASin, ACos: <a  href="Neslib.FastMath.TVector4.html">TVector4</a>); overload;</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+Calculates the sine and cosine of an angle. This is faster than calling <a class="normal" href="Neslib.FastMath.html#Sin">Sin</a> and <a class="normal" href="Neslib.FastMath.html#Cos">Cos</a> separately.
+
+<p>  
+
+<p><b>Note</b>: You probably want to use <a class="normal" href="Neslib.FastMath.html#FastSinCos">FastSinCos</a> instead, which is much faster but still very accurate to about +/-4000 <a class="normal" href="Neslib.FastMath.html#Radians">radians</a> (or +/-230,000 <a class="normal" href="Neslib.FastMath.html#Degrees">degrees</a>).</p>
+<h6 class="description_section">Parameters</h6>
+<dl class="parameters">
+<dt>ARadians</dt>
+<dd>the angle in <a class="normal" href="Neslib.FastMath.html#Radians">radians</a>.</dd>
+<dt>ASin</dt>
+<dd>is set to the sine of the angle.</dd>
+<dt>ACos</dt>
+<dd>is set to the cosine of the angle.</dd>
+</dl>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><a name="Tan"></a><code>function <b>Tan</b>(const ARadians: Single): Single; overload; inline;</code></td>
+</tr>
+<tr class="list2">
+<td class="itemcode"><a name="Tan"></a><code>function <b>Tan</b>(const ARadians: <a  href="Neslib.FastMath.TVector2.html">TVector2</a>): <a  href="Neslib.FastMath.TVector2.html">TVector2</a>; overload; inline;</code></td>
+</tr>
+<tr class="list">
+<td class="itemcode"><a name="Tan"></a><code>function <b>Tan</b>(const ARadians: <a  href="Neslib.FastMath.TVector3.html">TVector3</a>): <a  href="Neslib.FastMath.TVector3.html">TVector3</a>; overload; inline;</code></td>
+</tr>
+<tr class="list2">
+<td class="itemcode"><a name="Tan"></a><code>function <b>Tan</b>(const ARadians: <a  href="Neslib.FastMath.TVector4.html">TVector4</a>): <a  href="Neslib.FastMath.TVector4.html">TVector4</a>; overload; inline;</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+Calculates the tangent of an angle.
+
+<p>
+
+<p> <b>Note</b>: You probably want to use <a class="normal" href="Neslib.FastMath.html#FastTan">FastTan</a> instead, which is much faster but still very accurate to about +/-4000 <a class="normal" href="Neslib.FastMath.html#Radians">radians</a> (or +/-230,000 <a class="normal" href="Neslib.FastMath.html#Degrees">degrees</a>).</p>
+<h6 class="description_section">Parameters</h6>
+<dl class="parameters">
+<dt>ARadians</dt>
+<dd>the angle in <a class="normal" href="Neslib.FastMath.html#Radians">radians</a>.</dd>
+</dl>
+<h6 class="description_section">Returns</h6>
+<p class="return">The tangent of the given angle.</p></td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><a name="ArcSin"></a><code>function <b>ArcSin</b>(const A: Single): Single; overload; inline;</code></td>
+</tr>
+<tr class="list2">
+<td class="itemcode"><a name="ArcSin"></a><code>function <b>ArcSin</b>(const A: <a  href="Neslib.FastMath.TVector2.html">TVector2</a>): <a  href="Neslib.FastMath.TVector2.html">TVector2</a>; overload; inline;</code></td>
+</tr>
+<tr class="list">
+<td class="itemcode"><a name="ArcSin"></a><code>function <b>ArcSin</b>(const A: <a  href="Neslib.FastMath.TVector3.html">TVector3</a>): <a  href="Neslib.FastMath.TVector3.html">TVector3</a>; overload; inline;</code></td>
+</tr>
+<tr class="list2">
+<td class="itemcode"><a name="ArcSin"></a><code>function <b>ArcSin</b>(const A: <a  href="Neslib.FastMath.TVector4.html">TVector4</a>): <a  href="Neslib.FastMath.TVector4.html">TVector4</a>; overload; inline;</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+Calculates the angle whose sine is A.
+
+<p>
+
+<p></p>
+<h6 class="description_section">Parameters</h6>
+<dl class="parameters">
+<dt>A</dt>
+<dd>the sine whose angle to calculate. Results are undefined if (A &lt; -1) or (A &gt; 1).</dd>
+</dl>
+<h6 class="description_section">Returns</h6>
+<p class="return">The angle in <a class="normal" href="Neslib.FastMath.html#Radians">radians</a>, in the range [-Pi/2..Pi/2]</p></td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><a name="ArcCos"></a><code>function <b>ArcCos</b>(const A: Single): Single; overload; inline;</code></td>
+</tr>
+<tr class="list2">
+<td class="itemcode"><a name="ArcCos"></a><code>function <b>ArcCos</b>(const A: <a  href="Neslib.FastMath.TVector2.html">TVector2</a>): <a  href="Neslib.FastMath.TVector2.html">TVector2</a>; overload; inline;</code></td>
+</tr>
+<tr class="list">
+<td class="itemcode"><a name="ArcCos"></a><code>function <b>ArcCos</b>(const A: <a  href="Neslib.FastMath.TVector3.html">TVector3</a>): <a  href="Neslib.FastMath.TVector3.html">TVector3</a>; overload; inline;</code></td>
+</tr>
+<tr class="list2">
+<td class="itemcode"><a name="ArcCos"></a><code>function <b>ArcCos</b>(const A: <a  href="Neslib.FastMath.TVector4.html">TVector4</a>): <a  href="Neslib.FastMath.TVector4.html">TVector4</a>; overload; inline;</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+Calculates the angle whose cosine is A.
+
+<p>
+
+<p></p>
+<h6 class="description_section">Parameters</h6>
+<dl class="parameters">
+<dt>A</dt>
+<dd>the cosine whose angle to calculate. Results are undefined if (A &lt; -1) or (A &gt; 1).</dd>
+</dl>
+<h6 class="description_section">Returns</h6>
+<p class="return">The angle in <a class="normal" href="Neslib.FastMath.html#Radians">radians</a>, in the range [0..Pi]</p></td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><a name="ArcTan"></a><code>function <b>ArcTan</b>(const A: Single): Single; overload; inline;</code></td>
+</tr>
+<tr class="list2">
+<td class="itemcode"><a name="ArcTan"></a><code>function <b>ArcTan</b>(const A: <a  href="Neslib.FastMath.TVector2.html">TVector2</a>): <a  href="Neslib.FastMath.TVector2.html">TVector2</a>; overload; inline;</code></td>
+</tr>
+<tr class="list">
+<td class="itemcode"><a name="ArcTan"></a><code>function <b>ArcTan</b>(const A: <a  href="Neslib.FastMath.TVector3.html">TVector3</a>): <a  href="Neslib.FastMath.TVector3.html">TVector3</a>; overload; inline;</code></td>
+</tr>
+<tr class="list2">
+<td class="itemcode"><a name="ArcTan"></a><code>function <b>ArcTan</b>(const A: <a  href="Neslib.FastMath.TVector4.html">TVector4</a>): <a  href="Neslib.FastMath.TVector4.html">TVector4</a>; overload; inline;</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+Calculates the angle whose tangent is A.
+
+<p>
+
+<p></p>
+<h6 class="description_section">Parameters</h6>
+<dl class="parameters">
+<dt>A</dt>
+<dd>the tangent whose angle to calculate.</dd>
+</dl>
+<h6 class="description_section">Returns</h6>
+<p class="return">The angle in <a class="normal" href="Neslib.FastMath.html#Radians">radians</a>, in the range [-Pi/2..Pi/2]</p></td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><a name="ArcTan2"></a><code>function <b>ArcTan2</b>(const Y, X: Single): Single; overload; inline;</code></td>
+</tr>
+<tr class="list2">
+<td class="itemcode"><a name="ArcTan2"></a><code>function <b>ArcTan2</b>(const Y, X: <a  href="Neslib.FastMath.TVector2.html">TVector2</a>): <a  href="Neslib.FastMath.TVector2.html">TVector2</a>; overload; inline;</code></td>
+</tr>
+<tr class="list">
+<td class="itemcode"><a name="ArcTan2"></a><code>function <b>ArcTan2</b>(const Y, X: <a  href="Neslib.FastMath.TVector3.html">TVector3</a>): <a  href="Neslib.FastMath.TVector3.html">TVector3</a>; overload; inline;</code></td>
+</tr>
+<tr class="list2">
+<td class="itemcode"><a name="ArcTan2"></a><code>function <b>ArcTan2</b>(const Y, X: <a  href="Neslib.FastMath.TVector4.html">TVector4</a>): <a  href="Neslib.FastMath.TVector4.html">TVector4</a>; overload; inline;</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+Calculates the principal value of the arctangent of Y/X, expressed in <a class="normal" href="Neslib.FastMath.html#Radians">radians</a>.
+
+<p> 
+
+<p></p>
+<h6 class="description_section">Parameters</h6>
+<dl class="parameters">
+<dt>Y</dt>
+<dd>proportion of the Y-coordinate.</dd>
+<dt>X</dt>
+<dd>proportion of the X-coordinate.</dd>
+</dl>
+<h6 class="description_section">Returns</h6>
+<p class="return">The angle in <a class="normal" href="Neslib.FastMath.html#Radians">radians</a>, in the range [-Pi..Pi]</p></td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><a name="Sinh"></a><code>function <b>Sinh</b>(const A: Single): Single; overload; inline;</code></td>
+</tr>
+<tr class="list2">
+<td class="itemcode"><a name="Sinh"></a><code>function <b>Sinh</b>(const A: <a  href="Neslib.FastMath.TVector2.html">TVector2</a>): <a  href="Neslib.FastMath.TVector2.html">TVector2</a>; overload; inline;</code></td>
+</tr>
+<tr class="list">
+<td class="itemcode"><a name="Sinh"></a><code>function <b>Sinh</b>(const A: <a  href="Neslib.FastMath.TVector3.html">TVector3</a>): <a  href="Neslib.FastMath.TVector3.html">TVector3</a>; overload; inline;</code></td>
+</tr>
+<tr class="list2">
+<td class="itemcode"><a name="Sinh"></a><code>function <b>Sinh</b>(const A: <a  href="Neslib.FastMath.TVector4.html">TVector4</a>): <a  href="Neslib.FastMath.TVector4.html">TVector4</a>; overload; inline;</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+Calculates a hyperbolic sine.
+
+<p>
+
+<p></p>
+<h6 class="description_section">Parameters</h6>
+<dl class="parameters">
+<dt>A</dt>
+<dd>the value.</dd>
+</dl>
+<h6 class="description_section">Returns</h6>
+<p class="return">The hyperbolic sine of A.</p></td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><a name="Cosh"></a><code>function <b>Cosh</b>(const A: Single): Single; overload; inline;</code></td>
+</tr>
+<tr class="list2">
+<td class="itemcode"><a name="Cosh"></a><code>function <b>Cosh</b>(const A: <a  href="Neslib.FastMath.TVector2.html">TVector2</a>): <a  href="Neslib.FastMath.TVector2.html">TVector2</a>; overload; inline;</code></td>
+</tr>
+<tr class="list">
+<td class="itemcode"><a name="Cosh"></a><code>function <b>Cosh</b>(const A: <a  href="Neslib.FastMath.TVector3.html">TVector3</a>): <a  href="Neslib.FastMath.TVector3.html">TVector3</a>; overload; inline;</code></td>
+</tr>
+<tr class="list2">
+<td class="itemcode"><a name="Cosh"></a><code>function <b>Cosh</b>(const A: <a  href="Neslib.FastMath.TVector4.html">TVector4</a>): <a  href="Neslib.FastMath.TVector4.html">TVector4</a>; overload; inline;</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+Calculates a hyperbolic cosine.
+
+<p>
+
+<p></p>
+<h6 class="description_section">Parameters</h6>
+<dl class="parameters">
+<dt>A</dt>
+<dd>the value.</dd>
+</dl>
+<h6 class="description_section">Returns</h6>
+<p class="return">The hyperbolic cosine of A.</p></td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><a name="Tanh"></a><code>function <b>Tanh</b>(const A: Single): Single; overload; inline;</code></td>
+</tr>
+<tr class="list2">
+<td class="itemcode"><a name="Tanh"></a><code>function <b>Tanh</b>(const A: <a  href="Neslib.FastMath.TVector2.html">TVector2</a>): <a  href="Neslib.FastMath.TVector2.html">TVector2</a>; overload; inline;</code></td>
+</tr>
+<tr class="list">
+<td class="itemcode"><a name="Tanh"></a><code>function <b>Tanh</b>(const A: <a  href="Neslib.FastMath.TVector3.html">TVector3</a>): <a  href="Neslib.FastMath.TVector3.html">TVector3</a>; overload; inline;</code></td>
+</tr>
+<tr class="list2">
+<td class="itemcode"><a name="Tanh"></a><code>function <b>Tanh</b>(const A: <a  href="Neslib.FastMath.TVector4.html">TVector4</a>): <a  href="Neslib.FastMath.TVector4.html">TVector4</a>; overload; inline;</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+Calculates a hyperbolic tangent.
+
+<p>
+
+<p></p>
+<h6 class="description_section">Parameters</h6>
+<dl class="parameters">
+<dt>A</dt>
+<dd>the value.</dd>
+</dl>
+<h6 class="description_section">Returns</h6>
+<p class="return">The hyperbolic tangent of A.</p></td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><a name="ArcSinh"></a><code>function <b>ArcSinh</b>(const A: Single): Single; overload; inline;</code></td>
+</tr>
+<tr class="list2">
+<td class="itemcode"><a name="ArcSinh"></a><code>function <b>ArcSinh</b>(const A: <a  href="Neslib.FastMath.TVector2.html">TVector2</a>): <a  href="Neslib.FastMath.TVector2.html">TVector2</a>; overload; inline;</code></td>
+</tr>
+<tr class="list">
+<td class="itemcode"><a name="ArcSinh"></a><code>function <b>ArcSinh</b>(const A: <a  href="Neslib.FastMath.TVector3.html">TVector3</a>): <a  href="Neslib.FastMath.TVector3.html">TVector3</a>; overload; inline;</code></td>
+</tr>
+<tr class="list2">
+<td class="itemcode"><a name="ArcSinh"></a><code>function <b>ArcSinh</b>(const A: <a  href="Neslib.FastMath.TVector4.html">TVector4</a>): <a  href="Neslib.FastMath.TVector4.html">TVector4</a>; overload; inline;</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+Calculates an inverse hyperbolic sine.
+
+<p>
+
+<p></p>
+<h6 class="description_section">Parameters</h6>
+<dl class="parameters">
+<dt>A</dt>
+<dd>the value.</dd>
+</dl>
+<h6 class="description_section">Returns</h6>
+<p class="return">The inverse hyperbolic sine of A.</p></td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><a name="ArcCosh"></a><code>function <b>ArcCosh</b>(const A: Single): Single; overload; inline;</code></td>
+</tr>
+<tr class="list2">
+<td class="itemcode"><a name="ArcCosh"></a><code>function <b>ArcCosh</b>(const A: <a  href="Neslib.FastMath.TVector2.html">TVector2</a>): <a  href="Neslib.FastMath.TVector2.html">TVector2</a>; overload; inline;</code></td>
+</tr>
+<tr class="list">
+<td class="itemcode"><a name="ArcCosh"></a><code>function <b>ArcCosh</b>(const A: <a  href="Neslib.FastMath.TVector3.html">TVector3</a>): <a  href="Neslib.FastMath.TVector3.html">TVector3</a>; overload; inline;</code></td>
+</tr>
+<tr class="list2">
+<td class="itemcode"><a name="ArcCosh"></a><code>function <b>ArcCosh</b>(const A: <a  href="Neslib.FastMath.TVector4.html">TVector4</a>): <a  href="Neslib.FastMath.TVector4.html">TVector4</a>; overload; inline;</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+Calculates an inverse hyperbolic cosine.
+
+<p>
+
+<p></p>
+<h6 class="description_section">Parameters</h6>
+<dl class="parameters">
+<dt>A</dt>
+<dd>the value.</dd>
+</dl>
+<h6 class="description_section">Returns</h6>
+<p class="return">The inverse hyperbolic cosine of A.</p></td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><a name="ArcTanh"></a><code>function <b>ArcTanh</b>(const A: Single): Single; overload; inline;</code></td>
+</tr>
+<tr class="list2">
+<td class="itemcode"><a name="ArcTanh"></a><code>function <b>ArcTanh</b>(const A: <a  href="Neslib.FastMath.TVector2.html">TVector2</a>): <a  href="Neslib.FastMath.TVector2.html">TVector2</a>; overload; inline;</code></td>
+</tr>
+<tr class="list">
+<td class="itemcode"><a name="ArcTanh"></a><code>function <b>ArcTanh</b>(const A: <a  href="Neslib.FastMath.TVector3.html">TVector3</a>): <a  href="Neslib.FastMath.TVector3.html">TVector3</a>; overload; inline;</code></td>
+</tr>
+<tr class="list2">
+<td class="itemcode"><a name="ArcTanh"></a><code>function <b>ArcTanh</b>(const A: <a  href="Neslib.FastMath.TVector4.html">TVector4</a>): <a  href="Neslib.FastMath.TVector4.html">TVector4</a>; overload; inline;</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+Calculates an inverse hyperbolic tangent.
+
+<p>
+
+<p></p>
+<h6 class="description_section">Parameters</h6>
+<dl class="parameters">
+<dt>A</dt>
+<dd>the value.</dd>
+</dl>
+<h6 class="description_section">Returns</h6>
+<p class="return">The inverse hyperbolic tangent of A.</p></td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><a name="Power"></a><code>function <b>Power</b>(const ABase, AExponent: Single): Single; overload; inline;</code></td>
+</tr>
+<tr class="list2">
+<td class="itemcode"><a name="Power"></a><code>function <b>Power</b>(const ABase, AExponent: <a  href="Neslib.FastMath.TVector2.html">TVector2</a>): <a  href="Neslib.FastMath.TVector2.html">TVector2</a>; overload; inline;</code></td>
+</tr>
+<tr class="list">
+<td class="itemcode"><a name="Power"></a><code>function <b>Power</b>(const ABase, AExponent: <a  href="Neslib.FastMath.TVector3.html">TVector3</a>): <a  href="Neslib.FastMath.TVector3.html">TVector3</a>; overload;</code></td>
+</tr>
+<tr class="list2">
+<td class="itemcode"><a name="Power"></a><code>function <b>Power</b>(const ABase, AExponent: <a  href="Neslib.FastMath.TVector4.html">TVector4</a>): <a  href="Neslib.FastMath.TVector4.html">TVector4</a>; overload;</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+Calculates ABase raised to the AExponent <a class="normal" href="Neslib.FastMath.html#Power">power</a>.
+
+<p> 
+
+<p> <b>Note</b>: Consider using <a class="normal" href="Neslib.FastMath.html#FastPower">FastPower</a> instead, which is much faster, but at a maximum relative error of about 0.2%.</p>
+<h6 class="description_section">Parameters</h6>
+<dl class="parameters">
+<dt>ABase</dt>
+<dd>the base value. Must be &gt;= 0.</dd>
+<dt>AExponent</dt>
+<dd>the exponent value.</dd>
+</dl>
+<h6 class="description_section">Returns</h6>
+<p class="return">ABase raised to the AExponent <a class="normal" href="Neslib.FastMath.html#Power">power</a>. Results are undefined if both ABase=0 and AExponent&lt;=0.</p></td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><a name="Exp"></a><code>function <b>Exp</b>(const A: Single): Single; overload; inline;</code></td>
+</tr>
+<tr class="list2">
+<td class="itemcode"><a name="Exp"></a><code>function <b>Exp</b>(const A: <a  href="Neslib.FastMath.TVector2.html">TVector2</a>): <a  href="Neslib.FastMath.TVector2.html">TVector2</a>; overload; inline;</code></td>
+</tr>
+<tr class="list">
+<td class="itemcode"><a name="Exp"></a><code>function <b>Exp</b>(const A: <a  href="Neslib.FastMath.TVector3.html">TVector3</a>): <a  href="Neslib.FastMath.TVector3.html">TVector3</a>; overload;</code></td>
+</tr>
+<tr class="list2">
+<td class="itemcode"><a name="Exp"></a><code>function <b>Exp</b>(const A: <a  href="Neslib.FastMath.TVector4.html">TVector4</a>): <a  href="Neslib.FastMath.TVector4.html">TVector4</a>; overload;</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+Calculates a natural exponentiation (that is, e raised to a given <a class="normal" href="Neslib.FastMath.html#Power">power</a>).
+
+<p>
+
+<p> <b>Note</b>: Consider using <a class="normal" href="Neslib.FastMath.html#FastExp">FastExp</a> instead, which is much faster, but at a maximum absolute error of about 0.00001.</p>
+<h6 class="description_section">Parameters</h6>
+<dl class="parameters">
+<dt>A</dt>
+<dd>the value</dd>
+</dl>
+<h6 class="description_section">Returns</h6>
+<p class="return">The natural exponentation of A (e raised to the <a class="normal" href="Neslib.FastMath.html#Power">power</a> of A).</p></td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><a name="Ln"></a><code>function <b>Ln</b>(const A: Single): Single; overload; inline;</code></td>
+</tr>
+<tr class="list2">
+<td class="itemcode"><a name="Ln"></a><code>function <b>Ln</b>(const A: <a  href="Neslib.FastMath.TVector2.html">TVector2</a>): <a  href="Neslib.FastMath.TVector2.html">TVector2</a>; overload; inline;</code></td>
+</tr>
+<tr class="list">
+<td class="itemcode"><a name="Ln"></a><code>function <b>Ln</b>(const A: <a  href="Neslib.FastMath.TVector3.html">TVector3</a>): <a  href="Neslib.FastMath.TVector3.html">TVector3</a>; overload;</code></td>
+</tr>
+<tr class="list2">
+<td class="itemcode"><a name="Ln"></a><code>function <b>Ln</b>(const A: <a  href="Neslib.FastMath.TVector4.html">TVector4</a>): <a  href="Neslib.FastMath.TVector4.html">TVector4</a>; overload;</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+Calculates a natural logarithm.
+
+<p>
+
+<p> <b>Note</b>: Consider using <a class="normal" href="Neslib.FastMath.html#FastLn">FastLn</a> instead, which is much faster, but at a maximum absolute error of about 0.00003.</p>
+<h6 class="description_section">Parameters</h6>
+<dl class="parameters">
+<dt>A</dt>
+<dd>the value. Results are undefined if A &lt;= 0.</dd>
+</dl>
+<h6 class="description_section">Returns</h6>
+<p class="return">The natural logarithm of A (that is, the value B so that A equals e raised to the <a class="normal" href="Neslib.FastMath.html#Power">power</a> of B)</p></td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><a name="Exp2"></a><code>function <b>Exp2</b>(const A: Single): Single; overload; inline;</code></td>
+</tr>
+<tr class="list2">
+<td class="itemcode"><a name="Exp2"></a><code>function <b>Exp2</b>(const A: <a  href="Neslib.FastMath.TVector2.html">TVector2</a>): <a  href="Neslib.FastMath.TVector2.html">TVector2</a>; overload; inline;</code></td>
+</tr>
+<tr class="list">
+<td class="itemcode"><a name="Exp2"></a><code>function <b>Exp2</b>(const A: <a  href="Neslib.FastMath.TVector3.html">TVector3</a>): <a  href="Neslib.FastMath.TVector3.html">TVector3</a>; overload;</code></td>
+</tr>
+<tr class="list2">
+<td class="itemcode"><a name="Exp2"></a><code>function <b>Exp2</b>(const A: <a  href="Neslib.FastMath.TVector4.html">TVector4</a>): <a  href="Neslib.FastMath.TVector4.html">TVector4</a>; overload;</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+Calculates 2 raised to a <a class="normal" href="Neslib.FastMath.html#Power">power</a>.
+
+<p>
+
+<p> <b>Note</b>: Consider using <a class="normal" href="Neslib.FastMath.html#FastExp2">FastExp2</a> instead, which is much faster, but less accurate.</p>
+<h6 class="description_section">Parameters</h6>
+<dl class="parameters">
+<dt>A</dt>
+<dd>the value</dd>
+</dl>
+<h6 class="description_section">Returns</h6>
+<p class="return">2 raised to the <a class="normal" href="Neslib.FastMath.html#Power">power</a> of A.</p></td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><a name="Log2"></a><code>function <b>Log2</b>(const A: Single): Single; overload; inline;</code></td>
+</tr>
+<tr class="list2">
+<td class="itemcode"><a name="Log2"></a><code>function <b>Log2</b>(const A: <a  href="Neslib.FastMath.TVector2.html">TVector2</a>): <a  href="Neslib.FastMath.TVector2.html">TVector2</a>; overload; inline;</code></td>
+</tr>
+<tr class="list">
+<td class="itemcode"><a name="Log2"></a><code>function <b>Log2</b>(const A: <a  href="Neslib.FastMath.TVector3.html">TVector3</a>): <a  href="Neslib.FastMath.TVector3.html">TVector3</a>; overload;</code></td>
+</tr>
+<tr class="list2">
+<td class="itemcode"><a name="Log2"></a><code>function <b>Log2</b>(const A: <a  href="Neslib.FastMath.TVector4.html">TVector4</a>): <a  href="Neslib.FastMath.TVector4.html">TVector4</a>; overload;</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+Calculates a base 2 logarithm.
+
+<p>
+
+<p> <b>Note</b>: Consider using <a class="normal" href="Neslib.FastMath.html#FastLog2">FastLog2</a> instead, which is much faster, but at a maximum absolute error of about 0.0002.</p>
+<h6 class="description_section">Parameters</h6>
+<dl class="parameters">
+<dt>A</dt>
+<dd>the value. Results are undefined if A &lt;= 0.</dd>
+</dl>
+<h6 class="description_section">Returns</h6>
+<p class="return">The base 2 logarithm of A (that is, the value B so that A equals 2 raised to the <a class="normal" href="Neslib.FastMath.html#Power">power</a> of B)</p></td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><a name="Sqrt"></a><code>function <b>Sqrt</b>(const A: Single): Single; overload;</code></td>
+</tr>
+<tr class="list2">
+<td class="itemcode"><a name="Sqrt"></a><code>function <b>Sqrt</b>(const A: <a  href="Neslib.FastMath.TVector2.html">TVector2</a>): <a  href="Neslib.FastMath.TVector2.html">TVector2</a>; overload;</code></td>
+</tr>
+<tr class="list">
+<td class="itemcode"><a name="Sqrt"></a><code>function <b>Sqrt</b>(const A: <a  href="Neslib.FastMath.TVector3.html">TVector3</a>): <a  href="Neslib.FastMath.TVector3.html">TVector3</a>; overload;</code></td>
+</tr>
+<tr class="list2">
+<td class="itemcode"><a name="Sqrt"></a><code>function <b>Sqrt</b>(const A: <a  href="Neslib.FastMath.TVector4.html">TVector4</a>): <a  href="Neslib.FastMath.TVector4.html">TVector4</a>; overload;</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+Calculates a square root.
+
+<p>
+
+<p> <b>Note</b>: If you plan to divide a certain value by the returned square root, then consider using <a class="normal" href="Neslib.FastMath.html#InverseSqrt">InverseSqrt</a> instead. That version is usually faster to calculate and you can replace an expensive division with a faster multiplication.</p>
+<h6 class="description_section">Parameters</h6>
+<dl class="parameters">
+<dt>A</dt>
+<dd>the value. Results are undefined if A &lt; 0.</dd>
+</dl>
+<h6 class="description_section">Returns</h6>
+<p class="return">The square root of A.</p></td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><a name="InverseSqrt"></a><code>function <b>InverseSqrt</b>(const A: Single): Single; overload;</code></td>
+</tr>
+<tr class="list2">
+<td class="itemcode"><a name="InverseSqrt"></a><code>function <b>InverseSqrt</b>(const A: <a  href="Neslib.FastMath.TVector2.html">TVector2</a>): <a  href="Neslib.FastMath.TVector2.html">TVector2</a>; overload;</code></td>
+</tr>
+<tr class="list">
+<td class="itemcode"><a name="InverseSqrt"></a><code>function <b>InverseSqrt</b>(const A: <a  href="Neslib.FastMath.TVector3.html">TVector3</a>): <a  href="Neslib.FastMath.TVector3.html">TVector3</a>; overload;</code></td>
+</tr>
+<tr class="list2">
+<td class="itemcode"><a name="InverseSqrt"></a><code>function <b>InverseSqrt</b>(const A: <a  href="Neslib.FastMath.TVector4.html">TVector4</a>): <a  href="Neslib.FastMath.TVector4.html">TVector4</a>; overload;</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+Calculates an inverse square root.
+
+<p>
+
+<p> <b>Note</b>: You can use this function if you need to divide a given value by a square root. The inverse square root is usually faster to calculate, and you can replace an expensive division with a faster multiplication.
+
+<p><b>Note</b>: The SIMD optimized versions of these functions use an approximation, resulting in a very small error.</p>
+<h6 class="description_section">Parameters</h6>
+<dl class="parameters">
+<dt>A</dt>
+<dd>the value. Results are undefined if A &lt;= 0.</dd>
+</dl>
+<h6 class="description_section">Returns</h6>
+<p class="return">1/<a class="normal" href="Neslib.FastMath.html#Sqrt">Sqrt</a>(A)</p></td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><a name="FastSin"></a><code>function <b>FastSin</b>(const ARadians: Single): Single; overload;</code></td>
+</tr>
+<tr class="list2">
+<td class="itemcode"><a name="FastSin"></a><code>function <b>FastSin</b>(const ARadians: <a  href="Neslib.FastMath.TVector2.html">TVector2</a>): <a  href="Neslib.FastMath.TVector2.html">TVector2</a>; overload;</code></td>
+</tr>
+<tr class="list">
+<td class="itemcode"><a name="FastSin"></a><code>function <b>FastSin</b>(const ARadians: <a  href="Neslib.FastMath.TVector3.html">TVector3</a>): <a  href="Neslib.FastMath.TVector3.html">TVector3</a>; overload;</code></td>
+</tr>
+<tr class="list2">
+<td class="itemcode"><a name="FastSin"></a><code>function <b>FastSin</b>(const ARadians: <a  href="Neslib.FastMath.TVector4.html">TVector4</a>): <a  href="Neslib.FastMath.TVector4.html">TVector4</a>; overload;</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+Calculates the sine of an angle.
+
+<p>
+
+<p> <b>Note</b>: This function provides excellent precisions when ARadians is about the range [-4000..4000] (about +/-230,000 <a class="normal" href="Neslib.FastMath.html#Degrees">degrees</a>)</p>
+<h6 class="description_section">Parameters</h6>
+<dl class="parameters">
+<dt>ARadians</dt>
+<dd>the angle in <a class="normal" href="Neslib.FastMath.html#Radians">radians</a>.</dd>
+</dl>
+<h6 class="description_section">Returns</h6>
+<p class="return">The (approximate) sine of the given angle.</p></td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><a name="FastCos"></a><code>function <b>FastCos</b>(const ARadians: Single): Single; overload;</code></td>
+</tr>
+<tr class="list2">
+<td class="itemcode"><a name="FastCos"></a><code>function <b>FastCos</b>(const ARadians: <a  href="Neslib.FastMath.TVector2.html">TVector2</a>): <a  href="Neslib.FastMath.TVector2.html">TVector2</a>; overload;</code></td>
+</tr>
+<tr class="list">
+<td class="itemcode"><a name="FastCos"></a><code>function <b>FastCos</b>(const ARadians: <a  href="Neslib.FastMath.TVector3.html">TVector3</a>): <a  href="Neslib.FastMath.TVector3.html">TVector3</a>; overload;</code></td>
+</tr>
+<tr class="list2">
+<td class="itemcode"><a name="FastCos"></a><code>function <b>FastCos</b>(const ARadians: <a  href="Neslib.FastMath.TVector4.html">TVector4</a>): <a  href="Neslib.FastMath.TVector4.html">TVector4</a>; overload;</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+Calculates the cosine of an angle.
+
+<p>
+
+<p> <b>Note</b>: This function provides excellent precisions when ARadians is about the range [-4000..4000] (about +/-230,000 <a class="normal" href="Neslib.FastMath.html#Degrees">degrees</a>)</p>
+<h6 class="description_section">Parameters</h6>
+<dl class="parameters">
+<dt>ARadians</dt>
+<dd>the angle in <a class="normal" href="Neslib.FastMath.html#Radians">radians</a>.</dd>
+</dl>
+<h6 class="description_section">Returns</h6>
+<p class="return">The (approximate) cosine of the given angle.</p></td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><a name="FastSinCos"></a><code>procedure <b>FastSinCos</b>(const ARadians: Single; out ASin, ACos: Single); overload;</code></td>
+</tr>
+<tr class="list2">
+<td class="itemcode"><a name="FastSinCos"></a><code>procedure <b>FastSinCos</b>(const ARadians: <a  href="Neslib.FastMath.TVector2.html">TVector2</a>; out ASin, ACos: <a  href="Neslib.FastMath.TVector2.html">TVector2</a>); overload;</code></td>
+</tr>
+<tr class="list">
+<td class="itemcode"><a name="FastSinCos"></a><code>procedure <b>FastSinCos</b>(const ARadians: <a  href="Neslib.FastMath.TVector3.html">TVector3</a>; out ASin, ACos: <a  href="Neslib.FastMath.TVector3.html">TVector3</a>); overload;</code></td>
+</tr>
+<tr class="list2">
+<td class="itemcode"><a name="FastSinCos"></a><code>procedure <b>FastSinCos</b>(const ARadians: <a  href="Neslib.FastMath.TVector4.html">TVector4</a>; out ASin, ACos: <a  href="Neslib.FastMath.TVector4.html">TVector4</a>); overload;</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+Calculates the sine and cosine of an angle. This is faster than calling <a class="normal" href="Neslib.FastMath.html#FastSin">FastSin</a> and <a class="normal" href="Neslib.FastMath.html#FastCos">FastCos</a> separately.
+
+<p>  
+
+<p><b>Note</b>: This function provides excellent precisions when ARadians is about the range [-4000..4000] (about +/-230,000 <a class="normal" href="Neslib.FastMath.html#Degrees">degrees</a>)</p>
+<h6 class="description_section">Parameters</h6>
+<dl class="parameters">
+<dt>ARadians</dt>
+<dd>the angle in <a class="normal" href="Neslib.FastMath.html#Radians">radians</a>.</dd>
+<dt>ASin</dt>
+<dd>is set to the (approximate) sine of the angle.</dd>
+<dt>ACos</dt>
+<dd>is set to the (approximate) cosine of the angle.</dd>
+</dl>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><a name="FastTan"></a><code>function <b>FastTan</b>(const ARadians: Single): Single; overload;</code></td>
+</tr>
+<tr class="list2">
+<td class="itemcode"><a name="FastTan"></a><code>function <b>FastTan</b>(const ARadians: <a  href="Neslib.FastMath.TVector2.html">TVector2</a>): <a  href="Neslib.FastMath.TVector2.html">TVector2</a>; overload;</code></td>
+</tr>
+<tr class="list">
+<td class="itemcode"><a name="FastTan"></a><code>function <b>FastTan</b>(const ARadians: <a  href="Neslib.FastMath.TVector3.html">TVector3</a>): <a  href="Neslib.FastMath.TVector3.html">TVector3</a>; overload;</code></td>
+</tr>
+<tr class="list2">
+<td class="itemcode"><a name="FastTan"></a><code>function <b>FastTan</b>(const ARadians: <a  href="Neslib.FastMath.TVector4.html">TVector4</a>): <a  href="Neslib.FastMath.TVector4.html">TVector4</a>; overload;</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+Calculates the tangent of an angle.
+
+<p>
+
+<p> <b>Note</b>: This function provides excellent precisions when ARadians is about the range [-4000..4000] (about +/-230,000 <a class="normal" href="Neslib.FastMath.html#Degrees">degrees</a>)</p>
+<h6 class="description_section">Parameters</h6>
+<dl class="parameters">
+<dt>ARadians</dt>
+<dd>the angle in <a class="normal" href="Neslib.FastMath.html#Radians">radians</a>.</dd>
+</dl>
+<h6 class="description_section">Returns</h6>
+<p class="return">The (approximate) tangent of the given angle.</p></td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><a name="FastArcTan2"></a><code>function <b>FastArcTan2</b>(const Y, X: Single): Single; overload;</code></td>
+</tr>
+<tr class="list2">
+<td class="itemcode"><a name="FastArcTan2"></a><code>function <b>FastArcTan2</b>(const Y, X: <a  href="Neslib.FastMath.TVector2.html">TVector2</a>): <a  href="Neslib.FastMath.TVector2.html">TVector2</a>; overload;</code></td>
+</tr>
+<tr class="list">
+<td class="itemcode"><a name="FastArcTan2"></a><code>function <b>FastArcTan2</b>(const Y, X: <a  href="Neslib.FastMath.TVector3.html">TVector3</a>): <a  href="Neslib.FastMath.TVector3.html">TVector3</a>; overload;</code></td>
+</tr>
+<tr class="list2">
+<td class="itemcode"><a name="FastArcTan2"></a><code>function <b>FastArcTan2</b>(const Y, X: <a  href="Neslib.FastMath.TVector4.html">TVector4</a>): <a  href="Neslib.FastMath.TVector4.html">TVector4</a>; overload;</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+Calculates the principal value of the arctangent of Y/X, expressed in <a class="normal" href="Neslib.FastMath.html#Radians">radians</a>.
+
+<p> 
+
+<p></p>
+<h6 class="description_section">Parameters</h6>
+<dl class="parameters">
+<dt>Y</dt>
+<dd>proportion of the Y-coordinate.</dd>
+<dt>X</dt>
+<dd>proportion of the X-coordinate.</dd>
+</dl>
+<h6 class="description_section">Returns</h6>
+<p class="return">The (approximate) angle in <a class="normal" href="Neslib.FastMath.html#Radians">radians</a>, in the range [-Pi..Pi]</p></td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><a name="FastPower"></a><code>function <b>FastPower</b>(const ABase, AExponent: Single): Single; overload; inline;</code></td>
+</tr>
+<tr class="list2">
+<td class="itemcode"><a name="FastPower"></a><code>function <b>FastPower</b>(const ABase, AExponent: <a  href="Neslib.FastMath.TVector2.html">TVector2</a>): <a  href="Neslib.FastMath.TVector2.html">TVector2</a>; overload; inline;</code></td>
+</tr>
+<tr class="list">
+<td class="itemcode"><a name="FastPower"></a><code>function <b>FastPower</b>(const ABase, AExponent: <a  href="Neslib.FastMath.TVector3.html">TVector3</a>): <a  href="Neslib.FastMath.TVector3.html">TVector3</a>; overload;</code></td>
+</tr>
+<tr class="list2">
+<td class="itemcode"><a name="FastPower"></a><code>function <b>FastPower</b>(const ABase, AExponent: <a  href="Neslib.FastMath.TVector4.html">TVector4</a>): <a  href="Neslib.FastMath.TVector4.html">TVector4</a>; overload;</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+Calculates ABase raised to the AExponent <a class="normal" href="Neslib.FastMath.html#Power">power</a>.
+
+<p> 
+
+<p> <b>Note</b>: The error depends on the magnitude of the result. The relative error is at most about 0.2%</p>
+<h6 class="description_section">Parameters</h6>
+<dl class="parameters">
+<dt>ABase</dt>
+<dd>the base value. Must be &gt;= 0.</dd>
+<dt>AExponent</dt>
+<dd>the exponent value.</dd>
+</dl>
+<h6 class="description_section">Returns</h6>
+<p class="return">(Approximate) ABase raised to the AExponent <a class="normal" href="Neslib.FastMath.html#Power">power</a>. Results are undefined if both ABase=0 and AExponent&lt;=0.</p></td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><a name="FastExp"></a><code>function <b>FastExp</b>(const A: Single): Single; overload;</code></td>
+</tr>
+<tr class="list2">
+<td class="itemcode"><a name="FastExp"></a><code>function <b>FastExp</b>(const A: <a  href="Neslib.FastMath.TVector2.html">TVector2</a>): <a  href="Neslib.FastMath.TVector2.html">TVector2</a>; overload;</code></td>
+</tr>
+<tr class="list">
+<td class="itemcode"><a name="FastExp"></a><code>function <b>FastExp</b>(const A: <a  href="Neslib.FastMath.TVector3.html">TVector3</a>): <a  href="Neslib.FastMath.TVector3.html">TVector3</a>; overload;</code></td>
+</tr>
+<tr class="list2">
+<td class="itemcode"><a name="FastExp"></a><code>function <b>FastExp</b>(const A: <a  href="Neslib.FastMath.TVector4.html">TVector4</a>): <a  href="Neslib.FastMath.TVector4.html">TVector4</a>; overload;</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+Calculates a natural exponentiation (that is, e raised to a given <a class="normal" href="Neslib.FastMath.html#Power">power</a>).
+
+<p>
+
+<p> <b>Note</b>: Maximum absolute error is about 0.00001</p>
+<h6 class="description_section">Parameters</h6>
+<dl class="parameters">
+<dt>A</dt>
+<dd>the value</dd>
+</dl>
+<h6 class="description_section">Returns</h6>
+<p class="return">The (approximate) natural exponentation of A (e raised to the <a class="normal" href="Neslib.FastMath.html#Power">power</a> of A)</p></td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><a name="FastLn"></a><code>function <b>FastLn</b>(const A: Single): Single; overload;</code></td>
+</tr>
+<tr class="list2">
+<td class="itemcode"><a name="FastLn"></a><code>function <b>FastLn</b>(const A: <a  href="Neslib.FastMath.TVector2.html">TVector2</a>): <a  href="Neslib.FastMath.TVector2.html">TVector2</a>; overload;</code></td>
+</tr>
+<tr class="list">
+<td class="itemcode"><a name="FastLn"></a><code>function <b>FastLn</b>(const A: <a  href="Neslib.FastMath.TVector3.html">TVector3</a>): <a  href="Neslib.FastMath.TVector3.html">TVector3</a>; overload;</code></td>
+</tr>
+<tr class="list2">
+<td class="itemcode"><a name="FastLn"></a><code>function <b>FastLn</b>(const A: <a  href="Neslib.FastMath.TVector4.html">TVector4</a>): <a  href="Neslib.FastMath.TVector4.html">TVector4</a>; overload;</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+Calculates a natural logarithm.
+
+<p>
+
+<p> <b>Note</b>: Maximum absolute error is about 0.00003.</p>
+<h6 class="description_section">Parameters</h6>
+<dl class="parameters">
+<dt>A</dt>
+<dd>the value. Results are undefined if A &lt;= 0.</dd>
+</dl>
+<h6 class="description_section">Returns</h6>
+<p class="return">The (approximate) natural logarithm of A (that is, the value B so that A equals e raised to the <a class="normal" href="Neslib.FastMath.html#Power">power</a> of B)</p></td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><a name="FastLog2"></a><code>function <b>FastLog2</b>(const A: Single): Single; overload;</code></td>
+</tr>
+<tr class="list2">
+<td class="itemcode"><a name="FastLog2"></a><code>function <b>FastLog2</b>(const A: <a  href="Neslib.FastMath.TVector2.html">TVector2</a>): <a  href="Neslib.FastMath.TVector2.html">TVector2</a>; overload;</code></td>
+</tr>
+<tr class="list">
+<td class="itemcode"><a name="FastLog2"></a><code>function <b>FastLog2</b>(const A: <a  href="Neslib.FastMath.TVector3.html">TVector3</a>): <a  href="Neslib.FastMath.TVector3.html">TVector3</a>; overload;</code></td>
+</tr>
+<tr class="list2">
+<td class="itemcode"><a name="FastLog2"></a><code>function <b>FastLog2</b>(const A: <a  href="Neslib.FastMath.TVector4.html">TVector4</a>): <a  href="Neslib.FastMath.TVector4.html">TVector4</a>; overload;</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+Calculates a base 2 logarithm.
+
+<p>
+
+<p> <b>Note</b>: Maximum absolute error is about 0.0002</p>
+<h6 class="description_section">Parameters</h6>
+<dl class="parameters">
+<dt>A</dt>
+<dd>the value. Results are undefined if A &lt;= 0.</dd>
+</dl>
+<h6 class="description_section">Returns</h6>
+<p class="return">The (approximate) base 2 logarithm of A (that is, the value B so that A equals 2 raised to the <a class="normal" href="Neslib.FastMath.html#Power">power</a> of B)</p></td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><a name="FastExp2"></a><code>function <b>FastExp2</b>(const A: Single): Single; overload;</code></td>
+</tr>
+<tr class="list2">
+<td class="itemcode"><a name="FastExp2"></a><code>function <b>FastExp2</b>(const A: <a  href="Neslib.FastMath.TVector2.html">TVector2</a>): <a  href="Neslib.FastMath.TVector2.html">TVector2</a>; overload;</code></td>
+</tr>
+<tr class="list">
+<td class="itemcode"><a name="FastExp2"></a><code>function <b>FastExp2</b>(const A: <a  href="Neslib.FastMath.TVector3.html">TVector3</a>): <a  href="Neslib.FastMath.TVector3.html">TVector3</a>; overload;</code></td>
+</tr>
+<tr class="list2">
+<td class="itemcode"><a name="FastExp2"></a><code>function <b>FastExp2</b>(const A: <a  href="Neslib.FastMath.TVector4.html">TVector4</a>): <a  href="Neslib.FastMath.TVector4.html">TVector4</a>; overload;</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+Calculates 2 raised to a <a class="normal" href="Neslib.FastMath.html#Power">power</a>.
+
+<p>
+
+<p> <b>Note</b>: If A needs to be outside of the range [-127..127], then use <a class="normal" href="Neslib.FastMath.html#Exp2">Exp2</a> instead.</p>
+<h6 class="description_section">Parameters</h6>
+<dl class="parameters">
+<dt>A</dt>
+<dd>the value. Must be in the range [-127..127] for valid results.</dd>
+</dl>
+<h6 class="description_section">Returns</h6>
+<p class="return">(Approximate) 2 raised to the <a class="normal" href="Neslib.FastMath.html#Power">power</a> of A.</p></td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><a name="Abs"></a><code>function <b>Abs</b>(const A: Single): Single; overload; inline;</code></td>
+</tr>
+<tr class="list2">
+<td class="itemcode"><a name="Abs"></a><code>function <b>Abs</b>(const A: <a  href="Neslib.FastMath.TVector2.html">TVector2</a>): <a  href="Neslib.FastMath.TVector2.html">TVector2</a>; overload; inline;</code></td>
+</tr>
+<tr class="list">
+<td class="itemcode"><a name="Abs"></a><code>function <b>Abs</b>(const A: <a  href="Neslib.FastMath.TVector3.html">TVector3</a>): <a  href="Neslib.FastMath.TVector3.html">TVector3</a>; overload;</code></td>
+</tr>
+<tr class="list2">
+<td class="itemcode"><a name="Abs"></a><code>function <b>Abs</b>(const A: <a  href="Neslib.FastMath.TVector4.html">TVector4</a>): <a  href="Neslib.FastMath.TVector4.html">TVector4</a>; overload;</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+Calculates an absolute value.
+
+<p>
+
+<p></p>
+<h6 class="description_section">Parameters</h6>
+<dl class="parameters">
+<dt>A</dt>
+<dd>the value.</dd>
+</dl>
+<h6 class="description_section">Returns</h6>
+<p class="return">A if A &gt;= 0, otherwise -A.</p></td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><a name="Sign"></a><code>function <b>Sign</b>(const A: Single): Single; overload;</code></td>
+</tr>
+<tr class="list2">
+<td class="itemcode"><a name="Sign"></a><code>function <b>Sign</b>(const A: <a  href="Neslib.FastMath.TVector2.html">TVector2</a>): <a  href="Neslib.FastMath.TVector2.html">TVector2</a>; overload;</code></td>
+</tr>
+<tr class="list">
+<td class="itemcode"><a name="Sign"></a><code>function <b>Sign</b>(const A: <a  href="Neslib.FastMath.TVector3.html">TVector3</a>): <a  href="Neslib.FastMath.TVector3.html">TVector3</a>; overload;</code></td>
+</tr>
+<tr class="list2">
+<td class="itemcode"><a name="Sign"></a><code>function <b>Sign</b>(const A: <a  href="Neslib.FastMath.TVector4.html">TVector4</a>): <a  href="Neslib.FastMath.TVector4.html">TVector4</a>; overload;</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+Calculates the <a class="normal" href="Neslib.FastMath.html#Sign">sign</a> of a value.
+
+<p>
+
+<p></p>
+<h6 class="description_section">Parameters</h6>
+<dl class="parameters">
+<dt>A</dt>
+<dd>the value.</dd>
+</dl>
+<h6 class="description_section">Returns</h6>
+<p class="return">-1.0 if A &lt; 0, 0.0 if A = 0, or 1.0 if A &gt; 0.</p></td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><a name="Floor"></a><code>function <b>Floor</b>(const A: Single): Integer; overload; inline;</code></td>
+</tr>
+<tr class="list2">
+<td class="itemcode"><a name="Floor"></a><code>function <b>Floor</b>(const A: <a  href="Neslib.FastMath.TVector2.html">TVector2</a>): <a  href="Neslib.FastMath.TIVector2.html">TIVector2</a>; overload;</code></td>
+</tr>
+<tr class="list">
+<td class="itemcode"><a name="Floor"></a><code>function <b>Floor</b>(const A: <a  href="Neslib.FastMath.TVector3.html">TVector3</a>): <a  href="Neslib.FastMath.TIVector3.html">TIVector3</a>; overload;</code></td>
+</tr>
+<tr class="list2">
+<td class="itemcode"><a name="Floor"></a><code>function <b>Floor</b>(const A: <a  href="Neslib.FastMath.TVector4.html">TVector4</a>): <a  href="Neslib.FastMath.TIVector4.html">TIVector4</a>; overload;</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+Rounds a value towards negative infinity.
+
+<p>
+
+<p></p>
+<h6 class="description_section">Parameters</h6>
+<dl class="parameters">
+<dt>A</dt>
+<dd>the value.</dd>
+</dl>
+<h6 class="description_section">Returns</h6>
+<p class="return">A value equal to the nearest integer that is less than or equal to A.</p></td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><a name="Trunc"></a><code>function <b>Trunc</b>(const A: Single): Integer; overload; inline;</code></td>
+</tr>
+<tr class="list2">
+<td class="itemcode"><a name="Trunc"></a><code>function <b>Trunc</b>(const A: <a  href="Neslib.FastMath.TVector2.html">TVector2</a>): <a  href="Neslib.FastMath.TIVector2.html">TIVector2</a>; overload;</code></td>
+</tr>
+<tr class="list">
+<td class="itemcode"><a name="Trunc"></a><code>function <b>Trunc</b>(const A: <a  href="Neslib.FastMath.TVector3.html">TVector3</a>): <a  href="Neslib.FastMath.TIVector3.html">TIVector3</a>; overload;</code></td>
+</tr>
+<tr class="list2">
+<td class="itemcode"><a name="Trunc"></a><code>function <b>Trunc</b>(const A: <a  href="Neslib.FastMath.TVector4.html">TVector4</a>): <a  href="Neslib.FastMath.TIVector4.html">TIVector4</a>; overload;</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+Rounds a value towards 0.
+
+<p>
+
+<p></p>
+<h6 class="description_section">Parameters</h6>
+<dl class="parameters">
+<dt>A</dt>
+<dd>the value.</dd>
+</dl>
+<h6 class="description_section">Returns</h6>
+<p class="return">The value A rounded towards 0. That is, with its fractional part removed.</p></td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><a name="Round"></a><code>function <b>Round</b>(const A: Single): Integer; overload; inline;</code></td>
+</tr>
+<tr class="list2">
+<td class="itemcode"><a name="Round"></a><code>function <b>Round</b>(const A: <a  href="Neslib.FastMath.TVector2.html">TVector2</a>): <a  href="Neslib.FastMath.TIVector2.html">TIVector2</a>; overload;</code></td>
+</tr>
+<tr class="list">
+<td class="itemcode"><a name="Round"></a><code>function <b>Round</b>(const A: <a  href="Neslib.FastMath.TVector3.html">TVector3</a>): <a  href="Neslib.FastMath.TIVector3.html">TIVector3</a>; overload;</code></td>
+</tr>
+<tr class="list2">
+<td class="itemcode"><a name="Round"></a><code>function <b>Round</b>(const A: <a  href="Neslib.FastMath.TVector4.html">TVector4</a>): <a  href="Neslib.FastMath.TIVector4.html">TIVector4</a>; overload;</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+Rounds a value towards its nearest integer.
+
+<p>
+
+<p></p>
+<h6 class="description_section">Parameters</h6>
+<dl class="parameters">
+<dt>A</dt>
+<dd>the value.</dd>
+</dl>
+<h6 class="description_section">Returns</h6>
+<p class="return">The integer value closest to A. If A is exactly between two integer values (if the fraction is 0.5), then the result is the even number.</p></td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><a name="Ceil"></a><code>function <b>Ceil</b>(const A: Single): Integer; overload; inline;</code></td>
+</tr>
+<tr class="list2">
+<td class="itemcode"><a name="Ceil"></a><code>function <b>Ceil</b>(const A: <a  href="Neslib.FastMath.TVector2.html">TVector2</a>): <a  href="Neslib.FastMath.TIVector2.html">TIVector2</a>; overload;</code></td>
+</tr>
+<tr class="list">
+<td class="itemcode"><a name="Ceil"></a><code>function <b>Ceil</b>(const A: <a  href="Neslib.FastMath.TVector3.html">TVector3</a>): <a  href="Neslib.FastMath.TIVector3.html">TIVector3</a>; overload;</code></td>
+</tr>
+<tr class="list2">
+<td class="itemcode"><a name="Ceil"></a><code>function <b>Ceil</b>(const A: <a  href="Neslib.FastMath.TVector4.html">TVector4</a>): <a  href="Neslib.FastMath.TIVector4.html">TIVector4</a>; overload;</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+Rounds a value towards positive infinity.
+
+<p>
+
+<p></p>
+<h6 class="description_section">Parameters</h6>
+<dl class="parameters">
+<dt>A</dt>
+<dd>the value.</dd>
+</dl>
+<h6 class="description_section">Returns</h6>
+<p class="return">A value equal to the nearest integer that is greater than or equal to A.</p></td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><a name="Frac"></a><code>function <b>Frac</b>(const A: Single): Single; overload; inline;</code></td>
+</tr>
+<tr class="list2">
+<td class="itemcode"><a name="Frac"></a><code>function <b>Frac</b>(const A: <a  href="Neslib.FastMath.TVector2.html">TVector2</a>): <a  href="Neslib.FastMath.TVector2.html">TVector2</a>; overload;</code></td>
+</tr>
+<tr class="list">
+<td class="itemcode"><a name="Frac"></a><code>function <b>Frac</b>(const A: <a  href="Neslib.FastMath.TVector3.html">TVector3</a>): <a  href="Neslib.FastMath.TVector3.html">TVector3</a>; overload;</code></td>
+</tr>
+<tr class="list2">
+<td class="itemcode"><a name="Frac"></a><code>function <b>Frac</b>(const A: <a  href="Neslib.FastMath.TVector4.html">TVector4</a>): <a  href="Neslib.FastMath.TVector4.html">TVector4</a>; overload;</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+Returns the fractional part of a number.
+
+<p>
+
+<p></p>
+<h6 class="description_section">Parameters</h6>
+<dl class="parameters">
+<dt>A</dt>
+<dd>the value.</dd>
+</dl>
+<h6 class="description_section">Returns</h6>
+<p class="return">The fractional part of A, calculated as to A - <a class="normal" href="Neslib.FastMath.html#Trunc">Trunc</a>(A)</p></td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><a name="FMod"></a><code>function <b>FMod</b>(const A, B: Single): Single; overload; inline;</code></td>
+</tr>
+<tr class="list2">
+<td class="itemcode"><a name="FMod"></a><code>function <b>FMod</b>(const A: <a  href="Neslib.FastMath.TVector2.html">TVector2</a>; const B: Single): <a  href="Neslib.FastMath.TVector2.html">TVector2</a>; overload;</code></td>
+</tr>
+<tr class="list">
+<td class="itemcode"><a name="FMod"></a><code>function <b>FMod</b>(const A, B: <a  href="Neslib.FastMath.TVector2.html">TVector2</a>): <a  href="Neslib.FastMath.TVector2.html">TVector2</a>; overload;</code></td>
+</tr>
+<tr class="list2">
+<td class="itemcode"><a name="FMod"></a><code>function <b>FMod</b>(const A: <a  href="Neslib.FastMath.TVector3.html">TVector3</a>; const B: Single): <a  href="Neslib.FastMath.TVector3.html">TVector3</a>; overload;</code></td>
+</tr>
+<tr class="list">
+<td class="itemcode"><a name="FMod"></a><code>function <b>FMod</b>(const A, B: <a  href="Neslib.FastMath.TVector3.html">TVector3</a>): <a  href="Neslib.FastMath.TVector3.html">TVector3</a>; overload; inline;</code></td>
+</tr>
+<tr class="list2">
+<td class="itemcode"><a name="FMod"></a><code>function <b>FMod</b>(const A: <a  href="Neslib.FastMath.TVector4.html">TVector4</a>; const B: Single): <a  href="Neslib.FastMath.TVector4.html">TVector4</a>; overload;</code></td>
+</tr>
+<tr class="list">
+<td class="itemcode"><a name="FMod"></a><code>function <b>FMod</b>(const A, B: <a  href="Neslib.FastMath.TVector4.html">TVector4</a>): <a  href="Neslib.FastMath.TVector4.html">TVector4</a>; overload;</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+Modulus. Calculates the remainder of a floating-point division.
+
+<p> 
+
+<p> <b>Note</b>: When used with vectors, B can be a scalar or a vector.</p>
+<h6 class="description_section">Parameters</h6>
+<dl class="parameters">
+<dt>A</dt>
+<dd>the dividend.</dd>
+<dt>B</dt>
+<dd>the divisor.</dd>
+</dl>
+<h6 class="description_section">Returns</h6>
+<p class="return">The remainder of A / B, calculated as A - B * <a class="normal" href="Neslib.FastMath.html#Trunc">Trunc</a>(A / B)</p></td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><a name="ModF"></a><code>function <b>ModF</b>(const A: Single; out B: Integer): Single; overload; inline;</code></td>
+</tr>
+<tr class="list2">
+<td class="itemcode"><a name="ModF"></a><code>function <b>ModF</b>(const A: <a  href="Neslib.FastMath.TVector2.html">TVector2</a>; out B: <a  href="Neslib.FastMath.TIVector2.html">TIVector2</a>): <a  href="Neslib.FastMath.TVector2.html">TVector2</a>; overload;</code></td>
+</tr>
+<tr class="list">
+<td class="itemcode"><a name="ModF"></a><code>function <b>ModF</b>(const A: <a  href="Neslib.FastMath.TVector3.html">TVector3</a>; out B: <a  href="Neslib.FastMath.TIVector3.html">TIVector3</a>): <a  href="Neslib.FastMath.TVector3.html">TVector3</a>; overload;</code></td>
+</tr>
+<tr class="list2">
+<td class="itemcode"><a name="ModF"></a><code>function <b>ModF</b>(const A: <a  href="Neslib.FastMath.TVector4.html">TVector4</a>; out B: <a  href="Neslib.FastMath.TIVector4.html">TIVector4</a>): <a  href="Neslib.FastMath.TVector4.html">TVector4</a>; overload;</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+Splits a floating-point value into its integer and fractional parts.
+
+<p> 
+
+<p> <b>Note</b>: Both the return value and output parameter B will have the same <a class="normal" href="Neslib.FastMath.html#Sign">sign</a> as A.</p>
+<h6 class="description_section">Parameters</h6>
+<dl class="parameters">
+<dt>A</dt>
+<dd>the value to split.</dd>
+<dt>B</dt>
+<dd>is set to the integer part of A</dd>
+</dl>
+<h6 class="description_section">Returns</h6>
+<p class="return">The fractional part of A.</p></td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><a name="Min"></a><code>function <b>Min</b>(const A, B: Single): Single; overload; inline;</code></td>
+</tr>
+<tr class="list2">
+<td class="itemcode"><a name="Min"></a><code>function <b>Min</b>(const A: <a  href="Neslib.FastMath.TVector2.html">TVector2</a>; const B: Single): <a  href="Neslib.FastMath.TVector2.html">TVector2</a>; overload;</code></td>
+</tr>
+<tr class="list">
+<td class="itemcode"><a name="Min"></a><code>function <b>Min</b>(const A, B: <a  href="Neslib.FastMath.TVector2.html">TVector2</a>): <a  href="Neslib.FastMath.TVector2.html">TVector2</a>; overload;</code></td>
+</tr>
+<tr class="list2">
+<td class="itemcode"><a name="Min"></a><code>function <b>Min</b>(const A: <a  href="Neslib.FastMath.TVector3.html">TVector3</a>; const B: Single): <a  href="Neslib.FastMath.TVector3.html">TVector3</a>; overload;</code></td>
+</tr>
+<tr class="list">
+<td class="itemcode"><a name="Min"></a><code>function <b>Min</b>(const A, B: <a  href="Neslib.FastMath.TVector3.html">TVector3</a>): <a  href="Neslib.FastMath.TVector3.html">TVector3</a>; overload;</code></td>
+</tr>
+<tr class="list2">
+<td class="itemcode"><a name="Min"></a><code>function <b>Min</b>(const A: <a  href="Neslib.FastMath.TVector4.html">TVector4</a>; const B: Single): <a  href="Neslib.FastMath.TVector4.html">TVector4</a>; overload;</code></td>
+</tr>
+<tr class="list">
+<td class="itemcode"><a name="Min"></a><code>function <b>Min</b>(const A, B: <a  href="Neslib.FastMath.TVector4.html">TVector4</a>): <a  href="Neslib.FastMath.TVector4.html">TVector4</a>; overload;</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+Calculates the minimum of two values.
+
+<p> 
+
+<p> <b>Note</b>: When used with vectors, B can be a scalar or a vector.</p>
+<h6 class="description_section">Parameters</h6>
+<dl class="parameters">
+<dt>A</dt>
+<dd>the first value.</dd>
+<dt>B</dt>
+<dd>the second value.</dd>
+</dl>
+<h6 class="description_section">Returns</h6>
+<p class="return">The minimum of A and B.</p></td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><a name="Max"></a><code>function <b>Max</b>(const A, B: Single): Single; overload; inline;</code></td>
+</tr>
+<tr class="list2">
+<td class="itemcode"><a name="Max"></a><code>function <b>Max</b>(const A: <a  href="Neslib.FastMath.TVector2.html">TVector2</a>; const B: Single): <a  href="Neslib.FastMath.TVector2.html">TVector2</a>; overload;</code></td>
+</tr>
+<tr class="list">
+<td class="itemcode"><a name="Max"></a><code>function <b>Max</b>(const A, B: <a  href="Neslib.FastMath.TVector2.html">TVector2</a>): <a  href="Neslib.FastMath.TVector2.html">TVector2</a>; overload;</code></td>
+</tr>
+<tr class="list2">
+<td class="itemcode"><a name="Max"></a><code>function <b>Max</b>(const A: <a  href="Neslib.FastMath.TVector3.html">TVector3</a>; const B: Single): <a  href="Neslib.FastMath.TVector3.html">TVector3</a>; overload;</code></td>
+</tr>
+<tr class="list">
+<td class="itemcode"><a name="Max"></a><code>function <b>Max</b>(const A, B: <a  href="Neslib.FastMath.TVector3.html">TVector3</a>): <a  href="Neslib.FastMath.TVector3.html">TVector3</a>; overload;</code></td>
+</tr>
+<tr class="list2">
+<td class="itemcode"><a name="Max"></a><code>function <b>Max</b>(const A: <a  href="Neslib.FastMath.TVector4.html">TVector4</a>; const B: Single): <a  href="Neslib.FastMath.TVector4.html">TVector4</a>; overload;</code></td>
+</tr>
+<tr class="list">
+<td class="itemcode"><a name="Max"></a><code>function <b>Max</b>(const A, B: <a  href="Neslib.FastMath.TVector4.html">TVector4</a>): <a  href="Neslib.FastMath.TVector4.html">TVector4</a>; overload;</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+Calculates the maximum of two values.
+
+<p> 
+
+<p> <b>Note</b>: When used with vectors, B can be a scalar or a vector.</p>
+<h6 class="description_section">Parameters</h6>
+<dl class="parameters">
+<dt>A</dt>
+<dd>the first value.</dd>
+<dt>B</dt>
+<dd>the second value.</dd>
+</dl>
+<h6 class="description_section">Returns</h6>
+<p class="return">The maximum of A and B.</p></td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><a name="EnsureRange"></a><code>function <b>EnsureRange</b>(const A, AMin, AMax: Single): Single; overload;</code></td>
+</tr>
+<tr class="list2">
+<td class="itemcode"><a name="EnsureRange"></a><code>function <b>EnsureRange</b>(const A: <a  href="Neslib.FastMath.TVector2.html">TVector2</a>; const AMin, AMax: Single): <a  href="Neslib.FastMath.TVector2.html">TVector2</a>; overload;</code></td>
+</tr>
+<tr class="list">
+<td class="itemcode"><a name="EnsureRange"></a><code>function <b>EnsureRange</b>(const A, AMin, AMax: <a  href="Neslib.FastMath.TVector2.html">TVector2</a>): <a  href="Neslib.FastMath.TVector2.html">TVector2</a>; overload;</code></td>
+</tr>
+<tr class="list2">
+<td class="itemcode"><a name="EnsureRange"></a><code>function <b>EnsureRange</b>(const A: <a  href="Neslib.FastMath.TVector3.html">TVector3</a>; const AMin, AMax: Single): <a  href="Neslib.FastMath.TVector3.html">TVector3</a>; overload;</code></td>
+</tr>
+<tr class="list">
+<td class="itemcode"><a name="EnsureRange"></a><code>function <b>EnsureRange</b>(const A, AMin, AMax: <a  href="Neslib.FastMath.TVector3.html">TVector3</a>): <a  href="Neslib.FastMath.TVector3.html">TVector3</a>; overload;</code></td>
+</tr>
+<tr class="list2">
+<td class="itemcode"><a name="EnsureRange"></a><code>function <b>EnsureRange</b>(const A: <a  href="Neslib.FastMath.TVector4.html">TVector4</a>; const AMin, AMax: Single): <a  href="Neslib.FastMath.TVector4.html">TVector4</a>; overload;</code></td>
+</tr>
+<tr class="list">
+<td class="itemcode"><a name="EnsureRange"></a><code>function <b>EnsureRange</b>(const A, AMin, AMax: <a  href="Neslib.FastMath.TVector4.html">TVector4</a>): <a  href="Neslib.FastMath.TVector4.html">TVector4</a>; overload;</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+Clamps a given value into a range.
+
+<p>  
+
+<p> <b>Note</b>: When used with vectors, AMin and AMax can be scalars or vectors.</p>
+<h6 class="description_section">Parameters</h6>
+<dl class="parameters">
+<dt>A</dt>
+<dd>the value to clamp.</dd>
+<dt>AMin</dt>
+<dd>the minimum value of the range.</dd>
+<dt>AMax</dt>
+<dd>the maximum value of the range. Must be &gt;= AMin.</dd>
+</dl>
+<h6 class="description_section">Returns</h6>
+<p class="return">A clamped to the range [AMin..AMax]. Results are undefined if AMin &gt; AMax. No error checking is performed for this situation.</p></td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><a name="Mix"></a><code>function <b>Mix</b>(const A, B, T: Single): Single; overload; inline;</code></td>
+</tr>
+<tr class="list2">
+<td class="itemcode"><a name="Mix"></a><code>function <b>Mix</b>(const A, B: <a  href="Neslib.FastMath.TVector2.html">TVector2</a>; const T: Single): <a  href="Neslib.FastMath.TVector2.html">TVector2</a>; overload; inline;</code></td>
+</tr>
+<tr class="list">
+<td class="itemcode"><a name="Mix"></a><code>function <b>Mix</b>(const A, B, T: <a  href="Neslib.FastMath.TVector2.html">TVector2</a>): <a  href="Neslib.FastMath.TVector2.html">TVector2</a>; overload; inline;</code></td>
+</tr>
+<tr class="list2">
+<td class="itemcode"><a name="Mix"></a><code>function <b>Mix</b>(const A, B: <a  href="Neslib.FastMath.TVector3.html">TVector3</a>; const T: Single): <a  href="Neslib.FastMath.TVector3.html">TVector3</a>; overload;</code></td>
+</tr>
+<tr class="list">
+<td class="itemcode"><a name="Mix"></a><code>function <b>Mix</b>(const A, B, T: <a  href="Neslib.FastMath.TVector3.html">TVector3</a>): <a  href="Neslib.FastMath.TVector3.html">TVector3</a>; overload;</code></td>
+</tr>
+<tr class="list2">
+<td class="itemcode"><a name="Mix"></a><code>function <b>Mix</b>(const A, B: <a  href="Neslib.FastMath.TVector4.html">TVector4</a>; const T: Single): <a  href="Neslib.FastMath.TVector4.html">TVector4</a>; overload;</code></td>
+</tr>
+<tr class="list">
+<td class="itemcode"><a name="Mix"></a><code>function <b>Mix</b>(const A, B, T: <a  href="Neslib.FastMath.TVector4.html">TVector4</a>): <a  href="Neslib.FastMath.TVector4.html">TVector4</a>; overload;</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+Calculates a linear blend between two values, using on a progress value.
+
+<p>  
+
+<p> <b>Note</b>: When used with vectors, T can be a scalar or a vector.</p>
+<h6 class="description_section">Parameters</h6>
+<dl class="parameters">
+<dt>A</dt>
+<dd>the first value.</dd>
+<dt>B</dt>
+<dd>the second value.</dd>
+<dt>T</dt>
+<dd>the progress value, usually between 0.0 and 1.0.</dd>
+</dl>
+<h6 class="description_section">Returns</h6>
+<p class="return">A value interpolated between A and B, as controlled by T. If T=0, then A is returned. If T=1 then B is returned. For values in between 0 and 1, the result is linearly interpolated with the formula &quot;A * (1 - T) + (B * T)&quot;.</p></td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><a name="Step"></a><code>function <b>Step</b>(const AEdge, A: Single): Single; overload; inline;</code></td>
+</tr>
+<tr class="list2">
+<td class="itemcode"><a name="Step"></a><code>function <b>Step</b>(const AEdge: Single; const A: <a  href="Neslib.FastMath.TVector2.html">TVector2</a>): <a  href="Neslib.FastMath.TVector2.html">TVector2</a>; overload;</code></td>
+</tr>
+<tr class="list">
+<td class="itemcode"><a name="Step"></a><code>function <b>Step</b>(const AEdge, A: <a  href="Neslib.FastMath.TVector2.html">TVector2</a>): <a  href="Neslib.FastMath.TVector2.html">TVector2</a>; overload;</code></td>
+</tr>
+<tr class="list2">
+<td class="itemcode"><a name="Step"></a><code>function <b>Step</b>(const AEdge: Single; const A: <a  href="Neslib.FastMath.TVector3.html">TVector3</a>): <a  href="Neslib.FastMath.TVector3.html">TVector3</a>; overload;</code></td>
+</tr>
+<tr class="list">
+<td class="itemcode"><a name="Step"></a><code>function <b>Step</b>(const AEdge, A: <a  href="Neslib.FastMath.TVector3.html">TVector3</a>): <a  href="Neslib.FastMath.TVector3.html">TVector3</a>; overload;</code></td>
+</tr>
+<tr class="list2">
+<td class="itemcode"><a name="Step"></a><code>function <b>Step</b>(const AEdge: Single; const A: <a  href="Neslib.FastMath.TVector4.html">TVector4</a>): <a  href="Neslib.FastMath.TVector4.html">TVector4</a>; overload;</code></td>
+</tr>
+<tr class="list">
+<td class="itemcode"><a name="Step"></a><code>function <b>Step</b>(const AEdge, A: <a  href="Neslib.FastMath.TVector4.html">TVector4</a>): <a  href="Neslib.FastMath.TVector4.html">TVector4</a>; overload;</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+<a class="normal" href="Neslib.FastMath.html#Step">Step</a> function.
+
+<p> 
+
+<p> <b>Note</b>: When used with vectors, AEdge can be a scalar or a vector.</p>
+<h6 class="description_section">Parameters</h6>
+<dl class="parameters">
+<dt>AEdge</dt>
+<dd>the edge value.</dd>
+<dt>A</dt>
+<dd>the value to check.</dd>
+</dl>
+<h6 class="description_section">Returns</h6>
+<p class="return">0.0 if A &lt; AEdge. Otherwise it returns 1.0.</p></td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><a name="SmoothStep"></a><code>function <b>SmoothStep</b>(const AEdge0, AEdge1, A: Single): Single; overload; inline;</code></td>
+</tr>
+<tr class="list2">
+<td class="itemcode"><a name="SmoothStep"></a><code>function <b>SmoothStep</b>(const AEdge0, AEdge1: Single; const A: <a  href="Neslib.FastMath.TVector2.html">TVector2</a>): <a  href="Neslib.FastMath.TVector2.html">TVector2</a>; overload; inline;</code></td>
+</tr>
+<tr class="list">
+<td class="itemcode"><a name="SmoothStep"></a><code>function <b>SmoothStep</b>(const AEdge0, AEdge1, A: <a  href="Neslib.FastMath.TVector2.html">TVector2</a>): <a  href="Neslib.FastMath.TVector2.html">TVector2</a>; overload; inline;</code></td>
+</tr>
+<tr class="list2">
+<td class="itemcode"><a name="SmoothStep"></a><code>function <b>SmoothStep</b>(const AEdge0, AEdge1: Single; const A: <a  href="Neslib.FastMath.TVector3.html">TVector3</a>): <a  href="Neslib.FastMath.TVector3.html">TVector3</a>; overload; inline;</code></td>
+</tr>
+<tr class="list">
+<td class="itemcode"><a name="SmoothStep"></a><code>function <b>SmoothStep</b>(const AEdge0, AEdge1, A: <a  href="Neslib.FastMath.TVector3.html">TVector3</a>): <a  href="Neslib.FastMath.TVector3.html">TVector3</a>; overload;</code></td>
+</tr>
+<tr class="list2">
+<td class="itemcode"><a name="SmoothStep"></a><code>function <b>SmoothStep</b>(const AEdge0, AEdge1: Single; const A: <a  href="Neslib.FastMath.TVector4.html">TVector4</a>): <a  href="Neslib.FastMath.TVector4.html">TVector4</a>; overload;</code></td>
+</tr>
+<tr class="list">
+<td class="itemcode"><a name="SmoothStep"></a><code>function <b>SmoothStep</b>(const AEdge0, AEdge1, A: <a  href="Neslib.FastMath.TVector4.html">TVector4</a>): <a  href="Neslib.FastMath.TVector4.html">TVector4</a>; overload;</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+Performs smooth Hermite interpolation between 0 and 1.
+
+<p>  
+
+<p> <b>Note</b>: The interpolation is calculated using the algorithm:
+
+<p></p>
+
+<pre class="longcode">
+      T := EnsureRange((A - AEdge0) / (AEdge1 - AEdge0), <span class="pascal_numeric">0</span>, <span class="pascal_numeric">1</span>);
+      Result := T * T * (<span class="pascal_numeric">3</span> - <span class="pascal_numeric">2</span> * T);</pre>
+
+<p>
+
+<p>Results are undefined if AEdge0 &gt;= AEdge1. When used with vectors, AEdge0 and AEdge1 can be scalars or vectors.</p>
+<h6 class="description_section">Parameters</h6>
+<dl class="parameters">
+<dt>AEdge0</dt>
+<dd>the left value of the edge.</dd>
+<dt>AEdge1</dt>
+<dd>the right value of the edge.</dd>
+<dt>A</dt>
+<dd>the value used to control the interpolation.</dd>
+</dl>
+<h6 class="description_section">Returns</h6>
+<p class="return">0.0 if A &lt;= AEdge0 and 1.0 if A &gt;= AEdge1. Otherwise it performs a smooth Hermite interpolation between 0 and 1, based on the position of A between AEdge0 and AEdge1. This is useful in cases where you would want a threshold function with a smooth transition (as compared to the <a class="normal" href="Neslib.FastMath.html#Step">Step</a> function). The graph would show a curve increasing slowly from 0.0, the speeding up towards 0.5 and finally slowing down towards 1.0.</p></td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><a name="FMA"></a><code>function <b>FMA</b>(const A, B, C: Single): Single; overload; inline;</code></td>
+</tr>
+<tr class="list2">
+<td class="itemcode"><a name="FMA"></a><code>function <b>FMA</b>(const A, B, C: <a  href="Neslib.FastMath.TVector2.html">TVector2</a>): <a  href="Neslib.FastMath.TVector2.html">TVector2</a>; overload;</code></td>
+</tr>
+<tr class="list">
+<td class="itemcode"><a name="FMA"></a><code>function <b>FMA</b>(const A, B, C: <a  href="Neslib.FastMath.TVector3.html">TVector3</a>): <a  href="Neslib.FastMath.TVector3.html">TVector3</a>; overload;</code></td>
+</tr>
+<tr class="list2">
+<td class="itemcode"><a name="FMA"></a><code>function <b>FMA</b>(const A, B, C: <a  href="Neslib.FastMath.TVector4.html">TVector4</a>): <a  href="Neslib.FastMath.TVector4.html">TVector4</a>; overload;</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+Fused Multiply and Add (if available).
+
+<p>  
+
+<p> <b>Note</b>: On ARM platforms (iOS and Android), the calculation is performed with as a single (fused) operation. This provides better precision (because it skips the intermediate rounding).
+
+<p>On other platforms, this is not really a fused operation, but just a separate muliplication and addition.</p>
+<h6 class="description_section">Parameters</h6>
+<dl class="parameters">
+<dt>A</dt>
+<dd>the first value.</dd>
+<dt>B</dt>
+<dd>the second value.</dd>
+<dt>C</dt>
+<dd>the third value.</dd>
+</dl>
+<h6 class="description_section">Returns</h6>
+<p class="return">(A * B) + C</p></td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><a name="OuterProduct"></a><code>function <b>OuterProduct</b>(const C, R: <a  href="Neslib.FastMath.TVector2.html">TVector2</a>): <a  href="Neslib.FastMath.TMatrix2.html">TMatrix2</a>; overload;</code></td>
+</tr>
+<tr class="list2">
+<td class="itemcode"><a name="OuterProduct"></a><code>function <b>OuterProduct</b>(const C, R: <a  href="Neslib.FastMath.TVector3.html">TVector3</a>): <a  href="Neslib.FastMath.TMatrix3.html">TMatrix3</a>; overload;</code></td>
+</tr>
+<tr class="list">
+<td class="itemcode"><a name="OuterProduct"></a><code>function <b>OuterProduct</b>(const C, R: <a  href="Neslib.FastMath.TVector4.html">TVector4</a>): <a  href="Neslib.FastMath.TMatrix4.html">TMatrix4</a>; overload;</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+Treats the first parameter C as a column vector (matrix with one column) and the second parameter R as a row vector (matrix with one row) and does a linear algebraic matrix multiply C * R, yielding a matrix whose number of rows and columns matches that of the two vectors.
+
+<p> 
+
+<p></p>
+<h6 class="description_section">Parameters</h6>
+<dl class="parameters">
+<dt>C</dt>
+<dd>the column vector.</dd>
+<dt>R</dt>
+<dd>the row vector.</dd>
+</dl>
+<h6 class="description_section">Returns</h6>
+<p class="return">The outer product of C and R.</p></td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><a name="DisableFloatingPointExceptions"></a><code>procedure <b>DisableFloatingPointExceptions</b>;</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+Disables floating-point exceptions. Instead invalid floating-point operations will return one of the following values: </p>
+
+<ul class="compact_spacing">
+  <li><p>0: if underflow occurs (if the value is smaller than can be represented using floating-point). For example by evaluating &quot;0.5 * MinSingle&quot;.</p></li>
+  <li><p>MaxSingle/MaxDouble: if there is not enough precision available. For example by evaluating &quot;MaxSingle + 1&quot;.</p></li>
+  <li><p>+/-INF: when a division by zero or overflow occurs. For example by evaluating &quot;Value / 0&quot; or &quot;MaxSingle * 2&quot;.</p></li>
+  <li><p>+/-NAN: when an invalid operation occurs. For example by evaluating &quot;<a class="normal" href="Neslib.FastMath.html#Sqrt">Sqrt</a>(-1)&quot;</p></li>
+</ul>
+
+<p> <b>Note</b>: On some platforms, this only disables exceptions on the thread that calls this routine. So in multi-threaded scenarios, it is best to call this routine in the Execute block of every thread where you want to ignore floating point exceptions.
+
+<p><b>Note</b>: For more fine-grained control over which exception types to disable, use the SetExceptionMask and/or SetSSEExceptionMask functions in the System.Math unit.</p>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><a name="RestoreFloatingPointExceptions"></a><code>procedure <b>RestoreFloatingPointExceptions</b>;</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+Restore the floating-point exception flags to the state before you called <a class="normal" href="Neslib.FastMath.html#DisableFloatingPointExceptions">DisableFloatingPointExceptions</a></p>
+</td></tr>
+</table>
+<h3 class="detail">Types</h3>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><a name="PVector2"></a><code><b>PVector2</b> = &circ;<a  href="Neslib.FastMath.TVector2.html">TVector2</a>;</code></td>
+</tr>
+<tr><td colspan="1">
+&nbsp;</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><a name="PVector3"></a><code><b>PVector3</b> = &circ;<a  href="Neslib.FastMath.TVector3.html">TVector3</a>;</code></td>
+</tr>
+<tr><td colspan="1">
+&nbsp;</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><a name="PVector4"></a><code><b>PVector4</b> = &circ;<a  href="Neslib.FastMath.TVector4.html">TVector4</a>;</code></td>
+</tr>
+<tr><td colspan="1">
+&nbsp;</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><a name="PMatrix2"></a><code><b>PMatrix2</b> = &circ;<a  href="Neslib.FastMath.TMatrix2.html">TMatrix2</a>;</code></td>
+</tr>
+<tr><td colspan="1">
+&nbsp;</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><a name="PMatrix3"></a><code><b>PMatrix3</b> = &circ;<a  href="Neslib.FastMath.TMatrix3.html">TMatrix3</a>;</code></td>
+</tr>
+<tr><td colspan="1">
+&nbsp;</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><a name="PMatrix4"></a><code><b>PMatrix4</b> = &circ;<a  href="Neslib.FastMath.TMatrix4.html">TMatrix4</a>;</code></td>
+</tr>
+<tr><td colspan="1">
+&nbsp;</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><a name="PIVector2"></a><code><b>PIVector2</b> = &circ;<a  href="Neslib.FastMath.TIVector2.html">TIVector2</a>;</code></td>
+</tr>
+<tr><td colspan="1">
+&nbsp;</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><a name="PIVector3"></a><code><b>PIVector3</b> = &circ;<a  href="Neslib.FastMath.TIVector3.html">TIVector3</a>;</code></td>
+</tr>
+<tr><td colspan="1">
+&nbsp;</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><a name="PIVector4"></a><code><b>PIVector4</b> = &circ;<a  href="Neslib.FastMath.TIVector4.html">TIVector4</a>;</code></td>
+</tr>
+<tr><td colspan="1">
+&nbsp;</td></tr>
+</table>
+<h3 class="detail">Constants</h3>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><a name="SINGLE_TOLERANCE"></a><code><b>SINGLE_TOLERANCE</b> = 0.000001;</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+Default tolerance for comparing small floating-point values.</p>
+</td></tr>
+</table>
+<div style="height:1000px"></div><hr noshade size="1"><span class="appinfo"><em>Generated by <a  href="http://pasdoc.sourceforge.net/">PasDoc 0.14.0</a>. </em>
+</span>
+</td></tr></table></body></html>

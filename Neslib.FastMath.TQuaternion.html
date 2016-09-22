@@ -1,0 +1,462 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/1999/REC-html401-19991224/loose.dtd">
+<html>
+<head>
+<title>FastMath: Neslib.FastMath: record TQuaternion</title>
+<meta name="generator" content="PasDoc 0.14.0">
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<link rel="StyleSheet" type="text/css" href="pasdoc.css">
+</head>
+<body>
+<table class="container"><tr><td class="navigation">
+<h2>FastMath</h2><p><a href="introduction.html" class="navigation">About FastMath</a></p><p><a href="AllUnits.html" class="navigation">Units</a></p><p><a href="ClassHierarchy.html" class="navigation">Class Hierarchy</a></p><p><a href="AllClasses.html" class="navigation">Classes, Interfaces, Objects and Records</a></p><p><a href="AllTypes.html" class="navigation">Types</a></p><p><a href="AllVariables.html" class="navigation">Variables</a></p><p><a href="AllConstants.html" class="navigation">Constants</a></p><p><a href="AllFunctions.html" class="navigation">Functions and Procedures</a></p><p><a href="AllIdentifiers.html" class="navigation">Identifiers</a></p><p><a href="conclusion.html" class="navigation">License</a></p></td><td class="content">
+<a name="TQuaternion"></a><h1 class="cio">record TQuaternion</h1>
+<table class="sections wide_list">
+<tr>
+<td><a class="section" href="#PasDoc-Description">Description</a></td><td>Hierarchy</td><td><a class="section" href="#PasDoc-Fields">Fields</a></td><td><a class="section" href="#PasDoc-Methods">Methods</a></td><td><a class="section" href="#PasDoc-Properties">Properties</a></td></tr></table>
+<a name="PasDoc-Description"></a><h2 class="unit">Unit</h2>
+<p class="unitlink">
+<a  href="Neslib.FastMath.html">Neslib.FastMath</a></p>
+<h2 class="declaration">Declaration</h2>
+<p class="declaration">
+<code>type TQuaternion = record</code></p>
+<h2 class="description">Description</h2>
+<p>
+A <a class="normal" href="Neslib.FastMath.html#Quaternion">quaternion</a>.
+
+<p><code>TQuaternion</code> is compatible with TQuaternion3D in the Delphi RTL. You can typecast between these two types or implicitly convert from one to the other through assignment (eg. MyQuaternion := MyQuaternion3D).</p>
+<h2 class="overview">Overview</h2>
+<a name="PasDoc-Fields"></a><h3 class="summary">Fields</h3>
+<table class="summary wide_list">
+<tr class="list">
+<td class="itemcode"><code><b><a  href="Neslib.FastMath.TQuaternion.html#X">X</a></b>: Single</code></td>
+</tr>
+<tr class="list2">
+<td class="itemcode"><code><b><a  href="Neslib.FastMath.TQuaternion.html#Y">Y</a></b>: Single</code></td>
+</tr>
+<tr class="list">
+<td class="itemcode"><code><b><a  href="Neslib.FastMath.TQuaternion.html#Z">Z</a></b>: Single</code></td>
+</tr>
+<tr class="list2">
+<td class="itemcode"><code><b><a  href="Neslib.FastMath.TQuaternion.html#W">W</a></b>: Single</code></td>
+</tr>
+<tr class="list">
+<td class="itemcode"><code><b><a  href="Neslib.FastMath.TQuaternion.html#C">C</a></b>: array [0..3] of Single</code></td>
+</tr>
+</table>
+<a name="PasDoc-Methods"></a><h3 class="summary">Methods</h3>
+<table class="summary wide_list">
+<tr class="list">
+<td class="itemcode"><code>procedure <b><a  href="Neslib.FastMath.TQuaternion.html#Init">Init</a></b>; overload; inline;</code></td>
+</tr>
+<tr class="list2">
+<td class="itemcode"><code>procedure <b><a  href="Neslib.FastMath.TQuaternion.html#Init">Init</a></b>(const AX, AY, AZ, AW: Single); overload; inline;</code></td>
+</tr>
+<tr class="list">
+<td class="itemcode"><code>procedure <b><a  href="Neslib.FastMath.TQuaternion.html#Init">Init</a></b>(const AAxis: <a  href="Neslib.FastMath.TVector3.html">TVector3</a>; const AAngleRadians: Single); overload;</code></td>
+</tr>
+<tr class="list2">
+<td class="itemcode"><code>procedure <b><a  href="Neslib.FastMath.TQuaternion.html#Init">Init</a></b>(const AYaw, APitch, ARoll: Single); overload;</code></td>
+</tr>
+<tr class="list">
+<td class="itemcode"><code>procedure <b><a  href="Neslib.FastMath.TQuaternion.html#Init">Init</a></b>(const AMatrix: <a  href="Neslib.FastMath.TMatrix4.html">TMatrix4</a>); overload;</code></td>
+</tr>
+<tr class="list2">
+<td class="itemcode"><code>function <b><a  href="Neslib.FastMath.TQuaternion.html#ToMatrix">ToMatrix</a></b>: <a  href="Neslib.FastMath.TMatrix4.html">TMatrix4</a>;</code></td>
+</tr>
+<tr class="list">
+<td class="itemcode"><code>class operator <b><a  href="Neslib.FastMath.TQuaternion.html#Implicit">Implicit</a></b>(const A: TQuaternion3D): <a  href="Neslib.FastMath.TQuaternion.html">TQuaternion</a>; inline;</code></td>
+</tr>
+<tr class="list2">
+<td class="itemcode"><code>class operator <b><a  href="Neslib.FastMath.TQuaternion.html#Implicit">Implicit</a></b>(const A: <a  href="Neslib.FastMath.TQuaternion.html">TQuaternion</a>): TQuaternion3D; inline;</code></td>
+</tr>
+<tr class="list">
+<td class="itemcode"><code>class operator <b><a  href="Neslib.FastMath.TQuaternion.html#Add">Add</a></b>(const A, B: <a  href="Neslib.FastMath.TQuaternion.html">TQuaternion</a>): <a  href="Neslib.FastMath.TQuaternion.html">TQuaternion</a>;</code></td>
+</tr>
+<tr class="list2">
+<td class="itemcode"><code>class operator <b><a  href="Neslib.FastMath.TQuaternion.html#Multiply">Multiply</a></b>(const A: <a  href="Neslib.FastMath.TQuaternion.html">TQuaternion</a>; const B: Single): <a  href="Neslib.FastMath.TQuaternion.html">TQuaternion</a>;</code></td>
+</tr>
+<tr class="list">
+<td class="itemcode"><code>class operator <b><a  href="Neslib.FastMath.TQuaternion.html#Multiply">Multiply</a></b>(const A: Single; const B: <a  href="Neslib.FastMath.TQuaternion.html">TQuaternion</a>): <a  href="Neslib.FastMath.TQuaternion.html">TQuaternion</a>;</code></td>
+</tr>
+<tr class="list2">
+<td class="itemcode"><code>class operator <b><a  href="Neslib.FastMath.TQuaternion.html#Multiply">Multiply</a></b>(const A, B: <a  href="Neslib.FastMath.TQuaternion.html">TQuaternion</a>): <a  href="Neslib.FastMath.TQuaternion.html">TQuaternion</a>;</code></td>
+</tr>
+<tr class="list">
+<td class="itemcode"><code>function <b><a  href="Neslib.FastMath.TQuaternion.html#IsIdentity">IsIdentity</a></b>: Boolean; overload; inline;</code></td>
+</tr>
+<tr class="list2">
+<td class="itemcode"><code>function <b><a  href="Neslib.FastMath.TQuaternion.html#IsIdentity">IsIdentity</a></b>(const AErrorMargin: Single): Boolean; overload;</code></td>
+</tr>
+<tr class="list">
+<td class="itemcode"><code>function <b><a  href="Neslib.FastMath.TQuaternion.html#Normalize">Normalize</a></b>: <a  href="Neslib.FastMath.TQuaternion.html">TQuaternion</a>; inline;</code></td>
+</tr>
+<tr class="list2">
+<td class="itemcode"><code>procedure <b><a  href="Neslib.FastMath.TQuaternion.html#SetNormalized">SetNormalized</a></b>; inline;</code></td>
+</tr>
+<tr class="list">
+<td class="itemcode"><code>function <b><a  href="Neslib.FastMath.TQuaternion.html#NormalizeFast">NormalizeFast</a></b>: <a  href="Neslib.FastMath.TQuaternion.html">TQuaternion</a>;</code></td>
+</tr>
+<tr class="list2">
+<td class="itemcode"><code>procedure <b><a  href="Neslib.FastMath.TQuaternion.html#SetNormalizedFast">SetNormalizedFast</a></b>;</code></td>
+</tr>
+<tr class="list">
+<td class="itemcode"><code>function <b><a  href="Neslib.FastMath.TQuaternion.html#Conjugate">Conjugate</a></b>: <a  href="Neslib.FastMath.TQuaternion.html">TQuaternion</a>;</code></td>
+</tr>
+<tr class="list2">
+<td class="itemcode"><code>procedure <b><a  href="Neslib.FastMath.TQuaternion.html#SetConjugate">SetConjugate</a></b>; inline;</code></td>
+</tr>
+</table>
+<a name="PasDoc-Properties"></a><h3 class="summary">Properties</h3>
+<table class="summary wide_list">
+<tr class="list">
+<td class="itemcode"><code>property <b><a  href="Neslib.FastMath.TQuaternion.html#Length">Length</a></b>: Single read GetLength;</code></td>
+</tr>
+<tr class="list2">
+<td class="itemcode"><code>property <b><a  href="Neslib.FastMath.TQuaternion.html#LengthSquared">LengthSquared</a></b>: Single read GetLengthSquared;</code></td>
+</tr>
+</table>
+<h2 class="description">Description</h2>
+<h3 class="detail">Fields</h3>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><a name="X"></a><code><b>X</b>: Single</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+<code>X</code>, <a class="normal" href="Neslib.FastMath.TQuaternion.html#Y">Y</a>, <a class="normal" href="Neslib.FastMath.TQuaternion.html#Z">Z</a> and <a class="normal" href="Neslib.FastMath.TQuaternion.html#W">W</a> components of the <a class="normal" href="Neslib.FastMath.html#Quaternion">quaternion</a></p>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><a name="Y"></a><code><b>Y</b>: Single</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+<a class="normal" href="Neslib.FastMath.TQuaternion.html#X">X</a>, <code>Y</code>, <a class="normal" href="Neslib.FastMath.TQuaternion.html#Z">Z</a> and <a class="normal" href="Neslib.FastMath.TQuaternion.html#W">W</a> components of the <a class="normal" href="Neslib.FastMath.html#Quaternion">quaternion</a></p>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><a name="Z"></a><code><b>Z</b>: Single</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+<a class="normal" href="Neslib.FastMath.TQuaternion.html#X">X</a>, <a class="normal" href="Neslib.FastMath.TQuaternion.html#Y">Y</a>, <code>Z</code> and <a class="normal" href="Neslib.FastMath.TQuaternion.html#W">W</a> components of the <a class="normal" href="Neslib.FastMath.html#Quaternion">quaternion</a></p>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><a name="W"></a><code><b>W</b>: Single</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+<a class="normal" href="Neslib.FastMath.TQuaternion.html#X">X</a>, <a class="normal" href="Neslib.FastMath.TQuaternion.html#Y">Y</a>, <a class="normal" href="Neslib.FastMath.TQuaternion.html#Z">Z</a> and <code>W</code> components of the <a class="normal" href="Neslib.FastMath.html#Quaternion">quaternion</a></p>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><a name="C"></a><code><b>C</b>: array [0..3] of Single</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+The four components of the <a class="normal" href="Neslib.FastMath.html#Quaternion">quaternion</a>.</p>
+</td></tr>
+</table>
+<h3 class="detail">Methods</h3>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><a name="Init"></a><code>procedure <b>Init</b>; overload; inline;</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+Initializes the <a class="normal" href="Neslib.FastMath.html#Quaternion">quaternion</a> to an identity <a class="normal" href="Neslib.FastMath.html#Quaternion">quaternion</a>. Sets the <a class="normal" href="Neslib.FastMath.TQuaternion.html#X">X</a>, <a class="normal" href="Neslib.FastMath.TQuaternion.html#Y">Y</a> and <a class="normal" href="Neslib.FastMath.TQuaternion.html#Z">Z</a> components to 0 and the <a class="normal" href="Neslib.FastMath.TQuaternion.html#W">W</a> component to 1.</p>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><a name="Init"></a><code>procedure <b>Init</b>(const AX, AY, AZ, AW: Single); overload; inline;</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+Sets the four components of the <a class="normal" href="Neslib.FastMath.html#Quaternion">quaternion</a>.
+
+<p>   </p>
+<h6 class="description_section">Parameters</h6>
+<dl class="parameters">
+<dt>AX</dt>
+<dd>the <a class="normal" href="Neslib.FastMath.TQuaternion.html#X">X</a>-component.</dd>
+<dt>AY</dt>
+<dd>the <a class="normal" href="Neslib.FastMath.TQuaternion.html#Y">Y</a>-component.</dd>
+<dt>AZ</dt>
+<dd>the <a class="normal" href="Neslib.FastMath.TQuaternion.html#Z">Z</a>-component.</dd>
+<dt>AW</dt>
+<dd>the <a class="normal" href="Neslib.FastMath.TQuaternion.html#W">W</a>-component.</dd>
+</dl>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><a name="Init"></a><code>procedure <b>Init</b>(const AAxis: <a  href="Neslib.FastMath.TVector3.html">TVector3</a>; const AAngleRadians: Single); overload;</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+Sets the <a class="normal" href="Neslib.FastMath.html#Quaternion">quaternion</a> from the given axis vector and the angle around that axis in <a class="normal" href="Neslib.FastMath.html#Radians">radians</a>.
+
+<p> </p>
+<h6 class="description_section">Parameters</h6>
+<dl class="parameters">
+<dt>AAxis</dt>
+<dd>The axis.</dd>
+<dt>AAngleRadians</dt>
+<dd>The angle in <a class="normal" href="Neslib.FastMath.html#Radians">radians</a>.</dd>
+</dl>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><a name="Init"></a><code>procedure <b>Init</b>(const AYaw, APitch, ARoll: Single); overload;</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+Sets the <a class="normal" href="Neslib.FastMath.html#Quaternion">quaternion</a> to the given euler angles in <a class="normal" href="Neslib.FastMath.html#Radians">radians</a>.
+
+<p>  </p>
+<h6 class="description_section">Parameters</h6>
+<dl class="parameters">
+<dt>AYaw</dt>
+<dd>the rotation around the <a class="normal" href="Neslib.FastMath.TQuaternion.html#Y">Y</a> axis in <a class="normal" href="Neslib.FastMath.html#Radians">radians</a>.</dd>
+<dt>APitch</dt>
+<dd>the rotation around the <a class="normal" href="Neslib.FastMath.TQuaternion.html#X">X</a> axis in <a class="normal" href="Neslib.FastMath.html#Radians">radians</a>.</dd>
+<dt>ARoll</dt>
+<dd>the rotation around the <a class="normal" href="Neslib.FastMath.TQuaternion.html#Z">Z</a> axis in <a class="normal" href="Neslib.FastMath.html#Radians">radians</a>.</dd>
+</dl>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><a name="Init"></a><code>procedure <b>Init</b>(const AMatrix: <a  href="Neslib.FastMath.TMatrix4.html">TMatrix4</a>); overload;</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+Sets the <a class="normal" href="Neslib.FastMath.html#Quaternion">quaternion</a> from a matrix.
+
+<p></p>
+<h6 class="description_section">Parameters</h6>
+<dl class="parameters">
+<dt>AMatrix</dt>
+<dd>the matrix.</dd>
+</dl>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><a name="ToMatrix"></a><code>function <b>ToMatrix</b>: <a  href="Neslib.FastMath.TMatrix4.html">TMatrix4</a>;</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+Creates a rotation matrix that represents this <a class="normal" href="Neslib.FastMath.html#Quaternion">quaternion</a>.
+
+<p></p>
+<h6 class="description_section">Returns</h6>
+<p class="return">A rotation matrix that represents this <a class="normal" href="Neslib.FastMath.html#Quaternion">quaternion</a>.</p></td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><a name="Implicit"></a><code>class operator <b>Implicit</b>(const A: TQuaternion3D): <a  href="Neslib.FastMath.TQuaternion.html">TQuaternion</a>; inline;</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+Implicitly converts a TQuaternion3D to a <a class="normal" href="Neslib.FastMath.TQuaternion.html">TQuaternion</a>.</p>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><a name="Implicit"></a><code>class operator <b>Implicit</b>(const A: <a  href="Neslib.FastMath.TQuaternion.html">TQuaternion</a>): TQuaternion3D; inline;</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+Implicitly converts a <a class="normal" href="Neslib.FastMath.TQuaternion.html">TQuaternion</a> to a TQuaternion3D.</p>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><a name="Add"></a><code>class operator <b>Add</b>(const A, B: <a  href="Neslib.FastMath.TQuaternion.html">TQuaternion</a>): <a  href="Neslib.FastMath.TQuaternion.html">TQuaternion</a>;</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+Adds to quaternions together.
+
+<p></p>
+<h6 class="description_section">Returns</h6>
+<p class="return">A + B</p></td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><a name="Multiply"></a><code>class operator <b>Multiply</b>(const A: <a  href="Neslib.FastMath.TQuaternion.html">TQuaternion</a>; const B: Single): <a  href="Neslib.FastMath.TQuaternion.html">TQuaternion</a>;</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+Multiplies a vector with a scalar value.
+
+<p></p>
+<h6 class="description_section">Returns</h6>
+<p class="return">(A.X * B, A.Y * B, A.Z * B, A.W * B)</p></td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><a name="Multiply"></a><code>class operator <b>Multiply</b>(const A: Single; const B: <a  href="Neslib.FastMath.TQuaternion.html">TQuaternion</a>): <a  href="Neslib.FastMath.TQuaternion.html">TQuaternion</a>;</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+Multiplies a vector with a scalar value.
+
+<p></p>
+<h6 class="description_section">Returns</h6>
+<p class="return">(A * B.X, A * B.Y, A * B.Z, A * B.W)</p></td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><a name="Multiply"></a><code>class operator <b>Multiply</b>(const A, B: <a  href="Neslib.FastMath.TQuaternion.html">TQuaternion</a>): <a  href="Neslib.FastMath.TQuaternion.html">TQuaternion</a>;</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+Multiplies two quaternions.
+
+<p></p>
+<h6 class="description_section">Returns</h6>
+<p class="return">A * B</p></td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><a name="IsIdentity"></a><code>function <b>IsIdentity</b>: Boolean; overload; inline;</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+Whether this is an identity <a class="normal" href="Neslib.FastMath.html#Quaternion">quaternion</a>.
+
+<p></p>
+<h6 class="description_section">Returns</h6>
+<p class="return">True if <a class="normal" href="Neslib.FastMath.TQuaternion.html#X">X</a>, <a class="normal" href="Neslib.FastMath.TQuaternion.html#Y">Y</a> and <a class="normal" href="Neslib.FastMath.TQuaternion.html#Z">Z</a> are exactly 0.0 and <a class="normal" href="Neslib.FastMath.TQuaternion.html#W">W</a> is exactly 1.0</p></td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><a name="IsIdentity"></a><code>function <b>IsIdentity</b>(const AErrorMargin: Single): Boolean; overload;</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+Whether this is an identity <a class="normal" href="Neslib.FastMath.html#Quaternion">quaternion</a> within a given margin of error.
+
+<p>
+
+<p></p>
+<h6 class="description_section">Parameters</h6>
+<dl class="parameters">
+<dt>AErrorMargin</dt>
+<dd>the allowed margin of error.</dd>
+</dl>
+<h6 class="description_section">Returns</h6>
+<p class="return">True if this is an identity <a class="normal" href="Neslib.FastMath.html#Quaternion">quaternion</a> within the error margin.</p></td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><a name="Normalize"></a><code>function <b>Normalize</b>: <a  href="Neslib.FastMath.TQuaternion.html">TQuaternion</a>; inline;</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+Calculates a normalized version of this <a class="normal" href="Neslib.FastMath.html#Quaternion">quaternion</a>.
+
+<p> <b>Note</b>: for a faster, less accurate version, use <a class="normal" href="Neslib.FastMath.TQuaternion.html#NormalizeFast">NormalizeFast</a>.
+
+<p><b>Note</b>: Does not change this <a class="normal" href="Neslib.FastMath.html#Quaternion">quaternion</a>. To update this <a class="normal" href="Neslib.FastMath.html#Quaternion">quaternion</a> itself, use <a class="normal" href="Neslib.FastMath.TQuaternion.html#SetNormalized">SetNormalized</a>.</p>
+<h6 class="description_section">Returns</h6>
+<p class="return">The normalized <a class="normal" href="Neslib.FastMath.html#Quaternion">quaternion</a> of of this vector (with a <a class="normal" href="Neslib.FastMath.TQuaternion.html#Length">length</a> of 1).</p></td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><a name="SetNormalized"></a><code>procedure <b>SetNormalized</b>; inline;</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+Normalizes this <a class="normal" href="Neslib.FastMath.html#Quaternion">quaternion</a> to a <a class="normal" href="Neslib.FastMath.TQuaternion.html#Length">length</a> of 1.
+
+<p><b>Note</b>: The SIMD optimized versions of this method use an approximation, resulting in a very small error.
+
+<p><b>Note</b>: If you do not want to change this <a class="normal" href="Neslib.FastMath.html#Quaternion">quaternion</a>, but get a normalized version instead, then use <a class="normal" href="Neslib.FastMath.TQuaternion.html#Normalize">Normalize</a>.</p>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><a name="NormalizeFast"></a><code>function <b>NormalizeFast</b>: <a  href="Neslib.FastMath.TQuaternion.html">TQuaternion</a>;</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+Calculates a normalized version of this <a class="normal" href="Neslib.FastMath.html#Quaternion">quaternion</a>.
+
+<p> <b>Note</b>: this is an SIMD optimized version that uses an approximation, resulting in a small error. For an accurate version, use <a class="normal" href="Neslib.FastMath.TQuaternion.html#Normalize">Normalize</a>.
+
+<p><b>Note</b>: Does not change this <a class="normal" href="Neslib.FastMath.html#Quaternion">quaternion</a>. To update this <a class="normal" href="Neslib.FastMath.html#Quaternion">quaternion</a> itself, use <a class="normal" href="Neslib.FastMath.TQuaternion.html#SetNormalizedFast">SetNormalizedFast</a>.</p>
+<h6 class="description_section">Returns</h6>
+<p class="return">The normalized version of of this <a class="normal" href="Neslib.FastMath.html#Quaternion">quaternion</a> (with a <a class="normal" href="Neslib.FastMath.TQuaternion.html#Length">length</a> of 1).</p></td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><a name="SetNormalizedFast"></a><code>procedure <b>SetNormalizedFast</b>;</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+Normalizes this <a class="normal" href="Neslib.FastMath.html#Quaternion">quaternion</a> to a <a class="normal" href="Neslib.FastMath.TQuaternion.html#Length">length</a> of 1.
+
+<p><b>Note</b>: this is an SIMD optimized version that uses an approximation, resulting in a small error. For an accurate version, use <a class="normal" href="Neslib.FastMath.TQuaternion.html#SetNormalized">SetNormalized</a>.
+
+<p><b>Note</b>: If you do not want to change this <a class="normal" href="Neslib.FastMath.html#Quaternion">quaternion</a>, but get a normalized version instead, then use <a class="normal" href="Neslib.FastMath.TQuaternion.html#NormalizeFast">NormalizeFast</a>.</p>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><a name="Conjugate"></a><code>function <b>Conjugate</b>: <a  href="Neslib.FastMath.TQuaternion.html">TQuaternion</a>;</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+Creates a <code>conjugate</code> of the <a class="normal" href="Neslib.FastMath.html#Quaternion">quaternion</a>.
+
+<p> <b>Note</b>: Does not change this quaterion. To update this quaterion itself, use <a class="normal" href="Neslib.FastMath.TQuaternion.html#SetConjugate">SetConjugate</a>.</p>
+<h6 class="description_section">Returns</h6>
+<p class="return">The <code>conjugate</code> (eg. (-<a class="normal" href="Neslib.FastMath.TQuaternion.html#X">X</a>, -<a class="normal" href="Neslib.FastMath.TQuaternion.html#Y">Y</a>, -<a class="normal" href="Neslib.FastMath.TQuaternion.html#Z">Z</a>, <a class="normal" href="Neslib.FastMath.TQuaternion.html#W">W</a>))</p></td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><a name="SetConjugate"></a><code>procedure <b>SetConjugate</b>; inline;</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+<a class="normal" href="Neslib.FastMath.TQuaternion.html#Conjugate">Conjugate</a> this <a class="normal" href="Neslib.FastMath.html#Quaternion">quaternion</a>.
+
+<p><b>Note</b>: If you do not want to change this <a class="normal" href="Neslib.FastMath.html#Quaternion">quaternion</a>, but get a <a class="normal" href="Neslib.FastMath.TQuaternion.html#Conjugate">conjugate</a> version instead, then use <a class="normal" href="Neslib.FastMath.TQuaternion.html#Conjugate">Conjugate</a>.</p>
+</td></tr>
+</table>
+<h3 class="detail">Properties</h3>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><a name="Length"></a><code>property <b>Length</b>: Single read GetLength;</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+The euclidean <code>length</code> of this <a class="normal" href="Neslib.FastMath.html#Quaternion">quaternion</a>.
+
+<p><b>Note</b>: If you only want to compare lengths of <a class="normal" href="Neslib.FastMath.html#Quaternion">quaternion</a>, you should use <a class="normal" href="Neslib.FastMath.TQuaternion.html#LengthSquared">LengthSquared</a> instead, which is faster.</p>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><a name="LengthSquared"></a><code>property <b>LengthSquared</b>: Single read GetLengthSquared;</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+The squared <a class="normal" href="Neslib.FastMath.TQuaternion.html#Length">length</a> of the <a class="normal" href="Neslib.FastMath.html#Quaternion">quaternion</a>.
+
+<p><b>Note</b>: This property is faster than <a class="normal" href="Neslib.FastMath.TQuaternion.html#Length">Length</a> because it avoids calculating a square root. It is useful for comparing lengths instead of calculating actual lengths.</p>
+</td></tr>
+</table>
+<div style="height:1000px"></div><hr noshade size="1"><span class="appinfo"><em>Generated by <a  href="http://pasdoc.sourceforge.net/">PasDoc 0.14.0</a>. </em>
+</span>
+</td></tr></table></body></html>
