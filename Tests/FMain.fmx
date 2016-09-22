@@ -1,0 +1,73 @@
+object FormMain: TFormMain
+  Left = 0
+  Top = 0
+  Caption = 'FastMath Tests'
+  ClientHeight = 480
+  ClientWidth = 320
+  FormFactor.Width = 320
+  FormFactor.Height = 480
+  FormFactor.Devices = [Desktop]
+  DesignerMasterStyle = 2
+  object Memo: TMemo
+    Touch.InteractiveGestures = [Pan, LongTap, DoubleTap]
+    DataDetectorTypes = []
+    ReadOnly = True
+    Align = Client
+    Size.Width = 320.000000000000000000
+    Size.Height = 436.000000000000000000
+    Size.PlatformDefault = False
+    TabOrder = 0
+    Viewport.Width = 312.000000000000000000
+    Viewport.Height = 428.000000000000000000
+  end
+  object GridPanelLayout: TGridPanelLayout
+    Align = Top
+    Size.Width = 320.000000000000000000
+    Size.Height = 44.000000000000000000
+    Size.PlatformDefault = False
+    TabOrder = 1
+    ColumnCollection = <
+      item
+        Value = 50.000000000000000000
+      end
+      item
+        Value = 50.000000000000000000
+      end>
+    ControlCollection = <
+      item
+        Column = 0
+        Control = ButtonUnitTests
+        Row = 0
+      end
+      item
+        Column = 1
+        Control = ButtonPerformanceTests
+        Row = 0
+      end>
+    RowCollection = <
+      item
+        Value = 100.000000000000000000
+      end
+      item
+        SizeStyle = Auto
+      end>
+    object ButtonUnitTests: TButton
+      Align = Client
+      Size.Width = 160.000000000000000000
+      Size.Height = 44.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 1
+      Text = 'Unit Tests'
+      OnClick = ButtonUnitTestsClick
+    end
+    object ButtonPerformanceTests: TButton
+      Align = Client
+      Size.Width = 160.000000000000000000
+      Size.Height = 44.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 0
+      Text = 'Performance Tests'
+      OnClick = ButtonPerformanceTestsClick
+    end
+  end
+end
