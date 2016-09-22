@@ -1,7 +1,7 @@
 unit Neslib.FastMath;
 {< Fast Math Library for Delphi }
 
-{ Copyright (c) 2015 by Erik van Bilsen
+{ Copyright (c) 2016 by Erik van Bilsen
   All rights reserved.
 
 Redistribution and use in source and binary forms, with or without
