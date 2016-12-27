@@ -1945,14 +1945,6 @@ type
   PMatrix2 = ^TMatrix2;
 
 type
-  { Adds common constants of type TMatrix2 }
-  _TMatrix2Helper = record helper for TMatrix2
-  public const
-    Zero    : TMatrix2 = (M: ((0, 0), (0, 0)));
-    Identity: TMatrix2 = (M: ((1, 0), (0, 1)));
-  end;
-
-type
   { A 3x3 matrix in row-major order (M[Row, Column]).
     You can access the elements directly using M[0,0]..M[2,2] or m11..m33.
     You can also access the matrix using its three rows R[0]..R[2] (which map
@@ -2200,14 +2192,6 @@ type
           m31, m32, m33: Single);
   end;
   PMatrix3 = ^TMatrix3;
-
-type
-  { Adds common constants of type TMatrix3 }
-  _TMatrix3Helper = record helper for TMatrix3
-  public const
-    Zero    : TMatrix3 = (M: ((0, 0, 0), (0, 0, 0), (0, 0, 0)));
-    Identity: TMatrix3 = (M: ((1, 0, 0), (0, 1, 0), (0, 0, 1)));
-  end;
 
 type
   { A 4x4 matrix in row-major order (M[Row, Column]).
@@ -2613,6 +2597,44 @@ type
           m41, m42, m43, m44: Single);
   end;
   PMatrix4 = ^TMatrix4;
+
+type
+  { Adds common constants of type TMatrix2 }
+  _TMatrix2Helper = record helper for TMatrix2
+  public const
+    Zero    : TMatrix2 = (M: ((0, 0), (0, 0)));
+    Identity: TMatrix2 = (M: ((1, 0), (0, 1)));
+  public
+    { Initializes the matrix with a 3x3 matrix. The upper-left corner of the
+      3x3 matrix is copied to the 2x2 matrix.
+
+      Parameters:
+        AMatrix: the source 3x3 matrix. }
+
+    procedure Init(const AMatrix: TMatrix3); overload;
+
+    { Initializes the matrix with a 4x4 matrix. The upper-left corner of the
+      4x4 matrix is copied to the 3x3 matrix.
+
+      Parameters:
+        AMatrix: the source 4x4 matrix. }
+    procedure Init(const AMatrix: TMatrix4); overload;
+  end;
+
+type
+  { Adds common constants of type TMatrix3 }
+  _TMatrix3Helper = record helper for TMatrix3
+  public const
+    Zero    : TMatrix3 = (M: ((0, 0, 0), (0, 0, 0), (0, 0, 0)));
+    Identity: TMatrix3 = (M: ((1, 0, 0), (0, 1, 0), (0, 0, 1)));
+  public
+    { Initializes the matrix with a 4x4 matrix. The upper-left corner of the
+      4x4 matrix is copied to the 3x3 matrix.
+
+      Parameters:
+        AMatrix: the source 4x4 matrix. }
+    procedure Init(const AMatrix: TMatrix4); overload;
+  end;
 
 type
   { Adds common constants of type TMatrix4 }

@@ -1616,6 +1616,11 @@ begin
   Self := Self + ADelta;
 end;
 
+procedure TVector4.SetClamped(const AMinLength, AMaxLength: Single);
+begin
+  Self := Clamp(AMinLength, AMaxLength);
+end;
+
 procedure TVector4.SetComponent(const AIndex: Integer; const Value: Single);
 begin
   Assert((AIndex >= 0) and (AIndex < 4));
@@ -2535,11 +2540,6 @@ begin
   Result := (A.R[0] <> B.R[0]) or (A.R[1] <> B.R[1]) or (A.R[2] <> B.R[2]) or (A.R[3] <> B.R[3]);
 end;
 
-procedure TVector4.SetClamped(const AMinLength, AMaxLength: Single);
-begin
-  Self := Clamp(AMinLength, AMaxLength);
-end;
-
 procedure TMatrix4.SetComponent(const ARow, AColumn: Integer; const Value: Single);
 begin
   Assert((ARow >= 0) and (ARow < 4));
@@ -2551,6 +2551,29 @@ procedure TMatrix4.SetRow(const AIndex: Integer; const Value: TVector4);
 begin
   Assert((AIndex >= 0) and (AIndex < 4));
   R[AIndex] := Value;
+end;
+
+{ _TMatrix2Helper }
+
+procedure _TMatrix2Helper.Init(const AMatrix: TMatrix3);
+begin
+  R[0].Init(AMatrix.R[0].X, AMatrix.R[0].Y);
+  R[1].Init(AMatrix.R[1].X, AMatrix.R[1].Y);
+end;
+
+procedure _TMatrix2Helper.Init(const AMatrix: TMatrix4);
+begin
+  R[0].Init(AMatrix.R[0].X, AMatrix.R[0].Y);
+  R[1].Init(AMatrix.R[1].X, AMatrix.R[1].Y);
+end;
+
+{ _TMatrix3Helper }
+
+procedure _TMatrix3Helper.Init(const AMatrix: TMatrix4);
+begin
+  R[0].Init(AMatrix.R[0].X, AMatrix.R[0].Y, AMatrix.R[0].Z);
+  R[1].Init(AMatrix.R[1].X, AMatrix.R[1].Y, AMatrix.R[1].Z);
+  R[2].Init(AMatrix.R[2].X, AMatrix.R[2].Y, AMatrix.R[2].Z);
 end;
 
 { TIVector2 }
