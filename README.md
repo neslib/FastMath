@@ -51,7 +51,7 @@ FastMath operations on single-precision floating-point values only. Double-preci
 
 Most functions operate on single values (of type `Single`) and 2-, 3- and 4-dimensional vectors (of types `TVector2`, `TVector3` and `TVector4` respectively). Vectors are not only used to represent points or directions in space, but can also be regarded as arrays of 2, 3 or 4 values that can be used to perform calculations in parallel. In addition to floating-point vectors, there are also vectors that operator on integer values (`TIVector2`, `TIVector3` and `TIVector4`).
 
-There is also support for 2x2, 3x3 and 4x4 matrices (called `TMatrix2`, `TMatrix3` and `TMatrix4`). Matrices are stored in row-major order, like those in the RTL's `System.Math.Vectors` unit.
+There is also support for 2x2, 3x3 and 4x4 matrices (called `TMatrix2`, `TMatrix3` and `TMatrix4`). By default, matrices are stored in row-major order, like those in the RTL's `System.Math.Vectors` unit. However, you can change this layout with the `FM_COLUMN_MAJOR` define. This will store matrices in column-major order instead, which is useful for OpenGL applications (which work best with this layout). In addition, this define will also clip the depth of camera matrices to -1..1 instead of the default 0..1. Again, this is more in line with the default for OpenGL applications.
 
 For representing rotations in 3D space, there is also a `TQuaternion`, which is similar to the RTL's `TQuaternion3D` type.
 

@@ -3128,6 +3128,77 @@ end;
 
 { Matrix functions }
 
+{$IFDEF FM_COLUMN_MAJOR}
+function OuterProduct(const C, R: TVector2): TMatrix2; assembler;
+asm
+  movlps xmm0, [R]
+  movlps xmm1, [C]
+
+  shufps xmm0, xmm0, $50
+  shufps xmm1, xmm1, $44
+
+  mulps  xmm1, xmm0
+
+  // Store as matrix
+  movups [Result], xmm1
+end;
+
+function OuterProduct(const C, R: TVector3): TMatrix3; assembler;
+asm
+  movq     xmm0, [C]
+  movss    xmm1, [C+8]
+  movlhps  xmm0, xmm1
+  movq     xmm1, [R]
+  movss    xmm2, [R+8]
+  movlhps  xmm1, xmm2
+  movaps   xmm2, xmm1
+  movaps   xmm3, xmm1
+
+  shufps   xmm1, xmm1, $00
+  shufps   xmm2, xmm2, $55
+  shufps   xmm3, xmm3, $AA
+
+  mulps    xmm1, xmm0
+  mulps    xmm2, xmm0
+  mulps    xmm3, xmm0
+
+  // Store as matrix
+  movhlps  xmm0, xmm1
+  movhlps  xmm4, xmm2
+  movhlps  xmm5, xmm3
+  movq     QWORD [Result+$00], xmm1
+  movss    [Result+$08], xmm0
+  movq     QWORD [Result+$0C], xmm2
+  movss    [Result+$14], xmm4
+  movq     QWORD [Result+$18], xmm3
+  movss    [Result+$20], xmm5
+end;
+
+function OuterProduct(const C, R: TVector4): TMatrix4; assembler;
+asm
+  movups xmm0, [C]
+  movups xmm1, [R]
+  movaps xmm2, xmm1
+  movaps xmm3, xmm1
+  movaps xmm4, xmm1
+
+  shufps xmm1, xmm1, $00
+  shufps xmm2, xmm2, $55
+  shufps xmm3, xmm3, $AA
+  shufps xmm4, xmm4, $FF
+
+  mulps  xmm1, xmm0
+  mulps  xmm2, xmm0
+  mulps  xmm3, xmm0
+  mulps  xmm4, xmm0
+
+  // Store as matrix
+  movups DQWORD [Result + $00], xmm1
+  movups DQWORD [Result + $10], xmm2
+  movups DQWORD [Result + $20], xmm3
+  movups DQWORD [Result + $30], xmm4
+end;
+{$ELSE}
 function OuterProduct(const C, R: TVector2): TMatrix2; assembler;
 asm
   movlps xmm0, [C]       // # # C.Y C.X
@@ -3197,6 +3268,7 @@ asm
   movups DQWORD [Result + $20], xmm3
   movups DQWORD [Result + $30], xmm4
 end;
+{$ENDIF}
 
 { TVector2 }
 
@@ -4436,6 +4508,160 @@ asm
   movss  DWORD [Result + $20], xmm3
 end;
 
+{$IFDEF FM_COLUMN_MAJOR}
+class operator TMatrix3.Multiply(const A: TMatrix3; const B: TVector3): TVector3; assembler;
+asm
+  movq    xmm0, [B]
+  movss   xmm1, [B+8]
+  movlhps xmm0, xmm1
+
+  movq    xmm4, QWORD [A + $00]
+  movss   xmm1, DWORD [A + $08]
+  movlhps xmm4, xmm1
+
+  movaps  xmm1, xmm0
+  movaps  xmm2, xmm0
+  shufps  xmm0, xmm0, $00
+  shufps  xmm1, xmm1, $55
+  shufps  xmm2, xmm2, $AA
+
+  movq    xmm5, QWORD [A + $0C]
+  movss   xmm3, DWORD [A + $14]
+  movlhps xmm5, xmm3
+
+  movq    xmm6, QWORD [A + $18]
+  movss   xmm3, DWORD [A + $20]
+  movlhps xmm6, xmm3
+
+  mulps   xmm0, xmm4
+  mulps   xmm1, xmm5
+  mulps   xmm2, xmm6
+  addps   xmm0, xmm1
+  addps   xmm0, xmm2
+  movhlps xmm1, xmm0
+  movq    [Result], xmm0
+  movss   [Result+8], xmm1
+end;
+
+class operator TMatrix3.Multiply(const A: TVector3; const B: TMatrix3): TVector3; assembler;
+asm
+  movq     xmm0, [A]
+  movss    xmm1, [A+8]
+  movlhps  xmm0, xmm1
+
+  movq     xmm4, QWORD [B + $00]
+  movss    xmm1, DWORD [B + $08]
+  movlhps  xmm4, xmm1
+
+  movaps   xmm1, xmm0
+  movaps   xmm2, xmm0
+
+  movq     xmm5, QWORD [B + $0C]
+  movss    xmm6, DWORD [B + $14]
+  movlhps  xmm5, xmm6
+
+  movq     xmm6, QWORD [B + $18]
+  movss    xmm3, DWORD [B + $20]
+  movlhps  xmm6, xmm3
+
+  mulps    xmm0, xmm4
+  mulps    xmm1, xmm5
+  mulps    xmm2, xmm6
+  xorps    xmm3, xmm3
+
+  { Transpose xmm0-xmm2 }
+  movaps   xmm4, xmm2
+  unpcklps xmm2, xmm3
+  unpckhps xmm4, xmm3
+
+  movaps   xmm3, xmm0
+  unpcklps xmm0, xmm1
+  unpckhps xmm3, xmm1
+
+  movaps   xmm1, xmm0
+  unpcklpd xmm0, xmm2
+  unpckhpd xmm1, xmm2
+
+  unpcklpd xmm3, xmm4
+
+  addps    xmm0, xmm1
+  addps    xmm0, xmm3
+  movhlps  xmm1, xmm0
+  movq     [Result], xmm0
+  movss    [Result+8], xmm1
+end;
+
+class operator TMatrix3.Multiply(const A, B: TMatrix3): TMatrix3; assembler;
+{ Code below consists of 3 Vector*Matrix calculations }
+asm
+  movq    xmm0, QWORD [B + $00]
+  movss   xmm1, DWORD [B + $08]
+  movlhps xmm0, xmm1
+
+  movq    xmm4, QWORD [A + $00]
+  movss   xmm1, DWORD [A + $08]
+  movlhps xmm4, xmm1
+
+  movaps  xmm1, xmm0
+  movaps  xmm2, xmm0
+  shufps  xmm0, xmm0, $00
+  shufps  xmm1, xmm1, $55
+  shufps  xmm2, xmm2, $AA
+
+  movq    xmm5, QWORD [A + $0C]
+  movss   xmm3, DWORD [A + $14]
+  movlhps xmm5, xmm3
+
+  movq    xmm6, QWORD [A + $18]
+  movss   xmm3, DWORD [A + $20]
+  movlhps xmm6, xmm3
+
+  mulps   xmm0, xmm4
+  mulps   xmm1, xmm5
+  mulps   xmm2, xmm6
+  addps   xmm0, xmm1
+  addps   xmm0, xmm2
+  movhlps xmm1, xmm0
+  movq    QWORD [Result + $00], xmm0
+  movss   DWORD [Result + $08], xmm1
+
+  movq    xmm0, QWORD [B + $0C]
+  movss   xmm1, DWORD [B + $14]
+  movlhps xmm0, xmm1
+
+  movaps  xmm1, xmm0
+  movaps  xmm2, xmm0
+  shufps  xmm0, xmm0, $00
+  shufps  xmm1, xmm1, $55
+  shufps  xmm2, xmm2, $AA
+  mulps   xmm0, xmm4
+  mulps   xmm1, xmm5
+  mulps   xmm2, xmm6
+  addps   xmm0, xmm1
+  addps   xmm0, xmm2
+  movhlps xmm1, xmm0
+  movq    QWORD [Result + $0C], xmm0
+  movss   DWORD [Result + $14], xmm1
+
+  movq    xmm0, QWORD [B + $18]
+  movss   xmm1, DWORD [B + $20]
+  movlhps xmm0, xmm1
+
+  movaps  xmm1, xmm0
+  movaps  xmm2, xmm0
+  shufps  xmm0, xmm0, $00
+  shufps  xmm1, xmm1, $55
+  shufps  xmm2, xmm2, $AA
+  mulps   xmm0, xmm4
+  mulps   xmm1, xmm5
+  mulps   xmm2, xmm6
+  addps   xmm0, xmm1
+  addps   xmm0, xmm2
+  movhlps xmm1, xmm0
+  movq    QWORD [Result + $18], xmm0
+  movss   DWORD [Result + $20], xmm1
+end;
+{$ELSE}
 class operator TMatrix3.Multiply(const A: TMatrix3; const B: TVector3): TVector3; assembler;
 asm
   movq     xmm0, [B]              // Load vector
@@ -4591,6 +4817,7 @@ asm
   movq    QWORD [Result + $18], xmm0
   movss   DWORD [Result + $20], xmm1
 end;
+{$ENDIF}
 
 class operator TMatrix3.Negative(const A: TMatrix3): TMatrix3; assembler;
 asm
@@ -5079,6 +5306,145 @@ asm
   movups DQWORD [Result + $30], xmm4
 end;
 
+{$IFDEF FM_COLUMN_MAJOR}
+class operator TMatrix4.Multiply(const A: TMatrix4; const B: TVector4): TVector4; assembler;
+asm
+  movups xmm0, [B]
+  movups xmm4, DQWORD [A + $00]
+  movaps xmm1, xmm0
+  movaps xmm2, xmm0
+  movaps xmm3, xmm0
+  shufps xmm0, xmm0, $00
+  shufps xmm1, xmm1, $55
+  shufps xmm2, xmm2, $AA
+  shufps xmm3, xmm3, $FF
+  movups xmm5, DQWORD [A + $10]
+  movups xmm6, DQWORD [A + $20]
+  movups xmm7, DQWORD [A + $30]
+  mulps  xmm0, xmm4
+  mulps  xmm1, xmm5
+  mulps  xmm2, xmm6
+  mulps  xmm3, xmm7
+  addps  xmm0, xmm1
+  addps  xmm2, xmm3
+  addps  xmm0, xmm2
+  movups [Result], xmm0
+end;
+
+class operator TMatrix4.Multiply(const A: TVector4; const B: TMatrix4): TVector4; assembler;
+asm
+  movups   xmm0, [A]
+  movups   xmm4, DQWORD [B + $00]
+  movaps   xmm1, xmm0
+  movaps   xmm2, xmm0
+  movaps   xmm3, xmm0
+  movups   xmm5, DQWORD [B + $10]
+  movups   xmm6, DQWORD [B + $20]
+  movups   xmm7, DQWORD [B + $30]
+  mulps    xmm0, xmm4
+  mulps    xmm1, xmm5
+  mulps    xmm2, xmm6
+  mulps    xmm3, xmm7
+
+  { Transpose xmm0-xmm3 }
+  movaps   xmm4, xmm2
+  unpcklps xmm2, xmm3
+  unpckhps xmm4, xmm3
+
+  movaps   xmm3, xmm0
+  unpcklps xmm0, xmm1
+  unpckhps xmm3, xmm1
+
+  movaps   xmm1, xmm0
+  unpcklpd xmm0, xmm2
+  unpckhpd xmm1, xmm2
+
+  movaps   xmm2, xmm3
+  unpcklpd xmm2, xmm4
+  unpckhpd xmm3, xmm4
+
+  addps    xmm0, xmm1
+  addps    xmm2, xmm3
+  addps    xmm0, xmm2
+  movups   [Result], xmm0
+end;
+
+class operator TMatrix4.Multiply(const A, B: TMatrix4): TMatrix4; assembler;
+{ Code below consists of 4 Vector*Matrix calculations }
+asm
+  movups xmm0, DQWORD [B + $00]
+  movups xmm4, DQWORD [A + $00]
+  movaps xmm1, xmm0
+  movaps xmm2, xmm0
+  movaps xmm3, xmm0
+  shufps xmm0, xmm0, $00
+  shufps xmm1, xmm1, $55
+  shufps xmm2, xmm2, $AA
+  shufps xmm3, xmm3, $FF
+  movups xmm5, DQWORD [A + $10]
+  movups xmm6, DQWORD [A + $20]
+  movups xmm7, DQWORD [A + $30]
+  mulps  xmm0, xmm4
+  mulps  xmm1, xmm5
+  mulps  xmm2, xmm6
+  mulps  xmm3, xmm7
+  addps  xmm0, xmm1
+  addps  xmm2, xmm3
+  addps  xmm0, xmm2
+  movups DQWORD [Result + $00], xmm0
+
+  movups xmm0, DQWORD [B + $10]
+  movaps xmm1, xmm0
+  movaps xmm2, xmm0
+  movaps xmm3, xmm0
+  shufps xmm0, xmm0, $00
+  shufps xmm1, xmm1, $55
+  shufps xmm2, xmm2, $AA
+  shufps xmm3, xmm3, $FF
+  mulps  xmm0, xmm4
+  mulps  xmm1, xmm5
+  mulps  xmm2, xmm6
+  mulps  xmm3, xmm7
+  addps  xmm0, xmm1
+  addps  xmm2, xmm3
+  addps  xmm0, xmm2
+  movups DQWORD [Result + $10], xmm0
+
+  movups xmm0, DQWORD [B + $20]
+  movaps xmm1, xmm0
+  movaps xmm2, xmm0
+  movaps xmm3, xmm0
+  shufps xmm0, xmm0, $00
+  shufps xmm1, xmm1, $55
+  shufps xmm2, xmm2, $AA
+  shufps xmm3, xmm3, $FF
+  mulps  xmm0, xmm4
+  mulps  xmm1, xmm5
+  mulps  xmm2, xmm6
+  mulps  xmm3, xmm7
+  addps  xmm0, xmm1
+  addps  xmm2, xmm3
+  addps  xmm0, xmm2
+  movups DQWORD [Result + $20], xmm0
+
+  movups xmm0, DQWORD [B + $30]
+  movaps xmm1, xmm0
+  movaps xmm2, xmm0
+  movaps xmm3, xmm0
+  shufps xmm0, xmm0, $00
+  shufps xmm1, xmm1, $55
+  shufps xmm2, xmm2, $AA
+  shufps xmm3, xmm3, $FF
+  mulps  xmm0, xmm4
+  mulps  xmm1, xmm5
+  mulps  xmm2, xmm6
+  mulps  xmm3, xmm7
+  addps  xmm0, xmm1
+  addps  xmm2, xmm3
+  addps  xmm0, xmm2
+  movups DQWORD [Result + $30], xmm0
+end;
+{$ELSE}
 class operator TMatrix4.Multiply(const A: TMatrix4; const B: TVector4): TVector4; assembler;
 asm
   movups   xmm0, [B]              // Load vector
@@ -5220,6 +5586,7 @@ asm
   addps  xmm0, xmm2
   movups DQWORD [Result + $30], xmm0
 end;
+{$ENDIF}
 
 class operator TMatrix4.Negative(const A: TMatrix4): TMatrix4; assembler;
 asm

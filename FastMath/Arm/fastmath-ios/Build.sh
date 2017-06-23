@@ -1,5 +1,3 @@
-IOS_SDK=9.3
-
 OUTPUT="../../libfastmath-ios.a"
 PLATFORM="iPhoneOS"
 
@@ -9,9 +7,9 @@ if [ ! -d $DEVELOPER_DIR ]; then
   exit 1
 fi
 
-SDK_ROOT=$DEVELOPER_DIR/Platforms/$PLATFORM.platform/Developer/SDKs/$PLATFORM$IOS_SDK.sdk
+SDK_ROOT=$DEVELOPER_DIR/Platforms/$PLATFORM.platform/Developer/SDKs/$PLATFORM.sdk
 if [ ! -d $SDK_ROOT ]; then
-  echo "The iOS SDK $IOS_SDK was not found in $SDK_ROOT."
+  echo "The iOS SDK was not found in $SDK_ROOT."
   exit 1
 fi
 

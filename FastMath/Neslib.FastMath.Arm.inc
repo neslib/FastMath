@@ -666,17 +666,29 @@ end;
 
 function OuterProduct(const C, R: TVector2): TMatrix2;
 begin
+  {$IFDEF FM_COLUMN_MAJOR}
+  _outer_product_matrix2(@R, @C, @Result);
+  {$ELSE}
   _outer_product_matrix2(@C, @R, @Result);
+  {$ENDIF}
 end;
 
 function OuterProduct(const C, R: TVector3): TMatrix3;
 begin
+  {$IFDEF FM_COLUMN_MAJOR}
+  _outer_product_matrix3(@R, @C, @Result);
+  {$ELSE}
   _outer_product_matrix3(@C, @R, @Result);
+  {$ENDIF}
 end;
 
 function OuterProduct(const C, R: TVector4): TMatrix4;
 begin
+  {$IFDEF FM_COLUMN_MAJOR}
+  _outer_product_matrix4(@R, @C, @Result);
+  {$ELSE}
   _outer_product_matrix4(@C, @R, @Result);
+  {$ENDIF}
 end;
 
 { TVector2 }
@@ -1208,17 +1220,29 @@ end;
 
 class operator TMatrix3.Multiply(const A: TVector3; const B: TMatrix3): Tvector3;
 begin
+  {$IFDEF FM_COLUMN_MAJOR}
+  _matrix3_mul_vector3(@B, @A, @Result);
+  {$ELSE}
   _vector3_mul_matrix3(@A, @B, @Result);
+  {$ENDIF}
 end;
 
 class operator TMatrix3.Multiply(const A: TMatrix3; const B: Tvector3): Tvector3;
 begin
+  {$IFDEF FM_COLUMN_MAJOR}
+  _vector3_mul_matrix3(@B, @A, @Result);
+  {$ELSE}
   _matrix3_mul_vector3(@A, @B, @Result);
+  {$ENDIF}
 end;
 
 class operator TMatrix3.Multiply(const A, B: TMatrix3): TMatrix3;
 begin
+  {$IFDEF FM_COLUMN_MAJOR}
+  _matrix3_mul_matrix3(@B, @A, @Result);
+  {$ELSE}
   _matrix3_mul_matrix3(@A, @B, @Result);
+  {$ENDIF}
 end;
 
 class operator TMatrix3.Negative(const A: TMatrix3): TMatrix3;
@@ -1314,17 +1338,29 @@ end;
 
 class operator TMatrix4.Multiply(const A: TVector4; const B: TMatrix4): TVector4;
 begin
+  {$IFDEF FM_COLUMN_MAJOR}
+  _matrix4_mul_vector4(@B, @A, @Result);
+  {$ELSE}
   _vector4_mul_matrix4(@A, @B, @Result);
+  {$ENDIF}
 end;
 
 class operator TMatrix4.Multiply(const A: TMatrix4; const B: TVector4): TVector4;
 begin
+  {$IFDEF FM_COLUMN_MAJOR}
+  _vector4_mul_matrix4(@B, @A, @Result);
+  {$ELSE}
   _matrix4_mul_vector4(@A, @B, @Result);
+  {$ENDIF}
 end;
 
 class operator TMatrix4.Multiply(const A, B: TMatrix4): TMatrix4;
 begin
+  {$IFDEF FM_COLUMN_MAJOR}
+  _matrix4_mul_matrix4(@B, @A, @Result);
+  {$ELSE}
   _matrix4_mul_matrix4(@A, @B, @Result);
+  {$ENDIF}
 end;
 
 class operator TMatrix4.Negative(const A: TMatrix4): TMatrix4;

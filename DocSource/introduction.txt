@@ -59,8 +59,13 @@ vectors, there are also vectors that operator on integer values
 (@code(TIVector2), @code(TIVector3) and @code(TIVector4)).
 
 There is also support for 2x2, 3x3 and 4x4 matrices (called @code(TMatrix2), 
-@code(TMatrix3) and @code(TMatrix4)). Matrices are stored in row-major order,
-like those in the RTL's @code(System.Math.Vectors) unit.
+@code(TMatrix3) and @code(TMatrix4)). By default, matrices are stored in 
+row-major order, like those in the RTL's @code(System.Math.Vectors) unit. 
+However, you can change this layout with the @code(FM_COLUMN_MAJOR) define. 
+This will store matrices in column-major order instead, which is useful for 
+OpenGL applications (which work best with this layout). In addition, this define 
+will also clip the depth of camera matrices to -1..1 instead of the default 
+0..1. Again, this is more in line with the default for OpenGL applications.
 
 For representing rotations in 3D space, there is also a @code(TQuaternion), 
 which is similar to the RTL's @code(TQuaternion3D) type.

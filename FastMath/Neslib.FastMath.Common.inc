@@ -169,14 +169,14 @@ end;
 
 function Matrix2(const AMatrix: TMatrix3): TMatrix2;
 begin
-  Result.R[0] := Vector2(AMatrix.R[0]);
-  Result.R[1] := Vector2(AMatrix.R[1]);
+  Result.V[0] := Vector2(AMatrix.V[0]);
+  Result.V[1] := Vector2(AMatrix.V[1]);
 end;
 
 function Matrix2(const AMatrix: TMatrix4): TMatrix2;
 begin
-  Result.R[0] := Vector2(AMatrix.R[0]);
-  Result.R[1] := Vector2(AMatrix.R[1]);
+  Result.V[0] := Vector2(AMatrix.V[0]);
+  Result.V[1] := Vector2(AMatrix.V[1]);
 end;
 
 { Matrix3 }
@@ -203,16 +203,16 @@ end;
 
 function Matrix3(const AMatrix: TMatrix2): TMatrix3;
 begin
-  Result.R[0] := Vector3(AMatrix.R[0], 0);
-  Result.R[1] := Vector3(AMatrix.R[1], 0);
-  Result.R[2] := Vector3(0, 0, 1);
+  Result.V[0] := Vector3(AMatrix.V[0], 0);
+  Result.V[1] := Vector3(AMatrix.V[1], 0);
+  Result.V[2] := Vector3(0, 0, 1);
 end;
 
 function Matrix3(const AMatrix: TMatrix4): TMatrix3;
 begin
-  Result.R[0] := Vector3(AMatrix.R[0]);
-  Result.R[1] := Vector3(AMatrix.R[1]);
-  Result.R[2] := Vector3(AMatrix.R[2]);
+  Result.V[0] := Vector3(AMatrix.V[0]);
+  Result.V[1] := Vector3(AMatrix.V[1]);
+  Result.V[2] := Vector3(AMatrix.V[2]);
 end;
 
 { Matrix4 }
@@ -241,18 +241,18 @@ end;
 
 function Matrix4(const AMatrix: TMatrix2): TMatrix4;
 begin
-  Result.R[0].Init(AMatrix.R[0], 0, 0);
-  Result.R[1].Init(AMatrix.R[1], 0, 0);
-  Result.R[2].Init(0, 0, 1, 0);
-  Result.R[3].Init(0, 0, 0, 1);
+  Result.V[0].Init(AMatrix.V[0], 0, 0);
+  Result.V[1].Init(AMatrix.V[1], 0, 0);
+  Result.V[2].Init(0, 0, 1, 0);
+  Result.V[3].Init(0, 0, 0, 1);
 end;
 
 function Matrix4(const AMatrix: TMatrix3): TMatrix4;
 begin
-  Result.R[0].Init(AMatrix.R[0], 0);
-  Result.R[1].Init(AMatrix.R[1], 0);
-  Result.R[2].Init(AMatrix.R[2], 0);
-  Result.R[3].Init(0, 0, 0, 1);
+  Result.V[0].Init(AMatrix.V[0], 0);
+  Result.V[1].Init(AMatrix.V[1], 0);
+  Result.V[2].Init(AMatrix.V[2], 0);
+  Result.V[3].Init(0, 0, 0, 1);
 end;
 
 { IVector2 }
@@ -1871,53 +1871,11 @@ begin
   Result := A.Inverse * B;
 end;
 
-class operator TMatrix2.Equal(const A, B: TMatrix2): Boolean;
-begin
-  Result := (A.R[0] = B.R[0]) and (A.R[1] = B.R[1]);
-end;
-
-function TMatrix2.GetComponent(const ARow, AColumn: Integer): Single;
-begin
-  Assert((ARow >= 0) and (ARow < 2));
-  Assert((AColumn >= 0) and (AColumn < 2));
-  Result := M[ARow, AColumn];
-end;
-
 function TMatrix2.GetDeterminant: Single;
 begin
   Result :=
     + (M[0,0] * M[1,1])
     - (M[1,0] * M[0,1]);
-end;
-
-function TMatrix2.GetRow(const AIndex: Integer): TVector2;
-begin
-  Assert((AIndex >= 0) and (AIndex < 2));
-  Result := R[AIndex];
-end;
-
-procedure TMatrix2.Init(const ADiagonal: Single);
-begin
-  R[0].Init(ADiagonal, 0);
-  R[1].Init(0, ADiagonal);
-end;
-
-procedure TMatrix2.Init;
-begin
-  R[0].Init(1, 0);
-  R[1].Init(0, 1);
-end;
-
-procedure TMatrix2.Init(const A11, A12, A21, A22: Single);
-begin
-  R[0].Init(A11, A12);
-  R[1].Init(A21, A22);
-end;
-
-procedure TMatrix2.Init(const ARow0, ARow1: TVector2);
-begin
-  R[0] := ARow0;
-  R[1] := ARow1;
 end;
 
 function TMatrix2.Inverse: TMatrix2;
@@ -1931,9 +1889,113 @@ begin
   Result.M[1,1] := +M[0,0] * OneOverDeterminant;
 end;
 
+procedure TMatrix2.SetInversed;
+begin
+  Self := Inverse;
+end;
+
+class operator TMatrix2.Equal(const A, B: TMatrix2): Boolean;
+begin
+  Result := (A.V[0] = B.V[0]) and (A.V[1] = B.V[1]);
+end;
+
+procedure TMatrix2.Init(const ADiagonal: Single);
+begin
+  V[0].Init(ADiagonal, 0);
+  V[1].Init(0, ADiagonal);
+end;
+
+procedure TMatrix2.Init;
+begin
+  V[0].Init(1, 0);
+  V[1].Init(0, 1);
+end;
+
+procedure TMatrix2.Init(const A11, A12, A21, A22: Single);
+begin
+  V[0].Init(A11, A12);
+  V[1].Init(A21, A22);
+end;
+
 class operator TMatrix2.NotEqual(const A, B: TMatrix2): Boolean;
 begin
-  Result := (A.R[0] <> B.R[0]) or (A.R[1] <> B.R[1]);
+  Result := (A.V[0] <> B.V[0]) or (A.V[1] <> B.V[1]);
+end;
+
+{$IFDEF FM_COLUMN_MAJOR}
+function TMatrix2.GetColumn(const AIndex: Integer): TVector2;
+begin
+  Assert((AIndex >= 0) and (AIndex < 2));
+  Result := C[AIndex];
+end;
+
+function TMatrix2.GetComponent(const AColumn, ARow: Integer): Single;
+begin
+  Assert((AColumn >= 0) and (AColumn < 2));
+  Assert((ARow >= 0) and (ARow < 2));
+  Result := M[AColumn, ARow];
+end;
+
+procedure TMatrix2.Init(const AColumn0, AColumn1: TVector2);
+begin
+  C[0] := AColumn0;
+  C[1] := AColumn1;
+end;
+
+class operator TMatrix3.Implicit(const A: TMatrix): TMatrix3;
+var
+  M: TMatrix3 absolute A;
+begin
+  Result := M.Transpose;
+end;
+
+class operator TMatrix3.Implicit(const A: TMatrix3): TMatrix;
+var
+  M: TMatrix3 absolute Result;
+begin
+  M := A.Transpose;
+end;
+
+procedure TMatrix2.SetColumn(const AIndex: Integer; const Value: TVector2);
+begin
+  Assert((AIndex >= 0) and (AIndex < 2));
+  C[AIndex] := Value;
+end;
+
+procedure TMatrix2.SetComponent(const AColumn, ARow: Integer; const Value: Single);
+begin
+  Assert((AColumn >= 0) and (AColumn < 2));
+  Assert((ARow >= 0) and (ARow < 2));
+  M[AColumn, ARow] := Value;
+end;
+{$ELSE}
+function TMatrix2.GetComponent(const ARow, AColumn: Integer): Single;
+begin
+  Assert((ARow >= 0) and (ARow < 2));
+  Assert((AColumn >= 0) and (AColumn < 2));
+  Result := M[ARow, AColumn];
+end;
+
+function TMatrix2.GetRow(const AIndex: Integer): TVector2;
+begin
+  Assert((AIndex >= 0) and (AIndex < 2));
+  Result := R[AIndex];
+end;
+
+class operator TMatrix3.Implicit(const A: TMatrix): TMatrix3;
+begin
+  Move(A, Result, SizeOf(A));
+end;
+
+class operator TMatrix3.Implicit(const A: TMatrix3): TMatrix;
+begin
+  Move(A, Result, SizeOf(A));
+end;
+
+procedure TMatrix2.Init(const ARow0, ARow1: TVector2);
+begin
+  R[0] := ARow0;
+  R[1] := ARow1;
 end;
 
 procedure TMatrix2.SetComponent(const ARow, AColumn: Integer; const Value: Single);
@@ -1943,16 +2005,12 @@ begin
   M[ARow, AColumn] := Value;
 end;
 
-procedure TMatrix2.SetInversed;
-begin
-  Self := Inverse;
-end;
-
 procedure TMatrix2.SetRow(const AIndex: Integer; const Value: TVector2);
 begin
   Assert((AIndex >= 0) and (AIndex < 2));
   R[AIndex] := Value;
 end;
+{$ENDIF}
 
 { TMatrix3 }
 
@@ -1971,121 +2029,12 @@ begin
   Result := A.Inverse * B;
 end;
 
-class operator TMatrix3.Equal(const A, B: TMatrix3): Boolean;
-begin
-  Result := (A.R[0] = B.R[0]) and (A.R[1] = B.R[1]) and (A.R[2] = B.R[2]);
-end;
-
-function TMatrix3.GetComponent(const ARow, AColumn: Integer): Single;
-begin
-  Assert((ARow >= 0) and (ARow < 3));
-  Assert((AColumn >= 0) and (AColumn < 3));
-  Result := M[ARow, AColumn];
-end;
-
 function TMatrix3.GetDeterminant: Single;
 begin
   Result :=
     + (M[0,0] * ((M[1,1] * M[2,2]) - (M[2,1] * M[1,2])))
     - (M[0,1] * ((M[1,0] * M[2,2]) - (M[2,0] * M[1,2])))
     + (M[0,2] * ((M[1,0] * M[2,1]) - (M[2,0] * M[1,1])));
-end;
-
-function TMatrix3.GetRow(const AIndex: Integer): TVector3;
-begin
-  Assert((AIndex >= 0) and (AIndex < 3));
-  Result := R[AIndex];
-end;
-
-class operator TMatrix3.Implicit(const A: TMatrix): TMatrix3;
-begin
-  Move(A, Result, SizeOf(TMatrix3));
-end;
-
-class operator TMatrix3.Implicit(const A: TMatrix3): TMatrix;
-begin
-  Move(A, Result, SizeOf(TMatrix3));
-end;
-
-procedure TMatrix3.Init(const ADiagonal: Single);
-begin
-  R[0].Init(ADiagonal, 0, 0);
-  R[1].Init(0, ADiagonal, 0);
-  R[2].Init(0, 0, ADiagonal);
-end;
-
-procedure TMatrix3.Init;
-begin
-  R[0].Init(1, 0, 0);
-  R[1].Init(0, 1, 0);
-  R[2].Init(0, 0, 1);
-end;
-
-procedure TMatrix3.Init(const ARow0, ARow1, ARow2: TVector3);
-begin
-  R[0] := ARow0;
-  R[1] := ARow1;
-  R[2] := ARow2;
-end;
-
-procedure TMatrix3.Init(const AMatrix: TMatrix2);
-begin
-  R[0].Init(AMatrix.R[0], 0);
-  R[1].Init(AMatrix.R[1], 0);
-  R[2].Init(0, 0, 1);
-end;
-
-procedure TMatrix3.Init(const A11, A12, A13, A21, A22, A23, A31, A32,
-  A33: Single);
-begin
-  R[0].Init(A11, A12, A13);
-  R[1].Init(A21, A22, A23);
-  R[2].Init(A31, A32, A33);
-end;
-
-procedure TMatrix3.InitScaling(const AScale: Single);
-begin
-  R[0].Init(AScale, 0, 0);
-  R[1].Init(0, AScale, 0);
-  R[2].Init(0, 0, 1);
-end;
-
-procedure TMatrix3.InitScaling(const AScaleX, AScaleY: Single);
-begin
-  R[0].Init(AScaleX, 0, 0);
-  R[1].Init(0, AScaleY, 0);
-  R[2].Init(0, 0, 1);
-end;
-
-procedure TMatrix3.InitScaling(const AScale: TVector2);
-begin
-  R[0].Init(AScale.X, 0, 0);
-  R[1].Init(0, AScale.Y, 0);
-  R[2].Init(0, 0, 1);
-end;
-
-procedure TMatrix3.InitTranslation(const ADeltaX, ADeltaY: Single);
-begin
-  R[0].Init(1, 0, 0);
-  R[1].Init(0, 1, 0);
-  R[2].Init(ADeltaX, ADeltaY, 1);
-end;
-
-procedure TMatrix3.InitTranslation(const ADelta: TVector2);
-begin
-  R[0].Init(1, 0, 0);
-  R[1].Init(0, 1, 0);
-  R[2].Init(ADelta.X, ADelta.Y, 1);
-end;
-
-procedure TMatrix3.InitRotation(const AAngle: Single);
-var
-  S, C: Single;
-begin
-  FastSinCos(AAngle, S, C);
-  R[0].Init(C, S, 0);
-  R[1].Init(-S, C, 0);
-  R[2].Init(0, 0, 1);
 end;
 
 function TMatrix3.Inverse: TMatrix3;
@@ -2104,9 +2053,157 @@ begin
   Result.M[2,2] := + ((M[0,0] * M[1,1]) - (M[1,0] * M[0,1])) * OneOverDeterminant;
 end;
 
+procedure TMatrix3.SetInversed;
+begin
+  Self := Inverse;
+end;
+
+class operator TMatrix3.Equal(const A, B: TMatrix3): Boolean;
+begin
+  Result := (A.V[0] = B.V[0]) and (A.V[1] = B.V[1]) and (A.V[2] = B.V[2]);
+end;
+
+procedure TMatrix3.Init(const ADiagonal: Single);
+begin
+  V[0].Init(ADiagonal, 0, 0);
+  V[1].Init(0, ADiagonal, 0);
+  V[2].Init(0, 0, ADiagonal);
+end;
+
+procedure TMatrix3.Init;
+begin
+  V[0].Init(1, 0, 0);
+  V[1].Init(0, 1, 0);
+  V[2].Init(0, 0, 1);
+end;
+
+procedure TMatrix3.Init(const AMatrix: TMatrix2);
+begin
+  V[0].Init(AMatrix.V[0], 0);
+  V[1].Init(AMatrix.V[1], 0);
+  V[2].Init(0, 0, 1);
+end;
+
+procedure TMatrix3.Init(const A11, A12, A13, A21, A22, A23, A31, A32,
+  A33: Single);
+begin
+  V[0].Init(A11, A12, A13);
+  V[1].Init(A21, A22, A23);
+  V[2].Init(A31, A32, A33);
+end;
+
+procedure TMatrix3.InitScaling(const AScale: Single);
+begin
+  V[0].Init(AScale, 0, 0);
+  V[1].Init(0, AScale, 0);
+  V[2].Init(0, 0, 1);
+end;
+
+procedure TMatrix3.InitScaling(const AScaleX, AScaleY: Single);
+begin
+  V[0].Init(AScaleX, 0, 0);
+  V[1].Init(0, AScaleY, 0);
+  V[2].Init(0, 0, 1);
+end;
+
+procedure TMatrix3.InitScaling(const AScale: TVector2);
+begin
+  V[0].Init(AScale.X, 0, 0);
+  V[1].Init(0, AScale.Y, 0);
+  V[2].Init(0, 0, 1);
+end;
+
+procedure TMatrix3.InitTranslation(const ADeltaX, ADeltaY: Single);
+begin
+  V[0].Init(1, 0, 0);
+  V[1].Init(0, 1, 0);
+  V[2].Init(ADeltaX, ADeltaY, 1);
+end;
+
+procedure TMatrix3.InitTranslation(const ADelta: TVector2);
+begin
+  V[0].Init(1, 0, 0);
+  V[1].Init(0, 1, 0);
+  V[2].Init(ADelta.X, ADelta.Y, 1);
+end;
+
 class operator TMatrix3.NotEqual(const A, B: TMatrix3): Boolean;
 begin
-  Result := (A.R[0] <> B.R[0]) or (A.R[1] <> B.R[1]) or (A.R[2] <> B.R[2]);
+  Result := (A.V[0] <> B.V[0]) or (A.V[1] <> B.V[1]) or (A.V[2] <> B.V[2]);
+end;
+
+{$IFDEF FM_COLUMN_MAJOR}
+function TMatrix3.GetColumn(const AIndex: Integer): TVector3;
+begin
+  Assert((AIndex >= 0) and (AIndex < 3));
+  Result := C[AIndex];
+end;
+
+function TMatrix3.GetComponent(const AColumn, ARow: Integer): Single;
+begin
+  Assert((AColumn >= 0) and (AColumn < 3));
+  Assert((ARow >= 0) and (ARow < 3));
+  Result := M[AColumn, ARow];
+end;
+
+procedure TMatrix3.Init(const AColumn0, AColumn1, AColumn2: TVector3);
+begin
+  C[0] := AColumn0;
+  C[1] := AColumn1;
+  C[2] := AColumn2;
+end;
+
+procedure TMatrix3.InitRotation(const AAngle: Single);
+var
+  S, C: Single;
+begin
+  FastSinCos(AAngle, S, C);
+  Self.C[0].Init(C, S, 0);
+  Self.C[1].Init(-S, C, 0);
+  Self.C[2].Init(0, 0, 1);
+end;
+
+procedure TMatrix3.SetColumn(const AIndex: Integer; const Value: TVector3);
+begin
+  Assert((AIndex >= 0) and (AIndex < 3));
+  C[AIndex] := Value;
+end;
+
+procedure TMatrix3.SetComponent(const AColumn, ARow: Integer; const Value: Single);
+begin
+  Assert((AColumn >= 0) and (AColumn < 3));
+  Assert((ARow >= 0) and (ARow < 3));
+  M[AColumn, ARow] := Value;
+end;
+{$ELSE}
+function TMatrix3.GetComponent(const ARow, AColumn: Integer): Single;
+begin
+  Assert((ARow >= 0) and (ARow < 3));
+  Assert((AColumn >= 0) and (AColumn < 3));
+  Result := M[ARow, AColumn];
+end;
+
+function TMatrix3.GetRow(const AIndex: Integer): TVector3;
+begin
+  Assert((AIndex >= 0) and (AIndex < 3));
+  Result := R[AIndex];
+end;
+
+procedure TMatrix3.Init(const ARow0, ARow1, ARow2: TVector3);
+begin
+  R[0] := ARow0;
+  R[1] := ARow1;
+  R[2] := ARow2;
+end;
+
+procedure TMatrix3.InitRotation(const AAngle: Single);
+var
+  S, C: Single;
+begin
+  FastSinCos(AAngle, S, C);
+  R[0].Init(C, S, 0);
+  R[1].Init(-S, C, 0);
+  R[2].Init(0, 0, 1);
 end;
 
 procedure TMatrix3.SetComponent(const ARow, AColumn: Integer; const Value: Single);
@@ -2116,16 +2213,12 @@ begin
   M[ARow, AColumn] := Value;
 end;
 
-procedure TMatrix3.SetInversed;
-begin
-  Self := Inverse;
-end;
-
 procedure TMatrix3.SetRow(const AIndex: Integer; const Value: TVector3);
 begin
   Assert((AIndex >= 0) and (AIndex < 3));
   R[AIndex] := Value;
 end;
+{$ENDIF}
 
 { TMatrix4 }
 
@@ -2142,18 +2235,6 @@ end;
 class operator TMatrix4.Divide(const A: TMatrix4; const B: TVector4): TVector4;
 begin
   Result := A.Inverse * B;
-end;
-
-class operator TMatrix4.Equal(const A, B: TMatrix4): Boolean;
-begin
-  Result := (A.R[0] = B.R[0]) and (A.R[1] = B.R[1]) and (A.R[2] = B.R[2]) and (A.R[3] = B.R[3]);
-end;
-
-function TMatrix4.GetComponent(const ARow, AColumn: Integer): Single;
-begin
-  Assert((ARow >= 0) and (ARow < 4));
-  Assert((AColumn >= 0) and (AColumn < 4));
-  Result := M[ARow, AColumn];
 end;
 
 function TMatrix4.GetDeterminant: Single;
@@ -2176,211 +2257,50 @@ begin
   Result := (M[0,0] * C.X) + (M[0,1] * C.Y) + (M[0,2] * C.Z) + (M[0,3] * C.W);
 end;
 
-function TMatrix4.GetRow(const AIndex: Integer): TVector4;
+class operator TMatrix4.Equal(const A, B: TMatrix4): Boolean;
 begin
-  Assert((AIndex >= 0) and (AIndex < 4));
-  Result := R[AIndex];
-end;
-
-class operator TMatrix4.Implicit(const A: TMatrix3D): TMatrix4;
-begin
-  Move(A, Result, SizeOf(TMatrix4));
-end;
-
-class operator TMatrix4.Implicit(const A: TMatrix4): TMatrix3D;
-begin
-  Move(A, Result, SizeOf(TMatrix4));
+  Result := (A.V[0] = B.V[0]) and (A.V[1] = B.V[1]) and (A.V[2] = B.V[2]) and (A.V[3] = B.V[3]);
 end;
 
 procedure TMatrix4.Init(const ADiagonal: Single);
 begin
-  R[0].Init(ADiagonal, 0, 0, 0);
-  R[1].Init(0, ADiagonal, 0, 0);
-  R[2].Init(0, 0, ADiagonal, 0);
-  R[3].Init(0, 0, 0, ADiagonal);
+  V[0].Init(ADiagonal, 0, 0, 0);
+  V[1].Init(0, ADiagonal, 0, 0);
+  V[2].Init(0, 0, ADiagonal, 0);
+  V[3].Init(0, 0, 0, ADiagonal);
 end;
 
 procedure TMatrix4.Init;
 begin
-  R[0].Init(1, 0, 0, 0);
-  R[1].Init(0, 1, 0, 0);
-  R[2].Init(0, 0, 1, 0);
-  R[3].Init(0, 0, 0, 1);
+  V[0].Init(1, 0, 0, 0);
+  V[1].Init(0, 1, 0, 0);
+  V[2].Init(0, 0, 1, 0);
+  V[3].Init(0, 0, 0, 1);
 end;
 
 procedure TMatrix4.Init(const A11, A12, A13, A14, A21, A22, A23, A24, A31, A32,
   A33, A34, A41, A42, A43, A44: Single);
 begin
-  R[0].Init(A11, A12, A13, A14);
-  R[1].Init(A21, A22, A23, A24);
-  R[2].Init(A31, A32, A33, A34);
-  R[3].Init(A41, A42, A43, A44);
-end;
-
-procedure TMatrix4.Init(const ARow0, ARow1, ARow2, ARow3: TVector4);
-begin
-  R[0] := ARow0;
-  R[1] := ARow1;
-  R[2] := ARow2;
-  R[3] := ARow3;
+  V[0].Init(A11, A12, A13, A14);
+  V[1].Init(A21, A22, A23, A24);
+  V[2].Init(A31, A32, A33, A34);
+  V[3].Init(A41, A42, A43, A44);
 end;
 
 procedure TMatrix4.Init(const AMatrix: TMatrix2);
 begin
-  R[0].Init(AMatrix.R[0], 0, 0);
-  R[1].Init(AMatrix.R[1], 0, 0);
-  R[2].Init(0, 0, 1, 0);
-  R[3].Init(0, 0, 0, 1);
+  V[0].Init(AMatrix.V[0], 0, 0);
+  V[1].Init(AMatrix.V[1], 0, 0);
+  V[2].Init(0, 0, 1, 0);
+  V[3].Init(0, 0, 0, 1);
 end;
 
 procedure TMatrix4.Init(const AMatrix: TMatrix3);
 begin
-  R[0].Init(AMatrix.R[0], 0);
-  R[1].Init(AMatrix.R[1], 0);
-  R[2].Init(AMatrix.R[2], 0);
-  R[3].Init(0, 0, 0, 1);
-end;
-
-procedure TMatrix4.InitScaling(const AScale: Single);
-begin
-  R[0].Init(AScale, 0, 0, 0);
-  R[1].Init(0, AScale, 0, 0);
-  R[2].Init(0, 0, AScale, 0);
-  R[3].Init(0, 0, 0, 1);
-end;
-
-procedure TMatrix4.InitScaling(const AScaleX, AScaleY, AScaleZ: Single);
-begin
-  R[0].Init(AScaleX, 0, 0, 0);
-  R[1].Init(0, AScaleY, 0, 0);
-  R[2].Init(0, 0, AScaleZ, 0);
-  R[3].Init(0, 0, 0, 1);
-end;
-
-procedure TMatrix4.InitScaling(const AScale: TVector3);
-begin
-  R[0].Init(AScale.X, 0, 0, 0);
-  R[1].Init(0, AScale.Y, 0, 0);
-  R[2].Init(0, 0, AScale.Z, 0);
-  R[3].Init(0, 0, 0, 1);
-end;
-
-procedure TMatrix4.InitTranslation(const ADeltaX, ADeltaY, ADeltaZ: Single);
-begin
-  R[0].Init(1, 0, 0, 0);
-  R[1].Init(0, 1, 0, 0);
-  R[2].Init(0, 0, 1, 0);
-  R[3].Init(ADeltaX, ADeltaY, ADeltaZ, 1);
-end;
-
-procedure TMatrix4.InitTranslation(const ADelta: TVector3);
-begin
-  R[0].Init(1, 0, 0, 0);
-  R[1].Init(0, 1, 0, 0);
-  R[2].Init(0, 0, 1, 0);
-  R[3].Init(ADelta.X, ADelta.Y, ADelta.Z, 1);
-end;
-
-procedure TMatrix4.InitRotationX(const AAngle: Single);
-var
-  S, C: Single;
-begin
-  FastSinCos(AAngle, S, C);
-  R[0].Init(1, 0, 0, 0);
-  R[1].Init(0, C, S, 0);
-  R[2].Init(0, -S, C, 0);
-  R[3].Init(0, 0, 0, 1);
-end;
-
-procedure TMatrix4.InitRotationY(const AAngle: Single);
-var
-  S, C: Single;
-begin
-  FastSinCos(AAngle, S, C);
-  R[0].Init(C, 0, -S, 0);
-  R[1].Init(0, 1, 0, 0);
-  R[2].Init(S, 0, C, 0);
-  R[3].Init(0, 0, 0, 1);
-end;
-
-procedure TMatrix4.InitRotationZ(const AAngle: Single);
-var
-  S, C: Single;
-begin
-  FastSinCos(AAngle, S, C);
-  R[0].Init(C, S, 0, 0);
-  R[1].Init(-S, C, 0, 0);
-  R[2].Init(0, 0, 1, 0);
-  R[3].Init(0, 0, 0, 1);
-end;
-
-procedure TMatrix4.InitRotation(const AAxis: TVector3; const AAngle: Single);
-var
-  S, C, C1: Single;
-  N: TVector3;
-begin
-  FastSinCos(AAngle, S, C);
-  C1 := 1 - C;
-  N := AAxis.Normalize;
-
-  R[0].Init((C1 * N.X * N.X) + C,
-            (C1 * N.X * N.Y) + (N.Z * S),
-            (C1 * N.Z * N.X) - (N.Y * S), 0);
-
-
-  R[1].Init((C1 * N.X * N.Y) - (N.Z * S),
-            (C1 * N.Y * N.Y) + C,
-            (C1 * N.Y * N.Z) + (N.X * S), 0);
-
-  R[2].Init((C1 * N.Z * N.X) + (N.Y * S),
-            (C1 * N.Y * N.Z) - (N.X * S),
-            (C1 * N.Z * N.Z) + C, 0);
-
-  R[3].Init(0, 0, 0, 1);
-end;
-
-procedure TMatrix4.InitRotationYawPitchRoll(const AYaw, APitch, ARoll: Single);
-var
-  A, S, C: TVector4;
-begin
-  A.Init(APitch, AYaw, ARoll, 0);
-  FastSinCos(A, S, C);
-
-  R[0].Init((C.Y * C.Z) + (S.X * S.Y * S.Z),
-            (C.Y * S.X * S.Z) - (C.Z * S.Y),
-            -C.X * S.Z, 0);
-
-  R[1].Init(C.X * S.Y,
-            C.X * C.Y,
-            S.X, 0);
-
-  R[2].Init((C.Y * S.Z) - (C.Z * S.X * S.Y),
-            (-C.Z * C.Y * S.X) - (S.Z * S.Y),
-            C.X * C.Z, 0);
-
-  R[3].Init(0, 0, 0, 1);
-end;
-
-procedure TMatrix4.InitRotationHeadingPitchBank(const AHeading, APitch, ABank: Single);
-var
-  A, S, C: TVector4;
-begin
-  A.Init(AHeading, APitch, ABank, 0);
-  FastSinCos(A, S, C);
-
-  R[0].Init((C.X * C.Z) + (S.X * S.Y * S.Z),
-            (-C.X * S.Z) + (S.X * S.Y * C.Z),
-            S.X * C.Y, 0);
-
-  R[1].Init(S.Z * C.Y,
-            C.Y * C.Z,
-            -S.Y, 0);
-
-  R[2].Init((-S.X * C.Z) + (C.X * S.Y * S.Z),
-            (S.Z * S.X) + (C.X * S.Y * C.Z),
-            C.X * C.Y, 0);
-
-  R[3].Init(0, 0, 0, 1);
+  V[0].Init(AMatrix.V[0], 0);
+  V[1].Init(AMatrix.V[1], 0);
+  V[2].Init(AMatrix.V[2], 0);
+  V[3].Init(0, 0, 0, 1);
 end;
 
 procedure TMatrix4.InitLookAtLH(const ACameraPosition, ACameraTarget,
@@ -2392,10 +2312,10 @@ begin
   XAxis := ACameraUp.Cross(ZAxis).Normalize;
   YAxis := ZAxis.Cross(XAxis);
 
-  R[0].Init(XAxis.X, YAxis.X, ZAxis.X, 0);
-  R[1].Init(XAxis.Y, YAxis.Y, ZAxis.Y, 0);
-  R[2].Init(XAxis.Z, YAxis.Z, ZAxis.Z, 0);
-  R[3].Init(-XAxis.Dot(ACameraPosition),
+  V[0].Init(XAxis.X, YAxis.X, ZAxis.X, 0);
+  V[1].Init(XAxis.Y, YAxis.Y, ZAxis.Y, 0);
+  V[2].Init(XAxis.Z, YAxis.Z, ZAxis.Z, 0);
+  V[3].Init(-XAxis.Dot(ACameraPosition),
             -YAxis.Dot(ACameraPosition),
             -ZAxis.Dot(ACameraPosition), 1);
 end;
@@ -2409,10 +2329,10 @@ begin
   XAxis := ACameraUp.Cross(ZAxis).Normalize;
   YAxis := ZAxis.Cross(XAxis);
 
-  R[0].Init(XAxis.X, YAxis.X, ZAxis.X, 0);
-  R[1].Init(XAxis.Y, YAxis.Y, ZAxis.Y, 0);
-  R[2].Init(XAxis.Z, YAxis.Z, ZAxis.Z, 0);
-  R[3].Init(-XAxis.Dot(ACameraPosition),
+  V[0].Init(XAxis.X, YAxis.X, ZAxis.X, 0);
+  V[1].Init(XAxis.Y, YAxis.Y, ZAxis.Y, 0);
+  V[2].Init(XAxis.Z, YAxis.Z, ZAxis.Z, 0);
+  V[3].Init(-XAxis.Dot(ACameraPosition),
             -YAxis.Dot(ACameraPosition),
             -ZAxis.Dot(ACameraPosition), 1);
 end;
@@ -2426,10 +2346,10 @@ begin
   XAxis := ACameraUp.Cross(ZAxis).Normalize;
   YAxis := ZAxis.Cross(XAxis);
 
-  R[0].Init(XAxis.X, YAxis.X, ZAxis.X, 0);
-  R[1].Init(XAxis.Y, YAxis.Y, ZAxis.Y, 0);
-  R[2].Init(XAxis.Z, YAxis.Z, ZAxis.Z, 0);
-  R[3].Init(-XAxis.Dot(ACameraPosition),
+  V[0].Init(XAxis.X, YAxis.X, ZAxis.X, 0);
+  V[1].Init(XAxis.Y, YAxis.Y, ZAxis.Y, 0);
+  V[2].Init(XAxis.Z, YAxis.Z, ZAxis.Z, 0);
+  V[3].Init(-XAxis.Dot(ACameraPosition),
             -YAxis.Dot(ACameraPosition),
             -ZAxis.Dot(ACameraPosition), 1);
 end;
@@ -2443,12 +2363,313 @@ begin
   XAxis := ACameraUp.Cross(ZAxis).Normalize;
   YAxis := ZAxis.Cross(XAxis);
 
-  R[0].Init(XAxis.X, YAxis.X, ZAxis.X, 0);
-  R[1].Init(XAxis.Y, YAxis.Y, ZAxis.Y, 0);
-  R[2].Init(XAxis.Z, YAxis.Z, ZAxis.Z, 0);
-  R[3].Init(-XAxis.Dot(ACameraPosition),
+  V[0].Init(XAxis.X, YAxis.X, ZAxis.X, 0);
+  V[1].Init(XAxis.Y, YAxis.Y, ZAxis.Y, 0);
+  V[2].Init(XAxis.Z, YAxis.Z, ZAxis.Z, 0);
+  V[3].Init(-XAxis.Dot(ACameraPosition),
             -YAxis.Dot(ACameraPosition),
             -ZAxis.Dot(ACameraPosition), 1);
+end;
+
+procedure TMatrix4.InitScaling(const AScale: Single);
+begin
+  V[0].Init(AScale, 0, 0, 0);
+  V[1].Init(0, AScale, 0, 0);
+  V[2].Init(0, 0, AScale, 0);
+  V[3].Init(0, 0, 0, 1);
+end;
+
+procedure TMatrix4.InitScaling(const AScaleX, AScaleY, AScaleZ: Single);
+begin
+  V[0].Init(AScaleX, 0, 0, 0);
+  V[1].Init(0, AScaleY, 0, 0);
+  V[2].Init(0, 0, AScaleZ, 0);
+  V[3].Init(0, 0, 0, 1);
+end;
+
+procedure TMatrix4.InitScaling(const AScale: TVector3);
+begin
+  V[0].Init(AScale.X, 0, 0, 0);
+  V[1].Init(0, AScale.Y, 0, 0);
+  V[2].Init(0, 0, AScale.Z, 0);
+  V[3].Init(0, 0, 0, 1);
+end;
+
+procedure TMatrix4.InitTranslation(const ADeltaX, ADeltaY, ADeltaZ: Single);
+begin
+  V[0].Init(1, 0, 0, 0);
+  V[1].Init(0, 1, 0, 0);
+  V[2].Init(0, 0, 1, 0);
+  V[3].Init(ADeltaX, ADeltaY, ADeltaZ, 1);
+end;
+
+procedure TMatrix4.InitTranslation(const ADelta: TVector3);
+begin
+  V[0].Init(1, 0, 0, 0);
+  V[1].Init(0, 1, 0, 0);
+  V[2].Init(0, 0, 1, 0);
+  V[3].Init(ADelta.X, ADelta.Y, ADelta.Z, 1);
+end;
+
+class operator TMatrix4.NotEqual(const A, B: TMatrix4): Boolean;
+begin
+  Result := (A.V[0] <> B.V[0]) or (A.V[1] <> B.V[1]) or (A.V[2] <> B.V[2]) or (A.V[3] <> B.V[3]);
+end;
+
+procedure TMatrix4.InitRotationX(const AAngle: Single);
+var
+  S, C: Single;
+begin
+  FastSinCos(AAngle, S, C);
+  V[0].Init(1, 0, 0, 0);
+  V[1].Init(0, C, S, 0);
+  V[2].Init(0, -S, C, 0);
+  V[3].Init(0, 0, 0, 1);
+end;
+
+procedure TMatrix4.InitRotationY(const AAngle: Single);
+var
+  S, C: Single;
+begin
+  FastSinCos(AAngle, S, C);
+  V[0].Init(C, 0, -S, 0);
+  V[1].Init(0, 1, 0, 0);
+  V[2].Init(S, 0, C, 0);
+  V[3].Init(0, 0, 0, 1);
+end;
+
+procedure TMatrix4.InitRotationZ(const AAngle: Single);
+var
+  S, C: Single;
+begin
+  FastSinCos(AAngle, S, C);
+  V[0].Init(C, S, 0, 0);
+  V[1].Init(-S, C, 0, 0);
+  V[2].Init(0, 0, 1, 0);
+  V[3].Init(0, 0, 0, 1);
+end;
+
+procedure TMatrix4.InitRotation(const AAxis: TVector3; const AAngle: Single);
+var
+  S, C, C1: Single;
+  N: TVector3;
+begin
+  FastSinCos(AAngle, S, C);
+  C1 := 1 - C;
+  N := AAxis.Normalize;
+
+  V[0].Init((C1 * N.X * N.X) + C,
+            (C1 * N.X * N.Y) + (N.Z * S),
+            (C1 * N.Z * N.X) - (N.Y * S), 0);
+
+
+  V[1].Init((C1 * N.X * N.Y) - (N.Z * S),
+            (C1 * N.Y * N.Y) + C,
+            (C1 * N.Y * N.Z) + (N.X * S), 0);
+
+  V[2].Init((C1 * N.Z * N.X) + (N.Y * S),
+            (C1 * N.Y * N.Z) - (N.X * S),
+            (C1 * N.Z * N.Z) + C, 0);
+
+  V[3].Init(0, 0, 0, 1);
+end;
+
+procedure TMatrix4.InitRotationYawPitchRoll(const AYaw, APitch, ARoll: Single);
+var
+  A, S, C: TVector4;
+begin
+  A.Init(APitch, AYaw, ARoll, 0);
+  FastSinCos(A, S, C);
+
+  V[0].Init((C.Y * C.Z) + (S.X * S.Y * S.Z),
+            (C.Y * S.X * S.Z) - (C.Z * S.Y),
+            -C.X * S.Z, 0);
+
+  V[1].Init(C.X * S.Y,
+            C.X * C.Y,
+            S.X, 0);
+
+  V[2].Init((C.Y * S.Z) - (C.Z * S.X * S.Y),
+           (-C.Z * C.Y * S.X) - (S.Z * S.Y),
+             C.X * C.Z, 0);
+
+  V[3].Init(0, 0, 0, 1);
+end;
+
+procedure TMatrix4.InitRotationHeadingPitchBank(const AHeading, APitch, ABank: Single);
+var
+  A, S, C: TVector4;
+begin
+  A.Init(AHeading, APitch, ABank, 0);
+  FastSinCos(A, S, C);
+
+  V[0].Init((C.X * C.Z) + (S.X * S.Y * S.Z),
+           (-C.X * S.Z) + (S.X * S.Y * C.Z),
+             S.X * C.Y, 0);
+
+  V[1].Init(S.Z * C.Y,
+            C.Y * C.Z,
+           -S.Y, 0);
+
+  V[2].Init((-S.X * C.Z) + (C.X * S.Y * S.Z),
+             (S.Z * S.X) + (C.X * S.Y * C.Z),
+              C.X * C.Y, 0);
+
+  V[3].Init(0, 0, 0, 1);
+end;
+
+{$IFDEF FM_COLUMN_MAJOR}
+function TMatrix4.GetColumn(const AIndex: Integer): TVector4;
+begin
+  Assert((AIndex >= 0) and (AIndex < 4));
+  Result := C[AIndex];
+end;
+
+function TMatrix4.GetComponent(const AColumn, ARow: Integer): Single;
+begin
+  Assert((AColumn >= 0) and (AColumn < 4));
+  Assert((ARow >= 0) and (ARow < 4));
+  Result := M[AColumn, ARow];
+end;
+
+procedure TMatrix4.Init(const AColumn0, AColumn1, AColumn2, AColumn3: TVector4);
+begin
+  C[0] := AColumn0;
+  C[1] := AColumn1;
+  C[2] := AColumn2;
+  C[3] := AColumn3;
+end;
+
+procedure TMatrix4.InitOrthoLH(const AWidth, AHeight, AZNearPlane,
+  AZFarPlane: Single);
+begin
+  C[0].Init(2 / AWidth, 0, 0, 0);
+  C[1].Init(0, 2 / AHeight, 0, 0);
+  C[2].Init(0, 0, 2 / (AZFarPlane - AZNearPlane), 0);
+  C[3].Init(-1, -1, -(AZFarPlane + AZNearPlane) / (AZFarPlane - AZNearPlane), 1);
+end;
+
+procedure TMatrix4.InitOrthoRH(const AWidth, AHeight, AZNearPlane,
+  AZFarPlane: Single);
+begin
+  C[0].Init(2 / AWidth, 0, 0, 0);
+  C[1].Init(0, 2 / AHeight, 0, 0);
+  C[2].Init(0, 0, -2 / (AZFarPlane - AZNearPlane), 0);
+  C[3].Init(-1, -1, -(AZFarPlane + AZNearPlane) / (AZFarPlane - AZNearPlane), 1);
+end;
+
+procedure TMatrix4.InitOrthoOffCenterLH(const ALeft, ATop, ARight, ABottom,
+  AZNearPlane, AZFarPlane: Single);
+begin
+  C[0].Init(2 / (ARight - ALeft), 0, 0, 0);
+  C[1].Init(0, 2 / (ATop - ABottom), 0, 0);
+  C[2].Init(0, 0, 2 / (AZFarPlane - AZNearPlane), 0);
+  C[3].Init(-(ALeft + ARight) / (ARight - ALeft),
+            -(ATop + ABottom) / (ATop - ABottom),
+            -(AZFarPlane + AZNearPlane) / (AZFarPlane - AZNearPlane), 1);
+end;
+
+procedure TMatrix4.InitOrthoOffCenterRH(const ALeft, ATop, ARight, ABottom,
+  AZNearPlane, AZFarPlane: Single);
+begin
+  C[0].Init(2 / (ARight - ALeft), 0, 0, 0);
+  C[1].Init(0, 2 / (ATop - ABottom), 0, 0);
+  C[2].Init(0, 0, -2 / (AZFarPlane - AZNearPlane), 0);
+  C[3].Init(-(ALeft + ARight) / (ARight - ALeft),
+            -(ATop + ABottom) / (ATop - ABottom),
+            -(AZFarPlane + AZNearPlane) / (AZFarPlane - AZNearPlane), 1);
+end;
+
+procedure TMatrix4.InitPerspectiveFovLH(const AFieldOfView, AAspectRatio,
+  ANearPlaneDistance, AFarPlaneDistance: Single; const AHorizontalFOV: Boolean);
+var
+  XScale, YScale: Single;
+begin
+  if (AHorizontalFOV) then
+  begin
+    XScale := 1 / FastTan(0.5 * AFieldOfView);
+    YScale := XScale / AAspectRatio;
+  end
+  else
+  begin
+    YScale := 1 / FastTan(0.5 * AFieldOfView);
+    XScale := YScale / AAspectRatio;
+  end;
+
+  C[0].Init(XScale, 0, 0, 0);
+  C[1].Init(0, YScale, 0, 0);
+  C[2].Init(0, 0, (AFarPlaneDistance + ANearPlaneDistance) / (AFarPlaneDistance - ANearPlaneDistance), 1);
+  C[3].Init(0, 0, (-2 * ANearPlaneDistance * AFarPlaneDistance) / (AFarPlaneDistance - ANearPlaneDistance), 0);
+end;
+
+procedure TMatrix4.InitPerspectiveFovRH(const AFieldOfView, AAspectRatio,
+  ANearPlaneDistance, AFarPlaneDistance: Single; const AHorizontalFOV: Boolean);
+var
+  XScale, YScale: Single;
+begin
+  if (AHorizontalFOV) then
+  begin
+    XScale := 1 / FastTan(0.5 * AFieldOfView);
+    YScale := XScale / AAspectRatio;
+  end
+  else
+  begin
+    YScale := 1 / FastTan(0.5 * AFieldOfView);
+    XScale := YScale / AAspectRatio;
+  end;
+
+  C[0].Init(XScale, 0, 0, 0);
+  C[1].Init(0, YScale, 0, 0);
+  C[2].Init(0, 0, -(AFarPlaneDistance + ANearPlaneDistance) / (AFarPlaneDistance - ANearPlaneDistance), -1);
+  C[3].Init(0, 0, (-2 * ANearPlaneDistance * AFarPlaneDistance) / (AFarPlaneDistance - ANearPlaneDistance), 0);
+end;
+
+class operator TMatrix4.Implicit(const A: TMatrix3D): TMatrix4;
+var
+  M: TMatrix4 absolute A;
+begin
+  Result := M.Transpose;
+end;
+
+class operator TMatrix4.Implicit(const A: TMatrix4): TMatrix3D;
+var
+  M: TMatrix4 absolute Result;
+begin
+  M := A.Transpose;
+end;
+
+procedure TMatrix4.SetComponent(const AColumn, ARow: Integer; const Value: Single);
+begin
+  Assert((AColumn >= 0) and (AColumn < 4));
+  Assert((ARow >= 0) and (ARow < 4));
+  M[AColumn, ARow] := Value;
+end;
+
+procedure TMatrix4.SetColumn(const AIndex: Integer; const Value: TVector4);
+begin
+  Assert((AIndex >= 0) and (AIndex < 4));
+  C[AIndex] := Value;
+end;
+{$ELSE}
+function TMatrix4.GetComponent(const ARow, AColumn: Integer): Single;
+begin
+  Assert((ARow >= 0) and (ARow < 4));
+  Assert((AColumn >= 0) and (AColumn < 4));
+  Result := M[ARow, AColumn];
+end;
+
+function TMatrix4.GetRow(const AIndex: Integer): TVector4;
+begin
+  Assert((AIndex >= 0) and (AIndex < 4));
+  Result := R[AIndex];
+end;
+
+procedure TMatrix4.Init(const ARow0, ARow1, ARow2, ARow3: TVector4);
+begin
+  R[0] := ARow0;
+  R[1] := ARow1;
+  R[2] := ARow2;
+  R[3] := ARow3;
 end;
 
 procedure TMatrix4.InitOrthoLH(const AWidth, AHeight, AZNearPlane,
@@ -2535,11 +2756,6 @@ begin
   R[3].Init(0, 0, (ANearPlaneDistance * AFarPlaneDistance) / (ANearPlaneDistance - AFarPlaneDistance), 0);
 end;
 
-class operator TMatrix4.NotEqual(const A, B: TMatrix4): Boolean;
-begin
-  Result := (A.R[0] <> B.R[0]) or (A.R[1] <> B.R[1]) or (A.R[2] <> B.R[2]) or (A.R[3] <> B.R[3]);
-end;
-
 procedure TMatrix4.SetComponent(const ARow, AColumn: Integer; const Value: Single);
 begin
   Assert((ARow >= 0) and (ARow < 4));
@@ -2547,33 +2763,44 @@ begin
   M[ARow, AColumn] := Value;
 end;
 
+class operator TMatrix4.Implicit(const A: TMatrix3D): TMatrix4;
+begin
+  Move(A, Result, SizeOf(TMatrix4));
+end;
+
+class operator TMatrix4.Implicit(const A: TMatrix4): TMatrix3D;
+begin
+  Move(A, Result, SizeOf(TMatrix4));
+end;
+
 procedure TMatrix4.SetRow(const AIndex: Integer; const Value: TVector4);
 begin
   Assert((AIndex >= 0) and (AIndex < 4));
   R[AIndex] := Value;
 end;
+{$ENDIF}
 
 { _TMatrix2Helper }
 
 procedure _TMatrix2Helper.Init(const AMatrix: TMatrix3);
 begin
-  R[0].Init(AMatrix.R[0].X, AMatrix.R[0].Y);
-  R[1].Init(AMatrix.R[1].X, AMatrix.R[1].Y);
+  V[0].Init(AMatrix.V[0].X, AMatrix.V[0].Y);
+  V[1].Init(AMatrix.V[1].X, AMatrix.V[1].Y);
 end;
 
 procedure _TMatrix2Helper.Init(const AMatrix: TMatrix4);
 begin
-  R[0].Init(AMatrix.R[0].X, AMatrix.R[0].Y);
-  R[1].Init(AMatrix.R[1].X, AMatrix.R[1].Y);
+  V[0].Init(AMatrix.V[0].X, AMatrix.V[0].Y);
+  V[1].Init(AMatrix.V[1].X, AMatrix.V[1].Y);
 end;
 
 { _TMatrix3Helper }
 
 procedure _TMatrix3Helper.Init(const AMatrix: TMatrix4);
 begin
-  R[0].Init(AMatrix.R[0].X, AMatrix.R[0].Y, AMatrix.R[0].Z);
-  R[1].Init(AMatrix.R[1].X, AMatrix.R[1].Y, AMatrix.R[1].Z);
-  R[2].Init(AMatrix.R[2].X, AMatrix.R[2].Y, AMatrix.R[2].Z);
+  V[0].Init(AMatrix.V[0].X, AMatrix.V[0].Y, AMatrix.V[0].Z);
+  V[1].Init(AMatrix.V[1].X, AMatrix.V[1].Y, AMatrix.V[1].Z);
+  V[2].Init(AMatrix.V[2].X, AMatrix.V[2].Y, AMatrix.V[2].Z);
 end;
 
 { TIVector2 }

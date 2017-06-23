@@ -852,6 +852,31 @@ end;
 
 { Matrix functions }
 
+{$IFDEF FM_COLUMN_MAJOR}
+function OuterProduct(const C, R: TVector2): TMatrix2;
+var
+  I: Integer;
+begin
+  for I := 0 to 1 do
+    Result.C[I] := C * R.C[I];
+end;
+
+function OuterProduct(const C, R: TVector3): TMatrix3;
+var
+  I: Integer;
+begin
+  for I := 0 to 2 do
+    Result.C[I] := C * R.C[I];
+end;
+
+function OuterProduct(const C, R: TVector4): TMatrix4;
+var
+  I: Integer;
+begin
+  for I := 0 to 3 do
+    Result.C[I] := C * R.C[I];
+end;
+{$ELSE}
 function OuterProduct(const C, R: TVector2): TMatrix2;
 var
   I: Integer;
@@ -875,6 +900,7 @@ begin
   for I := 0 to 3 do
     Result.R[I] := R * C.C[I];
 end;
+{$ENDIF}
 
 { TVector2 }
 
@@ -1400,20 +1426,20 @@ end;
 
 class operator TMatrix2.Add(const A: TMatrix2; const B: Single): TMatrix2;
 begin
-  Result.R[0] := A.R[0] + B;
-  Result.R[1] := A.R[1] + B;
+  Result.V[0] := A.V[0] + B;
+  Result.V[1] := A.V[1] + B;
 end;
 
 class operator TMatrix2.Add(const A: Single; const B: TMatrix2): TMatrix2;
 begin
-  Result.R[0] := A + B.R[0];
-  Result.R[1] := A + B.R[1];
+  Result.V[0] := A + B.V[0];
+  Result.V[1] := A + B.V[1];
 end;
 
 class operator TMatrix2.Add(const A, B: TMatrix2): TMatrix2;
 begin
-  Result.R[0] := A.R[0] + B.R[0];
-  Result.R[1] := A.R[1] + B.R[1];
+  Result.V[0] := A.V[0] + B.V[0];
+  Result.V[1] := A.V[1] + B.V[1];
 end;
 
 function TMatrix2.CompMult(const AOther: TMatrix2): TMatrix2;
@@ -1421,13 +1447,13 @@ var
   I: Integer;
 begin
   for I := 0 to 1 do
-    Result.R[I] := R[I] * AOther.R[I];
+    Result.V[I] := V[I] * AOther.V[I];
 end;
 
 class operator TMatrix2.Divide(const A: Single; const B: TMatrix2): TMatrix2;
 begin
-  Result.R[0] := A / B.R[0];
-  Result.R[1] := A / B.R[1];
+  Result.V[0] := A / B.V[0];
+  Result.V[1] := A / B.V[1];
 end;
 
 class operator TMatrix2.Divide(const A: TMatrix2; const B: Single): TMatrix2;
@@ -1435,20 +1461,20 @@ var
   InvB: Single;
 begin
   InvB := 1 / B;
-  Result.R[0] := A.R[0] * InvB;
-  Result.R[1] := A.R[1] * InvB;
+  Result.V[0] := A.V[0] * InvB;
+  Result.V[1] := A.V[1] * InvB;
 end;
 
 class operator TMatrix2.Multiply(const A: Single; const B: TMatrix2): TMatrix2;
 begin
-  Result.R[0] := A * B.R[0];
-  Result.R[1] := A * B.R[1];
+  Result.V[0] := A * B.V[0];
+  Result.V[1] := A * B.V[1];
 end;
 
 class operator TMatrix2.Multiply(const A: TMatrix2; const B: Single): TMatrix2;
 begin
-  Result.R[0] := A.R[0] * B;
-  Result.R[1] := A.R[1] * B;
+  Result.V[0] := A.V[0] * B;
+  Result.V[1] := A.V[1] * B;
 end;
 
 class operator TMatrix2.Multiply(const A: TVector2; const B: TMatrix2): TVector2;
@@ -1473,8 +1499,8 @@ end;
 
 class operator TMatrix2.Negative(const A: TMatrix2): TMatrix2;
 begin
-  Result.R[0] := -A.R[0];
-  Result.R[1] := -A.R[1];
+  Result.V[0] := -A.V[0];
+  Result.V[1] := -A.V[1];
 end;
 
 procedure TMatrix2.SetTransposed;
@@ -1484,20 +1510,20 @@ end;
 
 class operator TMatrix2.Subtract(const A: TMatrix2; const B: Single): TMatrix2;
 begin
-  Result.R[0] := A.R[0] - B;
-  Result.R[1] := A.R[1] - B;
+  Result.V[0] := A.V[0] - B;
+  Result.V[1] := A.V[1] - B;
 end;
 
 class operator TMatrix2.Subtract(const A, B: TMatrix2): TMatrix2;
 begin
-  Result.R[0] := A.R[0] - B.R[0];
-  Result.R[1] := A.R[1] - B.R[1];
+  Result.V[0] := A.V[0] - B.V[0];
+  Result.V[1] := A.V[1] - B.V[1];
 end;
 
 class operator TMatrix2.Subtract(const A: Single; const B: TMatrix2): TMatrix2;
 begin
-  Result.R[0] := A - B.R[0];
-  Result.R[1] := A - B.R[1];
+  Result.V[0] := A - B.V[0];
+  Result.V[1] := A - B.V[1];
 end;
 
 function TMatrix2.Transpose: TMatrix2;
@@ -1513,23 +1539,23 @@ end;
 
 class operator TMatrix3.Add(const A: TMatrix3; const B: Single): TMatrix3;
 begin
-  Result.R[0] := A.R[0] + B;
-  Result.R[1] := A.R[1] + B;
-  Result.R[2] := A.R[2] + B;
+  Result.V[0] := A.V[0] + B;
+  Result.V[1] := A.V[1] + B;
+  Result.V[2] := A.V[2] + B;
 end;
 
 class operator TMatrix3.Add(const A: Single; const B: TMatrix3): TMatrix3;
 begin
-  Result.R[0] := A + B.R[0];
-  Result.R[1] := A + B.R[1];
-  Result.R[2] := A + B.R[2];
+  Result.V[0] := A + B.V[0];
+  Result.V[1] := A + B.V[1];
+  Result.V[2] := A + B.V[2];
 end;
 
 class operator TMatrix3.Add(const A, B: TMatrix3): TMatrix3;
 begin
-  Result.R[0] := A.R[0] + B.R[0];
-  Result.R[1] := A.R[1] + B.R[1];
-  Result.R[2] := A.R[2] + B.R[2];
+  Result.V[0] := A.V[0] + B.V[0];
+  Result.V[1] := A.V[1] + B.V[1];
+  Result.V[2] := A.V[2] + B.V[2];
 end;
 
 function TMatrix3.CompMult(const AOther: TMatrix3): TMatrix3;
@@ -1537,14 +1563,14 @@ var
   I: Integer;
 begin
   for I := 0 to 2 do
-    Result.R[I] := R[I] * AOther.R[I];
+    Result.V[I] := V[I] * AOther.V[I];
 end;
 
 class operator TMatrix3.Divide(const A: Single; const B: TMatrix3): TMatrix3;
 begin
-  Result.R[0] := A / B.R[0];
-  Result.R[1] := A / B.R[1];
-  Result.R[2] := A / B.R[2];
+  Result.V[0] := A / B.V[0];
+  Result.V[1] := A / B.V[1];
+  Result.V[2] := A / B.V[2];
 end;
 
 class operator TMatrix3.Divide(const A: TMatrix3; const B: Single): TMatrix3;
@@ -1552,25 +1578,40 @@ var
   InvB: Single;
 begin
   InvB := 1 / B;
-  Result.R[0] := A.R[0] * InvB;
-  Result.R[1] := A.R[1] * InvB;
-  Result.R[2] := A.R[2] * InvB;
+  Result.V[0] := A.V[0] * InvB;
+  Result.V[1] := A.V[1] * InvB;
+  Result.V[2] := A.V[2] * InvB;
 end;
 
 class operator TMatrix3.Multiply(const A: Single; const B: TMatrix3): TMatrix3;
 begin
-  Result.R[0] := A * B.R[0];
-  Result.R[1] := A * B.R[1];
-  Result.R[2] := A * B.R[2];
+  Result.V[0] := A * B.V[0];
+  Result.V[1] := A * B.V[1];
+  Result.V[2] := A * B.V[2];
 end;
 
 class operator TMatrix3.Multiply(const A: TMatrix3; const B: Single): TMatrix3;
 begin
-  Result.R[0] := A.R[0] * B;
-  Result.R[1] := A.R[1] * B;
-  Result.R[2] := A.R[2] * B;
+  Result.V[0] := A.V[0] * B;
+  Result.V[1] := A.V[1] * B;
+  Result.V[2] := A.V[2] * B;
 end;
 
+{$IFDEF FM_COLUMN_MAJOR}
+class operator TMatrix3.Multiply(const A: TMatrix3; const B: TVector3): TVector3;
+begin
+  Result.X := (B.X * A.M[0,0]) + (B.Y * A.M[1,0]) + (B.Z * A.M[2,0]);
+  Result.Y := (B.X * A.M[0,1]) + (B.Y * A.M[1,1]) + (B.Z * A.M[2,1]);
+  Result.Z := (B.X * A.M[0,2]) + (B.Y * A.M[1,2]) + (B.Z * A.M[2,2]);
+end;
+
+class operator TMatrix3.Multiply(const A: TVector3; const B: TMatrix3): TVector3;
+begin
+  Result.X := (B.M[0,0] * A.X) + (B.M[0,1] * A.Y) + (B.M[0,2] * A.Z);
+  Result.Y := (B.M[1,0] * A.X) + (B.M[1,1] * A.Y) + (B.M[1,2] * A.Z);
+  Result.Z := (B.M[2,0] * A.X) + (B.M[2,1] * A.Y) + (B.M[2,2] * A.Z);
+end;
+{$ELSE}
 class operator TMatrix3.Multiply(const A: TMatrix3; const B: TVector3): TVector3;
 begin
   Result.X := (B.X * A.M[0,0]) + (B.Y * A.M[0,1]) + (B.Z * A.M[0,2]);
@@ -1584,6 +1625,7 @@ begin
   Result.Y := (B.M[0,1] * A.X) + (B.M[1,1] * A.Y) + (B.M[2,1] * A.Z);
   Result.Z := (B.M[0,2] * A.X) + (B.M[1,2] * A.Y) + (B.M[2,2] * A.Z);
 end;
+{$ENDIF}
 
 class operator TMatrix3.Multiply(const A, B: TMatrix3): TMatrix3;
 var
@@ -1610,6 +1652,17 @@ begin
   B21 := B.M[2,1];
   B22 := B.M[2,2];
 
+  {$IFDEF FM_COLUMN_MAJOR}
+  Result.M[0,0] := (A00 * B00) + (A10 * B01) + (A20 * B02);
+  Result.M[0,1] := (A01 * B00) + (A11 * B01) + (A21 * B02);
+  Result.M[0,2] := (A02 * B00) + (A12 * B01) + (A22 * B02);
+  Result.M[1,0] := (A00 * B10) + (A10 * B11) + (A20 * B12);
+  Result.M[1,1] := (A01 * B10) + (A11 * B11) + (A21 * B12);
+  Result.M[1,2] := (A02 * B10) + (A12 * B11) + (A22 * B12);
+  Result.M[2,0] := (A00 * B20) + (A10 * B21) + (A20 * B22);
+  Result.M[2,1] := (A01 * B20) + (A11 * B21) + (A21 * B22);
+  Result.M[2,2] := (A02 * B20) + (A12 * B21) + (A22 * B22);
+  {$ELSE}
   Result.M[0,0] := (A00 * B00) + (A01 * B10) + (A02 * B20);
   Result.M[0,1] := (A00 * B01) + (A01 * B11) + (A02 * B21);
   Result.M[0,2] := (A00 * B02) + (A01 * B12) + (A02 * B22);
@@ -1619,13 +1672,14 @@ begin
   Result.M[2,0] := (A20 * B00) + (A21 * B10) + (A22 * B20);
   Result.M[2,1] := (A20 * B01) + (A21 * B11) + (A22 * B21);
   Result.M[2,2] := (A20 * B02) + (A21 * B12) + (A22 * B22);
+  {$ENDIF}
 end;
 
 class operator TMatrix3.Negative(const A: TMatrix3): TMatrix3;
 begin
-  Result.R[0] := -A.R[0];
-  Result.R[1] := -A.R[1];
-  Result.R[2] := -A.R[2];
+  Result.V[0] := -A.V[0];
+  Result.V[1] := -A.V[1];
+  Result.V[2] := -A.V[2];
 end;
 
 procedure TMatrix3.SetTransposed;
@@ -1635,23 +1689,23 @@ end;
 
 class operator TMatrix3.Subtract(const A: TMatrix3; const B: Single): TMatrix3;
 begin
-  Result.R[0] := A.R[0] - B;
-  Result.R[1] := A.R[1] - B;
-  Result.R[2] := A.R[2] - B;
+  Result.V[0] := A.V[0] - B;
+  Result.V[1] := A.V[1] - B;
+  Result.V[2] := A.V[2] - B;
 end;
 
 class operator TMatrix3.Subtract(const A, B: TMatrix3): TMatrix3;
 begin
-  Result.R[0] := A.R[0] - B.R[0];
-  Result.R[1] := A.R[1] - B.R[1];
-  Result.R[2] := A.R[2] - B.R[2];
+  Result.V[0] := A.V[0] - B.V[0];
+  Result.V[1] := A.V[1] - B.V[1];
+  Result.V[2] := A.V[2] - B.V[2];
 end;
 
 class operator TMatrix3.Subtract(const A: Single; const B: TMatrix3): TMatrix3;
 begin
-  Result.R[0] := A - B.R[0];
-  Result.R[1] := A - B.R[1];
-  Result.R[2] := A - B.R[2];
+  Result.V[0] := A - B.V[0];
+  Result.V[1] := A - B.V[1];
+  Result.V[2] := A - B.V[2];
 end;
 
 function TMatrix3.Transpose: TMatrix3;
@@ -1673,26 +1727,26 @@ end;
 
 class operator TMatrix4.Add(const A: TMatrix4; const B: Single): TMatrix4;
 begin
-  Result.R[0] := A.R[0] + B;
-  Result.R[1] := A.R[1] + B;
-  Result.R[2] := A.R[2] + B;
-  Result.R[3] := A.R[3] + B;
+  Result.V[0] := A.V[0] + B;
+  Result.V[1] := A.V[1] + B;
+  Result.V[2] := A.V[2] + B;
+  Result.V[3] := A.V[3] + B;
 end;
 
 class operator TMatrix4.Add(const A: Single; const B: TMatrix4): TMatrix4;
 begin
-  Result.R[0] := A + B.R[0];
-  Result.R[1] := A + B.R[1];
-  Result.R[2] := A + B.R[2];
-  Result.R[3] := A + B.R[3];
+  Result.V[0] := A + B.V[0];
+  Result.V[1] := A + B.V[1];
+  Result.V[2] := A + B.V[2];
+  Result.V[3] := A + B.V[3];
 end;
 
 class operator TMatrix4.Add(const A, B: TMatrix4): TMatrix4;
 begin
-  Result.R[0] := A.R[0] + B.R[0];
-  Result.R[1] := A.R[1] + B.R[1];
-  Result.R[2] := A.R[2] + B.R[2];
-  Result.R[3] := A.R[3] + B.R[3];
+  Result.V[0] := A.V[0] + B.V[0];
+  Result.V[1] := A.V[1] + B.V[1];
+  Result.V[2] := A.V[2] + B.V[2];
+  Result.V[3] := A.V[3] + B.V[3];
 end;
 
 function TMatrix4.CompMult(const AOther: TMatrix4): TMatrix4;
@@ -1700,15 +1754,15 @@ var
   I: Integer;
 begin
   for I := 0 to 3 do
-    Result.R[I] := R[I] * AOther.R[I];
+    Result.V[I] := V[I] * AOther.V[I];
 end;
 
 class operator TMatrix4.Divide(const A: Single; const B: TMatrix4): TMatrix4;
 begin
-  Result.R[0] := A / B.R[0];
-  Result.R[1] := A / B.R[1];
-  Result.R[2] := A / B.R[2];
-  Result.R[3] := A / B.R[3];
+  Result.V[0] := A / B.V[0];
+  Result.V[1] := A / B.V[1];
+  Result.V[2] := A / B.V[2];
+  Result.V[3] := A / B.V[3];
 end;
 
 class operator TMatrix4.Divide(const A: TMatrix4; const B: Single): TMatrix4;
@@ -1716,10 +1770,10 @@ var
   InvB: Single;
 begin
   InvB := 1 / B;
-  Result.R[0] := A.R[0] * InvB;
-  Result.R[1] := A.R[1] * InvB;
-  Result.R[2] := A.R[2] * InvB;
-  Result.R[3] := A.R[3] * InvB;
+  Result.V[0] := A.V[0] * InvB;
+  Result.V[1] := A.V[1] * InvB;
+  Result.V[2] := A.V[2] * InvB;
+  Result.V[3] := A.V[3] * InvB;
 end;
 
 function TMatrix4.Inverse: TMatrix4;
@@ -1777,7 +1831,7 @@ begin
   Inv := Matrix4(I0 * SA, I1 * SB, I2 * SA, I3 * SB);
 
   Row := Vector4(Inv[0,0], Inv[1,0], Inv[2,0], Inv[3,0]);
-  Dot := R[0] * Row;
+  Dot := V[0] * Row;
 
   OneOverDeterminant := 1 / ((Dot.X + Dot.Y) + (Dot.Z + Dot.W));
   Result := Inv * OneOverDeterminant;
@@ -1785,20 +1839,60 @@ end;
 
 class operator TMatrix4.Multiply(const A: Single; const B: TMatrix4): TMatrix4;
 begin
-  Result.R[0] := A * B.R[0];
-  Result.R[1] := A * B.R[1];
-  Result.R[2] := A * B.R[2];
-  Result.R[3] := A * B.R[3];
+  Result.V[0] := A * B.V[0];
+  Result.V[1] := A * B.V[1];
+  Result.V[2] := A * B.V[2];
+  Result.V[3] := A * B.V[3];
 end;
 
 class operator TMatrix4.Multiply(const A: TMatrix4; const B: Single): TMatrix4;
 begin
-  Result.R[0] := A.R[0] * B;
-  Result.R[1] := A.R[1] * B;
-  Result.R[2] := A.R[2] * B;
-  Result.R[3] := A.R[3] * B;
+  Result.V[0] := A.V[0] * B;
+  Result.V[1] := A.V[1] * B;
+  Result.V[2] := A.V[2] * B;
+  Result.V[3] := A.V[3] * B;
 end;
 
+{$IFDEF FM_COLUMN_MAJOR}
+class operator TMatrix4.Multiply(const A: TVector4; const B: TMatrix4): TVector4;
+begin
+  Result.X := (A.X * B.M[0,0]) + (A.Y * B.M[0,1]) + (A.Z * B.M[0,2]) + (A.W * B.M[0,3]);
+  Result.Y := (A.X * B.M[1,0]) + (A.Y * B.M[1,1]) + (A.Z * B.M[1,2]) + (A.W * B.M[1,3]);
+  Result.Z := (A.X * B.M[2,0]) + (A.Y * B.M[2,1]) + (A.Z * B.M[2,2]) + (A.W * B.M[2,3]);
+  Result.W := (A.X * B.M[3,0]) + (A.Y * B.M[3,1]) + (A.Z * B.M[3,2]) + (A.W * B.M[3,3]);
+end;
+
+class operator TMatrix4.Multiply(const A: TMatrix4; const B: TVector4): TVector4;
+begin
+  Result.X := (B.X * A.M[0,0]) + (B.Y * A.M[1,0]) + (B.Z * A.M[2,0]) + (B.W * A.M[3,0]);
+  Result.Y := (B.X * A.M[0,1]) + (B.Y * A.M[1,1]) + (B.Z * A.M[2,1]) + (B.W * A.M[3,1]);
+  Result.Z := (B.X * A.M[0,2]) + (B.Y * A.M[1,2]) + (B.Z * A.M[2,2]) + (B.W * A.M[3,2]);
+  Result.W := (B.X * A.M[0,3]) + (B.Y * A.M[1,3]) + (B.Z * A.M[2,3]) + (B.W * A.M[3,3]);
+end;
+
+class operator TMatrix4.Multiply(const A, B: TMatrix4): TMatrix4;
+begin
+  Result.M[0,0] := (B.M[0,0] * A.M[0,0]) + (B.M[0,1] * A.M[1,0]) + (B.M[0,2] * A.M[2,0]) + (B.M[0,3] * A.M[3,0]);
+  Result.M[0,1] := (B.M[0,0] * A.M[0,1]) + (B.M[0,1] * A.M[1,1]) + (B.M[0,2] * A.M[2,1]) + (B.M[0,3] * A.M[3,1]);
+  Result.M[0,2] := (B.M[0,0] * A.M[0,2]) + (B.M[0,1] * A.M[1,2]) + (B.M[0,2] * A.M[2,2]) + (B.M[0,3] * A.M[3,2]);
+  Result.M[0,3] := (B.M[0,0] * A.M[0,3]) + (B.M[0,1] * A.M[1,3]) + (B.M[0,2] * A.M[2,3]) + (B.M[0,3] * A.M[3,3]);
+
+  Result.M[1,0] := (B.M[1,0] * A.M[0,0]) + (B.M[1,1] * A.M[1,0]) + (B.M[1,2] * A.M[2,0]) + (B.M[1,3] * A.M[3,0]);
+  Result.M[1,1] := (B.M[1,0] * A.M[0,1]) + (B.M[1,1] * A.M[1,1]) + (B.M[1,2] * A.M[2,1]) + (B.M[1,3] * A.M[3,1]);
+  Result.M[1,2] := (B.M[1,0] * A.M[0,2]) + (B.M[1,1] * A.M[1,2]) + (B.M[1,2] * A.M[2,2]) + (B.M[1,3] * A.M[3,2]);
+  Result.M[1,3] := (B.M[1,0] * A.M[0,3]) + (B.M[1,1] * A.M[1,3]) + (B.M[1,2] * A.M[2,3]) + (B.M[1,3] * A.M[3,3]);
+
+  Result.M[2,0] := (B.M[2,0] * A.M[0,0]) + (B.M[2,1] * A.M[1,0]) + (B.M[2,2] * A.M[2,0]) + (B.M[2,3] * A.M[3,0]);
+  Result.M[2,1] := (B.M[2,0] * A.M[0,1]) + (B.M[2,1] * A.M[1,1]) + (B.M[2,2] * A.M[2,1]) + (B.M[2,3] * A.M[3,1]);
+  Result.M[2,2] := (B.M[2,0] * A.M[0,2]) + (B.M[2,1] * A.M[1,2]) + (B.M[2,2] * A.M[2,2]) + (B.M[2,3] * A.M[3,2]);
+  Result.M[2,3] := (B.M[2,0] * A.M[0,3]) + (B.M[2,1] * A.M[1,3]) + (B.M[2,2] * A.M[2,3]) + (B.M[2,3] * A.M[3,3]);
+
+  Result.M[3,0] := (B.M[3,0] * A.M[0,0]) + (B.M[3,1] * A.M[1,0]) + (B.M[3,2] * A.M[2,0]) + (B.M[3,3] * A.M[3,0]);
+  Result.M[3,1] := (B.M[3,0] * A.M[0,1]) + (B.M[3,1] * A.M[1,1]) + (B.M[3,2] * A.M[2,1]) + (B.M[3,3] * A.M[3,1]);
+  Result.M[3,2] := (B.M[3,0] * A.M[0,2]) + (B.M[3,1] * A.M[1,2]) + (B.M[3,2] * A.M[2,2]) + (B.M[3,3] * A.M[3,2]);
+  Result.M[3,3] := (B.M[3,0] * A.M[0,3]) + (B.M[3,1] * A.M[1,3]) + (B.M[3,2] * A.M[2,3]) + (B.M[3,3] * A.M[3,3]);
+end;
+{$ELSE}
 class operator TMatrix4.Multiply(const A: TVector4; const B: TMatrix4): TVector4;
 begin
   Result.X := (B.M[0,0] * A.X) + (B.M[1,0] * A.Y) + (B.M[2,0] * A.Z) + (B.M[3,0] * A.W);
@@ -1837,13 +1931,14 @@ begin
   Result.M[3,2] := (A.M[3,0] * B.M[0,2]) + (A.M[3,1] * B.M[1,2]) + (A.M[3,2] * B.M[2,2]) + (A.M[3,3] * B.M[3,2]);
   Result.M[3,3] := (A.M[3,0] * B.M[0,3]) + (A.M[3,1] * B.M[1,3]) + (A.M[3,2] * B.M[2,3]) + (A.M[3,3] * B.M[3,3]);
 end;
+{$ENDIF}
 
 class operator TMatrix4.Negative(const A: TMatrix4): TMatrix4;
 begin
-  Result.R[0] := -A.R[0];
-  Result.R[1] := -A.R[1];
-  Result.R[2] := -A.R[2];
-  Result.R[3] := -A.R[3];
+  Result.V[0] := -A.V[0];
+  Result.V[1] := -A.V[1];
+  Result.V[2] := -A.V[2];
+  Result.V[3] := -A.V[3];
 end;
 
 procedure TMatrix4.SetInversed;
@@ -1858,26 +1953,26 @@ end;
 
 class operator TMatrix4.Subtract(const A: TMatrix4; const B: Single): TMatrix4;
 begin
-  Result.R[0] := A.R[0] - B;
-  Result.R[1] := A.R[1] - B;
-  Result.R[2] := A.R[2] - B;
-  Result.R[3] := A.R[3] - B;
+  Result.V[0] := A.V[0] - B;
+  Result.V[1] := A.V[1] - B;
+  Result.V[2] := A.V[2] - B;
+  Result.V[3] := A.V[3] - B;
 end;
 
 class operator TMatrix4.Subtract(const A, B: TMatrix4): TMatrix4;
 begin
-  Result.R[0] := A.R[0] - B.R[0];
-  Result.R[1] := A.R[1] - B.R[1];
-  Result.R[2] := A.R[2] - B.R[2];
-  Result.R[3] := A.R[3] - B.R[3];
+  Result.V[0] := A.V[0] - B.V[0];
+  Result.V[1] := A.V[1] - B.V[1];
+  Result.V[2] := A.V[2] - B.V[2];
+  Result.V[3] := A.V[3] - B.V[3];
 end;
 
 class operator TMatrix4.Subtract(const A: Single; const B: TMatrix4): TMatrix4;
 begin
-  Result.R[0] := A - B.R[0];
-  Result.R[1] := A - B.R[1];
-  Result.R[2] := A - B.R[2];
-  Result.R[3] := A - B.R[3];
+  Result.V[0] := A - B.V[0];
+  Result.V[1] := A - B.V[1];
+  Result.V[2] := A - B.V[2];
+  Result.V[3] := A - B.V[3];
 end;
 
 function TMatrix4.Transpose: TMatrix4;

@@ -1,5 +1,17 @@
 unit Neslib.FastMath;
-{< Fast Math Library for Delphi }
+{< Fast Math Library for Delphi.
+
+  You can set these conditional defines to modify the behavior of this library:
+  * FM_COLUMN_MAJOR: Store matrices in column-major order. Be default, matrices
+    are store in row-major order for compatibility with the Delphi RTL. However,
+    for OpenGL applications, it makes more sense to store matrices in column-
+    major order. Another side effect of this define is that the depth of camera
+    matrices are clipped to -1..1 (common with OpenGL) instead of 0..1 (uses
+    by the Delphi RTL).
+  * FM_NOSIMD: Disable SIMD (SSE2, NEON, ARM64) optimizations and run all
+    calculations using Pascal code only. You will generally only enable this
+    define for (performance) testing, or when running on an old PC that does
+    not have support for SSE2. }
 
 { Copyright (c) 2016 by Erik van Bilsen
   All rights reserved.
@@ -1757,14 +1769,25 @@ type
   { A 2x2 matrix in row-major order (M[Row, Column]).
     You can access the elements directly using M[0,0]..M[1,1] or m11..m22.
     You can also access the matrix using its two rows R[0]..R[1] (which map
-    directly to the elements M[]) }
+    directly to the elements M[]).
+
+    When the conditional define FM_COLUMN_MAJOR is set, the matrix is stored
+    in column-major order instead (M[Column, Row]), and the Rows property
+    and R fields are replaced by Columns and C respectively. }
   TMatrix2 = record
   {$REGION 'Internal Declarations'}
   private
-    function GetRow(const AIndex: Integer): TVector2; inline;
+    {$IFDEF FM_COLUMN_MAJOR}
+    function GetComponent(const AColumn, ARow: Integer): Single; inline;
+    procedure SetComponent(const AColumn, ARow: Integer; const Value: Single); inline;
+    function GetColumn(const AIndex: Integer): TVector2; inline;
+    procedure SetColumn(const AIndex: Integer; const Value: TVector2); inline;
+    {$ELSE}
     function GetComponent(const ARow, AColumn: Integer): Single; inline;
-    procedure SetRow(const AIndex: Integer; const Value: TVector2); inline;
     procedure SetComponent(const ARow, AColumn: Integer; const Value: Single); inline;
+    function GetRow(const AIndex: Integer): TVector2; inline;
+    procedure SetRow(const AIndex: Integer; const Value: TVector2); inline;
+    {$ENDIF}
     function GetDeterminant: Single; inline;
   {$ENDREGION 'Internal Declarations'}
   public
@@ -1779,12 +1802,21 @@ type
           to an identity matrix. }
     procedure Init(const ADiagonal: Single); overload; inline;
 
+    {$IFDEF FM_COLUMN_MAJOR}
+    { Initializes the matrix using two column vectors.
+
+      Parameters:
+        AColumn0: the first column of the matrix.
+        AColumn1: the second column of the matrix. }
+    procedure Init(const AColumn0, AColumn1: TVector2); overload; inline;
+    {$ELSE}
     { Initializes the matrix using two row vectors.
 
       Parameters:
         ARow0: the first row of the matrix.
         ARow1: the second row of the matrix. }
     procedure Init(const ARow0, ARow1: TVector2); overload; inline;
+    {$ENDIF}
 
     { Initializes the matrix with explicit values.
 
@@ -1913,11 +1945,29 @@ type
       matrix is singular or poorly conditioned (nearly singular). }
     procedure SetInversed;
 
+    {$IFDEF FM_COLUMN_MAJOR}
+    { Returns the columns of the matrix. This is identical to accessing the
+      C-field.
+
+      Parameters:
+        AIndex: index of the row to return (0 or 1). Range is checked with
+          an assertion. }
+    property Columns[const AIndex: Integer]: TVector2 read GetColumn write SetColumn;
+
+    { Returns the elements of the matrix (in column-major order).
+      This is identical to accessing the M-field, but this property can be used
+      as a default array property.
+
+      Parameters:
+        AColumn: the column index (0 or 1). Range is checked with an assertion.
+        ARow: the row index (0 or 1). Range is checked with an assertion. }
+    property Components[const AColumn, ARow: Integer]: Single read GetComponent write SetComponent; default;
+    {$ELSE}
     { Returns the rows of the matrix. This is identical to accessing the
       R-field.
 
       Parameters:
-        AIndex: index of the row to return (0 or 1). Range is checked with
+        AIndex: index of the column to return (0 or 1). Range is checked with
           an assertion. }
     property Rows[const AIndex: Integer]: TVector2 read GetRow write SetRow;
 
@@ -1929,17 +1979,26 @@ type
         ARow: the row index (0 or 1). Range is checked with an assertion.
         AColumn: the column index (0 or 1). Range is checked with an assertion. }
     property Components[const ARow, AColumn: Integer]: Single read GetComponent write SetComponent; default;
+    {$ENDIF}
 
     { The determinant of this matrix. }
     property Determinant: Single read GetDeterminant;
   public
     case Byte of
+      { Row or column vectors, depending on FM_COLUMN_MAJOR define }
+      0: (V: array [0..1] of TVector2);
+
+      {$IFDEF FM_COLUMN_MAJOR}
+      { The two column vectors making up the matrix }
+      1: (C: array [0..1] of TVector2);
+      {$ELSE}
       { The two row vectors making up the matrix }
-      0: (R: array [0..1] of TVector2);
+      2: (R: array [0..1] of TVector2);
+      {$ENDIF}
 
       { The elements of the matrix in row-major order }
-      1: (M: array [0..1, 0..1] of Single);
-      2: (m11, m12: Single;
+      3: (M: array [0..1, 0..1] of Single);
+      4: (m11, m12: Single;
           m21, m22: Single);
   end;
   PMatrix2 = ^TMatrix2;
@@ -1952,14 +2011,27 @@ type
 
     TMatrix3 is compatible with TMatrix in the Delphi RTL. You can typecast
     between these two types or implicitly convert from one to the other through
-    assignment (eg. MyMatrix3 := MyMatrix). }
+    assignment (eg. MyMatrix3 := MyMatrix).
+
+    When the conditional define FM_COLUMN_MAJOR is set, the matrix is stored
+    in column-major order instead (M[Column, Row]), and the Rows property
+    and R fields are replaced by Columns and C respectively. Also, in that case
+    assigning an RTL TMatrix to a TMatrix3 will transpose the matrix to keep
+    behavior the same. }
   TMatrix3 = record
   {$REGION 'Internal Declarations'}
   private
-    function GetRow(const AIndex: Integer): TVector3; inline;
+    {$IFDEF FM_COLUMN_MAJOR}
+    function GetComponent(const AColumn, ARow: Integer): Single; inline;
+    procedure SetComponent(const AColumn, ARow: Integer; const Value: Single); inline;
+    function GetColumn(const AIndex: Integer): TVector3; inline;
+    procedure SetColumn(const AIndex: Integer; const Value: TVector3); inline;
+    {$ELSE}
     function GetComponent(const ARow, AColumn: Integer): Single; inline;
-    procedure SetRow(const AIndex: Integer; const Value: TVector3); inline;
     procedure SetComponent(const ARow, AColumn: Integer; const Value: Single); inline;
+    function GetRow(const AIndex: Integer): TVector3; inline;
+    procedure SetRow(const AIndex: Integer; const Value: TVector3); inline;
+    {$ENDIF}
     function GetDeterminant: Single;
   {$ENDREGION 'Internal Declarations'}
   public
@@ -1974,6 +2046,15 @@ type
           to an identity matrix. }
     procedure Init(const ADiagonal: Single); overload; inline;
 
+    {$IFDEF FM_COLUMN_MAJOR}
+    { Initializes the matrix using three column vectors.
+
+      Parameters:
+        AColumn0: the first column of the matrix.
+        AColumn1: the second column of the matrix.
+        AColumn2: the third column of the matrix. }
+    procedure Init(const AColumn0, AColumn1, AColumn2: TVector3); overload; inline;
+    {$ELSE}
     { Initializes the matrix using three row vectors.
 
       Parameters:
@@ -1981,6 +2062,7 @@ type
         ARow1: the second row of the matrix.
         ARow2: the third row of the matrix. }
     procedure Init(const ARow0, ARow1, ARow2: TVector3); overload; inline;
+    {$ENDIF}
 
     { Initializes the matrix with explicit values.
 
@@ -2161,6 +2243,24 @@ type
       matrix is singular or poorly conditioned (nearly singular). }
     procedure SetInversed;
 
+    {$IFDEF FM_COLUMN_MAJOR}
+    { Returns the columns of the matrix. This is identical to accessing the
+      C-field.
+
+      Parameters:
+        AIndex: index of the column to return (0-2). Range is checked with
+          an assertion. }
+    property Columns[const AIndex: Integer]: TVector3 read GetColumn write SetColumn;
+
+    { Returns the elements of the matrix (in column-major order).
+      This is identical to accessing the M-field, but this property can be used
+      as a default array property.
+
+      Parameters:
+        AColumn: the column index (0-2). Range is checked with an assertion.
+        ARow: the row index (0-2). Range is checked with an assertion. }
+    property Components[const AColumn, ARow: Integer]: Single read GetComponent write SetComponent; default;
+    {$ELSE}
     { Returns the rows of the matrix. This is identical to accessing the
       R-field.
 
@@ -2177,17 +2277,26 @@ type
         ARow: the row index (0-2). Range is checked with an assertion.
         AColumn: the column index (0-2). Range is checked with an assertion. }
     property Components[const ARow, AColumn: Integer]: Single read GetComponent write SetComponent; default;
+    {$ENDIF}
 
     { The determinant of this matrix. }
     property Determinant: Single read GetDeterminant;
   public
     case Byte of
+      { Row or column vectors, depending on FM_COLUMN_MAJOR define }
+      0: (V: array [0..2] of TVector3);
+
+      {$IFDEF FM_COLUMN_MAJOR}
+      { The three column vectors making up the matrix }
+      1: (C: array [0..2] of TVector3);
+      {$ELSE}
       { The three row vectors making up the matrix }
-      0: (R: array [0..2] of TVector3);
+      2: (R: array [0..2] of TVector3);
+      {$ENDIF}
 
       { The elements of the matrix in row-major order }
-      1: (M: array [0..2, 0..2] of Single);
-      2: (m11, m12, m13: Single;
+      3: (M: array [0..2, 0..2] of Single);
+      4: (m11, m12, m13: Single;
           m21, m22, m23: Single;
           m31, m32, m33: Single);
   end;
@@ -2201,14 +2310,27 @@ type
 
     TMatrix4 is compatible with TMatrix3D in the Delphi RTL. You can typecast
     between these two types or implicitly convert from one to the other through
-    assignment (eg. MyMatrix4 := MyPoint3D). }
+    assignment (eg. MyMatrix4 := MyMatrix3D).
+
+    When the conditional define FM_COLUMN_MAJOR is set, the matrix is stored
+    in column-major order instead (M[Column, Row]), and the Rows property
+    and R fields are replaced by Columns and C respectively. Also, in that case
+    assigning an RTL TMatrix3D to a TMatrix4 will transpose the matrix to keep
+    behavior the same. }
   TMatrix4 = record
   {$REGION 'Internal Declarations'}
   private
-    function GetRow(const AIndex: Integer): TVector4; inline;
+    {$IFDEF FM_COLUMN_MAJOR}
+    function GetComponent(const AColumn, ARow: Integer): Single; inline;
+    procedure SetComponent(const AColumn, ARow: Integer; const Value: Single); inline;
+    function GetColumn(const AIndex: Integer): TVector4; inline;
+    procedure SetColumn(const AIndex: Integer; const Value: TVector4); inline;
+    {$ELSE}
     function GetComponent(const ARow, AColumn: Integer): Single; inline;
-    procedure SetRow(const AIndex: Integer; const Value: TVector4); inline;
     procedure SetComponent(const ARow, AColumn: Integer; const Value: Single); inline;
+    function GetRow(const AIndex: Integer): TVector4; inline;
+    procedure SetRow(const AIndex: Integer; const Value: TVector4); inline;
+    {$ENDIF}
     function GetDeterminant: Single;
   {$ENDREGION 'Internal Declarations'}
   public
@@ -2223,6 +2345,16 @@ type
           to an identity matrix. }
     procedure Init(const ADiagonal: Single); overload; inline;
 
+    {$IFDEF FM_COLUMN_MAJOR}
+    { Initializes the matrix using four column vectors.
+
+      Parameters:
+        AColumn0: the first column of the matrix.
+        AColumn1: the second column of the matrix.
+        AColumn2: the third column of the matrix.
+        AColumn3: the fourth column of the matrix. }
+    procedure Init(const AColumn0, AColumn1, AColumn2, AColumn3: TVector4); overload; inline;
+    {$ELSE}
     { Initializes the matrix using four row vectors.
 
       Parameters:
@@ -2231,6 +2363,7 @@ type
         ARow2: the third row of the matrix.
         ARow3: the fourth row of the matrix. }
     procedure Init(const ARow0, ARow1, ARow2, ARow3: TVector4); overload; inline;
+    {$ENDIF}
 
     { Initializes the matrix with explicit values.
 
@@ -2565,6 +2698,24 @@ type
       matrix is singular or poorly conditioned (nearly singular). }
     procedure SetInversed;
 
+    {$IFDEF FM_COLUMN_MAJOR}
+    { Returns the columns of the matrix. This is identical to accessing the
+      C-field.
+
+      Parameters:
+        AIndex: index of the column to return (0-3). Range is checked with
+          an assertion. }
+    property Columns[const AIndex: Integer]: TVector4 read GetColumn write SetColumn;
+
+    { Returns the elements of the matrix (in column-major order).
+      This is identical to accessing the M-field, but this property can be used
+      as a default array property.
+
+      Parameters:
+        AColumn: the column index (0-3). Range is checked with an assertion.
+        ARow: the row index (0-3). Range is checked with an assertion. }
+    property Components[const AColumn, ARow: Integer]: Single read GetComponent write SetComponent; default;
+    {$ELSE}
     { Returns the rows of the matrix. This is identical to accessing the
       R-field.
 
@@ -2581,17 +2732,26 @@ type
         ARow: the row index (0-3). Range is checked with an assertion.
         AColumn: the column index (0-3). Range is checked with an assertion. }
     property Components[const ARow, AColumn: Integer]: Single read GetComponent write SetComponent; default;
+    {$ENDIF}
 
     { The determinant of this matrix. }
     property Determinant: Single read GetDeterminant;
   public
     case Byte of
+      { Row or column vectors, depending on FM_COLUMN_MAJOR define }
+      0: (V: array [0..3] of TVector4);
+
+      {$IFDEF FM_COLUMN_MAJOR}
+      { The four column vectors making up the matrix }
+      1: (C: array [0..3] of TVector4);
+      {$ELSE}
       { The four row vectors making up the matrix }
-      0: (R: array [0..3] of TVector4);
+      2: (R: array [0..3] of TVector4);
+      {$ENDIF}
 
       { The elements of the matrix in row-major order }
-      1: (M: array [0..3, 0..3] of Single);
-      2: (m11, m12, m13, m14: Single;
+      3: (M: array [0..3, 0..3] of Single);
+      4: (m11, m12, m13, m14: Single;
           m21, m22, m23, m24: Single;
           m31, m32, m33, m34: Single;
           m41, m42, m43, m44: Single);
