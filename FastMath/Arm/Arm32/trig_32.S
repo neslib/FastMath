@@ -4,17 +4,15 @@
     .arch armv7-a
     .fpu neon
 #endif
+#if FORCE_THUMB
+    .thumb
+#endif
     .text
     .align 4
+    .include "../Arm32/macros_32.S"
     .globl _radians_scalar, _radians_vector2, _radians_vector3, _radians_vector4
     .globl _degrees_scalar, _degrees_vector2, _degrees_vector3, _degrees_vector4
 
-PI_OVER_180:
-    .float 0.01745329251994329576923690768489,  0.01745329251994329576923690768489,  0.01745329251994329576923690768489,  0.01745329251994329576923690768489
-
-_180_OVER_PI:
-    .float 57.295779513082320876798154814105, 57.295779513082320876798154814105, 57.295779513082320876798154814105, 57.295779513082320876798154814105
-    
 _radians_scalar: // (const ADegrees: Single): Single;
     adr         r2, PI_OVER_180
     vmov.f32    s0, r0
@@ -78,5 +76,11 @@ _degrees_vector4: // (const ARadians: TVector4; out Result: TVector4);
     vmul.f32    q0, q0, q1
     vst1.32     {q0}, [r1]
     bx          lr 
-    
+
+PI_OVER_180:
+    .float 0.01745329251994329576923690768489,  0.01745329251994329576923690768489,  0.01745329251994329576923690768489,  0.01745329251994329576923690768489
+
+_180_OVER_PI:
+    .float 57.295779513082320876798154814105, 57.295779513082320876798154814105, 57.295779513082320876798154814105, 57.295779513082320876798154814105
+        
 #endif // __LP64__

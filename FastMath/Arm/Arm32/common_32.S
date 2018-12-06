@@ -4,6 +4,9 @@
     .arch armv7-a
     .fpu neon
 #endif
+#if FORCE_THUMB
+    .thumb
+#endif
     .text
     .align 4
     .include "../Arm32/macros_32.S"
@@ -47,14 +50,6 @@ _abs_vector4: // (const A: TVector4; out Result: TVector4);
     vabs.f32    q0, q0
     vst1.32     {q0}, [r1]
     bx          lr
-
-ONE_D:
-    .float 1.0, 1.0
-    .int 0x80000000, 0x80000000 // sign bit
-
-ONE_Q:
-    .float 1.0, 1.0, 1.0, 1.0
-    .int 0x80000000, 0x80000000, 0x80000000, 0x80000000
 
 _sign_scalar: // (const A: Single): Single;
     adr         r2, ONE_D
@@ -272,6 +267,14 @@ _step_scalar_vector4: // (const AEdge: Single; const A: TVector4; out Result: TV
     vst1.32      {q0}, [r2]
     bx           lr
 
+ONE_D:
+    .float 1.0, 1.0
+    .int 0x80000000, 0x80000000 // sign bit
+
+ONE_Q:
+    .float 1.0, 1.0, 1.0, 1.0
+    .int 0x80000000, 0x80000000, 0x80000000, 0x80000000
+    
 _trunc_scalar: // (const A: Single): Integer;
     vmov.f32     s0, r0
     vcvt.s32.f32 d0, d0     // Trunc(A) (as int)
@@ -295,14 +298,6 @@ _trunc_vector4: // (const A: TVector4; out Result: TIVector4);
     vcvt.s32.f32 q0, q0     // Trunc(A) (as int)
     vst1.32      {q0}, [r1]
     bx           lr
-
-ROUND_D:
-    .float -0.5, -0.5
-    .float 0.499999, 0.499999
-
-ROUND_Q:
-    .float -0.5, -0.5, -0.5, -0.5
-    .float 0.499999, 0.499999, 0.499999, 0.499999
 
 _round_scalar: // (const A: Single): Integer;
     adr          r2, ROUND_D
@@ -356,6 +351,14 @@ _round_vector4: // (const A: TVector4; out Result: TIVector4);
     vst1.32      {q0}, [r1]
     bx           lr
 
+ROUND_D:
+    .float -0.5, -0.5
+    .float 0.499999, 0.499999
+
+ROUND_Q:
+    .float -0.5, -0.5, -0.5, -0.5
+    .float 0.499999, 0.499999, 0.499999, 0.499999
+    
 _frac_scalar: // (const A: Single): Single;
     vmov.f32     s0, r0
     vcvt.s32.f32 d1, d0     // Trunc(A) (as int)
@@ -716,6 +719,208 @@ _mix_vector4_scalar: // (const A, B: TVector4; T: Single; out Result: TVector4);
     vst1.32      {q0}, [r3]
     bx           lr
 
+#if FORCE_THUMB
+#define rx r4
+#else
+#define rx r12
+#endif
+    
+_smoothstep_vector2: // (const AEdge0, AEdge1, A: TVector2; out Result: TVector2);
+#if FORCE_THUMB
+    push         {rx}
+#endif
+    adr          rx, SMOOTH_STEP_D
+    vld1.32      {d0}, [r0]
+    vld1.32      {d1}, [r1]
+    vld1.32      {d2}, [r2]
+    vld1.32      {d16-d18}, [rx]
+    vcge.f32     d19, d2, d0     // (A >= AEdge0)? Yes: $FFFFFFFF, No: $00000000
+    vcle.f32     d20, d2, d1     // (A <= AEdge1)? Yes: $FFFFFFFF, No: $00000000
+    vbic.32      d16, d16, d20   // (A > AEdge1)? Yes: 1.0, No: 0.0
+    vsub.f32     d1, d1, d0      // AEdge1-AEdge0
+
+    RECIPD_MED   d3, d1          // 1/(AEdge1-AEdge0)
+
+    vsub.f32     d2, d2, d0      // (A - AEdge0)
+    vmul.f32     d2, d2, d3      // Temp := (A - AEdge0) / (AEdge1 - AEdge0)
+    vmls.f32     d18, d17, d2    // 3 - (2 * Temp)
+    vmul.f32     d0, d18, d2     // Temp * (3 - (2 * Temp))
+    vmul.f32     d0, d0, d2      // Result := Temp * Temp * (3 - (2 * Temp))
+
+    vand.32      d0, d0, d19     // (A < AEdge0)? Yes: 0.0, No: Result
+    vand.32      d0, d0, d20     // (A > AEdge1)? Yes: 0.0, No: Result
+    vorr.32      d0, d0, d16     // (A > AEdge1)? Yes: 1.0, No: Result
+
+    vst1.32      {d0}, [r3]
+#if FORCE_THUMB
+    pop          {rx}
+#endif
+    bx           lr
+
+_smoothstep_scalar_vector2: // (const AEdge0, AEdge1: Single; const A: TVector2; out Result: TVector2);
+#if FORCE_THUMB
+    push         {rx}
+#endif
+    adr          rx, SMOOTH_STEP_D
+    vdup.32      d0, r0
+    vdup.32      d1, r1
+    vld1.32      {d2}, [r2]
+    vld1.32      {d16-d18}, [rx]
+    vcge.f32     d19, d2, d0     // (A >= AEdge0)? Yes: $FFFFFFFF, No: $00000000
+    vcle.f32     d20, d2, d1     // (A <= AEdge1)? Yes: $FFFFFFFF, No: $00000000
+    vbic.32      d16, d16, d20   // (A > AEdge1)? Yes: 1.0, No: 0.0
+    vsub.f32     d1, d1, d0      // AEdge1-AEdge0
+
+    RECIPD_MED   d3, d1          // 1/(AEdge1-AEdge0)
+
+    vsub.f32     d2, d2, d0      // (A - AEdge0)
+    vmul.f32     d2, d2, d3      // Temp := (A - AEdge0) / (AEdge1 - AEdge0)
+    vmls.f32     d18, d17, d2    // 3 - (2 * Temp)
+    vmul.f32     d0, d18, d2     // Temp * (3 - (2 * Temp))
+    vmul.f32     d0, d0, d2      // Result := Temp * Temp * (3 - (2 * Temp))
+
+    vand.32      d0, d0, d19     // (A < AEdge0)? Yes: 0.0, No: Result
+    vand.32      d0, d0, d20     // (A > AEdge1)? Yes: 0.0, No: Result
+    vorr.32      d0, d0, d16     // (A > AEdge1)? Yes: 1.0, No: Result
+
+    vst1.32      {d0}, [r3]
+#if FORCE_THUMB
+    pop          {rx}
+#endif
+    bx           lr
+
+_smoothstep_vector3: // (const AEdge0, AEdge1, A: TVector3; out Result: TVector3);
+#if FORCE_THUMB
+    push         {rx}
+#endif
+    adr          rx, SMOOTH_STEP_Q
+    fldmias      r0, {s0-s2}
+    fldmias      r1, {s4-s6}
+    fldmias      r2, {s8-s10}
+    vld1.32      {q8-q9}, [rx]!
+    vld1.32      {q10}, [rx]
+    vcge.f32     q11, q2, q0     // (A >= AEdge0)? Yes: $FFFFFFFF, No: $00000000
+    vcle.f32     q12, q2, q1     // (A <= AEdge1)? Yes: $FFFFFFFF, No: $00000000
+    vbic.32      q8, q8, q12     // (A > AEdge1)? Yes: 1.0, No: 0.0
+    vsub.f32     q1, q1, q0      // AEdge1-AEdge0
+
+    RECIPQ_MED   q3, q1          // 1/(AEdge1-AEdge0)
+
+    vsub.f32     q2, q2, q0      // (A - AEdge0)
+    vmul.f32     q2, q2, q3      // Temp := (A - AEdge0) / (AEdge1 - AEdge0)
+    vmls.f32     q10, q9, q2     // 3 - (2 * Temp)
+    vmul.f32     q0, q10, q2     // Temp * (3 - (2 * Temp))
+    vmul.f32     q0, q0, q2      // Result := Temp * Temp * (3 - (2 * Temp))
+
+    vand.32      q0, q0, q11     // (A < AEdge0)? Yes: 0.0, No: Result
+    vand.32      q0, q0, q12     // (A > AEdge1)? Yes: 0.0, No: Result
+    vorr.32      q0, q0, q8      // (A > AEdge1)? Yes: 1.0, No: Result
+
+    fstmias      r3, {s0-s2}
+#if FORCE_THUMB
+    pop          {rx}
+#endif
+    bx           lr
+
+_smoothstep_scalar_vector3: // (const AEdge0, AEdge1: Single; const A: TVector3; out Result: TVector3);
+#if FORCE_THUMB
+    push         {rx}
+#endif
+    adr          rx, SMOOTH_STEP_Q
+    vdup.32      q0, r0
+    vdup.32      q1, r1
+    fldmias      r2, {s8-s10}
+    vld1.32      {q8-q9}, [rx]!
+    vld1.32      {q10}, [rx]
+    vcge.f32     q11, q2, q0     // (A >= AEdge0)? Yes: $FFFFFFFF, No: $00000000
+    vcle.f32     q12, q2, q1     // (A <= AEdge1)? Yes: $FFFFFFFF, No: $00000000
+    vbic.32      q8, q8, q12     // (A > AEdge1)? Yes: 1.0, No: 0.0
+    vsub.f32     q1, q1, q0      // AEdge1-AEdge0
+
+    RECIPQ_MED   q3, q1          // 1/(AEdge1-AEdge0)
+
+    vsub.f32     q2, q2, q0      // (A - AEdge0)
+    vmul.f32     q2, q2, q3      // Temp := (A - AEdge0) / (AEdge1 - AEdge0)
+    vmls.f32     q10, q9, q2     // 3 - (2 * Temp)
+    vmul.f32     q0, q10, q2     // Temp * (3 - (2 * Temp))
+    vmul.f32     q0, q0, q2      // Result := Temp * Temp * (3 - (2 * Temp))
+
+    vand.32      q0, q0, q11     // (A < AEdge0)? Yes: 0.0, No: Result
+    vand.32      q0, q0, q12     // (A > AEdge1)? Yes: 0.0, No: Result
+    vorr.32      q0, q0, q8      // (A > AEdge1)? Yes: 1.0, No: Result
+
+    fstmias      r3, {s0-s2}
+#if FORCE_THUMB
+    pop          {rx}
+#endif
+    bx           lr
+
+_smoothstep_vector4: // (const AEdge0, AEdge1, A: TVector4; out Result: TVector4);
+#if FORCE_THUMB
+    push         {rx}
+#endif
+    adr          rx, SMOOTH_STEP_Q
+    vld1.32      {q0}, [r0]
+    vld1.32      {q1}, [r1]
+    vld1.32      {q2}, [r2]
+    vld1.32      {q8-q9}, [rx]!
+    vld1.32      {q10}, [rx]
+    vcge.f32     q11, q2, q0     // (A >= AEdge0)? Yes: $FFFFFFFF, No: $00000000
+    vcle.f32     q12, q2, q1     // (A <= AEdge1)? Yes: $FFFFFFFF, No: $00000000
+    vbic.32      q8, q8, q12     // (A > AEdge1)? Yes: 1.0, No: 0.0
+    vsub.f32     q1, q1, q0      // AEdge1-AEdge0
+
+    RECIPQ_MED   q3, q1          // 1/(AEdge1-AEdge0)
+
+    vsub.f32     q2, q2, q0      // (A - AEdge0)
+    vmul.f32     q2, q2, q3      // Temp := (A - AEdge0) / (AEdge1 - AEdge0)
+    vmls.f32     q10, q9, q2     // 3 - (2 * Temp)
+    vmul.f32     q0, q10, q2     // Temp * (3 - (2 * Temp))
+    vmul.f32     q0, q0, q2      // Result := Temp * Temp * (3 - (2 * Temp))
+
+    vand.32      q0, q0, q11     // (A < AEdge0)? Yes: 0.0, No: Result
+    vand.32      q0, q0, q12     // (A > AEdge1)? Yes: 0.0, No: Result
+    vorr.32      q0, q0, q8      // (A > AEdge1)? Yes: 1.0, No: Result
+
+    vst1.32      {q0}, [r3]
+#if FORCE_THUMB
+    pop          {rx}
+#endif
+    bx           lr
+
+_smoothstep_scalar_vector4: // (const AEdge0, AEdge1: Single; const A: TVector4; out Result: TVector4);
+#if FORCE_THUMB
+    push         {rx}
+#endif
+    adr          rx, SMOOTH_STEP_Q
+    vdup.32      q0, r0
+    vdup.32      q1, r1
+    vld1.32      {q2}, [r2]
+    vld1.32      {q8-q9}, [rx]!
+    vld1.32      {q10}, [rx]
+    vcge.f32     q11, q2, q0     // (A >= AEdge0)? Yes: $FFFFFFFF, No: $00000000
+    vcle.f32     q12, q2, q1     // (A <= AEdge1)? Yes: $FFFFFFFF, No: $00000000
+    vbic.32      q8, q8, q12     // (A > AEdge1)? Yes: 1.0, No: 0.0
+    vsub.f32     q1, q1, q0      // AEdge1-AEdge0
+
+    RECIPQ_MED   q3, q1          // 1/(AEdge1-AEdge0)
+
+    vsub.f32     q2, q2, q0      // (A - AEdge0)
+    vmul.f32     q2, q2, q3      // Temp := (A - AEdge0) / (AEdge1 - AEdge0)
+    vmls.f32     q10, q9, q2     // 3 - (2 * Temp)
+    vmul.f32     q0, q10, q2     // Temp * (3 - (2 * Temp))
+    vmul.f32     q0, q0, q2      // Result := Temp * Temp * (3 - (2 * Temp))
+
+    vand.32      q0, q0, q11     // (A < AEdge0)? Yes: 0.0, No: Result
+    vand.32      q0, q0, q12     // (A > AEdge1)? Yes: 0.0, No: Result
+    vorr.32      q0, q0, q8      // (A > AEdge1)? Yes: 1.0, No: Result
+
+    vst1.32      {q0}, [r3]
+#if FORCE_THUMB
+    pop          {rx}
+#endif
+    bx           lr
+
 SMOOTH_STEP_D:
     .float 1.0, 1.0 // d16
     .float 2.0, 2.0 // d17
@@ -725,167 +930,7 @@ SMOOTH_STEP_Q:
     .float 1.0, 1.0, 1.0, 1.0
     .float 2.0, 2.0, 2.0, 2.0
     .float 3.0, 3.0, 3.0, 3.0
-
-_smoothstep_vector2: // (const AEdge0, AEdge1, A: TVector2; out Result: TVector2);
-    adr          r12, SMOOTH_STEP_D
-    vld1.32      {d0}, [r0]
-    vld1.32      {d1}, [r1]
-    vld1.32      {d2}, [r2]
-    vld1.32      {d16-d18}, [r12]
-    vcge.f32     d19, d2, d0     // (A >= AEdge0)? Yes: $FFFFFFFF, No: $00000000
-    vcle.f32     d20, d2, d1     // (A <= AEdge1)? Yes: $FFFFFFFF, No: $00000000
-    vbic.32      d16, d16, d20   // (A > AEdge1)? Yes: 1.0, No: 0.0
-    vsub.f32     d1, d1, d0      // AEdge1-AEdge0
-
-    RECIPD_MED   d3, d1          // 1/(AEdge1-AEdge0)
-
-    vsub.f32     d2, d2, d0      // (A - AEdge0)
-    vmul.f32     d2, d2, d3      // Temp := (A - AEdge0) / (AEdge1 - AEdge0)
-    vmls.f32     d18, d17, d2    // 3 - (2 * Temp)
-    vmul.f32     d0, d18, d2     // Temp * (3 - (2 * Temp))
-    vmul.f32     d0, d0, d2      // Result := Temp * Temp * (3 - (2 * Temp))
-
-    vand.32      d0, d0, d19     // (A < AEdge0)? Yes: 0.0, No: Result
-    vand.32      d0, d0, d20     // (A > AEdge1)? Yes: 0.0, No: Result
-    vorr.32      d0, d0, d16     // (A > AEdge1)? Yes: 1.0, No: Result
-
-    vst1.32      {d0}, [r3]
-    bx           lr
-
-_smoothstep_scalar_vector2: // (const AEdge0, AEdge1: Single; const A: TVector2; out Result: TVector2);
-    adr          r12, SMOOTH_STEP_D
-    vdup.32      d0, r0
-    vdup.32      d1, r1
-    vld1.32      {d2}, [r2]
-    vld1.32      {d16-d18}, [r12]
-    vcge.f32     d19, d2, d0     // (A >= AEdge0)? Yes: $FFFFFFFF, No: $00000000
-    vcle.f32     d20, d2, d1     // (A <= AEdge1)? Yes: $FFFFFFFF, No: $00000000
-    vbic.32      d16, d16, d20   // (A > AEdge1)? Yes: 1.0, No: 0.0
-    vsub.f32     d1, d1, d0      // AEdge1-AEdge0
-
-    RECIPD_MED   d3, d1          // 1/(AEdge1-AEdge0)
-
-    vsub.f32     d2, d2, d0      // (A - AEdge0)
-    vmul.f32     d2, d2, d3      // Temp := (A - AEdge0) / (AEdge1 - AEdge0)
-    vmls.f32     d18, d17, d2    // 3 - (2 * Temp)
-    vmul.f32     d0, d18, d2     // Temp * (3 - (2 * Temp))
-    vmul.f32     d0, d0, d2      // Result := Temp * Temp * (3 - (2 * Temp))
-
-    vand.32      d0, d0, d19     // (A < AEdge0)? Yes: 0.0, No: Result
-    vand.32      d0, d0, d20     // (A > AEdge1)? Yes: 0.0, No: Result
-    vorr.32      d0, d0, d16     // (A > AEdge1)? Yes: 1.0, No: Result
-
-    vst1.32      {d0}, [r3]
-    bx           lr
-
-_smoothstep_vector3: // (const AEdge0, AEdge1, A: TVector3; out Result: TVector3);
-    adr          r12, SMOOTH_STEP_Q
-    fldmias      r0, {s0-s2}
-    fldmias      r1, {s4-s6}
-    fldmias      r2, {s8-s10}
-    vld1.32      {q8-q9}, [r12]!
-    vld1.32      {q10}, [r12]
-    vcge.f32     q11, q2, q0     // (A >= AEdge0)? Yes: $FFFFFFFF, No: $00000000
-    vcle.f32     q12, q2, q1     // (A <= AEdge1)? Yes: $FFFFFFFF, No: $00000000
-    vbic.32      q8, q8, q12     // (A > AEdge1)? Yes: 1.0, No: 0.0
-    vsub.f32     q1, q1, q0      // AEdge1-AEdge0
-
-    RECIPQ_MED   q3, q1          // 1/(AEdge1-AEdge0)
-
-    vsub.f32     q2, q2, q0      // (A - AEdge0)
-    vmul.f32     q2, q2, q3      // Temp := (A - AEdge0) / (AEdge1 - AEdge0)
-    vmls.f32     q10, q9, q2     // 3 - (2 * Temp)
-    vmul.f32     q0, q10, q2     // Temp * (3 - (2 * Temp))
-    vmul.f32     q0, q0, q2      // Result := Temp * Temp * (3 - (2 * Temp))
-
-    vand.32      q0, q0, q11     // (A < AEdge0)? Yes: 0.0, No: Result
-    vand.32      q0, q0, q12     // (A > AEdge1)? Yes: 0.0, No: Result
-    vorr.32      q0, q0, q8      // (A > AEdge1)? Yes: 1.0, No: Result
-
-    fstmias      r3, {s0-s2}
-    bx           lr
-
-_smoothstep_scalar_vector3: // (const AEdge0, AEdge1: Single; const A: TVector3; out Result: TVector3);
-    adr          r12, SMOOTH_STEP_Q
-    vdup.32      q0, r0
-    vdup.32      q1, r1
-    fldmias      r2, {s8-s10}
-    vld1.32      {q8-q9}, [r12]!
-    vld1.32      {q10}, [r12]
-    vcge.f32     q11, q2, q0     // (A >= AEdge0)? Yes: $FFFFFFFF, No: $00000000
-    vcle.f32     q12, q2, q1     // (A <= AEdge1)? Yes: $FFFFFFFF, No: $00000000
-    vbic.32      q8, q8, q12     // (A > AEdge1)? Yes: 1.0, No: 0.0
-    vsub.f32     q1, q1, q0      // AEdge1-AEdge0
-
-    RECIPQ_MED   q3, q1          // 1/(AEdge1-AEdge0)
-
-    vsub.f32     q2, q2, q0      // (A - AEdge0)
-    vmul.f32     q2, q2, q3      // Temp := (A - AEdge0) / (AEdge1 - AEdge0)
-    vmls.f32     q10, q9, q2     // 3 - (2 * Temp)
-    vmul.f32     q0, q10, q2     // Temp * (3 - (2 * Temp))
-    vmul.f32     q0, q0, q2      // Result := Temp * Temp * (3 - (2 * Temp))
-
-    vand.32      q0, q0, q11     // (A < AEdge0)? Yes: 0.0, No: Result
-    vand.32      q0, q0, q12     // (A > AEdge1)? Yes: 0.0, No: Result
-    vorr.32      q0, q0, q8      // (A > AEdge1)? Yes: 1.0, No: Result
-
-    fstmias      r3, {s0-s2}
-    bx           lr
-
-_smoothstep_vector4: // (const AEdge0, AEdge1, A: TVector4; out Result: TVector4);
-    adr          r12, SMOOTH_STEP_Q
-    vld1.32      {q0}, [r0]
-    vld1.32      {q1}, [r1]
-    vld1.32      {q2}, [r2]
-    vld1.32      {q8-q9}, [r12]!
-    vld1.32      {q10}, [r12]
-    vcge.f32     q11, q2, q0     // (A >= AEdge0)? Yes: $FFFFFFFF, No: $00000000
-    vcle.f32     q12, q2, q1     // (A <= AEdge1)? Yes: $FFFFFFFF, No: $00000000
-    vbic.32      q8, q8, q12     // (A > AEdge1)? Yes: 1.0, No: 0.0
-    vsub.f32     q1, q1, q0      // AEdge1-AEdge0
-
-    RECIPQ_MED   q3, q1          // 1/(AEdge1-AEdge0)
-
-    vsub.f32     q2, q2, q0      // (A - AEdge0)
-    vmul.f32     q2, q2, q3      // Temp := (A - AEdge0) / (AEdge1 - AEdge0)
-    vmls.f32     q10, q9, q2     // 3 - (2 * Temp)
-    vmul.f32     q0, q10, q2     // Temp * (3 - (2 * Temp))
-    vmul.f32     q0, q0, q2      // Result := Temp * Temp * (3 - (2 * Temp))
-
-    vand.32      q0, q0, q11     // (A < AEdge0)? Yes: 0.0, No: Result
-    vand.32      q0, q0, q12     // (A > AEdge1)? Yes: 0.0, No: Result
-    vorr.32      q0, q0, q8      // (A > AEdge1)? Yes: 1.0, No: Result
-
-    vst1.32      {q0}, [r3]
-    bx           lr
-
-_smoothstep_scalar_vector4: // (const AEdge0, AEdge1: Single; const A: TVector4; out Result: TVector4);
-    adr          r12, SMOOTH_STEP_Q
-    vdup.32      q0, r0
-    vdup.32      q1, r1
-    vld1.32      {q2}, [r2]
-    vld1.32      {q8-q9}, [r12]!
-    vld1.32      {q10}, [r12]
-    vcge.f32     q11, q2, q0     // (A >= AEdge0)? Yes: $FFFFFFFF, No: $00000000
-    vcle.f32     q12, q2, q1     // (A <= AEdge1)? Yes: $FFFFFFFF, No: $00000000
-    vbic.32      q8, q8, q12     // (A > AEdge1)? Yes: 1.0, No: 0.0
-    vsub.f32     q1, q1, q0      // AEdge1-AEdge0
-
-    RECIPQ_MED   q3, q1          // 1/(AEdge1-AEdge0)
-
-    vsub.f32     q2, q2, q0      // (A - AEdge0)
-    vmul.f32     q2, q2, q3      // Temp := (A - AEdge0) / (AEdge1 - AEdge0)
-    vmls.f32     q10, q9, q2     // 3 - (2 * Temp)
-    vmul.f32     q0, q10, q2     // Temp * (3 - (2 * Temp))
-    vmul.f32     q0, q0, q2      // Result := Temp * Temp * (3 - (2 * Temp))
-
-    vand.32      q0, q0, q11     // (A < AEdge0)? Yes: 0.0, No: Result
-    vand.32      q0, q0, q12     // (A > AEdge1)? Yes: 0.0, No: Result
-    vorr.32      q0, q0, q8      // (A > AEdge1)? Yes: 1.0, No: Result
-
-    vst1.32      {q0}, [r3]
-    bx           lr
-
+    
 _fma_vector2: // (const A, B, C: TVector2; out Result: TVector2);
     vld1.32      {d0}, [r0]
     vld1.32      {d1}, [r1]

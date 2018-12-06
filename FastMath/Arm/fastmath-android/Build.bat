@@ -37,8 +37,12 @@ if not exist %NDK_BUILD% (
   exit /b
 )
 
+REM Build Thumb version for Delphi 10.3 Rio and later
+REM =================================================
+
 REM Run ndk-build to build static library
-call %NDK_BUILD%
+set FORCE_THUMB=true
+call %NDK_BUILD% -B
 
 if not exist %LIB% (
   echo Cannot find static library %LIB%
@@ -46,7 +50,26 @@ if not exist %LIB% (
 )
 
 REM Copy static library to directory with Delphi source code
-copy %LIB% ..\..
+copy %LIB% ..\..\libfastmath-android-thumb.a
+if %ERRORLEVEL% NEQ 0 (
+  echo Cannot copy static library. Make sure it is not write protected
+)
+
+
+REM Build Arm version for Delphi 10.2 Tokyo and earlier
+REM ===================================================
+
+REM Run ndk-build to build static library
+set FORCE_THUMB=
+call %NDK_BUILD% -B
+
+if not exist %LIB% (
+  echo Cannot find static library %LIB%
+  exit /b
+)
+
+REM Copy static library to directory with Delphi source code
+copy %LIB% ..\..\libfastmath-android.a
 if %ERRORLEVEL% NEQ 0 (
   echo Cannot copy static library. Make sure it is not write protected
 )

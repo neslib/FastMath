@@ -9,8 +9,14 @@ const
   { @exclude }
   _PREFIX = '';
   {$ELSEIF Defined(ANDROID)}
+  {$IF (RTLVersion >= 33)}
+  { Delphi 10.3 Rio changed linking to Thumb mode. }
+  { @exclude }
+  _LIB_FASTMATH = 'libfastmath-android-thumb.a';
+  {$ELSE}
   { @exclude }
   _LIB_FASTMATH = 'libfastmath-android.a';
+  {$ENDIF}
   { @exclude }
   _PREFIX = '_';
   {$ELSE}

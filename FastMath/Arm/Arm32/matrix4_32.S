@@ -4,6 +4,9 @@
     .arch armv7-a
     .fpu neon
 #endif
+#if FORCE_THUMB
+    .thumb
+#endif
     .text
     .align 4
     .include "../Arm32/macros_32.S"

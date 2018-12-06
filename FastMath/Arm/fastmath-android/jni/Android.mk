@@ -1,7 +1,11 @@
 LOCAL_PATH:= $(call my-dir)/../../Arm32
 include $(CLEAR_VARS)
  
-LOCAL_MODULE     := fastmath-android
+ifdef FORCE_THUMB
+LOCAL_CFLAGS += -DFORCE_THUMB
+endif
+
+LOCAL_MODULE    := fastmath-android
 LOCAL_SRC_FILES := approx_32.S\
     common_32.S\
     exponential_32.S\
