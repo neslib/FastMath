@@ -5,6 +5,9 @@
   * Arguments that fit into 1, 2, 4 or 8 bytes are passed in registers RCX, RDX,
     R8 and R9. This includes TVector2 records (which are 8 bytes). So those need
     to be moved using MOVQ instead of MOVLPS.
+    NOTE: Delphi 10.3 Rio changed this behavior for 8-byte records (TVector2):
+    the register contains the address of the parameter instead (as is the case
+    in 32-bit, so we should use MOVLPS).
   * The same goes for function results. Those go into RAX. Floating-point values
     are returned in XMM0.
   * The first 4 floating-point arguments go into XMM0, XMM1, XMM2 and XMM3.
@@ -102,7 +105,11 @@ end;
 
 function Radians(const ADegrees: TVector2): TVector2; assembler;
 asm
+  {$IF RTLVersion >= 33}
+  movlps xmm0, [ADegrees]
+  {$ELSE}
   movq   xmm0, ADegrees
+  {$ENDIF}
   movlps xmm1, QWORD [SSE_PI_OVER_180]
   mulps  xmm0, xmm1
   movq   rax, xmm0
@@ -134,7 +141,11 @@ end;
 
 function Degrees(const ARadians: TVector2): TVector2; assembler;
 asm
+  {$IF RTLVersion >= 33}
+  movq   xmm0, [ARadians]
+  {$ELSE}
   movq   xmm0, ARadians
+  {$ENDIF}
   movlps xmm1, QWORD [SSE_180_OVER_PI]
   mulps  xmm0, xmm1
   movq   rax, xmm0
@@ -168,7 +179,11 @@ end;
 
 function Sqrt(const A: TVector2): TVector2; assembler;
 asm
+  {$IF RTLVersion >= 33}
+  movlps xmm0, [A]
+  {$ELSE}
   movq   xmm0, A
+  {$ENDIF}
   sqrtps xmm0, xmm0
   movq   rax, xmm0
 end;
@@ -198,7 +213,11 @@ end;
 
 function InverseSqrt(const A: TVector2): TVector2;
 asm
-  movq    xmm0, A
+  {$IF RTLVersion >= 33}
+  movlps xmm0, [A]
+  {$ELSE}
+  movq   xmm0, A
+  {$ENDIF}
   rsqrtps xmm0, xmm0
   movq    rax, xmm0
 end;
@@ -296,7 +315,11 @@ asm
   movdqa   [rsp-24], xmm6
   movdqa   [rsp-40], xmm7
 
+  {$IF RTLVersion >= 33}
+  movlps   xmm0, [ARadians]
+  {$ELSE}
   movq     xmm0, ARadians
+  {$ENDIF}
   movlps   xmm2, QWORD [SSE_MASK_ABS_VAL]
   movaps   xmm1, xmm0
   movlps   xmm3, QWORD [SSE_MASK_SIGN]
@@ -571,7 +594,11 @@ asm
   movdqa   [rsp-24], xmm6
   movdqa   [rsp-40], xmm7
 
+  {$IF RTLVersion >= 33}
+  movlps   xmm0, [ARadians]
+  {$ELSE}
   movq     xmm0, ARadians
+  {$ENDIF}
   movlps   xmm1, QWORD [SSE_MASK_ABS_VAL]
   movlps   xmm2, QWORD [SSE_FOPI]
   andps    xmm0, xmm1               // (xmm0) X := Abs(ARadians)
@@ -850,7 +877,11 @@ asm
   movdqa   [rsp-24], xmm6
   movdqa   [rsp-40], xmm7
 
+  {$IF RTLVersion >= 33}
+  movlps   xmm0, [ARadians]
+  {$ELSE}
   movq     xmm0, ARadians
+  {$ENDIF}
   movlps   xmm2, QWORD [SSE_MASK_SIGN]
   movlps   xmm3, QWORD [SSE_MASK_ABS_VAL]
   movaps   xmm1, xmm0
@@ -1168,7 +1199,11 @@ asm
   movdqa   [rsp-24], xmm6
   movdqa   [rsp-40], xmm7
 
+  {$IF RTLVersion >= 33}
+  movlps   xmm0, [A]
+  {$ELSE}
   movq     xmm0, A
+  {$ENDIF}
   movlps   xmm1, QWORD [SSE_EXP_A1]
   movlps   xmm2, QWORD [SSE_EXP_A2]
 
@@ -1436,7 +1471,11 @@ asm
   movdqa   [rsp-24], xmm6
   movdqa   [rsp-40], xmm7
 
+  {$IF RTLVersion >= 33}
+  movlps   xmm0, [A]
+  {$ELSE}
   movq     xmm0, A
+  {$ENDIF}
   xorps    xmm2, xmm2
   movaps   xmm1, xmm0
   movlps   xmm3, QWORD [SSE_LN_CST]
@@ -1629,7 +1668,11 @@ end;
 
 function FastLog2(const A: TVector2): TVector2; assembler;
 asm
+  {$IF RTLVersion >= 33}
+  movlps   xmm0, [A]
+  {$ELSE}
   movq     xmm0, A
+  {$ENDIF}
   movlps   xmm2, QWORD [SSE_MASK_FRACTION]
   movaps   xmm1, xmm0
 
@@ -1762,7 +1805,11 @@ var
 asm
   // Set rounding mode to Round Positive (=Round Down)
   stmxcsr  [OldFlags]
+  {$IF RTLVersion >= 33}
+  movlps   xmm0, [A]
+  {$ELSE}
   movq     xmm0, A
+  {$ENDIF}
   mov      ecx, [OldFlags]
   xorps    xmm1, xmm1
   and      ecx, SSE_ROUND_MASK
@@ -1932,7 +1979,11 @@ end;
 
 function Sign(const A: TVector2): TVector2; assembler;
 asm
+  {$IF RTLVersion >= 33}
+  movlps   xmm0, [A]
+  {$ELSE}
   movq     xmm0, A
+  {$ENDIF}
   movlps   xmm1, QWORD [SSE_ONE]
   movaps   xmm2, xmm0
   movlps   xmm3, QWORD [SSE_MASK_SIGN]
@@ -2013,7 +2064,11 @@ asm
   and      eax, SSE_ROUND_MASK
   or       eax, SSE_ROUND_DOWN
   mov      [NewFlags], eax
+  {$IF RTLVersion >= 33}
+  movlps   xmm0, [A]
+  {$ELSE}
   movq     xmm0, A
+  {$ENDIF}
   ldmxcsr  [NewFlags]
 
   cvtps2dq xmm0, xmm0
@@ -2105,7 +2160,11 @@ asm
   and      eax, SSE_ROUND_MASK
   or       eax, SSE_ROUND_TRUNC
   mov      [NewFlags], eax
+  {$IF RTLVersion >= 33}
+  movlps   xmm0, [A]
+  {$ELSE}
   movq     xmm0, A
+  {$ENDIF}
   ldmxcsr  [NewFlags]
 
   cvtps2dq xmm0, xmm0
@@ -2170,7 +2229,11 @@ end;
 function Round(const A: TVector2): TIVector2; assembler;
 asm
   // Rounding mode defaults to round-to-nearest
+  {$IF RTLVersion >= 33}
+  movlps   xmm0, [A]
+  {$ELSE}
   movq     xmm0, A
+  {$ENDIF}
   cvtps2dq xmm0, xmm0
   movq     rax, xmm0
 end;
@@ -2229,7 +2292,11 @@ asm
   and      eax, SSE_ROUND_MASK
   or       eax, SSE_ROUND_UP
   mov      [NewFlags], eax
+  {$IF RTLVersion >= 33}
+  movlps   xmm0, [A]
+  {$ELSE}
   movq     xmm0, A
+  {$ENDIF}
   ldmxcsr  [NewFlags]
 
   cvtps2dq xmm0, xmm0
@@ -2320,7 +2387,11 @@ asm
   mov      edx, [OldFlags]
   and      edx, SSE_ROUND_MASK
   or       edx, SSE_ROUND_TRUNC
+  {$IF RTLVersion >= 33}
+  movlps   xmm0, [A]
+  {$ELSE}
   movq     xmm0, A
+  {$ENDIF}
   mov      [NewFlags], edx
   movaps   xmm1, xmm0
   ldmxcsr  [NewFlags]
@@ -2414,7 +2485,11 @@ var
   OldFlags, NewFlags: UInt32;
 asm
   // Set rounding mode to Truncate
+  {$IF RTLVersion >= 33}
+  movlps   xmm0, [A]
+  {$ELSE}
   movq     xmm0, A
+  {$ENDIF}
   stmxcsr  [OldFlags]
   mov      ecx, [OldFlags]
   shufps   xmm1, xmm1, $00 // Replicate B
@@ -2442,9 +2517,17 @@ var
   OldFlags, NewFlags: UInt32;
 asm
   // Set rounding mode to Truncate
+  {$IF RTLVersion >= 33}
+  movlps   xmm0, [A]
+  {$ELSE}
   movq     xmm0, A
+  {$ENDIF}
   stmxcsr  [OldFlags]
+  {$IF RTLVersion >= 33}
+  movlps   xmm1, [B]
+  {$ELSE}
   movq     xmm1, B
+  {$ENDIF}
   mov      edx, [OldFlags]
   movaps   xmm2, xmm0
   and      edx, SSE_ROUND_MASK
@@ -2626,7 +2709,11 @@ function ModF(const A: TVector2; out B: TIVector2): TVector2; assembler;
 var
   OldFlags, NewFlags: UInt32;
 asm
+  {$IF RTLVersion >= 33}
+  movlps   xmm0, [A]
+  {$ELSE}
   movq     xmm0, A
+  {$ENDIF}
 
   // Set rounding mode to Truncate
   stmxcsr  [OldFlags]
@@ -2708,7 +2795,11 @@ end;
 
 function Min(const A: TVector2; const B: Single): TVector2; assembler;
 asm
+  {$IF RTLVersion >= 33}
+  movlps xmm0, [A]
+  {$ELSE}
   movq   xmm0, A
+  {$ENDIF}
   shufps xmm1, xmm1, $00 // Replicate B
   minps  xmm0, xmm1
   movq   rax, xmm0
@@ -2716,8 +2807,13 @@ end;
 
 function Min(const A, B: TVector2): TVector2; assembler;
 asm
+  {$IF RTLVersion >= 33}
+  movlps xmm0, [A]
+  movlps xmm1, [B]
+  {$ELSE}
   movq   xmm0, A
   movq   xmm1, B
+  {$ENDIF}
   minps  xmm0, xmm1
   movq   rax, xmm0
 end;
@@ -2766,7 +2862,11 @@ end;
 
 function Max(const A: TVector2; const B: Single): TVector2; assembler;
 asm
+  {$IF RTLVersion >= 33}
+  movlps xmm0, [A]
+  {$ELSE}
   movq   xmm0, A
+  {$ENDIF}
   shufps xmm1, xmm1, $00 // Replicate B
   maxps  xmm0, xmm1
   movq   rax, xmm0
@@ -2774,8 +2874,13 @@ end;
 
 function Max(const A, B: TVector2): TVector2; assembler;
 asm
+  {$IF RTLVersion >= 33}
+  movlps xmm0, [A]
+  movlps xmm1, [B]
+  {$ELSE}
   movq   xmm0, A
   movq   xmm1, B
+  {$ENDIF}
   maxps  xmm0, xmm1
   movq   rax, xmm0
 end;
@@ -2830,7 +2935,11 @@ end;
 
 function EnsureRange(const A: TVector2; const AMin, AMax: Single): TVector2; assembler;
 asm
+  {$IF RTLVersion >= 33}
+  movlps xmm0, [A]
+  {$ELSE}
   movq   xmm0, A
+  {$ENDIF}
   shufps xmm1, xmm1, $00 // Replicate AMin
   shufps xmm2, xmm2, $00 // Replicate AMax
   maxps  xmm0, xmm1
@@ -2840,9 +2949,15 @@ end;
 
 function EnsureRange(const A, AMin, AMax: TVector2): TVector2; assembler;
 asm
+  {$IF RTLVersion >= 33}
+  movlps xmm0, [A]
+  movlps xmm1, [AMin]
+  movlps xmm2, [AMax]
+  {$ELSE}
   movq   xmm0, A
   movq   xmm1, AMin
   movq   xmm2, AMax
+  {$ENDIF}
   maxps  xmm0, xmm1
   minps  xmm0, xmm2
   movq   rax, xmm0
@@ -2970,7 +3085,11 @@ end;
 
 function Step(const AEdge: Single; const A: TVector2): TVector2; assembler;
 asm
+  {$IF RTLVersion >= 33}
+  movlps   xmm1, [A]
+  {$ELSE}
   movq     xmm1, A
+  {$ENDIF}
   shufps   xmm0, xmm0, $00 // Replicate AEdge
   movlps   xmm2, QWORD [SSE_ONE]
   cmpnltps xmm1, xmm0      // (A >= AEdge)? Yes: $FFFFFFFF, No: $00000000
@@ -2980,8 +3099,13 @@ end;
 
 function Step(const AEdge, A: TVector2): TVector2; assembler;
 asm
+  {$IF RTLVersion >= 33}
+  movlps   xmm0, [AEdge]
+  movlps   xmm1, [A]
+  {$ELSE}
   movq     xmm0, AEdge
   movq     xmm1, A
+  {$ENDIF}
   movlps   xmm2, QWORD [SSE_ONE]
   cmpnltps xmm1, xmm0 // (A >= AEdge)? Yes: $FFFFFFFF, No: $00000000
   andps    xmm1, xmm2 // (A >= AEdge)? Yes: 1, No: 0
@@ -3215,9 +3339,15 @@ end;
 
 function FMA(const A, B, C: TVector2): TVector2; assembler;
 asm
+  {$IF RTLVersion >= 33}
+  movlps xmm0, [A]
+  movlps xmm1, [B]
+  movlps xmm2, [C]
+  {$ELSE}
   movq   xmm0, A
   movq   xmm1, B
   movq   xmm2, C
+  {$ENDIF}
   mulps  xmm0, xmm1
   addps  xmm0, xmm2
   movq   rax, xmm0
@@ -3256,8 +3386,13 @@ end;
 {$IFDEF FM_COLUMN_MAJOR}
 function OuterProduct(const C, R: TVector2): TMatrix2; assembler;
 asm
+  {$IF RTLVersion >= 33}
+  movlps xmm0, [R]     // # # C.Y C.X
+  movlps xmm1, [C]     // # # R.Y R.X
+  {$ELSE}
   movq   xmm0, R       // # # C.Y C.X
   movq   xmm1, C       // # # R.Y R.X
+  {$ENDIF}
 
   shufps xmm0, xmm0, $50 // C.Y C.X C.Y C.X
   shufps xmm1, xmm1, $44 // R.Y R.Y R.X R.X
@@ -3326,8 +3461,13 @@ end;
 {$ELSE}
 function OuterProduct(const C, R: TVector2): TMatrix2; assembler;
 asm
+  {$IF RTLVersion >= 33}
+  movlps xmm0, [C]     // # # C.Y C.X
+  movlps xmm1, [R]     // # # R.Y R.X
+  {$ELSE}
   movq   xmm0, C       // # # C.Y C.X
   movq   xmm1, R       // # # R.Y R.X
+  {$ENDIF}
 
   shufps xmm0, xmm0, $50 // C.Y C.X C.Y C.X
   shufps xmm1, xmm1, $44 // R.Y R.Y R.X R.X
@@ -3427,7 +3567,11 @@ end;
 
 class operator TVector2.Divide(const A: TVector2; const B: Single): TVector2; assembler;
 asm
+  {$IF RTLVersion >= 33}
+  movlps xmm0, [A]
+  {$ELSE}
   movq   xmm0, A
+  {$ENDIF}
   shufps xmm1, xmm1, 0
   divps  xmm0, xmm1
   movq   rax, xmm0
@@ -3435,7 +3579,11 @@ end;
 
 class operator TVector2.Divide(const A: Single; const B: TVector2): TVector2; assembler;
 asm
+  {$IF RTLVersion >= 33}
+  movlps xmm1, [B]
+  {$ELSE}
   movq   xmm1, B
+  {$ENDIF}
   shufps xmm0, xmm0, 0
   divps  xmm0, xmm1
   movq   rax, xmm0
@@ -3443,8 +3591,13 @@ end;
 
 class operator TVector2.Divide(const A, B: TVector2): TVector2; assembler;
 asm
+  {$IF RTLVersion >= 33}
+  movlps xmm0, [A]
+  movlps xmm1, [B]
+  {$ELSE}
   movq   xmm0, A
   movq   xmm1, B
+  {$ENDIF}
   divps  xmm0, xmm1
   movq   rax, xmm0
 end;
