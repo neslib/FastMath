@@ -1,24 +1,15 @@
 var
   PrevFloatingPointExceptions: TArithmeticExceptionMask = DefaultExceptionFlags;
-  {$IFNDEF NEXTGEN}
-  PrevSSEFloatingPointExceptions: TSSEExceptionMask = DefaultExceptionFlags;
-  {$ENDIF}
 
 {$WARN SYMBOL_PLATFORM OFF}
 procedure DisableFloatingPointExceptions;
 begin
   PrevFloatingPointExceptions := SetExceptionMask(exAllArithmeticExceptions);
-  {$IFNDEF NEXTGEN}
-  PrevSSEFloatingPointExceptions := SetSSEExceptionMask(exAllArithmeticExceptions);
-  {$ENDIF}
 end;
 
 procedure RestoreFloatingPointExceptions;
 begin
   SetExceptionMask(PrevFloatingPointExceptions);
-  {$IFNDEF NEXTGEN}
-  SetSSEExceptionMask(PrevSSEFloatingPointExceptions);
-  {$ENDIF}
 end;
 {$WARN SYMBOL_PLATFORM ON}
 

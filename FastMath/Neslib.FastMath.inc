@@ -13,6 +13,10 @@
       Keep FM_INLINE for the functions that call the optimized versions. }
     {$UNDEF FM_PASCAL}
     {$DEFINE FM_ARM}
+  {$ELSEIF Defined(MACOS64)}
+    { On MacOS 64-bit, use SSE2 optimizations using a linked object file. }
+    {$UNDEF FM_PASCAL}
+    {$DEFINE FM_X64}
   {$ELSEIF Defined(CPUX86)}
     { On x86-32 use SSE2 optimizations.
       Undefine FM_INLINE since assembly functions cannot be inlined. }

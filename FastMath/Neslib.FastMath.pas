@@ -4833,7 +4833,11 @@ implementation
   {$INCLUDE 'Neslib.FastMath.Sse2_32.inc'}
 {$ELSEIF Defined(FM_X64)}
   // 64-bit SSE2 implementations
-  {$INCLUDE 'Neslib.FastMath.Sse2_64.inc'}
+  {$IF Defined(MACOS64)}
+    {$INCLUDE 'Neslib.FastMath.Sse2_64.MacOS.inc'}
+  {$ELSE}
+    {$INCLUDE 'Neslib.FastMath.Sse2_64.inc'}
+  {$ENDIF}
 {$ELSEIF Defined(FM_ARM)}
   // Arm NEON/Arm64 implementations
   {$INCLUDE 'Neslib.FastMath.Arm.inc'}
