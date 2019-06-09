@@ -262,6 +262,19 @@ global _vector4_face_forward
 global _vector4_get_length, _vector4_get_length_squared
 global _vector4_normalize_fast, _vector4_set_normalized_fast
 global _vector4_reflect, _vector4_refract
+global _matrix3_add_single, _single_add_matrix3, _matrix3_add_matrix3
+global _matrix3_sub_single, _single_sub_matrix3, _matrix3_sub_matrix3
+global _matrix3_mul_single, _single_mul_matrix3, _matrix3_comp_mult
+global _matrix3_mul_vector3, _vector3_mul_matrix3, _matrix3_mul_matrix3
+global _matrix3_div_single, _single_div_matrix3
+global _matrix3_negative, _matrix3_transpose, _matrix3_set_transposed
+global _matrix4_add_single, _single_add_matrix4, _matrix4_add_matrix4
+global _matrix4_sub_single, _single_sub_matrix4, _matrix4_sub_matrix4
+global _matrix4_mul_single, _single_mul_matrix4, _matrix4_comp_mult
+global _matrix4_mul_vector4, _vector4_mul_matrix4, _matrix4_mul_matrix4
+global _matrix4_div_single, _single_div_matrix4
+global _matrix4_negative, _matrix4_inverse, _matrix4_set_inversed
+global _matrix4_transpose, _matrix4_set_transposed
 
 ;****************************************************************************
 ; Angle and Trigonometry Functions
@@ -3568,3 +3581,1032 @@ _set_null_vec4:
   movaps    xmm0, xmm5
   movhlps   xmm1, xmm5
   ret
+  
+;****************************************************************************
+; TMatrix3
+;****************************************************************************
+
+_matrix3_add_single:
+  movups    xmm1, [Param2 + 0x00] ; Load 3 rows
+  shufps    xmm0, xmm0, 0         ; Replicate B
+  movups    xmm3, [Param2 + 0x10]
+  movss     xmm4, [Param2 + 0x20]
+  addps     xmm1, xmm0            ; Add B to each row
+  addps     xmm3, xmm0
+  addss     xmm4, xmm0
+  movups    [Param1 + 0x00], xmm1
+  movups    [Param1 + 0x10], xmm3
+  movss     [Param1 + 0x20], xmm4
+  ret
+
+_single_add_matrix3:
+  movups    xmm1, [Param2 + 0x00] ; Load 3 rows
+  shufps    xmm0, xmm0, 0         ; Replicate A
+  movups    xmm2, [Param2 + 0x10]
+  movss     xmm3, [Param2 + 0x20]
+  addps     xmm1, xmm0            ; Add A to each row
+  addps     xmm2, xmm0
+  addss     xmm3, xmm0
+  movups    [Param1 + 0x00], xmm1
+  movups    [Param1 + 0x10], xmm2
+  movss     [Param1 + 0x20], xmm3
+  ret
+
+_matrix3_add_matrix3:
+  movups    xmm0, [Param2 + 0x00] ; Load 3 rows of A
+  movups    xmm1, [Param2 + 0x10]
+  movss     xmm2, [Param2 + 0x20]
+  movups    xmm4, [Param3 + 0x00] ; Load 3 rows of B
+  movups    xmm5, [Param3 + 0x10]
+  movss     xmm3, [Param3 + 0x20]
+  addps     xmm0, xmm4            ; Add rows
+  addps     xmm1, xmm5
+  addss     xmm2, xmm3
+  movups    [Param1 + 0x00], xmm0
+  movups    [Param1 + 0x10], xmm1
+  movss     [Param1 + 0x20], xmm2
+  ret
+  
+_matrix3_sub_single:
+  movups    xmm1, [Param2 + 0x00]  ; Load 3 rows
+  shufps    xmm0, xmm0, 0          ; Replicate B
+  movups    xmm2, [Param2 + 0x10]
+  movss     xmm3, [Param2 + 0x20]
+  subps     xmm1, xmm0             ; Subtract B from each row
+  subps     xmm2, xmm0
+  subss     xmm3, xmm0
+  movups    [Param1 + 0x00], xmm1
+  movups    [Param1 + 0x10], xmm2
+  movss     [Param1 + 0x20], xmm3
+  ret
+  
+_single_sub_matrix3:
+  movups    xmm4, [Param2 + 0x00]  ; Load 3 rows
+  shufps    xmm0, xmm0, 0          ; Replicate A
+  movups    xmm5, [Param2 + 0x10]
+  movaps    xmm1, xmm0
+  movaps    xmm2, xmm0
+  movss     xmm6, [Param2 + 0x20]
+  subps     xmm0, xmm4             ; Subtract each row from A
+  subps     xmm1, xmm5
+  subss     xmm2, xmm6
+  movups    [Param1 + 0x00], xmm0
+  movups    [Param1 + 0x10], xmm1
+  movss     [Param1 + 0x20], xmm2
+  ret
+  
+_matrix3_sub_matrix3:
+  movups    xmm0, [Param2 + 0x00] ; Load 3 rows of A
+  movups    xmm1, [Param2 + 0x10]
+  movss     xmm2, [Param2 + 0x20]
+  movups    xmm4, [Param3 + 0x00] ; Load 3 rows of B
+  movups    xmm5, [Param3 + 0x10]
+  movss     xmm6, [Param3 + 0x20]
+  subps     xmm0, xmm4             ; Subtract rows
+  subps     xmm1, xmm5
+  subss     xmm2, xmm6
+  movups    [Param1 + 0x00], xmm0
+  movups    [Param1 + 0x10], xmm1
+  movss     [Param1 + 0x20], xmm2
+  ret
+  
+_matrix3_mul_single:
+  movups    xmm1, [Param2 + 0x00]  ; Load 3 rows
+  shufps    xmm0, xmm0, 0          ; Replicate B
+  movups    xmm2, [Param2 + 0x10]
+  movss     xmm3, [Param2 + 0x20]
+  mulps     xmm1, xmm0             ; Multiply each row by B
+  mulps     xmm2, xmm0
+  mulss     xmm3, xmm0
+  movups    [Param1 + 0x00], xmm1
+  movups    [Param1 + 0x10], xmm2
+  movss     [Param1 + 0x20], xmm3
+  ret
+  
+_single_mul_matrix3:
+  movups    xmm2, [Param2 + 0x00]  ; Load 3 rows
+  shufps    xmm0, xmm0, 0          ; Replicate A
+  movups    xmm1, [Param2 + 0x10]
+  movss     xmm3, [Param2 + 0x20]
+  mulps     xmm2, xmm0             ; Multiply each row by A
+  mulps     xmm1, xmm0
+  mulss     xmm3, xmm0
+  movups    [Param1 + 0x00], xmm2
+  movups    [Param1 + 0x10], xmm1
+  movss     [Param1 + 0x20], xmm3
+  ret
+  
+_matrix3_comp_mult:
+  movups    xmm2, [Param2 + 0x00]  ; Self[0]
+  movups    xmm0, [Param2 + 0x10]  ; Self[1]
+  movss     xmm1, [Param2 + 0x20]  ; Self[2]
+  movups    xmm4, [Param3 + 0x00]  ; AOther[0]
+  movups    xmm5, [Param3 + 0x10]  ; AOther[1]
+  movss     xmm3, [Param3 + 0x20]  ; AOther[2]
+
+  ; Component-wise multiplication
+  mulps     xmm2, xmm4
+  mulps     xmm0, xmm5
+  mulss     xmm1, xmm3
+
+  ; Store result
+  movups    [Param1 + 0x00], xmm2
+  movups    [Param1 + 0x10], xmm0
+  movss     [Param1 + 0x20], xmm1
+  ret
+  
+%macro M3_MUL_V3 2
+  movq      xmm0, [%2]         ; Load vector
+  movss     xmm1, [%2+8]
+  movlhps   xmm0, xmm1
+
+  movq      xmm4, [%1 + 0x00]  ; Load 3 rows
+  movss     xmm1, [%1 + 0x08]
+  movlhps   xmm4, xmm1
+
+  movaps    xmm1, xmm0
+  movaps    xmm2, xmm0
+
+  movq      xmm5, [%1 + 0x0C]
+  movss     xmm6, [%1 + 0x14]
+  movlhps   xmm5, xmm6
+
+  movq      xmm6, [%1 + 0x18]
+  movss     xmm3, [%1 + 0x20]
+  movlhps   xmm6, xmm3
+
+  mulps     xmm0, xmm4             ; ###, (Az * B02), (Ay * B01), (Ax * B00)
+  mulps     xmm1, xmm5             ; ###, (Az * B12), (Ay * B11), (Ax * B10)
+  mulps     xmm2, xmm6             ; ###, (Az * B22), (Ay * B21), (Ax * B20)
+  xorps     xmm3, xmm3             ; 000
+
+  ; Transpose xmm0-xmm2 
+  movaps    xmm4, xmm2
+  unpcklps  xmm2, xmm3             ; 000 B21 000 B20
+  unpckhps  xmm4, xmm3             ; 000 ### 000 B22
+
+  movaps    xmm3, xmm0
+  unpcklps  xmm0, xmm1             ; B11 B01 B10 B00
+  unpckhps  xmm3, xmm1             ; ### ### B12 B02
+
+  movaps    xmm1, xmm0
+  unpcklpd  xmm0, xmm2             ; 000 B20 B10 B00
+  unpckhpd  xmm1, xmm2             ; 000 B21 B11 B01
+
+  unpcklpd  xmm3, xmm4             ; 000 B22 B12 B02
+
+  addps     xmm0, xmm1             ; Add rows
+  addps     xmm0, xmm3
+  movhlps   xmm1, xmm0
+  ret
+%endmacro
+
+%macro V3_MUL_M3 2
+  movq      xmm0, [%1]             ; Load vector
+  movss     xmm1, [%1+8]
+  movlhps   xmm0, xmm1
+
+  movq      xmm4, [%2 + 0x00]      ; Load 3 rows
+  movss     xmm1, [%2 + 0x08]
+  movlhps   xmm4, xmm1
+
+  movaps    xmm1, xmm0
+  movaps    xmm2, xmm0
+  shufps    xmm0, xmm0, 0x00       ; Bx Bx Bx Bx
+  shufps    xmm1, xmm1, 0x55       ; By By By By
+  shufps    xmm2, xmm2, 0xAA       ; Bz Bz Bz Bz
+
+  movq      xmm5, [%2 + 0x0C]
+  movss     xmm3, [%2 + 0x14]
+  movlhps   xmm5, xmm3
+
+  movq      xmm6, [%2 + 0x18]
+  movss     xmm3, [%2 + 0x20]
+  movlhps   xmm6, xmm3
+
+  mulps     xmm0, xmm4             ; (A00 * Bx), (A01 * Bx), (A02 * Bx), #
+  mulps     xmm1, xmm5             ; (A10 * By), (A11 * By), (A12 * By), #
+  mulps     xmm2, xmm6             ; (A20 * Bz), (A21 * Bz), (A22 * Bz), #
+  addps     xmm0, xmm1             ; Add rows
+  addps     xmm0, xmm2
+  movhlps   xmm1, xmm0
+  ret
+%endmacro
+
+%macro M3_MUL_M3 2
+  ; A.R[0] * B 
+  movq      xmm0, [%1 + 0x00]
+  movss     xmm1, [%1 + 0x08]
+  movlhps   xmm0, xmm1
+
+  movq      xmm4, [%2 + 0x00]
+  movss     xmm1, [%2 + 0x08]
+  movlhps   xmm4, xmm1
+
+  movaps    xmm1, xmm0
+  movaps    xmm2, xmm0
+  shufps    xmm0, xmm0, 0x00
+  shufps    xmm1, xmm1, 0x55
+  shufps    xmm2, xmm2, 0xAA
+
+  movq      xmm5, [%2 + 0x0C]
+  movss     xmm3, [%2 + 0x14]
+  movlhps   xmm5, xmm3
+
+  movq      xmm6, [%2 + 0x18]
+  movss     xmm3, [%2 + 0x20]
+  movlhps   xmm6, xmm3
+
+  mulps     xmm0, xmm4
+  mulps     xmm1, xmm5
+  mulps     xmm2, xmm6
+  addps     xmm0, xmm1
+  addps     xmm0, xmm2
+  movhlps   xmm1, xmm0
+  movq      [Param1 + 0x00], xmm0
+  movss     [Param1 + 0x08], xmm1
+
+  ; A.R[1] * B 
+  movq      xmm0, [%1 + 0x0C]
+  movss     xmm1, [%1 + 0x14]
+  movlhps   xmm0, xmm1
+
+  movaps    xmm1, xmm0
+  movaps    xmm2, xmm0
+  shufps    xmm0, xmm0, 0x00
+  shufps    xmm1, xmm1, 0x55
+  shufps    xmm2, xmm2, 0xAA
+  mulps     xmm0, xmm4
+  mulps     xmm1, xmm5
+  mulps     xmm2, xmm6
+  addps     xmm0, xmm1
+  addps     xmm0, xmm2
+  movhlps   xmm1, xmm0
+  movq      [Param1 + 0x0C], xmm0
+  movss     [Param1 + 0x14], xmm1
+
+  ; A.R[2] * B 
+  movq      xmm0, [%1 + 0x18]
+  movss     xmm1, [%1 + 0x20]
+  movlhps   xmm0, xmm1
+
+  movaps    xmm1, xmm0
+  movaps    xmm2, xmm0
+  shufps    xmm0, xmm0, 0x00
+  shufps    xmm1, xmm1, 0x55
+  shufps    xmm2, xmm2, 0xAA
+  mulps     xmm0, xmm4
+  mulps     xmm1, xmm5
+  mulps     xmm2, xmm6
+  addps     xmm0, xmm1
+  addps     xmm0, xmm2
+  movhlps   xmm1, xmm0
+  movq      [Param1 + 0x18], xmm0
+  movss     [Param1 + 0x20], xmm1
+  ret
+%endmacro
+  
+%ifdef FM_COLUMN_MAJOR
+_matrix3_mul_vector3:
+  V3_MUL_M3 Param2, Param1
+  
+_vector3_mul_matrix3:
+  M3_MUL_V3 Param2, Param1
+  
+_matrix3_mul_matrix3:
+  M3_MUL_M3 Param3, Param2
+%else
+_matrix3_mul_vector3:
+  M3_MUL_V3 Param1, Param2
+  
+_vector3_mul_matrix3:
+  V3_MUL_M3 Param1, Param2
+  
+_matrix3_mul_matrix3:
+  M3_MUL_M3 Param2, Param3
+%endif
+
+_matrix3_div_single:
+  movups    xmm1, [Param2 + 0x00]  ; Load 3 rows
+  shufps    xmm0, xmm0, 0          ; Replicate B
+  movups    xmm2, [Param2 + 0x10]
+  movss     xmm3, [Param2 + 0x20]
+  divps     xmm1, xmm0             ; Divide each row by B
+  divps     xmm2, xmm0
+  divss     xmm3, xmm0
+  movups    [Param1 + 0x00], xmm1
+  movups    [Param1 + 0x10], xmm2
+  movss     [Param1 + 0x20], xmm3
+  ret
+  
+_single_div_matrix3:
+  movups    xmm4, [Param2 + 0x00]  ; Load 3 rows
+  shufps    xmm0, xmm0, 0          ; Replicate A
+  movups    xmm5, [Param2 + 0x10]
+  movaps    xmm1, xmm0
+  movaps    xmm2, xmm0
+  movss     xmm3, [Param2 + 0x20]
+  divps     xmm0, xmm4             ; Divide A by each row
+  divps     xmm1, xmm5
+  divss     xmm2, xmm3
+  movups    [Param1 + 0x00], xmm0
+  movups    [Param1 + 0x10], xmm1
+  movss     [Param1 + 0x20], xmm2
+  ret
+  
+_matrix3_negative:
+  movups    xmm0, [rel kSSE_MASK_SIGN]  ; Load mask with 4 sign (upper) bits
+  movups    xmm1, [Param2 + 0x00]       ; Load 3 rows
+  movups    xmm2, [Param2 + 0x10]
+  movss     xmm3, [Param2 + 0x20]
+  xorps     xmm1, xmm0                  ; Flip sign bits of each element in each row
+  xorps     xmm2, xmm0
+  pxor      xmm3, xmm0
+  movups    [Param1 + 0x00], xmm1
+  movups    [Param1 + 0x10], xmm2
+  movss     [Param1 + 0x20], xmm3
+  ret
+  
+_matrix3_transpose:
+  movss     xmm0, [Param2 + 0x00]
+  movss     xmm1, [Param2 + 0x04]
+  movss     xmm2, [Param2 + 0x08]
+
+  movss     [Param1 + 0x00], xmm0
+  movss     [Param1 + 0x0C], xmm1
+  movss     [Param1 + 0x18], xmm2
+
+  movss     xmm0, [Param2 + 0x0C]
+  movss     xmm1, [Param2 + 0x10]
+  movss     xmm2, [Param2 + 0x14]
+
+  movss     [Param1 + 0x04], xmm0
+  movss     [Param1 + 0x10], xmm1
+  movss     [Param1 + 0x1C], xmm2
+
+  movss     xmm0, [Param2 + 0x18]
+  movss     xmm1, [Param2 + 0x1C]
+  movss     xmm2, [Param2 + 0x20]
+
+  movss     [Param1 + 0x08], xmm0
+  movss     [Param1 + 0x14], xmm1
+  movss     [Param1 + 0x20], xmm2
+  ret
+  
+_matrix3_set_transposed:
+  movss     xmm1, [Param1 + 0x04]
+  movss     xmm2, [Param1 + 0x08]
+
+  movss     xmm3, [Param1 + 0x0C]
+  movss     xmm5, [Param1 + 0x14]
+
+  movss     xmm6, [Param1 + 0x18]
+  movss     xmm7, [Param1 + 0x1C]
+  
+  movss     [Param1 + 0x0C], xmm1
+  movss     [Param1 + 0x18], xmm2
+
+  movss     [Param1 + 0x04], xmm3
+  movss     [Param1 + 0x1C], xmm5
+
+  movss     [Param1 + 0x08], xmm6
+  movss     [Param1 + 0x14], xmm7 
+  ret
+  
+;****************************************************************************
+; TMatrix4
+;****************************************************************************
+  
+_matrix4_add_single:
+  movups    xmm1, [Param2 + 0x00]  ; Load 4 rows
+  shufps    xmm0, xmm0, 0          ; Replicate B
+  movups    xmm2, [Param2 + 0x10]
+  movups    xmm3, [Param2 + 0x20]
+  movups    xmm4, [Param2 + 0x30]
+  addps     xmm1, xmm0             ; Add B to each row
+  addps     xmm2, xmm0
+  addps     xmm3, xmm0
+  addps     xmm4, xmm0
+  movups    [Param1 + 0x00], xmm1
+  movups    [Param1 + 0x10], xmm2
+  movups    [Param1 + 0x20], xmm3
+  movups    [Param1 + 0x30], xmm4
+  ret
+  
+_single_add_matrix4:
+  movups    xmm1, [Param2 + 0x00]  ; Load 4 rows
+  shufps    xmm0, xmm0, 0          ; Replicate A
+  movups    xmm2, [Param2 + 0x10]
+  movups    xmm3, [Param2 + 0x20]
+  movups    xmm4, [Param2 + 0x30]
+  addps     xmm1, xmm0             ; Add A to each row
+  addps     xmm2, xmm0
+  addps     xmm3, xmm0
+  addps     xmm4, xmm0
+  movups    [Param1 + 0x00], xmm1
+  movups    [Param1 + 0x10], xmm2
+  movups    [Param1 + 0x20], xmm3
+  movups    [Param1 + 0x30], xmm4
+  ret
+  
+_matrix4_add_matrix4:
+  movups    xmm0, [Param2 + 0x00] ; Load 4 rows of A
+  movups    xmm1, [Param2 + 0x10]
+  movups    xmm2, [Param2 + 0x20]
+  movups    xmm3, [Param2 + 0x30]
+  movups    xmm4, [Param3 + 0x00] ; Load 2 rows of B
+  movups    xmm5, [Param3 + 0x10]
+  addps     xmm0, xmm4             ; Add rows
+  addps     xmm1, xmm5
+  movups    xmm4, [Param3 + 0x20] ; Load 2 rows of B
+  movups    xmm5, [Param3 + 0x30]
+  addps     xmm2, xmm4             ; Add rows
+  addps     xmm3, xmm5
+  movups    [Param1 + 0x00], xmm0
+  movups    [Param1 + 0x10], xmm1
+  movups    [Param1 + 0x20], xmm2
+  movups    [Param1 + 0x30], xmm3
+  ret
+  
+_matrix4_sub_single:
+  movups    xmm1, [Param2 + 0x00]  ; Load 4 rows
+  shufps    xmm0, xmm0, 0          ; Replicate B
+  movups    xmm2, [Param2 + 0x10]
+  movups    xmm3, [Param2 + 0x20]
+  movups    xmm4, [Param2 + 0x30]
+  subps     xmm1, xmm0             ; Subtract B from each row
+  subps     xmm2, xmm0
+  subps     xmm3, xmm0
+  subps     xmm4, xmm0
+  movups    [Param1 + 0x00], xmm1
+  movups    [Param1 + 0x10], xmm2
+  movups    [Param1 + 0x20], xmm3
+  movups    [Param1 + 0x30], xmm4
+  ret
+  
+_single_sub_matrix4:
+  movups    xmm4, [Param2 + 0x00]  ; Load 4 rows
+  shufps    xmm0, xmm0, 0          ; Replicate A
+  movups    xmm5, [Param2 + 0x10]
+  movaps    xmm1, xmm0
+  movaps    xmm2, xmm0
+  movaps    xmm3, xmm0
+  subps     xmm0, xmm4             ; Subtract each row from A
+  subps     xmm1, xmm5
+  movups    xmm4, [Param2 + 0x20]
+  movups    xmm5, [Param2 + 0x30]
+  subps     xmm2, xmm4
+  subps     xmm3, xmm5
+  movups    [Param1 + 0x00], xmm0
+  movups    [Param1 + 0x10], xmm1
+  movups    [Param1 + 0x20], xmm2
+  movups    [Param1 + 0x30], xmm3
+  ret
+  
+_matrix4_sub_matrix4:
+  movups    xmm0, [Param2 + 0x00] ; Load 4 rows of A
+  movups    xmm1, [Param2 + 0x10]
+  movups    xmm2, [Param2 + 0x20]
+  movups    xmm3, [Param2 + 0x30]
+  movups    xmm4, [Param3 + 0x00] ; Load 4 rows of B
+  movups    xmm5, [Param3 + 0x10]
+  subps     xmm0, xmm4             ; Subtract rows
+  subps     xmm1, xmm5
+  movups    xmm4, [Param3 + 0x20]
+  movups    xmm5, [Param3 + 0x30]
+  subps     xmm2, xmm4
+  subps     xmm3, xmm5
+  movups    [Param1 + 0x00], xmm0
+  movups    [Param1 + 0x10], xmm1
+  movups    [Param1 + 0x20], xmm2
+  movups    [Param1 + 0x30], xmm3
+  ret                                           
+  
+_matrix4_mul_single:
+  movups    xmm1, [Param2 + 0x00]  ; Load 4 rows
+  shufps    xmm0, xmm0, 0          ; Replicate B
+  movups    xmm2, [Param2 + 0x10]
+  movups    xmm3, [Param2 + 0x20]
+  movups    xmm4, [Param2 + 0x30]
+  mulps     xmm1, xmm0             ; Multiply each row by B
+  mulps     xmm2, xmm0
+  mulps     xmm3, xmm0
+  mulps     xmm4, xmm0
+  movups    [Param1 + 0x00], xmm1
+  movups    [Param1 + 0x10], xmm2
+  movups    [Param1 + 0x20], xmm3
+  movups    [Param1 + 0x30], xmm4
+  ret   
+  
+_single_mul_matrix4:
+  movups    xmm1, [Param2 + 0x00]  ; Load 4 rows
+  shufps    xmm0, xmm0, 0          ; Replicate A
+  movups    xmm2, [Param2 + 0x10]
+  movups    xmm3, [Param2 + 0x20]
+  movups    xmm4, [Param2 + 0x30]
+  mulps     xmm1, xmm0             ; Multiply each row by A
+  mulps     xmm2, xmm0
+  mulps     xmm3, xmm0
+  mulps     xmm4, xmm0
+  movups    [Param1 + 0x00], xmm1
+  movups    [Param1 + 0x10], xmm2
+  movups    [Param1 + 0x20], xmm3
+  movups    [Param1 + 0x30], xmm4
+  ret
+  
+_matrix4_comp_mult:
+  movups    xmm0, [Param2 + 0x00]   ; Self[0]
+  movups    xmm1, [Param2 + 0x10]   ; Self[1]
+  movups    xmm2, [Param2 + 0x20]   ; Self[2]
+  movups    xmm3, [Param2 + 0x30]   ; Self[3]
+  movups    xmm4, [Param3 + 0x00] ; AOther[0]
+  movups    xmm5, [Param3 + 0x10] ; AOther[1]
+
+  ; Component-wise multiplication
+  mulps     xmm0, xmm4
+  mulps     xmm1, xmm5
+  movups    xmm4, [Param3 + 0x20] ; AOther[2]
+  movups    xmm5, [Param3 + 0x30] ; AOther[3]
+  mulps     xmm2, xmm4
+  mulps     xmm3, xmm5
+
+  ; Store result
+  movups    [Param1 + 0x00], xmm0
+  movups    [Param1 + 0x10], xmm1
+  movups    [Param1 + 0x20], xmm2
+  movups    [Param1 + 0x30], xmm3
+  ret                                                   
+  
+%macro M4_MUL_V4 2
+  movups    xmm0, [%2]             ; Load vector
+  movups    xmm4, [%1 + 0x00]      ; Load 4 rows
+  movaps    xmm1, xmm0
+  movaps    xmm2, xmm0
+  movaps    xmm3, xmm0
+  movups    xmm5, [%1 + 0x10]
+  mulps     xmm0, xmm4             ; (Ax * B00), (Ay * B01), (Az * B02), (Aw * B03)
+  mulps     xmm1, xmm5             ; (Ax * B10), (Ay * B11), (Az * B12), (Aw * B13)
+  movups    xmm4, [%1 + 0x20]
+  movups    xmm5, [%1 + 0x30]
+  mulps     xmm2, xmm4             ; (Ax * B20), (Ay * B21), (Az * B22), (Aw * B23)
+  mulps     xmm3, xmm5             ; (Ax * B30), (Ay * B31), (Az * B32), (Aw * B33)
+
+  ; Transpose xmm0-xmm3 
+  movaps    xmm4, xmm2
+  unpcklps  xmm2, xmm3             ; B32 B22 B33 B23
+  unpckhps  xmm4, xmm3             ; B30 B20 B31 B21
+
+  movaps    xmm3, xmm0
+  unpcklps  xmm0, xmm1             ; B12 B02 B13 B03
+  unpckhps  xmm3, xmm1             ; B10 B00 B11 B01
+
+  movaps    xmm1, xmm0
+  unpcklpd  xmm0, xmm2             ; B33 B23 B13 B03
+  unpckhpd  xmm1, xmm2             ; B32 B22 B12 B02
+
+  movaps    xmm2, xmm3
+  unpcklpd  xmm2, xmm4             ; B31 B21 B11 B01
+  unpckhpd  xmm3, xmm4             ; B30 B20 B10 B00
+
+  addps     xmm0, xmm1             ; Add rows
+  addps     xmm2, xmm3
+  addps     xmm0, xmm2
+  movhlps   xmm1, xmm0
+  ret
+%endmacro
+
+%macro V4_MUL_M4 2
+  movups    xmm0, [%1]             ; Load vector
+  movups    xmm4, [%2 + 0x00]      ; Load 4 rows
+  movaps    xmm1, xmm0
+  movaps    xmm2, xmm0
+  movaps    xmm3, xmm0
+  shufps    xmm0, xmm0, 0x00       ; Bx Bx Bx Bx
+  shufps    xmm1, xmm1, 0x55       ; By By By By
+  shufps    xmm2, xmm2, 0xAA       ; Bz Bz Bz Bz
+  shufps    xmm3, xmm3, 0xFF       ; Bw Bw Bw Bw
+  movups    xmm5, [%2 + 0x10]
+  mulps     xmm0, xmm4             ; (A00 * Bx), (A01 * Bx), (A02 * Bx), (A03 * Bx)
+  mulps     xmm1, xmm5             ; (A10 * By), (A11 * By), (A12 * By), (A13 * By)
+  movups    xmm4, [%2 + 0x20]
+  movups    xmm5, [%2 + 0x30]
+  mulps     xmm2, xmm4             ; (A20 * Bz), (A21 * Bz), (A22 * Bz), (A23 * Bz)
+  mulps     xmm3, xmm5             ; (A30 * Bw), (A31 * Bw), (A32 * Bw), (A33 * Bw)
+  addps     xmm0, xmm1             ; Add rows
+  addps     xmm2, xmm3
+  addps     xmm0, xmm2
+  movhlps   xmm1, xmm0
+  ret
+%endmacro
+  
+%macro M4_MUL_M4 2
+  ; A.R[0] * B 
+  movups    xmm0, [%1 + 0x00]
+  movups    xmm4, [%2 + 0x00]
+  movaps    xmm1, xmm0
+  movaps    xmm2, xmm0
+  movaps    xmm3, xmm0
+  shufps    xmm0, xmm0, 0x00
+  shufps    xmm1, xmm1, 0x55
+  shufps    xmm2, xmm2, 0xAA
+  shufps    xmm3, xmm3, 0xFF
+  movups    xmm5, [%2 + 0x10]
+  movups    xmm6, [%2 + 0x20]
+  movups    xmm7, [%2 + 0x30]
+  mulps     xmm0, xmm4
+  mulps     xmm1, xmm5
+  mulps     xmm2, xmm6
+  mulps     xmm3, xmm7
+  addps     xmm0, xmm1
+  addps     xmm2, xmm3
+  addps     xmm0, xmm2
+  movups    [Param1 + 0x00], xmm0
+
+  ; A.R[1] * B 
+  movups    xmm0, [%1 + 0x10]
+  movaps    xmm1, xmm0
+  movaps    xmm2, xmm0
+  movaps    xmm3, xmm0
+  shufps    xmm0, xmm0, 0x00
+  shufps    xmm1, xmm1, 0x55
+  shufps    xmm2, xmm2, 0xAA
+  shufps    xmm3, xmm3, 0xFF
+  mulps     xmm0, xmm4
+  mulps     xmm1, xmm5
+  mulps     xmm2, xmm6
+  mulps     xmm3, xmm7
+  addps     xmm0, xmm1
+  addps     xmm2, xmm3
+  addps     xmm0, xmm2
+  movups    [Param1 + 0x10], xmm0
+
+  ; A.R[2] * B 
+  movups    xmm0, [%1 + 0x20]
+  movaps    xmm1, xmm0
+  movaps    xmm2, xmm0
+  movaps    xmm3, xmm0
+  shufps    xmm0, xmm0, 0x00
+  shufps    xmm1, xmm1, 0x55
+  shufps    xmm2, xmm2, 0xAA
+  shufps    xmm3, xmm3, 0xFF
+  mulps     xmm0, xmm4
+  mulps     xmm1, xmm5
+  mulps     xmm2, xmm6
+  mulps     xmm3, xmm7
+  addps     xmm0, xmm1
+  addps     xmm2, xmm3
+  addps     xmm0, xmm2
+  movups    [Param1 + 0x20], xmm0
+
+  ; A.R[3] * B 
+  movups    xmm0, [%1 + 0x30]
+  movaps    xmm1, xmm0
+  movaps    xmm2, xmm0
+  movaps    xmm3, xmm0
+  shufps    xmm0, xmm0, 0x00
+  shufps    xmm1, xmm1, 0x55
+  shufps    xmm2, xmm2, 0xAA
+  shufps    xmm3, xmm3, 0xFF
+  mulps     xmm0, xmm4
+  mulps     xmm1, xmm5
+  mulps     xmm2, xmm6
+  mulps     xmm3, xmm7
+  addps     xmm0, xmm1
+  addps     xmm2, xmm3
+  addps     xmm0, xmm2
+  movups    [Param1 + 0x30], xmm0 
+  ret
+%endmacro
+
+%ifdef FM_COLUMN_MAJOR
+_matrix4_mul_vector4:
+  V4_MUL_M4 Param2, Param1
+  
+_vector4_mul_matrix4:
+  M4_MUL_V4 Param2, Param1
+  
+_matrix4_mul_matrix4:
+  M4_MUL_M4 Param3, Param2
+%else
+_matrix4_mul_vector4:
+  M4_MUL_V4 Param1, Param2
+  
+_vector4_mul_matrix4:
+  V4_MUL_M4 Param1, Param2
+  
+_matrix4_mul_matrix4:
+  M4_MUL_M4 Param2, Param3
+%endif
+
+_matrix4_div_single:
+  movups    xmm1, [Param2 + 0x00]  ; Load 4 rows
+  shufps    xmm0, xmm0, 0          ; Replicate B
+  movups    xmm2, [Param2 + 0x10]
+  movups    xmm3, [Param2 + 0x20]
+  movups    xmm4, [Param2 + 0x30]
+  divps     xmm1, xmm0             ; Divide each row by B
+  divps     xmm2, xmm0             ; NOTE: We could speed it up by multiplying by
+  divps     xmm3, xmm0             ; 1/B instead, using the "rcpps" instruction,
+  divps     xmm4, xmm0             ; but that instruction is an approximation,
+                                   ; so we lose accuracy.
+  movups    [Param1 + 0x00], xmm1
+  movups    [Param1 + 0x10], xmm2
+  movups    [Param1 + 0x20], xmm3
+  movups    [Param1 + 0x30], xmm4
+  ret
+  
+_single_div_matrix4:
+  movups    xmm4, [Param2 + 0x00]  ; Load 4 rows
+  shufps    xmm0, xmm0, 0          ; Replicate A
+  movups    xmm5, [Param2 + 0x10]
+  movaps    xmm1, xmm0
+  movaps    xmm2, xmm0
+  movaps    xmm3, xmm0
+  divps     xmm0, xmm4             ; Divide A by each row
+  divps     xmm1, xmm5
+  movups    xmm4, [Param2 + 0x20]
+  movups    xmm5, [Param2 + 0x30]
+  divps     xmm2, xmm4
+  divps     xmm3, xmm5
+  movups    [Param1 + 0x00], xmm0
+  movups    [Param1 + 0x10], xmm1
+  movups    [Param1 + 0x20], xmm2
+  movups    [Param1 + 0x30], xmm3
+  ret
+  
+_matrix4_negative:
+  movaps    xmm0, [rel kSSE_MASK_SIGN]  ; Load mask with 4 sign (upper) bits
+  movups    xmm1, [Param2 + 0x00]       ; Load 4 rows
+  movups    xmm2, [Param2 + 0x10]
+  movups    xmm3, [Param2 + 0x20]
+  movups    xmm4, [Param2 + 0x30]
+  xorps     xmm1, xmm0                  ; Flip sign bits of each element in each row
+  xorps     xmm2, xmm0
+  xorps     xmm3, xmm0
+  xorps     xmm4, xmm0
+  movups    [Param1 + 0x00], xmm1
+  movups    [Param1 + 0x10], xmm2
+  movups    [Param1 + 0x20], xmm3
+  movups    [Param1 + 0x30], xmm4
+  ret
+  
+%macro M4_INVERSE 2  
+  movups    xmm1, [%2 + 0x10]      ; M[1]
+  movups    xmm2, [%2 + 0x20]      ; M[2]
+  movups    xmm3, [%2 + 0x30]      ; M[3]
+
+  ;  C00 := (A.M[2,2] * A.M[3,3]) - (A.M[3,2] * A.M[2,3]);
+  ;  C02 := (A.M[1,2] * A.M[3,3]) - (A.M[3,2] * A.M[1,3]);
+  ;  C03 := (A.M[1,2] * A.M[2,3]) - (A.M[2,2] * A.M[1,3]);
+  ;  F0 := Vector4(C00, C00, C02, C03);
+  movaps    xmm5, xmm2             ; M[2]
+  movaps    xmm7, xmm2             ; M[2]
+  movaps    xmm0, xmm3             ; M[3]
+  movaps    xmm6, xmm3             ; M[3]
+  shufps    xmm6, xmm2, 0xAA       ; M22 M22 M32 M32
+  shufps    xmm0, xmm2, 0xFF       ; M23 M23 M33 M33
+  shufps    xmm7, xmm1, 0xFF       ; M13 M13 M23 M23
+  pshufd    xmm4, xmm0, 0x80       ; M23 M33 M33 M33
+  shufps    xmm5, xmm1, 0xAA       ; M12 M12 M22 M22
+  pshufd    xmm0, xmm6, 0x80       ; M22 M32 M32 M32
+  mulps     xmm5, xmm4             ; (M12 * M23) (M12 * M33) (M22 * M33) (M22 * M33)
+  mulps     xmm7, xmm0             ; (M22 * M13) (M32 * M13) (M32 * M23) (M32 * M23)
+  subps     xmm5, xmm7             ; C03=(M12*M23)-(M22*M13), C02=(M12*M33)-(M32*M13), C00=(M22*M33)-(M32*M23), C00=(M22*M33)-(M32*M23)
+  movups    xmm8, xmm5
+
+  ;  C04 := (A.M[2,1] * A.M[3,3]) - (A.M[3,1] * A.M[2,3]);
+  ;  C06 := (A.M[1,1] * A.M[3,3]) - (A.M[3,1] * A.M[1,3]);
+  ;  C07 := (A.M[1,1] * A.M[2,3]) - (A.M[2,1] * A.M[1,3]);
+  ;  F1 := Vector4(C04, C04, C06, C07);
+  movaps    xmm5, xmm2             ; M[2]
+  movaps    xmm7, xmm2             ; M[2]
+  movaps    xmm0, xmm3             ; M[3]
+  movaps    xmm6, xmm3             ; M[3]
+  shufps    xmm6, xmm2, 0x55       ; M21 M21 M31 M31
+  shufps    xmm0, xmm2, 0xFF       ; M23 M23 M33 M33
+  shufps    xmm7, xmm1, 0xFF       ; M13 M13 M23 M23
+  pshufd    xmm4, xmm0, 0x80       ; M23 M33 M33 M33
+  shufps    xmm5, xmm1, 0x55       ; M11 M11 M21 M21
+  pshufd    xmm0, xmm6, 0x80       ; M21 M31 M31 M31
+  mulps     xmm5, xmm4             ; (M11 * M23) (M11 * M33) (M21 * M33) (M21 * M33)
+  mulps     xmm7, xmm0             ; (M21 * M13) (M31 * M13) (M31 * M23) (M31 * M23)
+  subps     xmm5, xmm7             ; C07=(M11*M23)-(M21*M13), C06=(M11*M33)-(M31*M13), C04=(M21*M33)-(M31*M23), C04=(M21*M33)-(M31*M23)
+  movups    xmm9, xmm5
+
+  ;  C08 := (A.M[2,1] * A.M[3,2]) - (A.M[3,1] * A.M[2,2]);
+  ;  C10 := (A.M[1,1] * A.M[3,2]) - (A.M[3,1] * A.M[1,2]);
+  ;  C11 := (A.M[1,1] * A.M[2,2]) - (A.M[2,1] * A.M[1,2]);
+  ;  F2 := Vector4(C08, C08, C10, C11);
+  movaps    xmm5, xmm2             ; M[2]
+  movaps    xmm7, xmm2             ; M[2]
+  movaps    xmm0, xmm3             ; M[3]
+  movaps    xmm6, xmm3             ; M[3]
+  shufps    xmm6, xmm2, 0x55       ; M21 M21 M31 M31
+  shufps    xmm0, xmm2, 0xAA       ; M22 M22 M32 M32
+  shufps    xmm7, xmm1, 0xAA       ; M12 M12 M22 M22
+  pshufd    xmm4, xmm0, 0x80       ; M22 M32 M32 M32
+  shufps    xmm5, xmm1, 0x55       ; M11 M11 M21 M21
+  pshufd    xmm0, xmm6, 0x80       ; M21 M31 M31 M31
+  mulps     xmm5, xmm4             ; (M11 * M22) (M11 * M32) (M21 * M32) (M21 * M32)
+  mulps     xmm7, xmm0             ; (M21 * M12) (M31 * M12) (M31 * M22) (M32 * M22)
+  subps     xmm5, xmm7             ; C11=(M11*M22)-(M21*M12), C10=(M11*M32)-(M31*M12), C08=(M21*M32)-(M31*M22), C08=(M21*M32)-(M31*M22)
+  movups    xmm10, xmm5
+
+  ;  C12 := (A.M[2,0] * A.M[3,3]) - (A.M[3,0] * A.M[2,3]);
+  ;  C14 := (A.M[1,0] * A.M[3,3]) - (A.M[3,0] * A.M[1,3]);
+  ;  C15 := (A.M[1,0] * A.M[2,3]) - (A.M[2,0] * A.M[1,3]);
+  ;  F3 := Vector4(C12, C12, C14, C15);
+  movaps    xmm5, xmm2             ; M[2]
+  movaps    xmm7, xmm2             ; M[2]
+  movaps    xmm0, xmm3             ; M[3]
+  movaps    xmm6, xmm3             ; M[3]
+  shufps    xmm6, xmm2, 0x00       ; M20 M20 M30 M30
+  shufps    xmm0, xmm2, 0xFF       ; M23 M23 M33 M33
+  shufps    xmm7, xmm1, 0xFF       ; M13 M13 M23 M23
+  pshufd    xmm4, xmm0, 0x80       ; M23 M33 M33 M33
+  shufps    xmm5, xmm1, 0x00       ; M10 M10 M20 M20
+  pshufd    xmm0, xmm6, 0x80       ; M20 M30 M30 M30
+  mulps     xmm5, xmm4             ; (M10 * M23) (M10 * M33) (M20 * M33) (M20 * M33)
+  mulps     xmm7, xmm0             ; (M20 * M13) (M30 * M13) (M30 * M23) (M30 * M23)
+  subps     xmm5, xmm7             ; C15=(M10*M23)-(M20*M13), C14=(M10*M33)-(M30*M13), C12=(M20*M33)-(M30*M23), C12=(M20*M33)-(M30*M23)
+  movups    xmm11, xmm5
+
+  ;  C16 := (A.M[2,0] * A.M[3,2]) - (A.M[3,0] * A.M[2,2]);
+  ;  C18 := (A.M[1,0] * A.M[3,2]) - (A.M[3,0] * A.M[1,2]);
+  ;  C19 := (A.M[1,0] * A.M[2,2]) - (A.M[2,0] * A.M[1,2]);
+  ;  F4 := Vector4(C16, C16, C18, C19);
+  movaps    xmm5, xmm2             ; M[2]
+  movaps    xmm7, xmm2             ; M[2]
+  movaps    xmm0, xmm3             ; M[3]
+  movaps    xmm6, xmm3             ; M[3]
+  shufps    xmm6, xmm2, 0x00       ; M20 M20 M30 M30
+  shufps    xmm0, xmm2, 0xAA       ; M22 M22 M32 M32
+  shufps    xmm7, xmm1, 0xAA       ; M12 M12 M22 M22
+  pshufd    xmm4, xmm0, 0x80       ; M22 M32 M32 M32
+  shufps    xmm5, xmm1, 0x00       ; M10 M10 M20 M20
+  pshufd    xmm0, xmm6, 0x80       ; M20 M30 M30 M30
+  mulps     xmm5, xmm4             ; (M10 * M22) (M10 * M32) (M20 * M32) (M20 * M32)
+  mulps     xmm7, xmm0             ; (M20 * M12) (M30 * M12) (M30 * M22) (M30 * M22)
+  subps     xmm5, xmm7             ; C19=(M10*M22)-(M20*M12), C18=(M10*M32)-(M30*M12), C16=(M20*M32)-(M30*M22), C16=(M20*M32)-(M30*M22)
+  movups    xmm12, xmm5
+
+  ;  C20 := (A.M[2,0] * A.M[3,1]) - (A.M[3,0] * A.M[2,1]);
+  ;  C22 := (A.M[1,0] * A.M[3,1]) - (A.M[3,0] * A.M[1,1]);
+  ;  C23 := (A.M[1,0] * A.M[2,1]) - (A.M[2,0] * A.M[1,1]);
+  ;  F5 := Vector4(C20, C20, C22, C23);
+  movaps    xmm5, xmm2             ; M[2]
+  movaps    xmm7, xmm2             ; M[2]
+  movaps    xmm0, xmm3             ; M[3]
+  movaps    xmm6, xmm3             ; M[3]
+  shufps    xmm6, xmm2, 0x00       ; M20 M20 M30 M30
+  shufps    xmm0, xmm2, 0x55       ; M21 M21 M31 M31
+  shufps    xmm7, xmm1, 0x55       ; M11 M11 M21 M21
+  pshufd    xmm4, xmm0, 0x80       ; M21 M31 M31 M31
+  shufps    xmm5, xmm1, 0x00       ; M10 M10 M20 M20
+  pshufd    xmm0, xmm6, 0x80       ; M20 M30 M30 M30
+  mulps     xmm5, xmm4             ; (M10 * M21) (M10 * M31) (M20 * M31) (M20 * M31)
+  mulps     xmm7, xmm0             ; (M20 * M11) (M30 * M11) (M30 * M21) (M30 * M21)
+  subps     xmm5, xmm7             ; C23=(M10*M21)-(M20*M11), C22=(M10*M31)-(M30*M11), C20=(M20*M31)-(M30*M21), C20=(M20*M31)-(M30*M21)
+  movups    xmm13, xmm5
+
+  ;  V0 := Vector4(A.M[1,0], A.M[0,0], A.M[0,0], A.M[0,0]);
+  ;  V1 := Vector4(A.M[1,1], A.M[0,1], A.M[0,1], A.M[0,1]);
+  ;  V2 := Vector4(A.M[1,2], A.M[0,2], A.M[0,2], A.M[0,2]);
+  ;  V3 := Vector4(A.M[1,3], A.M[0,3], A.M[0,3], A.M[0,3]);
+  movups    xmm0, [%2 + 0x00]      ; M[0]
+  movaps    xmm4, xmm1             ; M[1]
+  movaps    xmm5, xmm1             ; M[1]
+  movaps    xmm6, xmm1             ; M[1]
+  movaps    xmm7, xmm1             ; M[1]
+
+  shufps    xmm4, xmm0, 0x00       ; M00 M00 M10 M10
+  shufps    xmm5, xmm0, 0x55       ; M01 M01 M11 M11
+  shufps    xmm6, xmm0, 0xAA       ; M02 M02 M12 M12
+  shufps    xmm7, xmm0, 0xFF       ; M03 M03 M13 M13
+
+  pshufd    xmm4, xmm4, 0xA8       ; V0=M00 M00 M00 M10
+  pshufd    xmm5, xmm5, 0xA8       ; V1=M01 M01 M01 M11
+  pshufd    xmm6, xmm6, 0xA8       ; V2=M02 M02 M02 M12
+  pshufd    xmm7, xmm7, 0xA8       ; V3=M03 M03 M03 M13
+
+  ;  I0 := (V1 * F0) - (V2 * F1) + (V3 * F2);
+  ;  I1 := (V0 * F0) - (V2 * F3) + (V3 * F4);
+  ;  I2 := (V0 * F1) - (V1 * F3) + (V3 * F5);
+  ;  I3 := (V0 * F2) - (V1 * F4) + (V2 * F5);
+  movaps    xmm0, xmm5             ; V1
+  movaps    xmm1, xmm6             ; V2
+  movaps    xmm2, xmm7             ; V3
+  mulps     xmm0, xmm8             ; V1 * F0
+  mulps     xmm1, xmm9             ; V2 * F1
+  mulps     xmm2, xmm10            ; V3 * F2
+  subps     xmm0, xmm1             ; (V1 * F0) - (V2 * F1)
+  movaps    xmm1, xmm4             ; V0
+  addps     xmm0, xmm2             ; I0=(V1 * F0) - (V2 * F1) + (V3 * F2)
+
+  movaps    xmm2, xmm6             ; V2
+  movaps    xmm3, xmm7             ; V3
+  mulps     xmm1, xmm8             ; V0 * F0
+  mulps     xmm2, xmm11            ; V2 * F3
+  mulps     xmm3, xmm12            ; V3 * F4
+  subps     xmm1, xmm2             ; (V0 * F0) - (V2 * F3)
+  movaps    xmm2, xmm4             ; V0
+  addps     xmm1, xmm3             ; I1=(V0 * F0) - (V2 * F3) + (V3 * F4)
+
+  movaps    xmm3, xmm5             ; V1
+  mulps     xmm2, xmm9             ; V0 * F1
+  mulps     xmm3, xmm11            ; V1 * F3
+  mulps     xmm7, xmm13            ; V3 * F5
+  subps     xmm2, xmm3             ; (V0 * F1) - (V1 * F3)
+  mulps     xmm4, xmm10            ; V0 * F2
+  addps     xmm2, xmm7             ; I2=(V0 * F1) - (V1 * F3) + (V3 * F5)
+
+  mulps     xmm5, xmm12            ; V1 * F4
+  mulps     xmm6, xmm13            ; V2 * F5
+  subps     xmm4, xmm5             ; (V0 * F2) - (V1 * F4)
+  addps     xmm4, xmm6             ; I3=(V0 * F2) - (V1 * F4) + (V2 * F5)
+
+  ;  SA := Vector4(+1, -1, +1, -1);
+  ;  SB := Vector4(-1, +1, -1, +1);
+  ;  Inv := Matrix4(I0 * SA, I1 * SB, I2 * SA, I3 * SB);
+
+  movaps    xmm6, [rel kSSE_MASK_PNPN] ; SA
+  movaps    xmm7, [rel kSSE_MASK_NPNP] ; SB
+  xorps     xmm0, xmm6             ; Inv[0] = I0 * SA
+  xorps     xmm1, xmm7             ; Inv[1] = I1 * SB
+  xorps     xmm2, xmm6             ; Inv[2] = I2 * SA
+  xorps     xmm4, xmm7             ; Inv[3] = I3 * SB
+
+  ;  Row := Vector4(Inv[0,0], Inv[1,0], Inv[2,0], Inv[3,0]);
+  movaps    xmm3, xmm0
+  movaps    xmm5, xmm2
+  movaps    xmm6, xmm1
+
+  unpcklps  xmm3, xmm1             ; Inv[1,1] Inv[0,1] Inv[1,0] Inv[0,0]
+  unpcklps  xmm5, xmm4             ; Inv[3,1] Inv[2,1] Inv[3,0] Inv[2,0]
+  movups    xmm6, [%2 + 0x00]      ; A.C[0]
+  movlhps   xmm3, xmm5             ; Inv[3,0] Inv[2,0] Inv[1,0] Inv[0,0]
+
+  ;  Dot := A.C[0] * Row;
+  mulps     xmm3, xmm6             ; Dot.W  Dot.Z  Dot.Y  Dot.X
+
+  ;  OneOverDeterminant := 1 / ((Dot.X + Dot.Y) + (Dot.Z + Dot.W));
+  pshufd    xmm6, xmm3, 0x4E       ; Dot.Y  Dot.X  Dot.W  Dot.Z
+  addps     xmm3, xmm6             ; W+Y Z+X Y+W X+Z
+  pshufd    xmm6, xmm3, 0x11       ; X+Z Y+X X+Z Y+W
+  movaps    xmm5, [rel kSSE_ONE]   ; 1.0 (4x)
+  addps     xmm3, xmm6             ; X+Y+Z+W (4x)
+  divps     xmm5, xmm3             ; OneOverDeterminant (4x)
+
+  ;  Result := Inv * OneOverDeterminant;
+  mulps     xmm0, xmm5
+  mulps     xmm1, xmm5
+  mulps     xmm2, xmm5
+  mulps     xmm4, xmm5
+
+  movups    [%1 + 0x00], xmm0
+  movups    [%1 + 0x10], xmm1
+  movups    [%1 + 0x20], xmm2
+  movups    [%1 + 0x30], xmm4
+  ret
+%endmacro  
+
+_matrix4_inverse:
+  M4_INVERSE Param1, Param2
+
+_matrix4_set_inversed:
+  M4_INVERSE Param1, Param1
+  
+%macro M4_TRANSPOSE 2  
+  movups    xmm0, [%2 + 0x00]        ; A03 A02 A01 A00
+  movups    xmm1, [%2 + 0x10]        ; A13 A12 A11 A10
+  movups    xmm2, [%2 + 0x20]        ; A23 A22 A21 A20
+  movups    xmm3, [%2 + 0x30]        ; A33 A32 A31 A30
+
+  movaps    xmm4, xmm2
+  unpcklps  xmm2, xmm3               ; A31 A21 A30 A20
+  unpckhps  xmm4, xmm3               ; A33 A23 A32 A22
+
+  movaps    xmm3, xmm0
+  unpcklps  xmm0, xmm1               ; A11 A01 A10 A00
+  unpckhps  xmm3, xmm1               ; A13 A03 A12 A02
+
+  movaps    xmm1, xmm0
+  unpcklpd  xmm0, xmm2               ; A30 A20 A10 A00
+  unpckhpd  xmm1, xmm2               ; A31 A21 A11 A01
+
+  movaps    xmm2, xmm3
+  unpcklpd  xmm2, xmm4               ; A32 A22 A12 A02
+  unpckhpd  xmm3, xmm4               ; A33 A23 A13 A03
+
+  movups    [%1 + 0x00], xmm0
+  movups    [%1 + 0x10], xmm1
+  movups    [%1 + 0x20], xmm2
+  movups    [%1 + 0x30], xmm3
+  ret
+%endmacro  
+
+_matrix4_transpose:
+  M4_TRANSPOSE Param1, Param2
+  
+_matrix4_set_transposed:
+  M4_TRANSPOSE Param1, Param1

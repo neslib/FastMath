@@ -4833,9 +4833,25 @@ asm
   movss  DWORD [Result + $20], xmm3
 end;
 
-procedure TMatrix3.SetTransposed;
-begin
-  Self := Transpose;
+procedure TMatrix3.SetTransposed; assembler;
+asm
+  movss  xmm0, DWORD [Self + $04]
+  movss  xmm1, DWORD [Self + $08]
+
+  movss  xmm2, DWORD [Self + $0C]
+  movss  xmm3, DWORD [Self + $14]
+
+  movss  xmm4, DWORD [Self + $18]
+  movss  xmm5, DWORD [Self + $1C]
+
+  movss  DWORD [Self + $0C], xmm0
+  movss  DWORD [Self + $18], xmm1
+
+  movss  DWORD [Self + $04], xmm2
+  movss  DWORD [Self + $1C], xmm3
+
+  movss  DWORD [Self + $08], xmm4
+  movss  DWORD [Self + $14], xmm5
 end;
 
 class operator TMatrix3.Subtract(const A: TMatrix3; const B: Single): TMatrix3; assembler;

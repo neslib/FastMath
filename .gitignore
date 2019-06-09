@@ -18,6 +18,8 @@ Win64/
 *.dcu
 *.map
 *.deployproj
+!FastMath/FastMathMacOS64CM.obj
+!FastMath/FastMathMacOS64RM.obj
 #ignore Delphi temp and backup files
 *.~*
 #ignore Delphi local files
