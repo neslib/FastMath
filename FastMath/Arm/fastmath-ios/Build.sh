@@ -17,11 +17,11 @@ rm armv7.a
 rm arm64.a
 rm *.o
 
-clang -c -O3 -arch armv7 -isysroot $SDK_ROOT ../Arm32/approx_32.S ../Arm32/common_32.S ../Arm32/exponential_32.S ../Arm32/matrix2_32.S ../Arm32/matrix3_32.S ../Arm32/matrix4_32.S ../Arm32/trig_32.S ../Arm32/vector2_32.S ../Arm32/vector3_32.S ../Arm32/vector4_32.S
+clang -c -O3 -arch armv7 -isysroot $SDK_ROOT -mios-version-min=8 ../Arm32/approx_32.S ../Arm32/common_32.S ../Arm32/exponential_32.S ../Arm32/matrix2_32.S ../Arm32/matrix3_32.S ../Arm32/matrix4_32.S ../Arm32/trig_32.S ../Arm32/vector2_32.S ../Arm32/vector3_32.S ../Arm32/vector4_32.S
 ar rcs armv7.a *_32.o
 ranlib armv7.a
 
-clang -c -O3 -arch arm64 -isysroot $SDK_ROOT ../Arm64/approx_64.S ../Arm64/common_64.S ../Arm64/exponential_64.S ../Arm64/matrix2_64.S ../Arm64/matrix3_64.S ../Arm64/matrix4_64.S ../Arm64/trig_64.S ../Arm64/vector2_64.S ../Arm64/vector3_64.S ../Arm64/vector4_64.S
+clang -c -O3 -arch arm64 -isysroot $SDK_ROOT -mios-version-min=8 ../Arm64/approx_64.S ../Arm64/common_64.S ../Arm64/exponential_64.S ../Arm64/matrix2_64.S ../Arm64/matrix3_64.S ../Arm64/matrix4_64.S ../Arm64/trig_64.S ../Arm64/vector2_64.S ../Arm64/vector3_64.S ../Arm64/vector4_64.S
 ar rcs arm64.a *_64.o
 ranlib arm64.a
 
