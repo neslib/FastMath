@@ -130,14 +130,20 @@
        $FFFFFFFF if A=0, $00000000 otherwise. At the end, we AND the result
        with the complement of this mask so the result is 0 if A=0.*/
     vceq.f32     \Tmp3, \A, #0
-    INVSQRT_LOW  \Res, \A, \Tmp1, \Tmp2 /* 1 / Sqrt(A)            */
+    
+    /* 1 / Sqrt(A) */
+    INVSQRT_LOW  \Res, \A, \Tmp1, \Tmp2
+    
     vmul.f32     \Res, \Res, \A         /* A * (1 / Sqrt(A))      */
     vbic.f32     \Res, \Res, \Tmp3      /* A * (1 / Sqrt(A)) or 0 */
 .endm
 
 .macro SQRT_MED Res A Tmp1 Tmp2 Tmp3
     vceq.f32     \Tmp3, \A, #0
-    INVSQRT_MED  \Res, \A, \Tmp1, \Tmp2 /* 1 / Sqrt(A)            */
+    
+    /* 1 / Sqrt(A) */
+    INVSQRT_MED  \Res, \A, \Tmp1, \Tmp2 
+    
     vmul.f32     \Res, \Res, \A         /* A * (1 / Sqrt(A))      */
     vbic.f32     \Res, \Res, \Tmp3      /* A * (1 / Sqrt(A)) or 0 */
 .endm

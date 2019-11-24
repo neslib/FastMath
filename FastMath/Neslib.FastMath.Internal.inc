@@ -8,14 +8,18 @@ const
   _LIB_FASTMATH = 'libfastmath-ios.a';
   { @exclude }
   _PREFIX = '';
+  {$ELSEIF Defined(ANDROID64)}
+  { @exclude }
+  _LIB_FASTMATH = 'libfastmath-android-64.a';
+  _PREFIX = '_';
   {$ELSEIF Defined(ANDROID)}
   {$IF (RTLVersion >= 33)}
-  { Delphi 10.3 Rio changed linking to Thumb mode. }
   { @exclude }
-  _LIB_FASTMATH = 'libfastmath-android-thumb.a';
+  _LIB_FASTMATH = 'libfastmath-android-32.a';
   {$ELSE}
+  { Delphi 10.2 and earlier use ARM mode (instead of Thumb). }
   { @exclude }
-  _LIB_FASTMATH = 'libfastmath-android.a';
+  _LIB_FASTMATH = 'libfastmath-android-arm.a';
   {$ENDIF}
   { @exclude }
   _PREFIX = '_';
