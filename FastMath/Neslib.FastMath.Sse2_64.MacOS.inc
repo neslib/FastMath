@@ -94,38 +94,22 @@ function Sign(const A: TVector2): TVector2; external LIB_FASTMATH name 'sign_vec
 function Sign(const A: TVector3): TVector3; external LIB_FASTMATH name 'sign_vector3';
 function Sign(const A: TVector4): TVector4; external LIB_FASTMATH name 'sign_vector4';
 
-function Floor(const A: Single): Integer;
-begin
-  Result := System.Math.Floor(A);
-end;
-
+function Floor(const A: Single): Integer; external LIB_FASTMATH name 'floor_single';
 function Floor(const A: TVector2): TIVector2; external LIB_FASTMATH name 'floor_vector2';
 function Floor(const A: TVector3): TIVector3; external LIB_FASTMATH name 'floor_vector3';
 function Floor(const A: TVector4): TIVector4; external LIB_FASTMATH name 'floor_vector4';
 
-function Trunc(const A: Single): Integer;
-begin
-  Result := System.Trunc(A);
-end;
-
+function Trunc(const A: Single): Integer; external LIB_FASTMATH name 'trunc_single';
 function Trunc(const A: TVector2): TIVector2; external LIB_FASTMATH name 'trunc_vector2';
 function Trunc(const A: TVector3): TIVector3; external LIB_FASTMATH name 'trunc_vector3';
 function Trunc(const A: TVector4): TIVector4; external LIB_FASTMATH name 'trunc_vector4';
 
-function Round(const A: Single): Integer;
-begin
-  Result := System.Round(A);
-end;
-
+function Round(const A: Single): Integer; external LIB_FASTMATH name 'round_single';
 function Round(const A: TVector2): TIVector2; external LIB_FASTMATH name 'round_vector2';
 function Round(const A: TVector3): TIVector3; external LIB_FASTMATH name 'round_vector3';
 function Round(const A: TVector4): TIVector4; external LIB_FASTMATH name 'round_vector4';
 
-function Ceil(const A: Single): Integer;
-begin
-  Result := System.Math.Ceil(A);
-end;
-
+function Ceil(const A: Single): Integer; external LIB_FASTMATH name 'ceil_single';
 function Ceil(const A: TVector2): TIVector2; external LIB_FASTMATH name 'ceil_vector2';
 function Ceil(const A: TVector3): TIVector3; external LIB_FASTMATH name 'ceil_vector3';
 function Ceil(const A: TVector4): TIVector4; external LIB_FASTMATH name 'ceil_vector4';

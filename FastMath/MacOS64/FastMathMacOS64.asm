@@ -219,10 +219,10 @@ global _fast_log2_single, _fast_log2_vector2, _fast_log2_vector3, _fast_log2_vec
 global _fast_exp2_single, _fast_exp2_vector2, _fast_exp2_vector3, _fast_exp2_vector4
 global _abs_vector3, _abs_vector4
 global _sign_single, _sign_vector2, _sign_vector3, _sign_vector4
-global _floor_vector2, _floor_vector3, _floor_vector4
-global _trunc_vector2, _trunc_vector3, _trunc_vector4
-global _round_vector2, _round_vector3, _round_vector4
-global _ceil_vector2, _ceil_vector3, _ceil_vector4
+global _floor_single, _floor_vector2, _floor_vector3, _floor_vector4
+global _trunc_single, _trunc_vector2, _trunc_vector3, _trunc_vector4
+global _round_single,_round_vector2, _round_vector3, _round_vector4
+global _ceil_single, _ceil_vector2, _ceil_vector3, _ceil_vector4
 global _frac_vector2, _frac_vector3, _frac_vector4
 global _fmod_vector2_single, _fmod_vector3_single, _fmod_vector4_single
 global _fmod_vector2, _fmod_vector3, _fmod_vector4
@@ -1952,7 +1952,22 @@ _sign_vector4:
   movhlps   xmm1, xmm0
   ret
   
-_floor_vector2:
+_floor_single:
+  ; Set rounding mode to Round Down
+  stmxcsr   [OldFlags]
+  mov       eax, [OldFlags]
+  and       eax, SSE_ROUND_MASK
+  or        eax, SSE_ROUND_DOWN
+  mov       [NewFlags], eax
+  ldmxcsr   [NewFlags]
+
+  cvtss2si  rax, xmm0
+
+  ; Restore rounding mode
+  ldmxcsr   [OldFlags]
+  ret
+
+ _floor_vector2:
   ; Set rounding mode to Round Down
   stmxcsr   [OldFlags]
   mov       eax, [OldFlags]
@@ -2010,6 +2025,21 @@ _floor_vector4:
   movhlps   xmm1, xmm0
   movq      rax, xmm0
   movq      rdx, xmm1
+  ret
+  
+_trunc_single:
+  ; Set rounding mode to Truncate
+  stmxcsr   [OldFlags]
+  mov       eax, [OldFlags]
+  and       eax, SSE_ROUND_MASK
+  or        eax, SSE_ROUND_TRUNC
+  mov       [NewFlags], eax
+  ldmxcsr   [NewFlags]
+
+  cvtss2si  rax, xmm0
+
+  ; Restore rounding mode
+  ldmxcsr   [OldFlags]
   ret
   
 _trunc_vector2:
@@ -2072,6 +2102,11 @@ _trunc_vector4:
   movq      rdx, xmm1
   ret  
   
+_round_single:
+  ; Rounding mode defaults to round-to-nearest
+  cvtss2si  rax, xmm0 
+  ret
+  
 _round_vector2:
   ; Rounding mode defaults to round-to-nearest
   movlps    xmm0, [Param1]
@@ -2098,6 +2133,21 @@ _round_vector4:
   movq      rax, xmm0
   movq      rdx, xmm1
   ret    
+  
+_ceil_single:
+  ; Set rounding mode to Round Up
+  stmxcsr   [OldFlags]
+  mov       eax, [OldFlags]
+  and       eax, SSE_ROUND_MASK
+  or        eax, SSE_ROUND_UP
+  mov       [NewFlags], eax
+  ldmxcsr   [NewFlags]
+
+  cvtss2si  rax, xmm0
+
+  ; Restore rounding mode
+  ldmxcsr   [OldFlags]
+  ret
   
 _ceil_vector2:
   ; Set rounding mode to Round Up
