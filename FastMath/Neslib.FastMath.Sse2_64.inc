@@ -142,7 +142,7 @@ end;
 function Degrees(const ARadians: TVector2): TVector2; assembler;
 asm
   {$IF RTLVersion >= 33}
-  movq   xmm0, [ARadians]
+  movlps xmm0, [ARadians]
   {$ELSE}
   movq   xmm0, ARadians
   {$ENDIF}
