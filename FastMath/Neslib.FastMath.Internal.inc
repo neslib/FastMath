@@ -13,11 +13,12 @@ const
   _LIB_FASTMATH = 'libfastmath-android-64.a';
   _PREFIX = '_';
   {$ELSEIF Defined(ANDROID)}
-  {$IF (RTLVersion >= 33)}
+  {$IF (RTLVersion = 33)}
+  { Delphi 10.3 uses Thumb mode. }
   { @exclude }
   _LIB_FASTMATH = 'libfastmath-android-32.a';
   {$ELSE}
-  { Delphi 10.2 and earlier use ARM mode (instead of Thumb). }
+  { Delphi 10.2 and earlier and Delphi 10.4 and later use ARM mode. }
   { @exclude }
   _LIB_FASTMATH = 'libfastmath-android-arm.a';
   {$ENDIF}
