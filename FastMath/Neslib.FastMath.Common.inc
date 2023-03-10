@@ -2931,6 +2931,11 @@ begin
   Result.Y := A.Y - B.Y;
 end;
 
+function TIVector2.ToVector2: TVector2;
+begin
+  Result.Init(X, Y);
+end;
+
 { TIVector3 }
 
 class operator TIVector3.Add(const A: TIVector3; const B: Integer): TIVector3;
@@ -3070,6 +3075,11 @@ begin
   Result.X := A.X - B.X;
   Result.Y := A.Y - B.Y;
   Result.Z := A.Z - B.Z;
+end;
+
+function TIVector3.ToVector3: TVector3;
+begin
+  Result.Init(X, Y, Z);
 end;
 
 { TIVector4 }
@@ -3229,3 +3239,7 @@ begin
   Result.W := A.W - B.W;
 end;
 
+function TIVector4.ToVector4: TVector4;
+begin
+  Result.Init(X, Y, Z, W);
+end;

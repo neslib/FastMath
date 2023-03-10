@@ -3119,6 +3119,9 @@ type
         True if X and Y are 0 }
     function IsZero: Boolean; inline;
 
+    { Converts this vector to a floatint-point vector }
+    function ToVector2: TVector2; inline;
+
     { Returns the components of the vector.
       This is identical to accessing the C-field, but this property can be used
       as a default array property.
@@ -3302,6 +3305,9 @@ type
       Returns:
         True if X, Y and Z are 0 }
     function IsZero: Boolean; inline;
+
+    { Converts this vector to a floatint-point vector }
+    function ToVector3: TVector3; inline;
 
     { Returns the components of the vector.
       This is identical to accessing the C-field, but this property can be used
@@ -3489,6 +3495,9 @@ type
       Returns:
         True if X, Y, Z and W are 0 }
     function IsZero: Boolean; inline;
+
+    { Converts this vector to a floatint-point vector }
+    function ToVector4: TVector4; inline;
 
     { Returns the components of the vector.
       This is identical to accessing the C-field, but this property can be used

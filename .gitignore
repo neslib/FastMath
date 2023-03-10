@@ -18,9 +18,12 @@ Win64/
 *.dcu
 *.map
 *.deployproj
+*.rsm
+*.stat
 !FastMath/FastMathMacOS64CM.obj
 !FastMath/FastMathMacOS64RM.obj
 #ignore Delphi temp and backup files
+FastMath/Arm/fastmath-android/obj/
 *.~*
 #ignore Delphi local files
 *.dsk
