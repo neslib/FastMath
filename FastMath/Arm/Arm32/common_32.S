@@ -10,6 +10,87 @@
     .text
     .align 4
     .include "../Arm32/macros_32.S"
+#if ANDROID
+    .type _abs_scalar, %function
+    .type _abs_vector2, %function
+    .type _abs_vector3, %function
+    .type _abs_vector4, %function
+    .type _sign_scalar, %function
+    .type _sign_vector2, %function
+    .type _sign_vector3, %function
+    .type _sign_vector4, %function
+    .type _floor_scalar, %function
+    .type _floor_vector2, %function
+    .type _floor_vector3, %function
+    .type _floor_vector4, %function
+    .type _trunc_scalar, %function
+    .type _trunc_vector2, %function
+    .type _trunc_vector3, %function
+    .type _trunc_vector4, %function
+    .type _round_scalar, %function
+    .type _round_vector2, %function
+    .type _round_vector3, %function
+    .type _round_vector4, %function
+    .type _ceil_scalar, %function
+    .type _ceil_vector2, %function
+    .type _ceil_vector3, %function
+    .type _ceil_vector4, %function
+    .type _frac_scalar, %function
+    .type _frac_vector2, %function
+    .type _frac_vector3, %function
+    .type _frac_vector4, %function
+    .type _fmod_scalar, %function
+    .type _fmod_vector2, %function
+    .type _fmod_vector2_scalar, %function
+    .type _fmod_vector3, %function
+    .type _fmod_vector3_scalar, %function
+    .type _fmod_vector4, %function
+    .type _fmod_vector4_scalar, %function
+    .type _modf_scalar, %function
+    .type _modf_vector2, %function
+    .type _modf_vector3, %function
+    .type _modf_vector4, %function
+    .type _min_vector2, %function
+    .type _min_vector2_scalar, %function
+    .type _min_vector3, %function
+    .type _min_vector3_scalar, %function
+    .type _min_vector4, %function
+    .type _min_vector4_scalar, %function
+    .type _max_vector2, %function
+    .type _max_vector2_scalar, %function
+    .type _max_vector3, %function
+    .type _max_vector3_scalar, %function
+    .type _max_vector4, %function
+    .type _max_vector4_scalar, %function
+    .type _ensure_range_scalar, %function
+    .type _ensure_range_vector2, %function
+    .type _ensure_range_vector2_scalar, %function
+    .type _ensure_range_vector3, %function
+    .type _ensure_range_vector3_scalar, %function
+    .type _ensure_range_vector4, %function
+    .type _ensure_range_vector4_scalar, %function
+    .type _mix_vector2, %function
+    .type _mix_vector2_scalar, %function
+    .type _mix_vector3, %function
+    .type _mix_vector3_scalar, %function
+    .type _mix_vector4, %function
+    .type _mix_vector4_scalar, %function
+    .type _step_vector2, %function
+    .type _step_scalar_vector2, %function
+    .type _step_vector3, %function
+    .type _step_scalar_vector3, %function
+    .type _step_vector4, %function
+    .type _step_scalar_vector4, %function
+    .type _smoothstep_vector2, %function
+    .type _smoothstep_scalar_vector2, %function
+    .type _smoothstep_vector3, %function
+    .type _smoothstep_scalar_vector3, %function
+    .type _smoothstep_vector4, %function
+    .type _smoothstep_scalar_vector4, %function
+    .type _fma_vector2, %function
+    .type _fma_vector3, %function
+    .type _fma_vector4, %function
+#endif
     .globl _abs_scalar, _abs_vector2, _abs_vector3, _abs_vector4
     .globl _sign_scalar, _sign_vector2, _sign_vector3, _sign_vector4
     .globl _floor_scalar, _floor_vector2, _floor_vector3, _floor_vector4
@@ -40,9 +121,9 @@ _abs_vector2: // (const A: TVector2; out Result: TVector2);
     bx          lr
 
 _abs_vector3: // (const A: TVector3; out Result: TVector3);
-    fldmias     r0, {s0-s2}   
+    vldmia.f32  r0, {s0-s2}   
     vabs.f32    q0, q0
-    fstmias     r1, {s0-s2}
+    vstmia.f32  r1, {s0-s2}
     bx          lr
 
 _abs_vector4: // (const A: TVector4; out Result: TVector4);
@@ -75,13 +156,13 @@ _sign_vector2: // (const A: TVector2; out Result: TVector2);
 
 _sign_vector3: // (const A: TVector3; out Result: TVector3);
     adr         r2, ONE_Q
-    fldmias     r0, {s0-s2}
+    vldmia.f32  r0, {s0-s2}
     vld1.32     {q1-q2}, [r2]
     vand.32     q3, q0, q2 // (A < 0)? Yes: $80000000, No: $00000000
     vorr.32     q3, q3, q1 // (A < 0)? Yes: -1.0, No: 1.0
     vceq.f32    q0, q0, #0 // (A = 0)? Yes: $FFFFFFFF, No: $00000000
     vbic.32     q0, q3, q0 // (A = 0)? Yes: 0, No: -1.0 or 1.0
-    fstmias     r1, {s0-s2}
+    vstmia.f32  r1, {s0-s2}
     bx          lr
 
 _sign_vector4: // (const A: TVector4; out Result: TVector4);
@@ -124,7 +205,7 @@ _floor_vector2: // (const A: TVector2; out Result: TIVector2);
     bx           lr
 
 _floor_vector3: // (const A: TVector3; out Result: TIVector3);
-    fldmias      r0, {s0-s2}
+    vldmia.f32   r0, {s0-s2}
     vmov.s32     q1, #1
 
     vcvt.s32.f32 q2, q0     // Result := Trunc(A) (as int)
@@ -134,7 +215,7 @@ _floor_vector3: // (const A: TVector3; out Result: TIVector3);
     vand.32      q1, q1, q3 // (Frac<0)? Yes: 1.0, No: 0.0
     vsub.s32     q2, q2, q1 // if (Frac < 0) then Result := Result - 1
 
-    fstmias      r1, {s8-s10}
+    vstmia.f32   r1, {s8-s10}
     bx           lr
 
 _floor_vector4: // (const A: TVector4; out Result: TIVector4);
@@ -180,7 +261,7 @@ _ceil_vector2: // (const A: TVector2; out Result: TIVector2);
     bx           lr
 
 _ceil_vector3: // (const A: TVector3; out Result: TIVector3);
-    fldmias      r0, {s0-s2}
+    vldmia.f32   r0, {s0-s2}
     vmov.s32     q1, #1
 
     vcvt.s32.f32 q2, q0     // Trunc(A) (as int)
@@ -190,7 +271,7 @@ _ceil_vector3: // (const A: TVector3; out Result: TIVector3);
     vand.32      q1, q1, q3 // (Frac>0)? Yes: 1.0, No: 0.0
     vadd.s32     q2, q2, q1 // if (Frac > 0) then Result := Result + 1
 
-    fstmias      r1, {s8-s10}
+    vstmia.f32   r1, {s8-s10}
     bx           lr
 
 _ceil_vector4: // (const A: TVector4; out Result: TIVector4);
@@ -229,22 +310,22 @@ _step_scalar_vector2: // (const AEdge: Single; const A: TVector2; out Result: TV
 
 _step_vector3: // (const AEdge, A: TVector3; out Result: TVector3);
     adr          r3, ONE_Q
-    fldmias      r0, {s0-s2}
-    fldmias      r1, {s4-s6}
+    vldmia.f32   r0, {s0-s2}
+    vldmia.f32   r1, {s4-s6}
     vld1.32      {q2}, [r3] // 1.0
     vcge.f32     q0, q1, q0 // (A >= AEdge)? Yes: $FFFFFFFF, No: $00000000
     vand.32      q0, q0, q2 // (A >= AEdge)? Yes: 1.0, No: 0.0
-    fstmias      r2, {s0-s2}
+    vstmia.f32   r2, {s0-s2}
     bx           lr
 
 _step_scalar_vector3: // (const AEdge: Single; const A: TVector3; out Result: TVector3);
     adr          r3, ONE_Q
     vdup.32      q0, r0
-    fldmias      r1, {s4-s6}
+    vldmia.f32   r1, {s4-s6}
     vld1.32      {q2}, [r3] // 1.0
     vcge.f32     q0, q1, q0 // (A >= AEdge)? Yes: $FFFFFFFF, No: $00000000
     vand.32      q0, q0, q2 // (A >= AEdge)? Yes: 1.0, No: 0.0
-    fstmias      r2, {s0-s2}
+    vstmia.f32   r2, {s0-s2}
     bx           lr
 
 _step_vector4: // (const AEdge, A: TVector4; out Result: TVector4);
@@ -288,9 +369,9 @@ _trunc_vector2: // (const A: TVector2; out Result: TIVector2);
     bx           lr
 
 _trunc_vector3: // (const A: TVector3; out Result: TIVector3);
-    fldmias      r0, {s0-s2}
+    vldmia.f32   r0, {s0-s2}
     vcvt.s32.f32 q0, q0     // Trunc(A) (as int)
-    fstmias      r1, {s0-s2}
+    vstmia.f32   r1, {s0-s2}
     bx           lr
 
 _trunc_vector4: // (const A: TVector4; out Result: TIVector4);
@@ -327,7 +408,7 @@ _round_vector2: // (const A: TVector2; out Result: TIVector2);
 
 _round_vector3: // (const A: TVector3; out Result: TIVector3);
     adr          r2, ROUND_Q
-    fldmias      r0, {s0-s2}
+    vldmia.f32   r0, {s0-s2}
     vld1.32      {q1-q2}, [r2]
     vclt.f32     q3, q0, #0 // (A < 0)? Yes: $FFFFFFFF, No: $00000000
     vand.32      q1, q1, q3 // (A < 0)? Yes: -0.5, No: 0.0
@@ -335,7 +416,7 @@ _round_vector3: // (const A: TVector3; out Result: TIVector3);
     vorr.32      q1, q1, q2 // (A < 0)? Yes: -0.5, No: 0.499999
     vadd.f32     q0, q0, q1 // A := A + Rounding
     vcvt.s32.f32 q0, q0     // Trunc(A) (as int)
-    fstmias      r1, {s0-s2}
+    vstmia.f32   r1, {s0-s2}
     bx           lr
 
 _round_vector4: // (const A: TVector4; out Result: TIVector4);
@@ -376,11 +457,11 @@ _frac_vector2: // (const A: TVector2; out Result: TVector2);
     bx           lr
 
 _frac_vector3: // (const A: TVector3; out Result: TVector3);
-    fldmias      r0, {s0-s2}
+    vldmia.f32   r0, {s0-s2}
     vcvt.s32.f32 q1, q0     // Trunc(A) (as int)
     vcvt.f32.s32 q1, q1     // Trunc(A) (as float)
     vsub.f32     q0, q0, q1 // Frac=A-Trunc(A)
-    fstmias      r1, {s0-s2}
+    vstmia.f32   r1, {s0-s2}
     bx           lr
 
 _frac_vector4: // (const A: TVector4; out Result: TVector4);
@@ -418,8 +499,8 @@ _fmod_vector2: // (const A, B: TVector2; out Result: TVector2);
     bx           lr
 
 _fmod_vector3: // (const A, B: TVector3; out Result: TVector3);
-    fldmias      r0, {s0-s2}
-    fldmias      r1, {s4-s6}
+    vldmia.f32   r0, {s0-s2}
+    vldmia.f32   r1, {s4-s6}
 
     RECIPQ_MED   q2, q1     // 1 / B
 
@@ -427,7 +508,7 @@ _fmod_vector3: // (const A, B: TVector3; out Result: TVector3);
     vcvt.s32.f32 q3, q3     // Trunc(A/B) (as int)
     vcvt.f32.s32 q3, q3     // Trunc(A/B) (as float)
     vmls.f32     q0, q1, q3 // A - (B * Trunc(A / B))
-    fstmias      r2, {s0-s2}
+    vstmia.f32   r2, {s0-s2}
     bx           lr
 
 _fmod_vector4: // (const A, B: TVector4; out Result: TVector4);
@@ -457,7 +538,7 @@ _fmod_vector2_scalar: // (const A: TVector2; const B: Single; out Result: TVecto
     bx           lr
 
 _fmod_vector3_scalar: // (const A: TVector3; const B: Single; out Result: TVector3);
-    fldmias      r0, {s0-s2}
+    vldmia.f32   r0, {s0-s2}
     vdup.32      q1, r1     // Duplicate B
 
     RECIPQ_MED   q2, q1     // 1 / B
@@ -466,7 +547,7 @@ _fmod_vector3_scalar: // (const A: TVector3; const B: Single; out Result: TVecto
     vcvt.s32.f32 q3, q3     // Trunc(A/B) (as int)
     vcvt.f32.s32 q3, q3     // Trunc(A/B) (as float)
     vmls.f32     q0, q1, q3 // A - (B * Trunc(A / B))
-    fstmias      r2, {s0-s2}
+    vstmia.f32   r2, {s0-s2}
     bx           lr
 
 _fmod_vector4_scalar: // (const A: TVector4; const B: Single; out Result: TVector4);
@@ -501,12 +582,12 @@ _modf_vector2: // (const A: TVector2; out B: TIVector2; out Result: TVector2);
     bx           lr
 
 _modf_vector3: // (const A: TVector3; out B: TIVector3; out Result: TVector3);
-    fldmias      r0, {s0-s2}
+    vldmia.f32   r0, {s0-s2}
     vcvt.s32.f32 q1, q0        // Trunc(A) (as int)
     vcvt.f32.s32 q2, q1        // Trunc(A) (as float)
     vsub.f32     q0, q0, q2    // Frac=A-Trunc(A)
-    fstmias      r1, {s4-s6}   // B := Trunc(A)
-    fstmias      r2, {s0-s2}   // Result := Frac(A)
+    vstmia.f32   r1, {s4-s6}   // B := Trunc(A)
+    vstmia.f32   r2, {s0-s2}   // Result := Frac(A)
     bx           lr
 
 _modf_vector4: // (const A: TVector4; out B: TIVector4; out Result: TVector4);
@@ -533,17 +614,17 @@ _min_vector2_scalar: // (const A: TVector2; const B: Single; out Result: TVector
     bx           lr
 
 _min_vector3: // (const A, B: TVector3; out Result: TVector3);
-    fldmias      r0, {s0-s2}
-    fldmias      r1, {s4-s6}
+    vldmia.f32   r0, {s0-s2}
+    vldmia.f32   r1, {s4-s6}
     vmin.f32     q0, q0, q1
-    fstmias      r2, {s0-s2}
+    vstmia.f32   r2, {s0-s2}
     bx           lr
 
 _min_vector3_scalar: // (const A: TVector3; const B: Single; out Result: TVector3);
-    fldmias      r0, {s0-s2}
+    vldmia.f32   r0, {s0-s2}
     vdup.32      q1, r1
     vmin.f32     q0, q0, q1
-    fstmias      r2, {s0-s2}
+    vstmia.f32   r2, {s0-s2}
     bx           lr
 
 _min_vector4: // (const A, B: TVector4; out Result: TVector4);
@@ -575,17 +656,17 @@ _max_vector2_scalar: // (const A: TVector2; const B: Single; out Result: TVector
     bx           lr
 
 _max_vector3: // (const A, B: TVector3; out Result: TVector3);
-    fldmias      r0, {s0-s2}
-    fldmias      r1, {s4-s6}
+    vldmia.f32   r0, {s0-s2}
+    vldmia.f32   r1, {s4-s6}
     vmax.f32     q0, q0, q1
-    fstmias      r2, {s0-s2}
+    vstmia.f32   r2, {s0-s2}
     bx           lr
 
 _max_vector3_scalar: // (const A: TVector3; const B: Single; out Result: TVector3);
-    fldmias      r0, {s0-s2}
+    vldmia.f32   r0, {s0-s2}
     vdup.32      q1, r1
     vmax.f32     q0, q0, q1
-    fstmias      r2, {s0-s2}
+    vstmia.f32   r2, {s0-s2}
     bx           lr
 
 _max_vector4: // (const A, B: TVector4; out Result: TVector4);
@@ -630,21 +711,21 @@ _ensure_range_vector2_scalar: // (const A: TVector2; const AMin, AMax: Single; o
     bx           lr
 
 _ensure_range_vector3: // (const A, AMin, AMax: TVector3; out Result: TVector3);
-    fldmias      r0, {s0-s2}
-    fldmias      r1, {s4-s6}
-    fldmias      r2, {s8-s10}
+    vldmia.f32   r0, {s0-s2}
+    vldmia.f32   r1, {s4-s6}
+    vldmia.f32   r2, {s8-s10}
     vmax.f32     q0, q0, q1
     vmin.f32     q0, q0, q2
-    fstmias      r3, {s0-s2}
+    vstmia.f32   r3, {s0-s2}
     bx           lr
 
 _ensure_range_vector3_scalar: // (const A: TVector3; const AMin, AMax: Single; out Result: TVector3);
-    fldmias      r0, {s0-s2}
+    vldmia.f32   r0, {s0-s2}
     vdup.32      q1, r1
     vdup.32      q2, r2
     vmax.f32     q0, q0, q1
     vmin.f32     q0, q0, q2
-    fstmias      r3, {s0-s2}
+    vstmia.f32   r3, {s0-s2}
     bx           lr
 
 _ensure_range_vector4: // (const A, AMin, AMax: TVector4; out Result: TVector4);
@@ -684,21 +765,21 @@ _mix_vector2_scalar: // (const A, B: TVector2; T: Single; out Result: TVector2);
     bx           lr
 
 _mix_vector3: // (const A, B, T: TVector3; out Result: TVector3);
-    fldmias      r0, {s0-s2}
-    fldmias      r1, {s4-s6}
-    fldmias      r2, {s8-s10}
+    vldmia.f32   r0, {s0-s2}
+    vldmia.f32   r1, {s4-s6}
+    vldmia.f32   r2, {s8-s10}
     vsub.f32     q1, q1, q0 // B - A
     vmla.f32     q0, q1, q2 // A + (T * (B - A))
-    fstmias      r3, {s0-s2}
+    vstmia.f32   r3, {s0-s2}
     bx           lr
 
 _mix_vector3_scalar: // (const A, B: TVector3; T: Single; out Result: TVector3);
-    fldmias      r0, {s0-s2}
-    fldmias      r1, {s4-s6}
+    vldmia.f32   r0, {s0-s2}
+    vldmia.f32   r1, {s4-s6}
     vdup.32      q2, r2
     vsub.f32     q1, q1, q0 // B - A
     vmla.f32     q0, q1, q2 // A + (T * (B - A))
-    fstmias      r3, {s0-s2}
+    vstmia.f32   r3, {s0-s2}
     bx           lr
 
 _mix_vector4: // (const A, B, T: TVector4; out Result: TVector4);
@@ -794,9 +875,9 @@ _smoothstep_vector3: // (const AEdge0, AEdge1, A: TVector3; out Result: TVector3
     push         {rx}
 #endif
     adr          rx, SMOOTH_STEP_Q
-    fldmias      r0, {s0-s2}
-    fldmias      r1, {s4-s6}
-    fldmias      r2, {s8-s10}
+    vldmia.f32   r0, {s0-s2}
+    vldmia.f32   r1, {s4-s6}
+    vldmia.f32   r2, {s8-s10}
     vld1.32      {q8-q9}, [rx]!
     vld1.32      {q10}, [rx]
     vcge.f32     q11, q2, q0     // (A >= AEdge0)? Yes: $FFFFFFFF, No: $00000000
@@ -816,7 +897,7 @@ _smoothstep_vector3: // (const AEdge0, AEdge1, A: TVector3; out Result: TVector3
     vand.32      q0, q0, q12     // (A > AEdge1)? Yes: 0.0, No: Result
     vorr.32      q0, q0, q8      // (A > AEdge1)? Yes: 1.0, No: Result
 
-    fstmias      r3, {s0-s2}
+    vstmia.f32   r3, {s0-s2}
 #if FORCE_THUMB
     pop          {rx}
 #endif
@@ -829,7 +910,7 @@ _smoothstep_scalar_vector3: // (const AEdge0, AEdge1: Single; const A: TVector3;
     adr          rx, SMOOTH_STEP_Q
     vdup.32      q0, r0
     vdup.32      q1, r1
-    fldmias      r2, {s8-s10}
+    vldmia.f32   r2, {s8-s10}
     vld1.32      {q8-q9}, [rx]!
     vld1.32      {q10}, [rx]
     vcge.f32     q11, q2, q0     // (A >= AEdge0)? Yes: $FFFFFFFF, No: $00000000
@@ -849,7 +930,7 @@ _smoothstep_scalar_vector3: // (const AEdge0, AEdge1: Single; const A: TVector3;
     vand.32      q0, q0, q12     // (A > AEdge1)? Yes: 0.0, No: Result
     vorr.32      q0, q0, q8      // (A > AEdge1)? Yes: 1.0, No: Result
 
-    fstmias      r3, {s0-s2}
+    vstmia.f32   r3, {s0-s2}
 #if FORCE_THUMB
     pop          {rx}
 #endif
@@ -940,11 +1021,11 @@ _fma_vector2: // (const A, B, C: TVector2; out Result: TVector2);
     bx           lr
 
 _fma_vector3: // (const A, B, C: TVector3; out Result: TVector3);
-    fldmias      r0, {s0-s2}
-    fldmias      r1, {s4-s6}
-    fldmias      r2, {s8-s10}
+    vldmia.f32   r0, {s0-s2}
+    vldmia.f32   r1, {s4-s6}
+    vldmia.f32   r2, {s8-s10}
     vmla.f32     q2, q0, q1 // (A * B) + C
-    fstmias      r3, {s8-s10}
+    vstmia.f32   r3, {s8-s10}
     bx           lr
 
 _fma_vector4: // (const A, B, C: TVector4; out Result: TVector4);

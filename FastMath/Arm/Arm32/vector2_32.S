@@ -10,6 +10,28 @@
     .text
     .align 4
     .include "../Arm32/macros_32.S"
+#if ANDROID
+    .type _vector2_add_scalar, %function
+    .type _scalar_add_vector2, %function
+    .type _vector2_add_vector2, %function
+    .type _vector2_sub_scalar, %function
+    .type _scalar_sub_vector2, %function
+    .type _vector2_sub_vector2, %function
+    .type _vector2_mul_scalar, %function
+    .type _scalar_mul_vector2, %function
+    .type _vector2_mul_vector2, %function
+    .type _vector2_div_scalar, %function
+    .type _scalar_div_vector2, %function
+    .type _vector2_div_vector2, %function
+    .type _vector2_length, %function
+    .type _vector2_distance, %function
+    .type _vector2_distance_squared, %function
+    .type _vector2_dot, %function
+    .type _vector2_normalize, %function
+    .type _vector2_faceforward, %function
+    .type _vector2_reflect, %function
+    .type _vector2_refract, %function
+#endif
     .globl _vector2_add_scalar, _scalar_add_vector2, _vector2_add_vector2
     .globl _vector2_sub_scalar, _scalar_sub_vector2, _vector2_sub_vector2
     .globl _vector2_mul_scalar, _scalar_mul_vector2, _vector2_mul_vector2

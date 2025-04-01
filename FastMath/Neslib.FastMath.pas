@@ -70,6 +70,7 @@ type
     procedure SetLengthSquared(const AValue: Single); inline;
     function GetAngle: Single; inline;
     procedure SetAngle(const AValue: Single); inline;
+    function GetAspect: Single; inline;
   {$ENDREGION 'Internal Declarations'}
   public
     { Sets the two elements (X and Y) to 0. }
@@ -628,6 +629,9 @@ type
 
       When getting the angle, the result will be between -Pi and Pi. }
     property Angle: Single read GetAngle write SetAngle;
+
+    { The aspect ratio of this vector (X/Y), in case it is used for dimensions }
+    property Aspect: Single read GetAspect;
   public
     case Byte of
       { X and Y components of the vector. Aliases for C[0] and C[1]. }
@@ -3020,8 +3024,11 @@ type
     { Implicitly converts a TPoint to a TIVector2. }
     class operator Implicit(const A: TPoint): TIVector2; inline;
 
-    { Implicitly converts a TQuaternion to a TPoint. }
+    { Implicitly converts a TIVector2 to a TPoint. }
     class operator Implicit(const A: TIVector2): TPoint; inline;
+
+    { Implicitly converts a TIVector2 to a TVector2. }
+    class operator Implicit(const A: TIVector2): TVector2; inline;
 
     { Checks two vectors for equality.
 
@@ -3147,6 +3154,16 @@ type
   PIVector2 = ^TIVector2;
 
 type
+  { Adds common constants of type TIVector2 }
+  _TIVector2Helper = record helper for TIVector2
+  public const
+    Zero : TIVector2 = (X: 0; Y: 0);
+    One  : TIVector2 = (X: 1; Y: 1);
+    UnitX: TIVector2 = (X: 1; Y: 0);
+    UnitY: TIVector2 = (X: 0; Y: 1);
+  end;
+
+type
   { Adds common constants of type TVector2 }
   _TVector2Helper = record helper for TVector2
   public const
@@ -3209,6 +3226,9 @@ type
         A2: the value to set the second element to.
         A3: the value to set the third element to. }
     procedure Init(const A1, A2, A3: Integer); overload; inline;
+
+    { Implicitly converts a TIVector3 to a TVector3. }
+    class operator Implicit(const A: TIVector3): TVector3; inline;
 
     { Checks two vectors for equality.
 
@@ -3399,6 +3419,9 @@ type
         A3: the value to set the third element to.
         A4: the value to set the fourth element to. }
     procedure Init(const A1, A2, A3, A4: Integer); overload; inline;
+
+    { Implicitly converts a TIVector4 to a TVector4. }
+    class operator Implicit(const A: TIVector4): TVector4; inline;
 
     { Checks two vectors for equality.
 
@@ -3596,6 +3619,12 @@ function Vector2(const A: Single): TVector2; overload; inline;
   @bold(Note): it is more efficient to use TVector2.Init instead. }
 function Vector2(const A1, A2: Single): TVector2; overload; inline;
 
+{ Creates a 2D vector from an integer 2D vector.
+
+  Parameters:
+    AVector: the source vector }
+function Vector2(const AVector: TIVector2): TVector2; overload; inline;
+
 { Creates a 2D vector using the first to elements (X and Y) of a 3D vector.
 
   Parameters:
@@ -3657,6 +3686,12 @@ function Vector3(const A1: TVector2; const A2: Single): TVector3; overload;
 
   @bold(Note): it is more efficient to use TVector3.Init instead. }
 function Vector3(const A1: Single; const A2: TVector2): TVector3; overload;
+
+{ Creates a 3D vector from an integer 3D vector.
+
+  Parameters:
+    AVector: the source vector }
+function Vector3(const AVector: TIVector3): TVector3; overload; inline;
 
 { Creates a 3D vector using the first three elements (X, Y and Z) of a 4D vector.
 
@@ -3755,6 +3790,12 @@ function Vector4(const A1: TVector3; const A2: Single): TVector4; overload;
 
   @bold(Note): it is more efficient to use TVector4.Init instead. }
 function Vector4(const A1: Single; const A2: TVector3): TVector4; overload;
+
+{ Creates a 4D vector from an integer 4D vector.
+
+  Parameters:
+    AVector: the source vector }
+function Vector4(const AVector: TIVector4): TVector4; overload; inline;
 
 {***** TQuaternion *****}
 
@@ -4853,3 +4894,4 @@ implementation
 {$ENDIF}
 
 end.
+

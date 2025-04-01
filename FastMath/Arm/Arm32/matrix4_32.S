@@ -10,6 +10,26 @@
     .text
     .align 4
     .include "../Arm32/macros_32.S"
+#if ANDROID
+    .type _outer_product_matrix4, %function
+    .type _neg_matrix4, %function
+    .type _matrix4_add_scalar, %function
+    .type _scalar_add_matrix4, %function
+    .type _matrix4_add_matrix4, %function
+    .type _matrix4_sub_scalar, %function
+    .type _scalar_sub_matrix4, %function
+    .type _matrix4_sub_matrix4, %function
+    .type _matrix4_mul_scalar, %function
+    .type _scalar_mul_matrix4, %function
+    .type _matrix4_mul_vector4, %function
+    .type _vector4_mul_matrix4, %function
+    .type _matrix4_mul_matrix4, %function
+    .type _matrix4_div_scalar, %function
+    .type _scalar_div_matrix4, %function
+    .type _matrix4_comp_mult, %function
+    .type _matrix4_transpose, %function
+    .type _matrix4_inverse, %function
+#endif
     .globl _outer_product_matrix4
     .globl _neg_matrix4
     .globl _matrix4_add_scalar, _scalar_add_matrix4, _matrix4_add_matrix4

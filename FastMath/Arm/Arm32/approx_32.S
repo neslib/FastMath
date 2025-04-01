@@ -10,6 +10,28 @@
     .text
     .align 4
     .include "../Arm32/macros_32.S"
+#if ANDROID
+    .type _fast_sincos_scalar, %function
+    .type _fast_sincos_vector2, %function
+    .type _fast_sincos_vector3, %function
+    .type _fast_sincos_vector4, %function
+    .type _fast_exp_scalar, %function
+    .type _fast_exp_vector2, %function
+    .type _fast_exp_vector3, %function
+    .type _fast_exp_vector4, %function
+    .type _fast_ln_scalar, %function
+    .type _fast_ln_vector2, %function
+    .type _fast_ln_vector3, %function
+    .type _fast_ln_vector4, %function
+    .type _fast_log2_scalar, %function
+    .type _fast_log2_vector2, %function
+    .type _fast_log2_vector3, %function
+    .type _fast_log2_vector4, %function
+    .type _fast_exp2_scalar, %function
+    .type _fast_exp2_vector2, %function
+    .type _fast_exp2_vector3, %function
+    .type _fast_exp2_vector4, %function
+#endif
     .globl _fast_sincos_scalar, _fast_sincos_vector2, _fast_sincos_vector3, _fast_sincos_vector4
     .globl _fast_exp_scalar, _fast_exp_vector2, _fast_exp_vector3, _fast_exp_vector4
     .globl _fast_ln_scalar, _fast_ln_vector2, _fast_ln_vector3, _fast_ln_vector4
@@ -124,7 +146,7 @@ _fast_sincos_vector2: // (const A: TVector2; out Sin, Cos: TVector2);
 
 _fast_sincos_vector3: // (const A: TVector3; out Sin, Cos: TVector3);
     adr          r3, SINCOS_FACTORS_Q
-    fldmias      r0, {s0-s2}
+    vldmia.f32   r0, {s0-s2}
     vld1.32      {q8-q9}, [r3]!   // (q8) FOPI
                                   // (q9) 1 (int)
     vld1.32      {q10-q11}, [r3]! // (q10) not 1 (int)
@@ -171,9 +193,9 @@ _fast_sincos_vector3: // (const A: TVector3; out Sin, Cos: TVector3);
     vneg.f32     q2, q8           // (q2) -YC
     vbsl.f32     q1, q0, q15      // if (SignMaskSin < 0) then Sin := -YS else Sin := YS
     vbsl.f32     q14, q8, q2      // if (SignMaskCos < 0) then Cos := -YC else Cos := YC
-    fstmias      r1, {s4-s6}      // q1
+    vstmia.f32   r1, {s4-s6}      // q1
     vmov         q0, q14
-    fstmias      r2, {s0-s2}
+    vstmia.f32   r2, {s0-s2}
     bx           lr
 
 _fast_sincos_vector4: // (const A: TVector4; out Sin, Cos: TVector4);
@@ -312,7 +334,7 @@ _fast_exp_vector2: // (const A: TVector2; out Result: TVector2);
 _fast_exp_vector3: // (const A: TVector3; out Result: TVector3);
     vpush       {q4-q6}
     adr         r2, EXP_FACTORS_Q
-    fldmias     r0, {s0-s2}
+    vldmia.f32  r0, {s0-s2}
     vld1.32     {q8-q9}, [r2]!
     vld1.32     {q10-q11}, [r2]!
     vld1.32     {q12-q13}, [r2]!
@@ -334,7 +356,7 @@ _fast_exp_vector3: // (const A: TVector3; out Result: TVector3);
     vmla.f32    q9, q2, q10  // F2+B*(F3+B*(F4+B*F5))
     vmla.f32    q8, q2, q9   // F1+B*(F2+B*(F3+B*(F4+B*F5)))
     vmul.f32    q0, q1, q8   // XU.S*(F1+B*(F2+B*(F3+B*(F4+B*F5))))
-    fstmias     r1, {s0-s2}
+    vstmia.f32  r1, {s0-s2}
     vpop        {q4-q6}
     bx          lr
 
@@ -452,7 +474,7 @@ _fast_ln_vector2: // (const A: TVector2; out Result: TVector2);
 _fast_ln_vector3: // (const A: TVector3; out Result: TVector3);
     vpush       {q4-q5}
     adr         r2, LN_FACTORS_Q
-    fldmias     r0, {s0-s2}
+    vldmia.f32  r0, {s0-s2}
     vld1.32     {q8, q9}, [r2]!
     vld1.32     {q10, q11}, [r2]!
     vld1.32     {q12, q13}, [r2]!
@@ -477,7 +499,7 @@ _fast_ln_vector3: // (const A: TVector3; out Result: TVector3);
     vmla.f32    q4, q2, q3   // (F1*X+AddCst)+X2*((X-F2)+X2*(F4+F3*X))
     vmla.f32    q4, q12, q1  // (F1*X+AddCst)+X2*((X-F2)+X2*(F4+F3*X))+(F5*Exp)
 
-    fstmias     r1, {s16-s18}
+    vstmia.f32  r1, {s16-s18}
     vpop        {q4-q5}
     bx          lr
 
@@ -574,7 +596,7 @@ _fast_log2_vector2: // (const A: TVector2; out Result: TVector2);
 
 _fast_log2_vector3: // (const A: TVector3; out Result: TVector3);
     adr         r2, LOG2_FACTORS_Q
-    fldmias     r0, {s0-s2}
+    vldmia.f32  r0, {s0-s2}
     vld1.32     {q8-q9}, [r2]!
     vld1.32     {q10-q11}, [r2]!
     vld1.32     {q12-q13}, [r2]!
@@ -590,7 +612,7 @@ _fast_log2_vector3: // (const A: TVector3; out Result: TVector3);
     RECIPQ_LOW  q3, q2         // 1/(F4+MX.S)
     vmls.f32    q8, q10, q3    // F1+(VX.I*F5)-(F2*MX.S)-(F3/(F4+MX.S))
     vmov        q0, q8
-    fstmias     r1, {s0-s2}
+    vstmia.f32  r1, {s0-s2}
     bx          lr
 
 _fast_log2_vector4: // (const A: TVector4; out Result: TVector4);
@@ -683,7 +705,7 @@ _fast_exp2_vector2: // (const A: TVector2; out Result: TVector2);
 
 _fast_exp2_vector3: // (const A: TVector3; out Result: TVector3);
     adr         r2, EXP2_FACTORS_Q
-    fldmias     r0, {s0-s2}
+    vldmia.f32  r0, {s0-s2}
     vld1.32     {q8-q9}, [r2]!
     vld1.32     {q10-q11}, [r2]!
     vld1.32     {q12-q13}, [r2]
@@ -704,7 +726,7 @@ _fast_exp2_vector3: // (const A: TVector3; out Result: TVector3);
     vmul.f32    q0, q0, q13    // (1 shl 23) * (A+F1+F2/(F3-Z)-F4*Z)
     vcvt.s32.f32 q0, q0        // Trunc((1 shl 23) * (A+F1+F2/(F3-Z)-F4*Z))
 
-    fstmias     r1, {s0-s2}
+    vstmia.f32  r1, {s0-s2}
     bx          lr
 
 _fast_exp2_vector4: // (const A: TVector4; out Result: TVector4);

@@ -10,6 +10,29 @@
     .text
     .align 4
     .include "../Arm32/macros_32.S"
+#if ANDROID
+    .type _neg_vector4, %function
+    .type _vector4_add_scalar, %function
+    .type _scalar_add_vector4, %function
+    .type _vector4_add_vector4, %function
+    .type _vector4_sub_scalar, %function
+    .type _scalar_sub_vector4, %function
+    .type _vector4_sub_vector4, %function
+    .type _vector4_mul_scalar, %function
+    .type _scalar_mul_vector4, %function
+    .type _vector4_mul_vector4, %function
+    .type _vector4_div_scalar, %function
+    .type _scalar_div_vector4, %function
+    .type _vector4_div_vector4, %function
+    .type _vector4_length, %function
+    .type _vector4_distance, %function
+    .type _vector4_distance_squared, %function
+    .type _vector4_dot, %function
+    .type _vector4_normalize, %function
+    .type _vector4_faceforward, %function
+    .type _vector4_reflect, %function
+    .type _vector4_refract, %function
+#endif
     .globl _neg_vector4
     .globl _vector4_add_scalar, _scalar_add_vector4, _vector4_add_vector4
     .globl _vector4_sub_scalar, _scalar_sub_vector4, _vector4_sub_vector4

@@ -4,6 +4,7 @@
 Thumbs.db
 #ignore Delphi build directories
 Android/
+Android64/
 iOSDevice/
 iOSDevice32/
 iOSDevice64/

@@ -16,6 +16,7 @@ uses
   FMX.Dialogs,
   FMX.ScrollBox,
   FMX.Memo,
+  FMX.Memo.Types,
   FMX.Controls.Presentation,
   FMX.StdCtrls,
   FMX.Layouts,
@@ -143,7 +144,7 @@ begin
       Thread.WaitFor;
       NumTests := Thread.NumTests;
     finally
-      Thread.DisposeOf;
+      Thread.Free;
     end;
 
     Memo.Lines := FResults;

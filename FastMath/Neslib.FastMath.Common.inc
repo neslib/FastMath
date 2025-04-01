@@ -30,6 +30,11 @@ begin
   Result.Init(A1, A2);
 end;
 
+function Vector2(const AVector: TIVector2): TVector2;
+begin
+  Result.Init(AVector.X, AVector.Y);
+end;
+
 function Vector2(const AVector: TVector3): TVector2;
 begin
   Result.Init(AVector.X, AVector.Y);
@@ -65,6 +70,11 @@ end;
 function Vector3(const A1: Single; const A2: TVector2): TVector3;
 begin
   Result.Init(A1, A2);
+end;
+
+function Vector3(const AVector: TIVector3): TVector3;
+begin
+  Result.Init(AVector.X, AVector.Y, AVector.X);
 end;
 
 function Vector3(const AVector: TVector4): TVector3;
@@ -117,6 +127,11 @@ end;
 function Vector4(const A1: Single; const A2: TVector3): TVector4;
 begin
   Result.Init(A1, A2);
+end;
+
+function Vector4(const AVector: TIVector4): TVector4;
+begin
+  Result.Init(AVector.X, AVector.Y, AVector.X, AVector.W);
 end;
 
 { Quaternion }
@@ -876,6 +891,11 @@ function TVector2.Equals(const AOther: TVector2; const ATolerance: Single): Bool
 begin
   Result := (Abs(X - AOther.X) <= ATolerance)
         and (Abs(Y - AOther.Y) <= ATolerance);
+end;
+
+function TVector2.GetAspect: Single;
+begin
+  Result := X / Y;
 end;
 
 function TVector2.GetAngle: Single;
@@ -2837,6 +2857,12 @@ begin
   Result.Y := A.Y;
 end;
 
+class operator TIVector2.Implicit(const A: TIVector2): TVector2;
+begin
+  Result.X := A.X;
+  Result.Y := A.Y;
+end;
+
 procedure TIVector2.Init;
 begin
   X := 0;
@@ -2968,6 +2994,13 @@ function TIVector3.GetComponent(const AIndex: Integer): Integer;
 begin
   Assert((AIndex >= 0) and (AIndex < 3));
   Result := C[AIndex];
+end;
+
+class operator TIVector3.Implicit(const A: TIVector3): TVector3;
+begin
+  Result.X := A.X;
+  Result.Y := A.Y;
+  Result.Z := A.Z;
 end;
 
 procedure TIVector3.Init(const A: Integer);
@@ -3117,6 +3150,14 @@ function TIVector4.GetComponent(const AIndex: Integer): Integer;
 begin
   Assert((AIndex >= 0) and (AIndex < 4));
   Result := C[AIndex];
+end;
+
+class operator TIVector4.Implicit(const A: TIVector4): TVector4;
+begin
+  Result.X := A.X;
+  Result.Y := A.Y;
+  Result.Z := A.Z;
+  Result.W := A.W;
 end;
 
 procedure TIVector4.Init(const A1, A2, A3, A4: Integer);

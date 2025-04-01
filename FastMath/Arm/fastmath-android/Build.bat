@@ -1,8 +1,7 @@
 @echo off
 
 REM Set this variable to the location of ndk-build.cmd
-REM Tested with NDK version 17c.
-set NDK_BUILD=e:\android-ndk-r17c\ndk-build.cmd
+set NDK_BUILD=c:\Users\Public\Documents\Embarcadero\Studio\23.0\CatalogRepository\AndroidSDK-2525-23.0.55362.2017\ndk\27.1.12297006\ndk-build.cmd
 
 REM Name of generated static library
 set LIB32=obj\local\armeabi-v7a\libfastmath-android.a

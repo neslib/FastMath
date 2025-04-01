@@ -25,7 +25,7 @@ const
   { @exclude }
   _PREFIX = '_';
   {$ELSE}
-    {$MESSAGE Error 'Unsupported ARM platform for FaseMath'}
+    {$MESSAGE Error 'Unsupported ARM platform for FastMath'}
   {$ENDIF}
 
 { @exclude }

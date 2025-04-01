@@ -58,6 +58,7 @@ object FormMain: TFormMain
       Size.PlatformDefault = False
       TabOrder = 1
       Text = 'Unit Tests'
+      TextSettings.Trimming = None
       OnClick = ButtonUnitTestsClick
     end
     object ButtonPerformanceTests: TButton
@@ -67,6 +68,7 @@ object FormMain: TFormMain
       Size.PlatformDefault = False
       TabOrder = 0
       Text = 'Performance Tests'
+      TextSettings.Trimming = None
       OnClick = ButtonPerformanceTestsClick
     end
   end

@@ -10,6 +10,16 @@
     .text
     .align 4
     .include "../Arm32/macros_32.S"
+#if ANDROID
+    .type _sqrt_scalar, %function
+    .type _sqrt_vector2, %function
+    .type _sqrt_vector3, %function
+    .type _sqrt_vector4, %function
+    .type _inverse_sqrt_scalar, %function
+    .type _inverse_sqrt_vector2, %function
+    .type _inverse_sqrt_vector3, %function
+    .type _inverse_sqrt_vector4, %function
+#endif
     .globl _sqrt_scalar, _sqrt_vector2, _sqrt_vector3, _sqrt_vector4
     .globl _inverse_sqrt_scalar, _inverse_sqrt_vector2, _inverse_sqrt_vector3, _inverse_sqrt_vector4
 
@@ -26,9 +36,9 @@ _sqrt_vector2: // (const A: TVector2; out Result: TVector2);
     bx          lr
 
 _sqrt_vector3: // (const A: TVector3; out Result: TVector3);
-    fldmias     r0, {s0-s2}
+    vldmia.f32  r0, {s0-s2}
     SQRTQ_MED   q1, q0
-    fstmias     r1, {s4-s6}
+    vstmia.f32  r1, {s4-s6}
     bx          lr
 
 _sqrt_vector4: // (const A: TVector4; out Result: TVector4);
@@ -50,9 +60,9 @@ _inverse_sqrt_vector2: // (const A: TVector2; out Result: TVector2);
     bx           lr
 
 _inverse_sqrt_vector3: // (const A: TVector3; out Result: TVector3);
-    fldmias      r0, {s0-s2}
+    vldmia.f32   r0, {s0-s2}
     INVSQRTQ_LOW q0, q0
-    fstmias      r1, {s0-s2}
+    vstmia.f32   r1, {s0-s2}
     bx           lr
 
 _inverse_sqrt_vector4: // (const A: TVector4; out Result: TVector4);

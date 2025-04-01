@@ -10,6 +10,25 @@
     .text
     .align 4
     .include "../Arm32/macros_32.S"
+#if ANDROID
+    .type _outer_product_matrix2, %function
+    .type _neg_matrix2, %function
+    .type _matrix2_add_scalar, %function
+    .type _scalar_add_matrix2, %function
+    .type _matrix2_add_matrix2, %function
+    .type _matrix2_sub_scalar, %function
+    .type _scalar_sub_matrix2, %function
+    .type _matrix2_sub_matrix2, %function
+    .type _matrix2_mul_scalar, %function
+    .type _scalar_mul_matrix2, %function
+    .type _matrix2_mul_vector2, %function
+    .type _vector2_mul_matrix2, %function
+    .type _matrix2_mul_matrix2, %function
+    .type _matrix2_div_scalar, %function
+    .type _scalar_div_matrix2, %function
+    .type _matrix2_comp_mult, %function
+    .type _matrix2_transpose, %function
+#endif
     .globl _outer_product_matrix2
     .globl _neg_matrix2
     .globl _matrix2_add_scalar, _scalar_add_matrix2, _matrix2_add_matrix2

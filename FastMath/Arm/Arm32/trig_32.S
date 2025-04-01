@@ -10,6 +10,16 @@
     .text
     .align 4
     .include "../Arm32/macros_32.S"
+#if ANDROID
+    .type _radians_scalar, %function
+    .type _radians_vector2, %function
+    .type _radians_vector3, %function
+    .type _radians_vector4, %function
+    .type _degrees_scalar, %function
+    .type _degrees_vector2, %function
+    .type _degrees_vector3, %function
+    .type _degrees_vector4, %function
+#endif
     .globl _radians_scalar, _radians_vector2, _radians_vector3, _radians_vector4
     .globl _degrees_scalar, _degrees_vector2, _degrees_vector3, _degrees_vector4
 
@@ -31,10 +41,10 @@ _radians_vector2: // (const ADegrees: TVector2; out Result: TVector2);
     
 _radians_vector3: // (const ADegrees: TVector3; out Result: TVector3);
     adr         r2, PI_OVER_180
-    fldmias     r0, {s0-s2}
+    vldmia.f32  r0, {s0-s2}
     vld1.32     {q1}, [r2]
     vmul.f32    q0, q0, q1
-    fstmias     r1, {s0-s2}
+    vstmia.f32  r1, {s0-s2}
     bx          lr 
     
 _radians_vector4: // (const ADegrees: TVector4; out Result: TVector4);
@@ -63,10 +73,10 @@ _degrees_vector2: // (const ARadians: TVector2; out Result: TVector2);
     
 _degrees_vector3: // (const ARadians: TVector3; out Result: TVector3);
     adr         r2, _180_OVER_PI
-    fldmias     r0, {s0-s2}
+    vldmia.f32  r0, {s0-s2}
     vld1.32     {q1}, [r2]
     vmul.f32    q0, q0, q1
-    fstmias     r1, {s0-s2}
+    vstmia.f32  r1, {s0-s2}
     bx          lr 
     
 _degrees_vector4: // (const ARadians: TVector4; out Result: TVector4);
