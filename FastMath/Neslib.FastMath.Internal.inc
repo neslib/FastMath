@@ -8,6 +8,11 @@ const
   _LIB_FASTMATH = 'libfastmath-ios.a';
   { @exclude }
   _PREFIX = '';
+  {$ELSEIF Defined(MACOS64)}
+  { @exclude }
+  _LIB_FASTMATH = 'libfastmath-macosarm.a';
+  { @exclude }
+  _PREFIX = '';
   {$ELSEIF Defined(ANDROID64)}
   { @exclude }
   _LIB_FASTMATH = 'libfastmath-android-64.a';
