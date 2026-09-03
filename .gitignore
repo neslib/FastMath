@@ -12,6 +12,7 @@ iOSSimulator/
 OSX32/
 OSX64/
 OSXARM64/
+Linux64/
 Win32/
 Win64/
 #ignore Delphi build files
@@ -22,6 +23,7 @@ Win64/
 *.deployproj
 *.rsm
 *.stat
+*.o
 !FastMath/FastMathMacOS64CM.obj
 !FastMath/FastMathMacOS64RM.obj
 #ignore Delphi temp and backup files
